@@ -3,103 +3,188 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ARSHI — Writing & Projects</title>
-  <meta name="description" content="Arshi — a platform for writing, photography, video, and styling projects." />
+  <title>ARSHI — Culture, Style, Politics</title>
+  <meta name="description" content="ARSHI — magazine experiments in culture, style and politics. Essays, photo stories, video, styling." />
+  <!-- Free web fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- Top bar / announcement (optional) -->
+  <div class="topnote">
+    <span>Now live:</span> ARSHI — a studio magazine in progress.
+  </div>
+
+  <!-- Header -->
   <header class="masthead">
-    <div class="brand">ARSHI</div>
+    <a class="brand" href="/">ARSHI</a>
     <nav aria-label="Primary">
+      <a href="#features">Features</a>
       <a href="#writing">Writing</a>
       <a href="#projects">Projects</a>
+      <a href="#events">Events</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a class="cta" href="mailto:hello@arshi.studio">Contact</a>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
+  <!-- Marquee (Dazed/i-D vibe) -->
+  <section class="marquee" aria-label="Headlines">
+    <div class="marquee-track">
+      <span>Editorial: Bodies in Motion</span>
+      <span>Field Notes: Beirut at Night</span>
+      <span>Photo Essay: Blue Hour</span>
+      <span>Studio Set: Shadows</span>
+    </div>
+  </section>
+
+  <!-- Hero feature -->
+  <section id="features" class="hero">
+    <a class="hero-card" href="#">
+      <div class="hero-media" style="background-image:url('assets/hero.jpg');"></div>
       <div class="hero-copy">
+        <div class="eyebrow">Feature · 2025</div>
         <h1>Culture, style & the politics of everyday life.</h1>
-        <p>Essays, field notes, and visual projects by Arshi — a growing studio/collective.</p>
+        <p>ARSHI is an evolving studio/collective. Essays, images and moving pieces—made slowly, with care.</p>
       </div>
-    </section>
+    </a>
+  </section>
 
-    <section id="writing" class="section">
-      <h2 class="kicker">Writing</h2>
-      <div class="grid">
-        <article class="card">
-          <a class="card-img" href="#">
-            <div class="img-placeholder">Cover</div>
-          </a>
-          <div class="card-meta">Essay · 2025</div>
-          <h3 class="card-title"><a href="#">An essay on style & politics</a></h3>
-          <p class="card-excerpt">A short excerpt that teases the argument and invites the reader in.</p>
-        </article>
-        <article class="card">
-          <a class="card-img" href="#">
-            <div class="img-placeholder">Cover</div>
-          </a>
-          <div class="card-meta">Field Notes · Beirut</div>
-          <h3 class="card-title"><a href="#">Fragments from a city in flux</a></h3>
-          <p class="card-excerpt">Brief reflection on memory, loss, and the textures of everyday life.</p>
-        </article>
-        <article class="card">
-          <a class="card-img" href="#">
-            <div class="img-placeholder">Cover</div>
-          </a>
-          <div class="card-meta">Review</div>
-          <h3 class="card-title"><a href="#">On silhouettes & subcultures</a></h3>
-          <p class="card-excerpt">Notes on dress codes, belonging, and quiet rebellion.</p>
-        </article>
-      </div>
-    </section>
+  <!-- Magazine grid -->
+  <main class="section">
+    <h2 class="section-title">Latest</h2>
+    <div class="grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <a href="#" class="card-media" style="background-image:url('assets/sample1.jpg');" aria-label="An essay on style & politics"></a>
+        <div class="card-body">
+          <div class="meta">
+            <span class="tag">Essay</span>
+            <time datetime="2025-09">Sep 2025</time>
+          </div>
+          <h3><a href="#">An essay on style & politics</a></h3>
+          <p class="excerpt">On silhouettes, belonging and quiet forms of resistance.</p>
+        </div>
+      </article>
 
-    <section id="projects" class="section">
-      <h2 class="kicker">Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <a class="card-img" href="#">
-            <div class="img-placeholder">Photo</div>
-          </a>
-          <div class="card-meta">Photography · 2025</div>
-          <h3 class="card-title"><a href="#">Lookbook: Blue Hour</a></h3>
-          <p class="card-excerpt">A minimal series exploring light and texture at dusk.</p>
-        </article>
-        <article class="card">
-          <a class="card-img" href="#">
-            <div class="img-placeholder">Video</div>
-          </a>
-          <div class="card-meta">Video · Styling</div>
-          <h3 class="card-title"><a href="#">Motion study: Body & fabric</a></h3>
-          <p class="card-excerpt">Short video piece — movement, cloth, sound.</p>
-        </article>
-        <article class="card">
-          <a class="card-img" href="#">
-            <div class="img-placeholder">Editorial</div>
-          </a>
-          <div class="card-meta">Editorial · 2024</div>
-          <h3 class="card-title"><a href="#">Studio set: Shadows</a></h3>
-          <p class="card-excerpt">Monochrome portraits with strong geometric framing.</p>
-        </article>
-      </div>
-    </section>
+      <!-- Card 2 -->
+      <article class="card">
+        <a href="#" class="card-media" style="background-image:url('assets/sample2.jpg');" aria-label="Fragments from a city in flux"></a>
+        <div class="card-body">
+          <div class="meta">
+            <span class="tag">Field Notes</span>
+            <time datetime="2025-06">Jun 2025</time>
+          </div>
+          <h3><a href="#">Fragments from a city in flux</a></h3>
+          <p class="excerpt">Brief reflections on memory, sound and the texture of night.</p>
+        </div>
+      </article>
 
-    <section id="about" class="section narrow">
-      <h2 class="kicker">About</h2>
-      <p>Hello — I’m Arshi. I write about culture and politics, and produce visual projects across photography, video and styling. This site is a seed for <em>Arshi</em> — a studio/collective that may grow into a magazine.</p>
-    </section>
+      <!-- Card 3 -->
+      <article class="card">
+        <a href="#" class="card-media" style="background-image:url('assets/sample3.jpg');" aria-label="Blue Hour lookbook"></a>
+        <div class="card-body">
+          <div class="meta">
+            <span class="tag">Photo</span>
+            <time datetime="2025-05">May 2025</time>
+          </div>
+          <h3><a href="#">Lookbook: Blue Hour</a></h3>
+          <p class="excerpt">A minimal series exploring light and fabric at dusk.</p>
+        </div>
+      </article>
 
-    <section id="contact" class="section narrow">
-      <h2 class="kicker">Contact</h2>
-      <p>Email: <a href="mailto:hello@arshi.studio">hello@arshi.studio</a></p>
-      <p>Instagram · Substack · LinkedIn</p>
-    </section>
+      <!-- Card 4 -->
+      <article class="card">
+        <a href="#" class="card-media" style="background-image:url('assets/sample4.jpg');" aria-label="Motion study"></a>
+        <div class="card-body">
+          <div class="meta">
+            <span class="tag">Video</span>
+            <time datetime="2025-03">Mar 2025</time>
+          </div>
+          <h3><a href="#">Motion study: body & fabric</a></h3>
+          <p class="excerpt">Short moving piece—gesture, breath, cloth.</p>
+        </div>
+      </article>
+    </div>
   </main>
 
+  <!-- Writing strip -->
+  <section id="writing" class="section narrow">
+    <h2 class="section-title">Writing</h2>
+    <ul class="list">
+      <li>
+        <a href="#">
+          <span class="kicker">Essay</span>
+          On quiet style and soft power
+          <time>2025</time>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span class="kicker">Review</span>
+          Scenes from a subculture
+          <time>2024</time>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Events (Paradiso-like compact list) -->
+  <section id="events" class="section narrow">
+    <h2 class="section-title">Events</h2>
+    <div class="events">
+      <div class="event">
+        <time datetime="2025-10-22">22 Oct</time>
+        <div>
+          <strong>ARSHI Reading</strong><br/>
+          Amsterdam — small room, 19:30
+        </div>
+        <a class="link" href="#">RSVP</a>
+      </div>
+      <div class="event">
+        <time datetime="2025-11-08">08 Nov</time>
+        <div>
+          <strong>Studio Screening</strong><br/>
+          Rotterdam — short films, 20:00
+        </div>
+        <a class="link" href="#">Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section narrow">
+    <h2 class="section-title">About</h2>
+    <p>ARSHI is a studio magazine by Arshi (and friends) exploring politics, culture and style through essays, photo stories and moving images.</p>
+  </section>
+
+  <!-- Footer -->
   <footer class="site-footer">
-    © 2025 ARSHI — Writing & Projects
+    <div class="cols">
+      <div>
+        <div class="brand brand--footer">ARSHI</div>
+        <p class="fine">Independent, ad-free, slow publishing.</p>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#writing">Writing</a></li>
+          <li><a href="#projects">Projects</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:hello@arshi.studio">hello@arshi.studio</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Substack</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">© 2025 ARSHI — All rights reserved.</div>
   </footer>
+
 </body>
 </html>

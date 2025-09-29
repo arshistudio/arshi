@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ARSHI — i‑D–inspired layout</title>
+  <meta name="description" content="ARSHI — society & culture, fashion & art, music & film"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
+            serif: ['Playfair Display', 'ui-serif', 'Georgia', 'Times New Roman', 'serif'],
+            impact: ['Impact', 'Haettenschweiler', 'Arial Black', 'sans-serif']
+          },
+          colors: {
+            ink: '#111111',
+            paper: '#ffffff'
+          },
+          boxShadow: { soft: '0 10px 30px rgba(0,0,0,.05)' }
+        }
+      }
+    }
+  </script>
+  <style>
+    .link-underline{ text-decoration:none; box-shadow: inset 0 -0.1em 0 0 currentColor; }
+    .link-underline:hover{ box-shadow: inset 0 -0.45em 0 0 currentColor; }
+  </style>
+</head>
+<body class="bg-paper text-ink antialiased selection:bg-ink selection:text-paper">
+  <div class="min-h-screen flex flex-col">
+    <!-- TOP NAV (i‑D–style: slim bar, logo left, cats + actions right) -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/10 relative">
+      <div class="max-w-7xl mx-auto h-14 px-3 md:px-4 flex items-center gap-6">
+        <a href="/" class="font-impact text-[44px] leading-none tracking-[0.06em] select-none">ARSHI</a>
+        <nav class="ml-auto hidden lg:flex items-center gap-6 text-[13px] uppercase tracking-wide">
+          <a href="#soc" class="hover:opacity-70">society &amp; culture</a>
+          <a href="#style" class="hover:opacity-70">fashion &amp; art</a>
+          <a href="#music" class="hover:opacity-70">music &amp; film</a>
+          <a href="/about.html" class="hover:opacity-70">about</a>
+          <a href="/contact.html" class="hover:opacity-70">contact</a>
+        </nav>
+        <button id="menuToggle" aria-label="Menu" class="ml-auto lg:hidden w-10 h-10 grid place-items-center rounded-md border border-black/10">
+          <span class="block w-5 h-0.5 bg-ink"></span>
+          <span class="block w-5 h-0.5 bg-ink my-1"></span>
+          <span class="block w-5 h-0.5 bg-ink"></span>
+        </button>
+      </div>
+      <!-- mobile sheet -->
+      <div id="menuPanel" class="hidden lg:hidden absolute right-3 top-14 w-56 rounded-xl bg-white shadow-soft border border-black/10">
+        <nav class="p-2 text-sm">
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#soc">society &amp; culture</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#style">fashion &amp; art</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#music">music &amp; film</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="/about.html">about</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="/contact.html">contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- FEATURE STRIP (3-up: one big + two side cards) -->
+    <section class="border-b border-black/10">
+      <div class="max-w-7xl mx-auto px-3 md:px-4 py-6 md:py-10 grid lg:grid-cols-12 gap-4">
+        <!-- Big feature -->
+        <article class="lg:col-span-7 bg-white rounded-2xl shadow-soft overflow-hidden">
+          <a href="#" class="block group">
+            <div class="aspect-[16/9] bg-neutral-200"></div>
+            <div class="p-5">
+              <div class="text-[11px] uppercase tracking-wide mb-2">Feature — society &amp; culture</div>
+              <h2 class="font-serif text-[28px] leading-tight group-hover:opacity-80">Welcome to ARSHI: independence over house style</h2>
+              <p class="mt-2 text-sm text-black/70">A note on what this platform is and isn’t.</p>
+            </div>
+          </a>
+        </article>
+        <!-- Side stack -->
+        <div class="lg:col-span-5 grid gap-4">
+          <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <a href="#" class="block group">
+              <div class="aspect-[16/9] bg-neutral-200"></div>
+              <div class="p-5">
+                <div class="text-[11px] uppercase tracking-wide mb-2">fashion &amp; art</div>
+                <h3 class="font-serif text-2xl leading-snug group-hover:opacity-80">Club flyers as wardrobe theory</h3>
+              </div>
+            </a>
+          </article>
+          <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <a href="#" class="block group">
+              <div class="aspect-[16/9] bg-neutral-200"></div>
+              <div class="p-5">
+                <div class="text-[11px] uppercase tracking-wide mb-2">music &amp; film</div>
+                <h3 class="font-serif text-2xl leading-snug group-hover:opacity-80">A night at Paradiso, a memory at home</h3>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST GRID (magazine feed) -->
+    <section id="latest" class="border-b border-black/10">
+      <div class="max-w-7xl mx-auto px-3 md:px-4 py-8 md:py-12">
+        <h3 class="font-serif text-2xl md:text-3xl mb-6">Latest</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+          <!-- 6 cards -->
+          <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <a href="#" class="block">
+              <div class="aspect-[4/3] bg-neutral-200"></div>
+              <div class="p-5">
+                <div class="text-[11px] uppercase tracking-wide mb-2">society &amp; culture</div>
+                <h4 class="font-serif text-xl leading-snug">Reading posters as public syllabus</h4>
+              </div>
+            </a>
+          </article>
+          <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <a href="#" class="block">
+              <div class="aspect-[4/3] bg-neutral-200"></div>
+              <div class="p-5">
+                <div class="text-[11px] uppercase tracking-wide mb-2">fashion &amp; art</div>
+                <h4 class="font-serif text-xl leading-snug">The politics of merch</h4>
+              </div>
+            </a>
+          </article>
+          <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <a href="#" class="block">
+              <div class="aspect-[4/3] bg-neutral-200"></div>
+              <div class="p-5">
+                <div class="text-[11px] uppercase tracking-wide mb-2">music &amp; film</div>
+                <h4 class="font-serif text-xl leading-snug">Zine scores and cinema queues</h4>
+              </div>
+            </a>
+          </article>
+          <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <a href="#" class="block">
+              <div class="aspect-[4/3] bg-neutral-200"></div>
+              <div class="p-5">
+                <div class="text-[11px] uppercase tracking-wide mb-2">society &amp; culture</div>
+                <h4 class="font-serif text-xl leading-snug">Postcard from Brussels</h4>
+              </div>
+            </a>
+          </article>
+          <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <a href="#" class="block">
+              <div class="aspect-[4/3] bg-neutral-200"></div>
+              <div class="p-5">
+                <div class="text-[11px] uppercase tracking-wide mb-2">fashion &amp; art</div>
+                <h4 class="font-serif text-xl leading-snug">Tracing gold myths on a map</h4>
+              </div>
+            </a>
+          </article>
+          <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <a href="#" class="block">
+              <div class="aspect-[4/3] bg-neutral-200"></div>
+              <div class="p-5">
+                <div class="text-[11px] uppercase tracking-wide mb-2">music &amp; film</div>
+                <h4 class="font-serif text-xl leading-snug">What a queue teaches</h4>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-auto">
+      <div class="max-w-7xl mx-auto px-3 md:px-4 py-10">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div>
+            <div class="font-impact text-2xl">ARSHI</div>
+            <p class="text-sm text-black/70 mt-2 max-w-sm">Independent writing on society & culture, fashion & art, music & film.</p>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-wide mb-2">Browse</div>
+            <ul class="text-sm space-y-1">
+              <li><a class="hover:opacity-70" href="#soc">society &amp; culture</a></li>
+              <li><a class="hover:opacity-70" href="#style">fashion &amp; art</a></li>
+              <li><a class="hover:opacity-70" href="#music">music &amp; film</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-wide mb-2">Info</div>
+            <ul class="text-sm space-y-1">
+              <li><a class="hover:opacity-70" href="/about.html">about</a></li>
+              <li><a class="hover:opacity-70" href="/contact.html">contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-xs text-black/60 mt-8">© <span id="year"></span> arshi.studio</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuPanel = document.getElementById('menuPanel');
+    menuToggle?.addEventListener('click', () => menuPanel.classList.toggle('hidden'));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

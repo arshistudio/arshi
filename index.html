@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>arshi.studio — words, culture, friends</title>
+  <title>ARSHI — words, culture, friends</title>
   <meta name="description" content="Essays and culture writing by Arshi & friends."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,40 +11,34 @@
   <!-- Tailwind CDN (no build step). For production, consider a proper build. -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Tailwind config: magazine palette
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
             serif: ['Playfair Display', 'ui-serif', 'Georgia', 'Times New Roman', 'serif'],
+            impact: ['Impact', 'Haettenschweiler', 'Arial Black', 'sans-serif']
           },
           colors: {
             ink: '#121212',
             paper: '#ffffff',
-            afb: '#5d8aa8', // Air Force blue
-            accent: {
-              DEFAULT: '#e11d48',
-              soft: '#fce7f3',
-            },
+            afb: '#5d8aa8' // Air Force blue (temporary)
           },
-          boxShadow: {
-            soft: '0 10px 30px rgba(0,0,0,.05)'
-          },
+          boxShadow: { soft: '0 10px 30px rgba(0,0,0,.05)' },
           keyframes: {
             marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
-            floaty: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-10px)' }
-            }
+            floatA: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-14px)' } },
+            floatB: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-9px)' } },
+            floatC: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-18px)' } }
           },
           animation: {
             marquee: 'marquee 25s linear infinite',
-            floaty: 'floaty 8s ease-in-out infinite'
+            floatA: 'floatA 9s ease-in-out infinite',
+            floatB: 'floatB 11s ease-in-out infinite',
+            floatC: 'floatC 13s ease-in-out infinite'
           }
         }
-      },
-      darkMode: 'class'
+      }
     }
   </script>
   <style>
@@ -54,56 +48,57 @@
 </head>
 <body class="bg-afb text-ink antialiased selection:bg-ink selection:text-paper">
   <div class="min-h-screen flex flex-col">
-    <!-- Top Bar (white banner) -->
+    <!-- Header: white banner, brand left, hamburger far right -->
     <header class="sticky top-0 z-50 backdrop-blur bg-paper border-b border-black/10">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="h-16 flex items-center justify-between">
-          <a href="#" class="font-serif text-2xl sm:text-3xl tracking-tight">arshi.<span class="text-afb">studio</span></a>
-
-          <!-- Unfolding menu (desktop-first). Hidden categories until clicked. -->
-          <div class="relative">
-            <button id="menuToggle" class="px-3 py-1.5 rounded-full border border-black/10 hover:border-black/30 text-xs bg-paper">Menu</button>
-            <div id="menuPanel" class="hidden absolute right-0 mt-2 w-56 rounded-xl bg-paper shadow-soft border border-black/10">
-              <nav class="p-2 text-sm">
-                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#latest">Latest</a>
-                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#sections">Sections</a>
-                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#contributors">Contributors</a>
-                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#events">Events</a>
-                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#about">About</a>
-              </nav>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <button id="themeToggle" aria-label="Toggle dark mode" class="px-3 py-1.5 rounded-full border border-black/10 hover:border-black/30 text-xs bg-paper">Dark</button>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="h-16 flex items-center">
+          <a href="#" class="font-impact text-[26px] tracking-tight leading-none">ARSHI</a>
+          <div class="ml-auto flex items-center">
+            <!-- Hamburger button -->
+            <button id="menuToggle" aria-label="Open menu" class="relative w-10 h-10 grid place-items-center rounded-full border border-black/10 hover:border-black/30">
+              <span class="block w-5 h-0.5 bg-ink transition-all"></span>
+              <span class="block w-5 h-0.5 bg-ink transition-all translate-y-[2px]"></span>
+              <span class="block w-5 h-0.5 bg-ink transition-all -translate-y-[2px]"></span>
+            </button>
           </div>
         </div>
       </div>
-      <!-- Sliding text (marquee) -->
+      <!-- Sliding text strip -->
       <div class="overflow-hidden border-t border-black/10 bg-paper">
         <div class="whitespace-nowrap animate-marquee">
-          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Arshi — words on politics, culture & style</span>
+          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Words on politics, culture & style</span>
           <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Amsterdam & beyond</span>
           <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Submissions welcome</span>
-          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Arshi — words on politics, culture & style</span>
+          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Words on politics, culture & style</span>
           <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Amsterdam & beyond</span>
           <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Submissions welcome</span>
         </div>
+      </div>
+
+      <!-- Unfolding menu panel -->
+      <div id="menuPanel" class="hidden absolute right-4 md:right-6 mt-2 w-60 rounded-xl bg-paper shadow-soft border border-black/10">
+        <nav class="p-2 text-sm">
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#latest">Latest</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#sections">Sections</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#contributors">Contributors</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#events">Events</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#about">About</a>
+        </nav>
       </div>
     </header>
 
-    <!-- Hero / Welcome Article (first thing you see) -->
+    <!-- Hero / Welcome Article -->
     <section class="border-b border-black/10">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-16 grid md:grid-cols-5 gap-8 items-stretch">
-        <div class="md:col-span-5 bg-paper rounded-2xl shadow-soft overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-16">
+        <div class="bg-paper rounded-2xl shadow-soft overflow-hidden">
           <a href="#" class="block group">
             <div class="aspect-[21/9] bg-neutral-100"></div>
             <div class="p-8 md:p-10">
               <div class="flex gap-2 mb-3">
-                <span class="text-[10px] uppercase tracking-wide px-2 py-1 bg-accent.soft text-accent rounded-full">Welcome</span>
+                <span class="text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 rounded-full">Welcome</span>
               </div>
               <h1 class="font-serif text-4xl md:text-5xl leading-tight group-hover:opacity-80">Welcome to arshi.studio</h1>
-              <p class="mt-3 text-base md:text-lg text-black/70 max-w-3xl">An introduction to who I am, why this space exists, and the kinds of stories we’ll publish. (Replace this with your real intro soon.)</p>
+              <p class="mt-3 text-base md:text-lg text-black/70 max-w-3xl">Intro to who I am, why this space exists, and the kinds of stories we’ll publish. (Replace with your real intro soon.)</p>
               <div class="mt-5 text-xs text-black/60">By Arshi — 5 min read</div>
             </div>
           </a>
@@ -111,79 +106,75 @@
       </div>
     </section>
 
-    <!-- Floating Articles Grid (desktop-first) -->
+    <!-- Floating Articles (Paradiso Kosmos-inspired) -->
     <section id="latest" class="border-b border-black/10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-        <div class="flex items-end justify-between mb-6">
-          <h3 class="font-serif text-2xl md:text-3xl text-paper/90">Latest</h3>
-          <a href="#" class="text-sm link-underline text-paper/90">All posts →</a>
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-10 md:py-16">
+        <h3 class="font-serif text-2xl md:text-3xl text-paper/90 mb-6">Latest</h3>
+        <!-- Stage -->
+        <div class="relative h-[1100px] lg:h-[1200px]">
+          <!-- Card A -->
+          <article class="absolute top-[2%] left-[8%] w-[320px] bg-paper rounded-2xl shadow-soft overflow-hidden hover:-translate-y-1 transition transform animate-floatA">
+            <a href="#" class="block">
+              <div class="aspect-[4/3] bg-neutral-100"></div>
+              <div class="p-5">
+                <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Essay</div>
+                <h4 class="font-serif text-xl leading-snug">On learning to read posters</h4>
+                <p class="mt-2 text-sm text-black/70">A love letter to walls.</p>
+              </div>
+            </a>
+          </article>
+          <!-- Card B -->
+          <article class="absolute top-[15%] left-[45%] w-[360px] bg-paper rounded-2xl shadow-soft overflow-hidden hover:-translate-y-1 transition transform animate-floatB">
+            <a href="#" class="block">
+              <div class="aspect-[1/1] bg-neutral-100"></div>
+              <div class="p-5">
+                <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Interview</div>
+                <h4 class="font-serif text-xl leading-snug">Tracing gold myths across maps</h4>
+                <p class="mt-2 text-sm text-black/70">On art, rumor, and archives.</p>
+              </div>
+            </a>
+          </article>
+          <!-- Card C (tall) -->
+          <article class="absolute top-[5%] right-[6%] w-[300px] bg-paper rounded-2xl shadow-soft overflow-hidden hover:-translate-y-1 transition transform animate-floatC">
+            <a href="#" class="block">
+              <div class="aspect-[3/4] bg-neutral-100"></div>
+              <div class="p-5">
+                <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Reportage</div>
+                <h4 class="font-serif text-xl leading-snug">Postcard from Brussels</h4>
+                <p class="mt-2 text-sm text-black/70">Galleries, rain, and bread.</p>
+              </div>
+            </a>
+          </article>
+          <!-- Card D -->
+          <article class="absolute bottom-[22%] left-[14%] w-[380px] bg-paper rounded-2xl shadow-soft overflow-hidden hover:-translate-y-1 transition transform animate-floatB">
+            <a href="#" class="block">
+              <div class="aspect-[16/9] bg-neutral-100"></div>
+              <div class="p-5">
+                <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Opinion</div>
+                <h4 class="font-serif text-xl leading-snug">The politics of merch</h4>
+                <p class="mt-2 text-sm text-black/70">Between solidarity, aesthetics, and capital.</p>
+              </div>
+            </a>
+          </article>
+          <!-- Card E -->
+          <article class="absolute bottom-[8%] right-[12%] w-[430px] bg-paper rounded-2xl shadow-soft overflow-hidden hover:-translate-y-1 transition transform animate-floatA">
+            <a href="#" class="block">
+              <div class="aspect-[16/9] bg-neutral-100"></div>
+              <div class="p-5">
+                <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Field Notes</div>
+                <h4 class="font-serif text-xl leading-snug">What a queue teaches</h4>
+                <p class="mt-2 text-sm text-black/70">Etiquette, space, and power.</p>
+              </div>
+            </a>
+          </article>
         </div>
-        <!-- Floating masonry-like layout -->
-        <div class="relative">
-          <div class="grid grid-cols-12 gap-6">
-            <!-- Card 1 -->
-            <article class="col-span-4 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition will-change-transform animate-floaty" style="animation-delay:0s">
-              <a href="#" class="block">
-                <div class="aspect-[4/3] bg-neutral-100"></div>
-                <div class="p-5">
-                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Essay</div>
-                  <h4 class="font-serif text-xl leading-snug">On learning to read posters</h4>
-                  <p class="mt-2 text-sm text-black/70">A love letter to walls.</p>
-                </div>
-              </a>
-            </article>
-            <!-- Card 2 -->
-            <article class="col-span-4 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition animate-floaty" style="animation-delay:1s">
-              <a href="#" class="block">
-                <div class="aspect-[1/1] bg-neutral-100"></div>
-                <div class="p-5">
-                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Interview</div>
-                  <h4 class="font-serif text-xl leading-snug">Tracing gold myths across maps</h4>
-                  <p class="mt-2 text-sm text-black/70">On art, rumor, and archives.</p>
-                </div>
-              </a>
-            </article>
-            <!-- Card 3 (taller) -->
-            <article class="col-span-4 row-span-2 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition animate-floaty" style="animation-delay:2s">
-              <a href="#" class="block">
-                <div class="aspect-[3/4] bg-neutral-100"></div>
-                <div class="p-5">
-                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Reportage</div>
-                  <h4 class="font-serif text-xl leading-snug">Postcard from Brussels: galleries, rain, and good bread</h4>
-                  <p class="mt-2 text-sm text-black/70">A quick city note.</p>
-                </div>
-              </a>
-            </article>
-            <!-- Card 4 -->
-            <article class="col-span-3 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition animate-floaty" style="animation-delay:0.5s">
-              <a href="#" class="block">
-                <div class="aspect-[4/3] bg-neutral-100"></div>
-                <div class="p-5">
-                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Opinion</div>
-                  <h4 class="font-serif text-xl leading-snug">The politics of merch</h4>
-                  <p class="mt-2 text-sm text-black/70">Between solidarity, aesthetics, and capital.</p>
-                </div>
-              </a>
-            </article>
-            <!-- Card 5 -->
-            <article class="col-span-5 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition animate-floaty" style="animation-delay:1.4s">
-              <a href="#" class="block">
-                <div class="aspect-[16/9] bg-neutral-100"></div>
-                <div class="p-5">
-                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Field Notes</div>
-                  <h4 class="font-serif text-xl leading-snug">What a queue teaches</h4>
-                  <p class="mt-2 text-sm text-black/70">Etiquette, space, and power.</p>
-                </div>
-              </a>
-            </article>
-          </div>
-        </div>
+        <p class="text-xs text-paper/90 mt-3">Tip: We can randomize positions per load later; for now these are hand-placed for desktop.</p>
       </div>
     </section>
 
-    <!-- Sections / Categories (collapsed in menu; still here for SEO/internal links) -->
+    <!-- Sections (linked but not in header by default) -->
     <section id="sections" class="border-b border-black/10">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
         <h3 class="font-serif text-2xl md:text-3xl mb-6 text-paper/90">Sections</h3>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <a href="#" class="group p-6 rounded-2xl bg-paper shadow-soft hover:shadow-lg transition-shadow">
@@ -206,9 +197,9 @@
       </div>
     </section>
 
-    <!-- Events (explicitly show none) -->
+    <!-- Events -->
     <section id="events" class="border-b border-black/10">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
         <h3 class="font-serif text-2xl md:text-3xl mb-4 text-paper/90">Events</h3>
         <p class="text-sm text-paper/90">No upcoming events.</p>
       </div>
@@ -216,7 +207,7 @@
 
     <!-- Contributors -->
     <section id="contributors" class="border-b border-black/10">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
         <div class="flex items-end justify-between mb-6">
           <h3 class="font-serif text-2xl md:text-3xl text-paper/90">Contributors</h3>
           <a href="#" class="text-sm link-underline text-paper/90">Pitch us →</a>
@@ -238,7 +229,6 @@
             <div class="text-sm text-black/70">Urbanism, print ephemera.</div>
           </div>
           <div class="bg-paper rounded-2xl shadow-soft p-6">
-            <div class="w-16 h-16 rounded-full bg-neutral-200 mb-3"></div>
             <div class="font-medium">You?</div>
             <div class="text-sm text-black/70">Pitch a piece; we read everything.</div>
           </div>
@@ -248,10 +238,10 @@
 
     <!-- Footer -->
     <footer id="about" class="mt-auto">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         <div class="grid md:grid-cols-3 gap-8">
           <div>
-            <div class="font-serif text-2xl text-paper">arshi.<span class="text-paper/80">studio</span></div>
+            <div class="font-impact text-2xl text-paper">ARSHI</div>
             <p class="mt-2 text-sm text-paper/80 max-w-sm">A small magazine at the intersection of political science, culture, and style. Amsterdam & beyond.</p>
           </div>
           <div>
@@ -266,7 +256,7 @@
           <div id="subscribe" class="bg-paper rounded-2xl shadow-soft p-6">
             <div class="font-medium mb-2">Get new posts</div>
             <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Thanks! Plug in your provider later (Buttondown/Substack/Mailchimp).')">
-              <input type="email" required placeholder="you@example.com" class="flex-1 px-3 py-2 rounded-xl border border-black/10 focus:outline-none focus:ring-2 focus:ring-afb"/>
+              <input type="email" required placeholder="you@example.com" class="flex-1 px-3 py-2 rounded-xl border border-black/10 focus:outline-none focus:ring-2 focus:ring-ink"/>
               <button class="px-4 py-2 rounded-xl bg-ink text-paper hover:opacity-90">Subscribe</button>
             </form>
             <p class="mt-2 text-xs text-black/60">We send infrequently. Unsubscribe anytime.</p>
@@ -278,40 +268,22 @@
   </div>
 
   <script>
-    // Unfolding menu
+    // Hamburger menu logic
     const menuToggle = document.getElementById('menuToggle');
     const menuPanel = document.getElementById('menuPanel');
     let menuOpen = false;
-    const closeMenu = (e) => {
+    const outside = (e) => {
       if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
         menuPanel.classList.add('hidden');
+        document.removeEventListener('click', outside);
         menuOpen = false;
-        document.removeEventListener('click', closeMenu);
       }
     };
     menuToggle.addEventListener('click', () => {
       menuOpen = !menuOpen;
       menuPanel.classList.toggle('hidden', !menuOpen);
-      if (menuOpen) document.addEventListener('click', closeMenu);
+      if (menuOpen) document.addEventListener('click', outside);
     });
-
-    // Dark mode toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark') root.classList.add('dark');
-    themeToggle.addEventListener('click', () => {
-      root.classList.toggle('dark');
-      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
-    });
-
-    // Optional: adapt body bg on dark
-    const observer = new MutationObserver(() => {
-      document.body.classList.toggle('bg-afb', !root.classList.contains('dark'));
-      document.body.classList.toggle('bg-[#0b0b0b]', root.classList.contains('dark'));
-      document.body.classList.toggle('text-white', root.classList.contains('dark'));
-    });
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();

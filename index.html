@@ -1,192 +1,320 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ARSHI — Culture, Style, Politics</title>
-  <meta name="description" content="ARSHI — magazine experiments in culture, style and politics. Essays, photo stories, video, styling." />
-  <!-- Free web fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <title>arshi.studio — words, culture, friends</title>
+  <meta name="description" content="Essays and culture writing by Arshi & friends."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN (no build step). For production, consider a proper build. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config: magazine palette
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'],
+            serif: ['Playfair Display', 'ui-serif', 'Georgia', 'Times New Roman', 'serif'],
+          },
+          colors: {
+            ink: '#121212',
+            paper: '#ffffff',
+            afb: '#5d8aa8', // Air Force blue
+            accent: {
+              DEFAULT: '#e11d48',
+              soft: '#fce7f3',
+            },
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(0,0,0,.05)'
+          },
+          keyframes: {
+            marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+            floaty: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' }
+            }
+          },
+          animation: {
+            marquee: 'marquee 25s linear infinite',
+            floaty: 'floaty 8s ease-in-out infinite'
+          }
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    .link-underline { text-decoration: none; box-shadow: inset 0 -0.1em 0 0 currentColor; }
+    .link-underline:hover { box-shadow: inset 0 -0.5em 0 0 currentColor; }
+  </style>
 </head>
-<body>
+<body class="bg-afb text-ink antialiased selection:bg-ink selection:text-paper">
+  <div class="min-h-screen flex flex-col">
+    <!-- Top Bar (white banner) -->
+    <header class="sticky top-0 z-50 backdrop-blur bg-paper border-b border-black/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="h-16 flex items-center justify-between">
+          <a href="#" class="font-serif text-2xl sm:text-3xl tracking-tight">arshi.<span class="text-afb">studio</span></a>
 
-  <!-- Top bar / announcement (optional) -->
-  <div class="topnote">
-    <span>Now live:</span> ARSHI — a studio magazine in progress.
+          <!-- Unfolding menu (desktop-first). Hidden categories until clicked. -->
+          <div class="relative">
+            <button id="menuToggle" class="px-3 py-1.5 rounded-full border border-black/10 hover:border-black/30 text-xs bg-paper">Menu</button>
+            <div id="menuPanel" class="hidden absolute right-0 mt-2 w-56 rounded-xl bg-paper shadow-soft border border-black/10">
+              <nav class="p-2 text-sm">
+                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#latest">Latest</a>
+                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#sections">Sections</a>
+                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#contributors">Contributors</a>
+                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#events">Events</a>
+                <a class="block px-3 py-2 rounded-lg hover:bg-black/5" href="#about">About</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="themeToggle" aria-label="Toggle dark mode" class="px-3 py-1.5 rounded-full border border-black/10 hover:border-black/30 text-xs bg-paper">Dark</button>
+          </div>
+        </div>
+      </div>
+      <!-- Sliding text (marquee) -->
+      <div class="overflow-hidden border-t border-black/10 bg-paper">
+        <div class="whitespace-nowrap animate-marquee">
+          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Arshi — words on politics, culture & style</span>
+          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Amsterdam & beyond</span>
+          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Submissions welcome</span>
+          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Arshi — words on politics, culture & style</span>
+          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Amsterdam & beyond</span>
+          <span class="inline-block px-6 py-2 text-xs tracking-wide uppercase">Submissions welcome</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero / Welcome Article (first thing you see) -->
+    <section class="border-b border-black/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-16 grid md:grid-cols-5 gap-8 items-stretch">
+        <div class="md:col-span-5 bg-paper rounded-2xl shadow-soft overflow-hidden">
+          <a href="#" class="block group">
+            <div class="aspect-[21/9] bg-neutral-100"></div>
+            <div class="p-8 md:p-10">
+              <div class="flex gap-2 mb-3">
+                <span class="text-[10px] uppercase tracking-wide px-2 py-1 bg-accent.soft text-accent rounded-full">Welcome</span>
+              </div>
+              <h1 class="font-serif text-4xl md:text-5xl leading-tight group-hover:opacity-80">Welcome to arshi.studio</h1>
+              <p class="mt-3 text-base md:text-lg text-black/70 max-w-3xl">An introduction to who I am, why this space exists, and the kinds of stories we’ll publish. (Replace this with your real intro soon.)</p>
+              <div class="mt-5 text-xs text-black/60">By Arshi — 5 min read</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Articles Grid (desktop-first) -->
+    <section id="latest" class="border-b border-black/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <div class="flex items-end justify-between mb-6">
+          <h3 class="font-serif text-2xl md:text-3xl text-paper/90">Latest</h3>
+          <a href="#" class="text-sm link-underline text-paper/90">All posts →</a>
+        </div>
+        <!-- Floating masonry-like layout -->
+        <div class="relative">
+          <div class="grid grid-cols-12 gap-6">
+            <!-- Card 1 -->
+            <article class="col-span-4 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition will-change-transform animate-floaty" style="animation-delay:0s">
+              <a href="#" class="block">
+                <div class="aspect-[4/3] bg-neutral-100"></div>
+                <div class="p-5">
+                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Essay</div>
+                  <h4 class="font-serif text-xl leading-snug">On learning to read posters</h4>
+                  <p class="mt-2 text-sm text-black/70">A love letter to walls.</p>
+                </div>
+              </a>
+            </article>
+            <!-- Card 2 -->
+            <article class="col-span-4 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition animate-floaty" style="animation-delay:1s">
+              <a href="#" class="block">
+                <div class="aspect-[1/1] bg-neutral-100"></div>
+                <div class="p-5">
+                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Interview</div>
+                  <h4 class="font-serif text-xl leading-snug">Tracing gold myths across maps</h4>
+                  <p class="mt-2 text-sm text-black/70">On art, rumor, and archives.</p>
+                </div>
+              </a>
+            </article>
+            <!-- Card 3 (taller) -->
+            <article class="col-span-4 row-span-2 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition animate-floaty" style="animation-delay:2s">
+              <a href="#" class="block">
+                <div class="aspect-[3/4] bg-neutral-100"></div>
+                <div class="p-5">
+                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Reportage</div>
+                  <h4 class="font-serif text-xl leading-snug">Postcard from Brussels: galleries, rain, and good bread</h4>
+                  <p class="mt-2 text-sm text-black/70">A quick city note.</p>
+                </div>
+              </a>
+            </article>
+            <!-- Card 4 -->
+            <article class="col-span-3 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition animate-floaty" style="animation-delay:0.5s">
+              <a href="#" class="block">
+                <div class="aspect-[4/3] bg-neutral-100"></div>
+                <div class="p-5">
+                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Opinion</div>
+                  <h4 class="font-serif text-xl leading-snug">The politics of merch</h4>
+                  <p class="mt-2 text-sm text-black/70">Between solidarity, aesthetics, and capital.</p>
+                </div>
+              </a>
+            </article>
+            <!-- Card 5 -->
+            <article class="col-span-5 bg-paper rounded-2xl shadow-soft overflow-hidden transform hover:-translate-y-1 transition animate-floaty" style="animation-delay:1.4s">
+              <a href="#" class="block">
+                <div class="aspect-[16/9] bg-neutral-100"></div>
+                <div class="p-5">
+                  <div class="mb-2 text-[10px] uppercase tracking-wide px-2 py-1 bg-black/5 inline-block rounded-full">Field Notes</div>
+                  <h4 class="font-serif text-xl leading-snug">What a queue teaches</h4>
+                  <p class="mt-2 text-sm text-black/70">Etiquette, space, and power.</p>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sections / Categories (collapsed in menu; still here for SEO/internal links) -->
+    <section id="sections" class="border-b border-black/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <h3 class="font-serif text-2xl md:text-3xl mb-6 text-paper/90">Sections</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="#" class="group p-6 rounded-2xl bg-paper shadow-soft hover:shadow-lg transition-shadow">
+            <div class="text-xs uppercase tracking-wide mb-2">Politics & Culture</div>
+            <div class="font-serif text-2xl leading-tight group-hover:opacity-80">Power in the everyday</div>
+          </a>
+          <a href="#" class="group p-6 rounded-2xl bg-paper shadow-soft hover:shadow-lg transition-shadow">
+            <div class="text-xs uppercase tracking-wide mb-2">Style</div>
+            <div class="font-serif text-2xl leading-tight group-hover:opacity-80">Wardrobes & worlds</div>
+          </a>
+          <a href="#" class="group p-6 rounded-2xl bg-paper shadow-soft hover:shadow-lg transition-shadow">
+            <div class="text-xs uppercase tracking-wide mb-2">Scenes</div>
+            <div class="font-serif text-2xl leading-tight group-hover:opacity-80">Nightlife, music, spaces</div>
+          </a>
+          <a href="#" class="group p-6 rounded-2xl bg-paper shadow-soft hover:shadow-lg transition-shadow">
+            <div class="text-xs uppercase tracking-wide mb-2">Notebook</div>
+            <div class="font-serif text-2xl leading-tight group-hover:opacity-80">Drafts & letters</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events (explicitly show none) -->
+    <section id="events" class="border-b border-black/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <h3 class="font-serif text-2xl md:text-3xl mb-4 text-paper/90">Events</h3>
+        <p class="text-sm text-paper/90">No upcoming events.</p>
+      </div>
+    </section>
+
+    <!-- Contributors -->
+    <section id="contributors" class="border-b border-black/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <div class="flex items-end justify-between mb-6">
+          <h3 class="font-serif text-2xl md:text-3xl text-paper/90">Contributors</h3>
+          <a href="#" class="text-sm link-underline text-paper/90">Pitch us →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-paper rounded-2xl shadow-soft p-6">
+            <div class="w-16 h-16 rounded-full bg-neutral-200 mb-3"></div>
+            <div class="font-medium">Arshi</div>
+            <div class="text-sm text-black/70">Editor. Political science & culture.</div>
+          </div>
+          <div class="bg-paper rounded-2xl shadow-soft p-6">
+            <div class="w-16 h-16 rounded-full bg-neutral-200 mb-3"></div>
+            <div class="font-medium">Amal</div>
+            <div class="text-sm text-black/70">Nightlife notes; style & diaspora.</div>
+          </div>
+          <div class="bg-paper rounded-2xl shadow-soft p-6">
+            <div class="w-16 h-16 rounded-full bg-neutral-200 mb-3"></div>
+            <div class="font-medium">Guest</div>
+            <div class="text-sm text-black/70">Urbanism, print ephemera.</div>
+          </div>
+          <div class="bg-paper rounded-2xl shadow-soft p-6">
+            <div class="w-16 h-16 rounded-full bg-neutral-200 mb-3"></div>
+            <div class="font-medium">You?</div>
+            <div class="text-sm text-black/70">Pitch a piece; we read everything.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about" class="mt-auto">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <div class="font-serif text-2xl text-paper">arshi.<span class="text-paper/80">studio</span></div>
+            <p class="mt-2 text-sm text-paper/80 max-w-sm">A small magazine at the intersection of political science, culture, and style. Amsterdam & beyond.</p>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-wide mb-3 text-paper/70">Links</div>
+            <ul class="space-y-1 text-sm text-paper/90">
+              <li><a href="#" class="hover:opacity-70">Submit / Pitch</a></li>
+              <li><a href="#" class="hover:opacity-70">About</a></li>
+              <li><a href="#" class="hover:opacity-70">Contact</a></li>
+              <li><a href="#" class="hover:opacity-70">Instagram</a></li>
+            </ul>
+          </div>
+          <div id="subscribe" class="bg-paper rounded-2xl shadow-soft p-6">
+            <div class="font-medium mb-2">Get new posts</div>
+            <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Thanks! Plug in your provider later (Buttondown/Substack/Mailchimp).')">
+              <input type="email" required placeholder="you@example.com" class="flex-1 px-3 py-2 rounded-xl border border-black/10 focus:outline-none focus:ring-2 focus:ring-afb"/>
+              <button class="px-4 py-2 rounded-xl bg-ink text-paper hover:opacity-90">Subscribe</button>
+            </form>
+            <p class="mt-2 text-xs text-black/60">We send infrequently. Unsubscribe anytime.</p>
+          </div>
+        </div>
+        <div class="mt-10 text-xs text-paper/70">© <span id="year"></span> arshi.studio — crafted with care.</div>
+      </div>
+    </footer>
   </div>
 
-  <!-- Header -->
-  <header class="masthead">
-    <a class="brand" href="/">ARSHI</a>
-    <nav aria-label="Primary">
-      <a href="#fashion">Fashion</a>
-      <a href="#art">Art</a>
-      <a href="#culture and politics">Culture and Politics</a>
-      <a href="#music">Music</a>
-      <a href="#film">Film</a>
-      <a href="#events">Events</a>
-      <a href="#about">About</a>
-      <a class="cta" href="mailto:shiraz@arshi.studio">Contact</a>
-    </nav>
-  </header>
+  <script>
+    // Unfolding menu
+    const menuToggle = document.getElementById('menuToggle');
+    const menuPanel = document.getElementById('menuPanel');
+    let menuOpen = false;
+    const closeMenu = (e) => {
+      if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuPanel.classList.add('hidden');
+        menuOpen = false;
+        document.removeEventListener('click', closeMenu);
+      }
+    };
+    menuToggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuPanel.classList.toggle('hidden', !menuOpen);
+      if (menuOpen) document.addEventListener('click', closeMenu);
+    });
 
-  <!-- Marquee (Dazed/i-D vibe) -->
-  <section class="marquee" aria-label="Headlines">
-    <div class="marquee-track">
-      <span>Editorial: Bodies in Motion</span>
-      <span>Field Notes: Beirut at Night</span>
-      <span>Photo Essay: Blue Hour</span>
-      <span>Studio Set: Shadows</span>
-    </div>
-  </section>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') root.classList.add('dark');
+    themeToggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
 
-  <!-- Hero feature -->
-  <section id="features" class="hero">
-    <a class="hero-card" href="#">
-      <div class="hero-media" style="background-image:url('assets/hero.jpg');"></div>
-      <div class="hero-copy">
-        <div class="eyebrow">Feature · 2025</div>
-        <h1>Culture, style & the politics of everyday life.</h1>
-        <p>ARSHI is an evolving studio/collective. Essays, images and moving pieces—made slowly, with care.</p>
-      </div>
-    </a>
-  </section>
+    // Optional: adapt body bg on dark
+    const observer = new MutationObserver(() => {
+      document.body.classList.toggle('bg-afb', !root.classList.contains('dark'));
+      document.body.classList.toggle('bg-[#0b0b0b]', root.classList.contains('dark'));
+      document.body.classList.toggle('text-white', root.classList.contains('dark'));
+    });
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
 
-  <!-- Magazine grid -->
-  <main class="section">
-    <h2 class="section-title">Latest</h2>
-    <div class="grid">
-      <!-- Card 1 -->
-      <article class="card">
-        <a href="#" class="card-media" style="background-image:url('assets/sample1.jpg');" aria-label="An essay on style & politics"></a>
-        <div class="card-body">
-          <div class="meta">
-            <span class="tag">Essay</span>
-            <time datetime="2025-09">Sep 2025</time>
-          </div>
-          <h3><a href="#">An essay on style & politics</a></h3>
-          <p class="excerpt">On silhouettes, belonging and quiet forms of resistance.</p>
-        </div>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="card">
-        <a href="#" class="card-media" style="background-image:url('assets/sample2.jpg');" aria-label="Fragments from a city in flux"></a>
-        <div class="card-body">
-          <div class="meta">
-            <span class="tag">Field Notes</span>
-            <time datetime="2025-06">Jun 2025</time>
-          </div>
-          <h3><a href="#">Fragments from a city in flux</a></h3>
-          <p class="excerpt">Brief reflections on memory, sound and the texture of night.</p>
-        </div>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="card">
-        <a href="#" class="card-media" style="background-image:url('assets/sample3.jpg');" aria-label="Blue Hour lookbook"></a>
-        <div class="card-body">
-          <div class="meta">
-            <span class="tag">Photo</span>
-            <time datetime="2025-05">May 2025</time>
-          </div>
-          <h3><a href="#">Lookbook: Blue Hour</a></h3>
-          <p class="excerpt">A minimal series exploring light and fabric at dusk.</p>
-        </div>
-      </article>
-
-      <!-- Card 4 -->
-      <article class="card">
-        <a href="#" class="card-media" style="background-image:url('assets/sample4.jpg');" aria-label="Motion study"></a>
-        <div class="card-body">
-          <div class="meta">
-            <span class="tag">Video</span>
-            <time datetime="2025-03">Mar 2025</time>
-          </div>
-          <h3><a href="#">Motion study: body & fabric</a></h3>
-          <p class="excerpt">Short moving piece—gesture, breath, cloth.</p>
-        </div>
-      </article>
-    </div>
-  </main>
-
-  <!-- Writing strip -->
-  <section id="writing" class="section narrow">
-    <h2 class="section-title">Writing</h2>
-    <ul class="list">
-      <li>
-        <a href="#">
-          <span class="kicker">Essay</span>
-          On quiet style and soft power
-          <time>2025</time>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="kicker">Review</span>
-          Scenes from a subculture
-          <time>2024</time>
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  <!-- Events (Paradiso-like compact list) -->
-  <section id="events" class="section narrow">
-    <h2 class="section-title">Events</h2>
-    <div class="events">
-      <div class="event">
-        <time datetime="2025-10-22">22 Oct</time>
-        <div>
-          <strong>ARSHI Reading</strong><br/>
-          Amsterdam — small room, 19:30
-        </div>
-        <a class="link" href="#">RSVP</a>
-      </div>
-      <div class="event">
-        <time datetime="2025-11-08">08 Nov</time>
-        <div>
-          <strong>Studio Screening</strong><br/>
-          Rotterdam — short films, 20:00
-        </div>
-        <a class="link" href="#">Details</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section narrow">
-    <h2 class="section-title">About</h2>
-    <p>ARSHI is a studio magazine by Arshi (and friends) exploring politics, culture and style through essays, photo stories and moving images.</p>
-  </section>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="cols">
-      <div>
-        <div class="brand brand--footer">ARSHI</div>
-        <p class="fine">Independent, ad-free, slow publishing.</p>
-      </div>
-      <div>
-        <h4>Sections</h4>
-        <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#writing">Writing</a></li>
-          <li><a href="#projects">Projects</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="mailto:hello@arshi.studio">hello@arshi.studio</a></li>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Substack</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="legal">© 2025 ARSHI — All rights reserved.</div>
-  </footer>
-
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

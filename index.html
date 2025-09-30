@@ -3,93 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARSHI Magazine | Independent Cultural House</title>
+    <title>About ARSHI</title>
     <link rel="stylesheet" href="styles.css"> 
     <link rel="stylesheet" href="magazine-styles.css"> 
 </head>
 <body>
 
     <header>
-    <nav>
-        <div class="logo"><a href="index.html">ARSHI</a></div> 
-        <ul class="categories">
-            <li><a href="index.html#culture">Society & Culture</a></li>
-            <li><a href="index.html#fashion">Fashion & Art</a></li>
-            <li><a href="index.html#music">Music & Film</a></li>
-        </ul>
-        <ul class="secondary-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="submit.html">Submit</a></li>
-        </ul>
-        <button id="theme-switcher">Theme: Terracotta</button>
-        <div class="hamburger">☰</div>
-    </nav>
-    <div class="mobile-menu">
-        <a href="index.html#culture">Society & Culture</a>
-        <a href="index.html#fashion">Fashion & Art</a>
-        <a href="index.html#music">Music & Film</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="submit.html">Submit</a>
-    </div>
+        <nav>
+            <div class="logo"><a href="index.html">ARSHI</a></div> 
+            <ul class="categories">
+                <li><a href="index.html#culture">Society & Culture</a></li>
+                <li><a href="index.html#fashion">Fashion & Art</a></li>
+                <li><a href="index.html#music">Music & Film</a></li>
+            </ul>
+            <ul class="secondary-links-desktop">
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="submit.html">Submit</a></li>
+            </ul>
+            
+            <div class="search-container">
+                <input type="search" placeholder="Search..." class="search-input">
+                <button class="search-button">🔍</button>
+            </div>
+            
+            <button id="theme-switcher">Theme: Terracotta</button>
+            <div class="hamburger">☰</div>
+        </nav>
+        
+        <div class="mobile-menu">
+            <div class="mobile-search-container">
+                <input type="search" placeholder="Search ARSHI..." class="search-input">
+            </div>
+            
+            <a href="index.html#culture">Society & Culture</a>
+            <a href="index.html#fashion">Fashion & Art</a>
+            <a href="index.html#music">Music & Film</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="submit.html">Submit</a>
+        </div>
     </header>
 
     <main class="magazine-layout">
-
-        <section id="featured-story">
-            <a href="#">
-                <div class="feature-image" style="background-image: url('assets/placeholder-feature.jpg');"></div>
-                <p class="section-tag">FASHION & ART</p>
-                <h1>The Quiet Revolution: Rethinking Luxury in a Post-Digital Age</h1>
-                <p class="byline">By Elara V. — October 2025</p>
-            </a>
-        </section>
-
-        <section id="newest-content" class="article-grid">
-            
-            <article class="grid-item">
-                <a href="#">
-                    <div class="article-image" style="background-image: url('assets/placeholder-culture.jpg');"></div>
-                    <p class="section-tag">SOCIETY & CULTURE</p>
-                    <h2>Can Cities be Designed for Silence? An Investigation.</h2>
-                </a>
-            </article>
-
-            <article class="grid-item tall">
-                <a href="#">
-                    <div class="article-image" style="background-image: url('assets/placeholder-music.jpg');"></div>
-                    <p class="section-tag">MUSIC & FILM</p>
-                    <h2>The Neo-Jazz Scene Rejects the Algorithm: A New Manifesto.</h2>
-                </a>
-            </article>
-
-            <article class="grid-item">
-                <a href="#">
-                    <div class="article-image" style="background-image: url('assets/placeholder-art.jpg');"></div>
-                    <p class="section-tag">FASHION & ART</p>
-                    <h2>Beyond the Canvas: Why the Gallery is Going Extinct.</h2>
-                </a>
-            </article>
-            
-        </section>
         
-        <section id="category-focus">
-            <h2>Explore Our Cultural Pillars</h2>
-            <div class="category-cards">
-                <a href="#culture" class="cat-card">Society & Culture</a>
-                <a href="#fashion" class="cat-card">Fashion & Art</a>
-                <a href="#music" class="cat-card">Music & Film</a>
+        <section id="about-content" class="text-focused">
+            
+            <h1>About ARSHI</h1>
+            
+            <div class="body-text">
+                <p class="lead-paragraph">
+                    ARSHI is an independent publishing platform dedicated to giving space to **freelance journalists, writers, and cultural voices** who choose not to affiliate with a single outlet.
+                </p>
+
+                <p>
+                    We believe that journalism and storytelling should be free from rigid structures and institutional branding. Here, every article is published under the writer's own name—no hidden agendas, no editorial gatekeeping, and no need to fit into a corporate house style.
+                </p>
+
+                <p>
+                    Our editorial focus is on **society & culture, fashion & art, and music & film**—subjects that shape how we live, think, and express ourselves. By bringing together diverse voices from different backgrounds, we aim to create a living archive of perspectives that might otherwise remain unseen.
+                </p>
+                
+                <p>
+                    ARSHI is not a newsroom, not a blog, not a corporate platform. It's a collective space where **independence comes first** and where readers can discover authentic work directly from the writers who create it.
+                </p>
             </div>
+            
+            <div class="category-cards" style="margin-top: 50px;">
+                <a href="category-list.html" class="cat-card">Society & Culture</a>
+                <a href="category-list.html" class="cat-card">Fashion & Art</a>
+                <a href="category-list.html" class="cat-card">Music & Film</a>
+            </div>
+
         </section>
-        
+
     </main>
 
     <footer>
-        <p>&copy; 2025 ARSHI Magazine. An independent creative house project.</p>
+        <p>&copy; 2025 ARSHI. An independent creative house project.</p>
     </footer>
 
     <script src="theme-switcher.js" defer></script>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(item => {
+                    item.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

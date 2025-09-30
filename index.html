@@ -3,62 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>arshi.studio | Independent Creative House</title>
+    <title>ARSHI Magazine | Independent Cultural House</title>
     <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="magazine-styles.css"> 
 </head>
 <body>
 
     <header>
         <nav>
-            <div class="logo">arshi.studio</div>
+            <div class="logo"><a href="index.html">arshi.studio</a></div>
             <ul>
+                <li><a href="#culture">Society & Culture</a></li>
+                <li><a href="#fashion">Fashion & Art</a></li>
+                <li><a href="#music">Music & Film</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="id-home.html">ARSHI (Magazine)</a></li> 
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        
-        <section id="hero">
-            <h1>Creating an independent space for cultural expression.</h1>
-            <p>Publishing, producing, and hosting projects that amplify independent voices in society & culture, fashion & art, and music & film.</p>
-            <a href="id-home.html" class="cta-button">Read the ARSHI Magazine</a>
+    <main class="magazine-layout">
+
+        <section id="featured-story">
+            <a href="#">
+                <div class="feature-image" style="background-image: url('assets/placeholder-feature.jpg');"></div>
+                <p class="section-tag">FASHION & ART</p>
+                <h1>The Quiet Revolution: Rethinking Luxury in a Post-Digital Age</h1>
+                <p class="byline">By Elara V. — October 2025</p>
+            </a>
         </section>
 
-        <section id="projects">
-            <h2>Our Branches</h2>
-            <div class="project-cards">
-                <div class="card">
-                    <h3>ARSHI (Magazine)</h3>
-                    <p>Independent online magazine dedicated to cultural writing and emerging voices.</p>
-                    <a href="id-home.html">Explore ARSHI</a>
-                </div>
-                <div class="card">
-                    <h3>arshi.production</h3>
-                    <p>Visual culture, photography, and film projects (To be developed).</p>
-                </div>
-                <div class="card">
-                    <h3>arshi.events</h3>
-                    <p>Live gatherings, talks, and cultural programming (To be developed).</p>
-                </div>
+        <section id="newest-content" class="article-grid">
+            
+            <article class="grid-item">
+                <a href="#">
+                    <div class="article-image" style="background-image: url('assets/placeholder-culture.jpg');"></div>
+                    <p class="section-tag">SOCIETY & CULTURE</p>
+                    <h2>Can Cities be Designed for Silence? An Investigation.</h2>
+                </a>
+            </article>
+
+            <article class="grid-item tall">
+                <a href="#">
+                    <div class="article-image" style="background-image: url('assets/placeholder-music.jpg');"></div>
+                    <p class="section-tag">MUSIC & FILM</p>
+                    <h2>The Neo-Jazz Scene Rejects the Algorithm: A New Manifesto.</h2>
+                </a>
+            </article>
+
+            <article class="grid-item">
+                <a href="#">
+                    <div class="article-image" style="background-image: url('assets/placeholder-art.jpg');"></div>
+                    <p class="section-tag">FASHION & ART</p>
+                    <h2>Beyond the Canvas: Why the Gallery is Going Extinct.</h2>
+                </a>
+            </article>
+            
+        </section>
+        
+        <section id="category-focus">
+            <h2>Explore Our Cultural Pillars</h2>
+            <div class="category-cards">
+                <a href="#culture" class="cat-card">Society & Culture</a>
+                <a href="#fashion" class="cat-card">Fashion & Art</a>
+                <a href="#music" class="cat-card">Music & Film</a>
             </div>
         </section>
-
-        <section id="about">
-            <h2>Our Core Values</h2>
-            <p>Independence, recognition, and authenticity are at the center of every project.</p>
-            </section>
-
+        
     </main>
 
     <footer>
-        <p>&copy; 2025 arshi.studio. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">Instagram</a> | <a href="#">Newsletter</a>
-        </div>
+        <p>&copy; 2025 ARSHI Magazine | A project of arshi.studio</p>
     </footer>
     
 </body>

@@ -3,36 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit to ARSHI Magazine</title>
+    <title>Submit to ARSHI</title>
     <link rel="stylesheet" href="styles.css"> 
     <link rel="stylesheet" href="magazine-styles.css"> 
 </head>
 <body>
 
     <header>
-    <nav>
-        <div class="logo"><a href="index.html">ARSHI</a></div> 
-        <ul class="categories">
-            <li><a href="index.html#culture">Society & Culture</a></li>
-            <li><a href="index.html#fashion">Fashion & Art</a></li>
-            <li><a href="index.html#music">Music & Film</a></li>
-        </ul>
-        <ul class="secondary-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="submit.html">Submit</a></li>
-        </ul>
-        <button id="theme-switcher">Theme: Terracotta</button>
-        <div class="hamburger">☰</div>
-    </nav>
-    <div class="mobile-menu">
-        <a href="index.html#culture">Society & Culture</a>
-        <a href="index.html#fashion">Fashion & Art</a>
-        <a href="index.html#music">Music & Film</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="submit.html">Submit</a>
-    </div>
+        <nav>
+            <div class="logo"><a href="index.html">ARSHI</a></div> 
+            <ul class="categories">
+                <li><a href="index.html#culture">Society & Culture</a></li>
+                <li><a href="index.html#fashion">Fashion & Art</a></li>
+                <li><a href="index.html#music">Music & Film</a></li>
+            </ul>
+            <ul class="secondary-links-desktop">
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="submit.html">Submit</a></li>
+            </ul>
+            
+            <div class="search-container">
+                <input type="search" placeholder="Search..." class="search-input">
+                <button class="search-button">🔍</button>
+            </div>
+            
+            <button id="theme-switcher">Theme: Terracotta</button>
+            <div class="hamburger">☰</div>
+        </nav>
+        
+        <div class="mobile-menu">
+            <div class="mobile-search-container">
+                <input type="search" placeholder="Search ARSHI..." class="search-input">
+            </div>
+            
+            <a href="index.html#culture">Society & Culture</a>
+            <a href="index.html#fashion">Fashion & Art</a>
+            <a href="index.html#music">Music & Film</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="submit.html">Submit</a>
+        </div>
     </header>
 
     <main class="magazine-layout">
@@ -79,9 +90,27 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 ARSHI Magazine. An independent creative house project.</p>
+        <p>&copy; 2025 ARSHI. An independent creative house project.</p>
     </footer>
 
     <script src="theme-switcher.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(item => {
+                    item.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

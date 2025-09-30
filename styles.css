@@ -1,7 +1,6 @@
 /* ARSHI Magazine Core Styles */
 
 /* --- 1. FONT IMPORTS (Fallbacks for Druk, Inter, Merriweather) --- */
-/* The user requested fonts for vibe, so we use Google Fonts for fallbacks */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 /* --- 2. BASE COLOR PALETTE & TYPOGRAPHY VARIABLES --- */
@@ -51,6 +50,10 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-body);
     font-size: var(--base-font-size);
@@ -60,7 +63,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- 5. TYPOGRAPHY SCALE --- */
+/* --- 5. TYPOGRAPHY SCALE (Adjusted H1) --- */
 h1, h2 {
     font-family: var(--font-masthead);
     text-transform: uppercase;
@@ -68,8 +71,17 @@ h1, h2 {
     margin-bottom: 0.5em;
 }
 
-h1 { /* H1: 56–64 */
+h1 { /* H1: 56–64 (Used for article titles) */
     font-size: clamp(2.5rem, 6vw, 4rem); 
+    font-weight: 700; /* Stays bold for impact */
+}
+
+/* Specific H1 adjustment for general pages (About, Contact, Submit) */
+.text-focused h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 600; /* Slightly less "strong" */
+    color: var(--fg);
+    margin-bottom: 1rem;
 }
 
 h2 { /* H2: 36–44 */
@@ -92,7 +104,12 @@ p {
     margin-bottom: 1em;
 }
 
-/* --- 6. LINKS & BUTTONS --- */
+.lead-paragraph {
+    font-size: 1.15em;
+    font-weight: 400;
+}
+
+/* --- 6. LINKS & UI --- */
 a {
     color: var(--color-primary);
     text-decoration: none;
@@ -100,109 +117,4 @@ a {
 }
 
 a:hover {
-    color: var(--color-secondary);
-}
-
-/* UI elements like nav, buttons, tags */
-nav a, .cta-button, .section-tag, .cat-card {
-    font-family: var(--font-ui);
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-/* --- 7. HEADER & NAVIGATION --- */
-header {
-    background-color: var(--bg);
-    padding: 20px 5%;
-    border-bottom: 1px solid var(--color-light);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-nav .logo {
-    font-family: var(--font-masthead);
-    font-size: 1.8rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-nav ul a {
-    color: var(--fg);
-    font-size: 0.9rem;
-    padding: 5px 0;
-}
-
-nav ul a:hover {
-    color: var(--color-primary);
-}
-
-/* --- 8. THEME SWITCHER BUTTON --- */
-#theme-switcher {
-    cursor: pointer;
-    background: var(--color-primary);
-    color: var(--bg);
-    border: none;
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    margin-left: 20px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-#theme-switcher:hover {
-    background: var(--color-secondary);
-}
-
-/* --- 9. MAIN LAYOUT --- */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 5%;
-}
-
-section {
-    padding: 40px 0;
-    border-bottom: 1px solid var(--color-light);
-}
-
-/* --- 10. FOOTER --- */
-footer {
-    text-align: center;
-    padding: 30px 5%;
-    background-color: var(--fg);
-    color: var(--bg);
-    font-size: 0.9rem;
-}
-
-footer a {
-    color: var(--accent-4);
-}
-
-/* --- Responsive adjustments for nav --- */
-@media (max-width: 768px) {
-    nav ul {
-        display: none; /* Hide desktop nav on mobile/tablet for a future hamburger menu */
-    }
-    nav {
-        justify-content: space-between;
-    }
-    #theme-switcher {
-        margin-left: 0;
-    }
-}
+    color

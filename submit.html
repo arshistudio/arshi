@@ -44,16 +44,57 @@
             text-underline-offset: 4px;
         }
         
-        /* RESTORED: Stronger Rule-Item styling */
-        .rule-item {
-            border-left: 4px solid var(--accent);
-            padding-left: 1.5rem; /* Consistent internal padding */
-            background-color: var(--fg)/5;
+        /* Form Styling */
+        .input-field, .select-field {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            background-color: transparent;
+            border: 1px solid var(--fg)/30;
+            color: var(--fg);
+            transition: border-color 0.3s;
+            outline: none;
+            border-radius: 4px;
+        }
+        .input-field:focus, .select-field:focus, textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent);
         }
 
-        /* Set accent color for links/buttons for consistency */
+        .submit-button {
+            background-color: var(--accent);
+            color: var(--bg);
+            font-weight: 700;
+            padding: 1rem 2rem;
+            transition: background-color 0.3s, opacity 0.3s;
+            font-family: var(--font-display);
+            letter-spacing: 0.05em;
+        }
+        .submit-button:hover {
+            background-color: var(--accent2);
+        }
+        
+        /* Rule-Item styling for bold separation */
+        .rule-item {
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            background-color: var(--fg)/5;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        /* Accent for link consistency */
         .accent-link {
             color: var(--accent);
+        }
+        
+        /* Styles for the step counter */
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--accent);
+            margin-right: 0.5rem;
         }
     </style>
 </head>
@@ -91,72 +132,125 @@
 
     <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
         <h1 class="text-7xl md:text-9xl font-extrabold mb-8 accent-link tracking-widest leading-none">
-            SUBMIT
+            SUBMIT TO ARSHI
         </h1>
-        <p class="text-xl font-semibold mb-12 border-b-2 pb-6 border-[var(--fg)]/20">
-            We are built on the value of **Independence** and committed to amplifying original, authentic voices—whether you are an emerging or an advanced contributor.
+        <p class="text-xl font-semibold mb-10 border-b-2 pb-6 border-[var(--fg)]/20">
+            ARSHI is an independent magazine open to writers, poets, critics, and researchers with fresh perspectives on culture. We welcome every voice that seeks to explore, question, and create with curiosity.
         </p>
-
+        
         <section class="mb-16">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">ALIGNMENT & VOICE</h2>
-            <p class="text-lg mb-8">
-                We primarily look for two things: alignment with **ARSHI's core values** and a compelling, independent perspective.
-            </p>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-4 rule-item rounded-lg">
-                    <h3 class="text-2xl font-bold mb-2">CORE FIT</h3>
-                    <ul class="list-disc list-inside space-y-2 text-base">
-                        <li>**Authenticity:** Unfiltered ideas and honest, personal perspective.</li>
-                        <li>**Independence:** Critical thought that avoids institutional or commercial constraint.</li>
-                        <li>**Curiosity:** Work that explores cultural complexities and asks difficult questions.</li>
-                    </ul>
-                </div>
-                <div class="p-4 rule-item rounded-lg">
-                    <h3 class="text-2xl font-bold mb-2">OUR CATEGORIES</h3>
-                    <ul class="list-disc list-inside space-y-2 text-base">
-                        <li>**Society & Culture:** Identity, social movements, and cultural shifts.</li>
-                        <li>**Fashion & Art:** Aesthetics, design critique, and contemporary visual culture.</li>
-                        <li>**Music & Film:** Reviews, cultural commentary on sound, cinema, and documentary.</li>
-                    </ul>
-                </div>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">SUBMISSION WORKFLOW</h2>
+            
+            <div class="p-4 bg-red-100 text-red-800 border-l-4 border-red-500 rounded-lg mb-8">
+                <p class="font-bold">⚠️ Please note:</p>
+                <p class="text-sm mt-1">
+                    ARSHI is an independent project. At this stage, contributions are **unpaid**. However, all work is credited by name, and contributors retain their rights. As the magazine grows, building towards sustainability and fair compensation is a core priority.
+                </p>
             </div>
-        </section>
 
-        <section class="mb-16">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">PITCHING YOUR IDEA</h2>
-            <div class="space-y-6">
-                <div class="p-4 rounded-lg bg-[var(--fg)]/5 border-l-2 border-[var(--fg)]/20">
-                    <h3 class="text-xl font-bold mb-1 accent-link">Pitch First, Draft Later</h3>
-                    <p class="text-base">
-                        We prefer a **simple pitch:** a concise summary (1-2 paragraphs) of your idea, its unique angle, and why it's a vital read *right now*. For emerging writers, please include a short bio; for established writers, links to 1-2 published clips are helpful.
-                    </p>
-                </div>
-                <div class="p-4 rounded-lg bg-[var(--fg)]/5 border-l-2 border-[var(--fg)]/20">
-                    <h3 class="text-xl font-bold mb-1 accent-link">Article Length</h3>
-                    <p class="text-base">
-                        We generally publish pieces designed for a **4 to 8 minute read** (approximately 1000–2000 words), but we prioritize impact and depth over strict word count.
-                    </p>
-                </div>
-                <div class="p-4 rounded-lg bg-[var(--fg)]/5 border-l-2 border-[var(--fg)]/20">
-                    <h3 class="text-xl font-bold mb-1 accent-link">Visual Projects</h3>
-                    <p class="text-base">
-                        For photography or film proposals, submit a **Treatment** (1-2 pages) outlining the concept and visual references. Please send portfolio links (website, Vimeo, etc.), not large files.
-                    </p>
-                </div>
-            </div>
-        </section>
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_SUBMISSION_ENDPOINT" method="POST" enctype="multipart/form-data" class="space-y-12">
 
-        <section class="text-center p-10 bg-[var(--accent)] text-[var(--bg)] rounded-lg shadow-xl">
-            <h2 class="text-5xl font-extrabold mb-4 tracking-widest leading-none">JOIN THE COLLECTIVE</h2>
-            <p class="text-lg font-semibold mb-8">
-                If your perspective aligns with our vision of independence and critique, we welcome your voice.
-            </p>
-            <a href="mailto:submissions@arshi.studio" class="inline-block py-3 px-8 text-lg font-bold bg-[var(--bg)] text-[var(--accent)] rounded-full hover:bg-gray-200 transition-colors">
-                Email Your Pitch to submissions@arshi.studio
-            </a>
-            <p class="mt-4 text-sm text-[var(--bg)]/70">
-                We aim to respond to all pitches within 10 days. Thank you for your interest in ARSHI.
-            </p>
+                <div class="rule-item">
+                    <div class="flex items-start mb-4">
+                        <span class="step-number">1.</span>
+                        <h3 class="text-3xl font-extrabold leading-tight">YOUR DETAILS</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-bold uppercase mb-1">Name</label>
+                            <input type="text" name="name" id="name" required class="input-field" placeholder="First Last">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-bold uppercase mb-1">Contact Email</label>
+                            <input type="email" name="_replyto" id="email" required class="input-field" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="bio" class="block text-sm font-bold uppercase mb-1">Short Bio (1-2 sentences)</label>
+                        <textarea name="bio" id="bio" rows="2" required class="input-field" placeholder="E.g., Writer and researcher based in London."></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <label for="links" class="block text-sm font-bold uppercase mb-1">Links to Past Work (Optional)</label>
+                        <input type="text" name="links" id="links" class="input-field" placeholder="Portfolio URL, published articles, etc.">
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <div class="flex items-start mb-4">
+                        <span class="step-number">2.</span>
+                        <h3 class="text-3xl font-extrabold leading-tight">THEME SELECTION</h3>
+                    </div>
+                    <p class="text-base font-semibold mb-4">
+                        Select the primary theme(s) your proposal aligns with (Crossovers are welcome):
+                    </p>
+                    <div class="space-y-3">
+                        <label class="block">
+                            <input type="checkbox" name="theme[]" value="Society & Culture" class="mr-2 accent-link">
+                            <span class="font-bold">Society & Culture:</span> Identity, politics, social change.
+                        </label>
+                        <label class="block">
+                            <input type="checkbox" name="theme[]" value="Fashion & Art" class="mr-2 accent-link">
+                            <span class="font-bold">Fashion & Art:</span> Aesthetics, visual critique, design.
+                        </label>
+                        <label class="block">
+                            <input type="checkbox" name="theme[]" value="Music & Film" class="mr-2 accent-link">
+                            <span class="font-bold">Music & Film:</span> Cinema, documentary, soundscapes, and critique.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="rule-item">
+                    <div class="flex items-start mb-4">
+                        <span class="step-number">3.</span>
+                        <h3 class="text-3xl font-extrabold leading-tight">PROPOSAL DETAILS</h3>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="pitch" class="block text-sm font-bold uppercase mb-1">Pitch / Idea Summary (200 words max)</label>
+                        <textarea name="pitch" id="pitch" rows="6" required class="input-field" placeholder="Explain: What is it about? Why is it relevant? What's your angle?"></textarea>
+                        <p class="text-xs text-[var(--fg)]/60 mt-1">This summary is mandatory.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="format" class="block text-sm font-bold uppercase mb-1">Format</label>
+                            <select name="format" id="format" required class="select-field">
+                                <option value="">— Choose One —</option>
+                                <option value="Essay">Essay</option>
+                                <option value="Reportage">Reportage</option>
+                                <option value="Review">Review</option>
+                                <option value="Interview">Interview</option>
+                                <option value="Visual Essay">Visual Essay (Photo/Film)</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="status" class="block text-sm font-bold uppercase mb-1">Status of Work</label>
+                            <select name="status" id="status" required class="select-field">
+                                <option value="">— Choose One —</option>
+                                <option value="Draft">Draft (already written)</option>
+                                <option value="Idea">Idea (in development)</option>
+                                <option value="Research">Research (ongoing, not yet written)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="upload" class="block text-sm font-bold uppercase mb-1">Optional Upload (Draft, Images, PDF)</label>
+                        <input type="file" name="upload" id="upload" class="input-field border-dashed p-3">
+                        <p class="text-xs text-[var(--fg)]/60 mt-1">Max file size 10MB. Accepted formats: PDF, DOCX, JPG, PNG.</p>
+                    </div>
+                </div>
+
+                <div class="text-center pt-8 border-t border-[var(--fg)]/20">
+                    <button type="submit" class="submit-button text-2xl tracking-widest rounded-lg">
+                        SUBMIT PROPOSAL
+                    </button>
+                    <p class="text-sm text-[var(--fg)]/70 mt-4">
+                        The Director reviews all submissions. We aim to reply to all proposals within 10 days.
+                    </p>
+                </div>
+            </form>
         </section>
     </main>
 </body>

@@ -3,122 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Society & Culture | ARSHI</title>
-    <link rel="stylesheet" href="styles.css"> 
-    <link rel="stylesheet" href="magazine-styles.css"> 
-</head>
-<body>
+    <title>Category | ARSHI Magazine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base (Terracotta) Theme */
+        :root {
+            --bg: #F8F7F4; /* Off-White */
+            --fg: #111111; /* Near Black */
+            --accent: #A4492F; /* Terracotta */
+            --accent2: #1C2A44; /* Dark Blue */
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
 
-    <header>
-        <nav>
-            <div class="logo"><a href="index.html">ARSHI</a></div> 
-            <ul class="categories">
-                <li><a href="index.html#culture">Society & Culture</a></li>
-                <li><a href="index.html#fashion">Fashion & Art</a></li>
-                <li><a href="index.html#music">Music & Film</a></li>
-            </ul>
-            <ul class="secondary-links-desktop">
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="submit.html">Submit</a></li>
-            </ul>
-            
-            <div class="search-container">
-                <input type="search" placeholder="Search..." class="search-input">
-                <button class="search-button">🔍</button>
-            </div>
-            
-            <button id="theme-switcher">Theme: Terracotta</button>
-            <div class="hamburger">☰</div>
-        </nav>
+        /* Midnight Theme */
+        [data-theme="midnight"] {
+            --bg: #0f1218;
+            --fg: #f4f3ef;
+            --accent: #1C2A44;
+            --accent2: #C8A951; /* Gold/Ochre */
+        }
+
+        /* Applying Variables & General Styles */
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-ui);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h1, h2, h3, .masthead {
+            font-family: var(--font-display);
+            letter-spacing: 0.05em;
+        }
         
-        <div class="mobile-menu">
-            <div class="mobile-search-container">
-                <input type="search" placeholder="Search ARSHI..." class="search-input">
-            </div>
+        .header-thin {
+            height: 64px;
+        }
+        .masthead-text {
+            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem);
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+        .hover-underline:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 4px;
+        }
+
+        .card-link:hover .card-image {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        /* Category Card Grid (3 columns desktop) */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 24px;
+        }
+        @media (min-width: 768px) {
+            .category-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (min-width: 1024px) {
+            .category-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* Accessibility: Visible Focus States */
+        *:focus-visible {
+            outline: 3px solid var(--accent) !important;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+        
+        /* Utility styles for category coherence */
+        .category-header {
+            color: var(--accent);
+        }
+
+    </style>
+</head>
+
+<body data-theme="terracotta" class="transition-colors">
+
+    <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
+            style="background-color: var(--bg);">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
             
-            <a href="index.html#culture">Society & Culture</a>
-            <a href="index.html#fashion">Fashion & Art</a>
-            <a href="index.html#music">Music & Film</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="submit.html">Submit</a>
+            <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
+                ARSHI
+            </a>
+
+            <nav class="flex items-center space-x-6">
+                <button class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
+                        style="background-color: var(--accent);"
+                        aria-label="Theme Color (Static)">
+                </button>
+
+                <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                </a>
+            </nav>
         </div>
     </header>
 
-    <main class="magazine-layout">
+    <main class="container mx-auto px-4 py-12 md:py-20">
         
-        <section id="category-header" class="text-focused">
-            <p class="section-tag">Category</p>
-            <h1>Society & Culture</h1>
-            <p class="intro lead-paragraph">
-                Essays, reportage, and interviews exploring the forces that shape contemporary life, from digital politics to social change.
+        <header class="mb-12 border-b-2 pb-8 border-[var(--fg)]/20">
+            <p class="text-lg font-semibold mb-2 text-[var(--fg)]/70">ARSHI MAGAZINE</p>
+            <h1 id="category-title" class="text-7xl md:text-9xl font-extrabold category-header tracking-widest leading-none">
+                CATEGORY NAME
+            </h1>
+            <p id="category-description" class="text-xl md:text-2xl font-light mt-4 italic text-[var(--fg)]/80">
+                Description of what this category covers (e.g., identity, politics, and social movements).
             </p>
-        </section>
+        </header>
 
-        <section id="category-grid" class="article-grid list-view">
-            
-            <article class="card list-item">
-                <a href="article-blueprint.html">
-                    <div class="card-image" style="background-image: url('assets/placeholder-culture-1.jpg');"></div>
-                    <div class="card-content">
-                        <p class="section-tag">Reportage • 5 min read</p>
-                        <h3>The Silent Exodus: Why Young People Are Leaving European Capitals</h3>
-                        <p class="dek">An on-the-ground investigation into the cultural shift away from traditional creative hubs and towards mid-sized cities.</p>
-                        <p class="byline">By Ava Chen</p>
-                    </div>
-                </a>
-            </article>
-
-            <article class="card list-item">
-                <a href="article-blueprint.html">
-                    <div class="card-image" style="background-image: url('assets/placeholder-culture-2.jpg');"></div>
-                    <div class="card-content">
-                        <p class="section-tag">Interview • 8 min read</p>
-                        <h3>Hassan Al-Jubouri on Archiving the Digital Diaspora</h3>
-                        <p class="dek">We sit down with the historian whose project is building a collective memory of displaced online communities.</p>
-                        <p class="byline">By Editor</p>
-                    </div>
-                </a>
-            </article>
-            
-            <article class="card list-item">
-                <a href="article-blueprint.html">
-                    <div class="card-image" style="background-image: url('assets/placeholder-culture-3.jpg');"></div>
-                    <div class="card-content">
-                        <p class="section-tag">Essay • 6 min read</p>
-                        <h3>The Tyranny of the Immediate: Why Slow Media is the New Rebellion</h3>
-                        <p class="dek">A philosophical look at how cultural production benefits when we reject real-time feedback and embrace patient craftsmanship.</p>
-                        <p class="byline">By Elara V.</p>
-                    </div>
-                </a>
-            </article>
-            
+        <section>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-widest" style="font-family: var(--font-display);">ALL STORIES</h2>
+            <div id="category-article-grid" class="category-grid">
+                </div>
         </section>
 
     </main>
 
-    <footer>
-        <p>&copy; 2025 ARSHI. An independent creative house project.</p>
-    </footer>
-
-    <script src="theme-switcher.js" defer></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.querySelector('.hamburger');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            
-            if (hamburger && mobileMenu) {
-                hamburger.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('open');
-                });
+        // --- Data Model (Copied from index.html for consistency) ---
+        const allArticles = [
+            { title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.", 
+              image: "https://placehold.co/600x450/A4492F/F8F7F4?text=FASHION+ART+1" },
+            { title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.", 
+              image: "https://placehold.co/600x400/1C2A44/F8F7F4?text=SOCIETY+CULTURE+1" },
+            { title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.", 
+              image: "https://placehold.co/600x450/C8A951/0f1218?text=MUSIC+FILM+1" },
+            { title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.", 
+              image: "https://placehold.co/600x400/3B5323/f7f6f2?text=MUSIC+FILM+2" },
+            { title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.", 
+              image: "https://placehold.co/600x800/808080/F8F7F4?text=FASHION+ART+2" },
+            { title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.", 
+              image: "https://placehold.co/600x600/A4492F/F8F7F4?text=FASHION+ART+3" },
+            { title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.", 
+              image: "https://placehold.co/600x700/111/f7f6f2?text=SOCIETY+CULTURE+2" },
+            { title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.", 
+              image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=SOCIETY+CULTURE+3" },
+        ];
 
-                mobileMenu.querySelectorAll('a').forEach(item => {
-                    item.addEventListener('click', () => {
-                        mobileMenu.classList.remove('open');
-                    });
+        // Map for converting URL parameter to display name and description
+        const categoryMap = {
+            'society-culture': {
+                name: 'SOCIETY & CULTURE',
+                description: 'Reflections on identity, politics, social change, and cultural movements.'
+            },
+            'fashion-art': {
+                name: 'FASHION & ART',
+                description: 'Writings on style, aesthetics, visual culture, design critique, and contemporary art.'
+            },
+            'music-film': {
+                name: 'MUSIC & FILM',
+                description: 'Reviews, critiques, and explorations of cinema, documentaries, and global music scenes.'
+            },
+            'all': {
+                name: 'ALL CATEGORIES',
+                description: 'A comprehensive view of all stories published across ARSHI Magazine.'
+            }
+        };
+
+        // --- Utility Functions ---
+
+        /** Fetches URL parameters for category filtering. */
+        const getCategoryParam = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            // Default to 'all' if no parameter is found
+            return urlParams.get('category') || 'all';
+        };
+
+        /** Renders the status badge for 'coming_soon' articles. */
+        const renderStatusBadge = (status) => {
+            if (status === 'coming_soon') {
+                return `
+                    <span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)] transition-colors"
+                          style="background-color: var(--accent2);">
+                        COMING SOON
+                    </span>
+                `;
+            }
+            return '';
+        };
+
+        /** Generates the HTML for a single article card (simplified grid version). */
+        const renderArticleCard = (article) => {
+            return `
+                <a href="${article.slug}" class="card-link group block transition-colors" aria-label="Read article: ${article.title}">
+                    
+                    <div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
+                        <img loading="lazy" 
+                             src="${article.image}" 
+                             alt="${article.title}" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/808080/FFF?text=Image+Missing';"
+                             class="card-image w-full h-72 object-cover transition-transform duration-500 ease-in-out rounded-lg"
+                        >
+                    </div>
+
+                    <div class="py-4">
+                        <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                            <span class="px-2 py-1 text-xs font-bold uppercase rounded-full border border-current text-[var(--fg)] transition-colors">
+                                ${article.category}
+                            </span>
+                            ${renderStatusBadge(article.status)}
+                        </div>
+
+                        <h3 class="font-extrabold text-3xl mt-3 leading-snug" style="font-family: var(--font-display);">
+                            ${article.title.toUpperCase()}
+                        </h3>
+
+                        <p class="text-sm font-semibold mt-3 text-[var(--fg)]/60 transition-colors">
+                            ${article.author} • ${article.readingMinutes} min read
+                        </p>
+                    </div>
+                </a>
+            `;
+        };
+
+        /** Filters and renders articles based on the URL parameter. */
+        const renderCategoryContent = () => {
+            const requestedCategory = getCategoryParam();
+            const categoryInfo = categoryMap[requestedCategory] || categoryMap['all'];
+            const gridContainer = document.getElementById('category-article-grid');
+            const titleElement = document.getElementById('category-title');
+            const descElement = document.getElementById('category-description');
+            
+            // 1. Update Header
+            titleElement.textContent = categoryInfo.name;
+            descElement.textContent = categoryInfo.description;
+            
+            // 2. Filter Articles
+            const filteredArticles = allArticles.filter(article => {
+                if (requestedCategory === 'all') {
+                    return true;
+                }
+                // Normalize category strings for comparison
+                const categorySlug = article.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+                return categorySlug === requestedCategory;
+            });
+
+            // 3. Render Articles
+            let gridHtml = '';
+            if (filteredArticles.length === 0) {
+                gridHtml = `<p class="col-span-3 text-lg text-[var(--fg)]/70 mt-4">No stories found in the **${categoryInfo.name}** category yet. Check back soon!</p>`;
+            } else {
+                filteredArticles.forEach(article => {
+                    gridHtml += renderArticleCard(article);
                 });
             }
+
+            gridContainer.innerHTML = gridHtml;
+        };
+
+
+        // --- Initialization ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply saved theme (for visual consistency across pages)
+            const savedTheme = localStorage.getItem('arshiTheme') || 'terracotta';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            // Render the specific category content
+            renderCategoryContent();
         });
     </script>
 </body>

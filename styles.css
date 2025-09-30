@@ -1,23 +1,98 @@
-/* styles.css - arshi.studio Design */
+/* ARSHI Magazine Core Styles */
 
-/* --- General Styling & Reset --- */
+/* --- 1. FONT IMPORTS (Fallbacks for Druk, Inter, Merriweather) --- */
+/* The user requested fonts for vibe, so we use Google Fonts for fallbacks */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+/* --- 2. BASE COLOR PALETTE & TYPOGRAPHY VARIABLES --- */
 :root {
-    --color-primary: #1E3A52; /* Dark Navy Blue */
-    --color-text: #333;
-    --color-light: #f4f4f4; 
-    --font-serif: 'Georgia', serif; 
-    --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* Global Palette from the brief */
+    --bg-base: #F8F7F4;
+    --fg-base: #111111;
+    --accent-1: #A4492F; /* Terracotta */
+    --accent-2: #1C2A44; /* Midnight Blue */
+    --accent-3: #3B5323; /* Olive Green */
+    --accent-4: #C8A951; /* Gold/Ochre */
+
+    /* Typography Variables */
+    --font-masthead: 'Anton', "Bebas Neue", "Impact", sans-serif; /* Condensed, Bold vibe */
+    --font-ui: 'Inter', "IBM Plex Sans", sans-serif;             /* Clean, Sans-serif */
+    --font-body: 'Merriweather', "Source Serif 4", Georgia, serif; /* Editorial Serif */
+    --line-height-body: 1.65;
+    --base-font-size: 18px;
+
+    /* Default Theme: Terracotta-led (Mapping global to specific theme vars) */
+    --bg: var(--bg-base);
+    --fg: var(--fg-base);
+    --color-primary: var(--accent-1); 
+    --color-secondary: var(--accent-4);
+    --color-text: var(--fg);
+    --color-light: #DDD;
+}
+
+/* --- 3. THEME OVERRIDES (Controlled by theme-switcher.js) --- */
+
+/* Midnight-led Theme */
+[data-theme="midnight-led"] {
+    --color-primary: var(--accent-2); 
+    --color-secondary: var(--accent-1);
+}
+
+/* Olive-led Theme */
+[data-theme="olive-led"] {
+    --color-primary: var(--accent-3); 
+    --color-secondary: var(--accent-2);
+}
+
+/* --- 4. GLOBAL STYLES & RESET --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+    font-family: var(--font-body);
+    font-size: var(--base-font-size);
+    line-height: var(--line-height-body);
     color: var(--color-text);
-    background-color: white;
+    background-color: var(--bg);
+    transition: background-color 0.3s, color 0.3s;
 }
 
+/* --- 5. TYPOGRAPHY SCALE --- */
+h1, h2 {
+    font-family: var(--font-masthead);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.5em;
+}
+
+h1 { /* H1: 56–64 */
+    font-size: clamp(2.5rem, 6vw, 4rem); 
+}
+
+h2 { /* H2: 36–44 */
+    font-size: clamp(2rem, 4vw, 2.75rem); 
+    color: var(--color-primary);
+}
+
+h3, h4, h5 {
+    font-family: var(--font-ui);
+    line-height: 1.3;
+    margin-bottom: 0.5em;
+    color: var(--fg);
+}
+
+h3 { /* H3: 24–28 */
+    font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+/* --- 6. LINKS & BUTTONS --- */
 a {
     color: var(--color-primary);
     text-decoration: none;
@@ -25,166 +100,109 @@ a {
 }
 
 a:hover {
-    color: #007bff; /* Bright blue for hover effect */
+    color: var(--color-secondary);
 }
 
-h1, h2, h3 {
-    font-family: var(--font-serif);
-    color: var(--color-primary);
-    line-height: 1.2;
+/* UI elements like nav, buttons, tags */
+nav a, .cta-button, .section-tag, .cat-card {
+    font-family: var(--font-ui);
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
-/* --- Header & Navigation --- */
+/* --- 7. HEADER & NAVIGATION --- */
 header {
-    background-color: white;
-    border-bottom: 1px solid #ddd;
-    padding: 1rem 0;
+    background-color: var(--bg);
+    padding: 20px 5%;
+    border-bottom: 1px solid var(--color-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 nav {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.logo {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
+nav .logo {
+    font-family: var(--font-masthead);
+    font-size: 1.8rem;
     font-weight: bold;
-    color: var(--color-primary);
+    letter-spacing: 1px;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
+    gap: 25px;
 }
 
-nav ul li {
-    margin-left: 25px;
+nav ul a {
+    color: var(--fg);
+    font-size: 0.9rem;
+    padding: 5px 0;
 }
 
-/* --- Main Content Layout --- */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-section {
-    padding: 60px 20px;
-    border-bottom: 1px solid var(--color-light);
-}
-
-/* --- Hero Section (The main banner) --- */
-#hero {
-    text-align: center;
-    padding: 100px 20px;
-    background-color: var(--color-primary);
-    color: white;
-}
-
-#hero h1 {
-    color: white;
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-#hero p {
-    font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto 30px;
-    opacity: 0.9;
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: white;
+nav ul a:hover {
     color: var(--color-primary);
-    padding: 10px 25px;
-    border: 2px solid white;
+}
+
+/* --- 8. THEME SWITCHER BUTTON --- */
+#theme-switcher {
+    cursor: pointer;
+    background: var(--color-primary);
+    color: var(--bg);
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    margin-left: 20px;
     font-weight: bold;
-    text-transform: uppercase;
     transition: background-color 0.3s;
 }
 
-.cta-button:hover {
-    background-color: var(--color-light);
-    text-decoration: none;
+#theme-switcher:hover {
+    background: var(--color-secondary);
 }
 
-/* --- Projects Cards --- */
-#projects h2 {
-    text-align: center;
-    margin-bottom: 40px;
+/* --- 9. MAIN LAYOUT --- */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 5%;
 }
 
-.project-cards {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    flex-wrap: wrap; 
+section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--color-light);
 }
 
-.card {
-    flex-basis: calc(33% - 20px); 
-    padding: 25px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: box-shadow 0.3s;
-}
-
-.card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card h3 {
-    margin-top: 0;
-    font-size: 1.3rem;
-}
-
-/* --- Footer --- */
+/* --- 10. FOOTER --- */
 footer {
-    background-color: var(--color-primary);
-    color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 30px 5%;
+    background-color: var(--fg);
+    color: var(--bg);
     font-size: 0.9rem;
 }
 
 footer a {
-    color: white;
-    margin: 0 10px;
-    opacity: 0.8;
+    color: var(--accent-4);
 }
 
-footer a:hover {
-    opacity: 1;
-}
-
-/* --- Responsive Adjustments (for smaller screens) --- */
+/* --- Responsive adjustments for nav --- */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-    }
-
     nav ul {
-        margin-top: 15px;
+        display: none; /* Hide desktop nav on mobile/tablet for a future hamburger menu */
     }
-    
-    nav ul li {
-        margin: 0 10px;
+    nav {
+        justify-content: space-between;
     }
-
-    #hero {
-        padding: 60px 20px;
-    }
-
-    .card {
-        flex-basis: 100%;
-        margin-bottom: 20px;
+    #theme-switcher {
+        margin-left: 0;
     }
 }

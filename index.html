@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Bebas Neue for Masthead/H1/H2 (Bold Condensed Vibe) & Inter for UI/Body -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         /* Base (Terracotta) Theme */
         :root {
@@ -28,14 +28,6 @@
             --fg: #f4f3ef;
             --accent: #1C2A44;
             --accent2: #C8A951; /* Gold/Ochre */
-        }
-
-        /* Olive Theme */
-        [data-theme="olive"] {
-            --bg: #f7f6f2;
-            --fg: #101010;
-            --accent: #3B5323; /* Olive Green */
-            --accent2: #A4492F;
         }
 
         /* Applying Variables & General Styles */
@@ -119,7 +111,7 @@
         <div class="container mx-auto px-4 h-full flex items-center justify-between">
             
             <!-- Left: Masthead -->
-            <a href="#" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
+            <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
                 ARSHI
             </a>
 
@@ -127,9 +119,9 @@
             <nav class="flex items-center space-x-6">
                 <!-- Desktop Categories (Inline in Banner, Hidden on Mobile) -->
                 <div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Main Categories">
-                    <a href="#" class="hover-underline transition-colors">Society & Culture</a>
-                    <a href="#" class="hover-underline transition-colors">Fashion & Art</a>
-                    <a href="#" class="hover-underline transition-colors">Music & Film</a>
+                    <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
+                    <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
+                    <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
                 </div>
 
                 <!-- Icons (Visible on Mobile and Desktop) -->
@@ -166,9 +158,9 @@
     <!-- Desktop Utility Drawer (Hidden by default) -->
     <div id="desktop-utility-drawer" class="hidden absolute top-16 right-0 z-30 w-64 p-6 border-l border-b border-[var(--fg)]/20 shadow-xl transition-colors" style="background-color: var(--bg);">
         <nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
-            <a href="#" class="hover-underline transition-colors">About</a>
-            <a href="#" class="hover-underline transition-colors">Contact</a>
-            <a href="#" class="hover-underline transition-colors">Submit</a>
+            <a href="about.html" class="hover-underline transition-colors">About</a>
+            <a href="contact.html" class="hover-underline transition-colors">Contact</a>
+            <a href="submit.html" class="hover-underline transition-colors">Submit</a>
         </nav>
     </div>
 
@@ -181,15 +173,15 @@
             </button>
             <nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
                 <!-- Categories -->
-                <a href="#" class="hover-underline transition-colors">Society & Culture</a>
-                <a href="#" class="hover-underline transition-colors">Fashion & Art</a>
-                <a href="#" class="hover-underline transition-colors">Music & Film</a>
+                <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
+                <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
+                <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
                 
                 <!-- Utility Links -->
                 <div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
-                    <a href="#" class="block hover-underline transition-colors">About</a>
-                    <a href="#" class="block hover-underline transition-colors">Contact</a>
-                    <a href="#" class="block hover-underline transition-colors">Submit</a>
+                    <a href="about.html" class="block hover-underline transition-colors">About</a>
+                    <a href="contact.html" class="block hover-underline transition-colors">Contact</a>
+                    <a href="submit.html" class="block hover-underline transition-colors">Submit</a>
                 </div>
             </nav>
         </div>
@@ -226,16 +218,25 @@
     <script>
         // --- Data Model ---
         const articles = [
-            // Hero article
-            { isHero: true, title: "Tracing gold myths across maps", slug: "/articles/tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.", image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=Featured Editorial" },
-            // Grid articles
-            { title: "The silent rebellion of utilitarian design in the metropolis", slug: "/articles/silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.", image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=Minimal+Architecture" },
-            { title: "Screaming colour: A review of the new Arab experimental film scene", slug: "/articles/screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.", image: "https://placehold.co/600x600/C8A951/0f1218?text=Film+Still" },
-            { title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "/articles/sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.", image: "https://placehold.co/600x400/3B5323/f7f6f2?text=Sound+Design" },
-            { title: "The post-internet sculptor: Reimagining form in a digital age", slug: "/articles/post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.", image: "https://placehold.co/600x800/808080/F8F7F4?text=Digital+Sculpture" },
-            { title: "Myth and memory: The enduring power of folk embroidery", slug: "/articles/folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.", image: "https://placehold.co/600x600/A4492F/F8F7F4?text=Textile+Art" },
-            { title: "A quiet moment with the last street cart vendors of Beirut", slug: "/articles/beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.", image: "https://placehold.co/600x700/111/f7f6f2?text=Street+Scene" },
-            { title: "Why physical magazines still matter in the age of infinite scroll", slug: "/articles/physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.", image: "https://placehold.co/600x450/A4492F/F8F7F4?text=Print+Media" },
+            // Hero article - Updated with a better placeholder image for visual coherence
+            { isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.", 
+              image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" },
+            
+            // Grid articles - Updated with more visually coherent placeholders
+            { title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.", 
+              image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO" },
+            { title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.", 
+              image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA" },
+            { title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.", 
+              image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS" },
+            { title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.", 
+              image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE" },
+            { title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.", 
+              image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART" },
+            { title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.", 
+              image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO" },
+            { title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.", 
+              image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT" },
         ];
 
         // --- Utility Functions ---
@@ -276,8 +277,6 @@
                     <div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
                         <img loading="lazy" 
                              src="${article.image}" 
-                             srcset="${article.image.replace(/(\.jpg|\.png)/i, '-small$1')} 600w, ${article.image.replace(/(\.jpg|\.png)/i, '-medium$1')} 1000w"
-                             sizes="(max-width: 768px) 100vw, 50vw"
                              alt="${article.title}" 
                              onerror="this.onerror=null;this.src='https://placehold.co/600x400/808080/FFF?text=Image+Missing';"
                              class="card-image w-full object-cover transition-transform duration-500 ease-in-out ${imageSizeClass} rounded-lg"
@@ -338,7 +337,8 @@
 
         // --- Theme Switching Logic ---
 
-        const themes = ['terracotta', 'midnight', 'olive'];
+        // Removed 'olive' theme from the list
+        const themes = ['terracotta', 'midnight']; 
         let currentThemeIndex = 0;
 
         /**
@@ -356,8 +356,14 @@
          */
         const initializeTheme = () => {
             const savedTheme = localStorage.getItem('arshiTheme') || 'terracotta';
-            document.body.setAttribute('data-theme', savedTheme);
-            currentThemeIndex = themes.indexOf(savedTheme);
+            // Ensure saved theme is one of the valid options
+            if (!themes.includes(savedTheme)) {
+                document.body.setAttribute('data-theme', 'terracotta');
+                currentThemeIndex = 0;
+            } else {
+                document.body.setAttribute('data-theme', savedTheme);
+                currentThemeIndex = themes.indexOf(savedTheme);
+            }
         };
 
         // --- Event Listeners and Initializers ---
@@ -434,9 +440,6 @@
                     }
                 }
             });
-            
-            // REMOVED: Initializing secondary-tab-bar (as requested, it is no longer used)
-
         });
     </script>
 </body>

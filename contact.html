@@ -19,11 +19,20 @@
             --font-ui: 'Inter', sans-serif;
         }
 
+        /* Midnight Theme (For context, though this page is static) */
+        [data-theme="midnight"] {
+            --bg: #0f1218;
+            --fg: #f4f3ef;
+            --accent: #1C2A44;
+            --accent2: #C8A951;
+        }
+
         /* Applying Variables & General Styles */
         body {
             background-color: var(--bg);
             color: var(--fg);
             font-family: var(--font-ui);
+            transition: background-color 0.3s, color 0.3s;
         }
         h1, h2, h3, .masthead {
             font-family: var(--font-display);
@@ -49,18 +58,38 @@
             color: var(--accent);
         }
 
-        /* Styling for the contact list */
-        .contact-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--fg)/10;
+        /* Form Styling */
+        .input-field {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            background-color: transparent;
+            border: 2px solid var(--fg)/30;
+            color: var(--fg);
+            transition: border-color 0.3s, background-color 0.3s;
+            outline: none;
         }
-        .contact-list li:last-child {
-            border-bottom: none;
+        .input-field:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent);
         }
+
+        /* Button Styling */
+        .submit-button {
+            background-color: var(--accent);
+            color: var(--bg);
+            font-weight: 700;
+            padding: 1rem 2rem;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        .submit-button:hover {
+            background-color: var(--accent2);
+        }
+
     </style>
 </head>
 
-<body class="transition-colors">
+<body data-theme="terracotta" class="transition-colors">
 
     <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
             style="background-color: var(--bg);">
@@ -91,54 +120,71 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
+    <main class="container mx-auto px-4 py-12 md:py-20 max-w-3xl">
         <h1 class="text-7xl md:text-9xl font-extrabold mb-8 accent-link tracking-widest leading-none">
             CONTACT
         </h1>
         <p class="text-xl font-semibold mb-12 border-b-2 pb-6 border-[var(--fg)]/20">
-            For all inquiries, please select the appropriate department below. This ensures your message reaches the right person efficiently.
+            Send us a message regarding general inquiries, partnerships, or press requests. We'll get back to you as soon as possible.
         </p>
 
         <section class="mb-16">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">INQUIRY CHANNELS</h2>
-            <ul class="contact-list divide-y divide-[var(--fg)]/20">
-                <li class="flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div class="mb-2 md:mb-0">
-                        <h3 class="text-2xl font-bold">Editorial Submissions</h3>
-                        <p class="text-base text-[var(--fg)]/70">To pitch an article, visual piece, or creative project.</p>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">SEND A MESSAGE</h2>
+            
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT_HERE" method="POST" class="space-y-6">
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-bold uppercase mb-1">Your Name</label>
+                        <input type="text" name="name" id="name" required class="input-field" placeholder="First Last">
                     </div>
-                    <a href="submit.html" class="inline-block py-2 px-4 text-lg font-bold bg-[var(--accent)] text-[var(--bg)] rounded hover:bg-[var(--accent)]/80 transition-colors">
-                        View Guidelines
-                    </a>
-                </li>
+                    <div>
+                        <label for="email" class="block text-sm font-bold uppercase mb-1">Email Address</label>
+                        <input type="email" name="_replyto" id="email" required class="input-field" placeholder="email@example.com">
+                    </div>
+                </div>
 
-                <li class="flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div class="mb-2 md:mb-0">
-                        <h3 class="text-2xl font-bold">General & Press</h3>
-                        <p class="text-base text-[var(--fg)]/70">For general questions, collaborations, or media requests.</p>
-                    </div>
-                    <a href="mailto:info@arshi.studio" class="text-lg font-bold accent-link hover:underline">info@arshi.studio</a>
-                </li>
+                <div>
+                    <label for="subject" class="block text-sm font-bold uppercase mb-1">Subject (Optional)</label>
+                    <input type="text" name="subject" id="subject" class="input-field" placeholder="E.g., Partnership Inquiry">
+                </div>
 
-                <li class="flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div class="mb-2 md:mb-0">
-                        <h3 class="text-2xl font-bold">Legal, Errors & Ethics</h3>
-                        <p class="text-base text-[var(--fg)]/70">Report factual errors, ethical concerns, or legal notices.</p>
-                    </div>
-                    <a href="mailto:integrity@arshi.studio" class="text-lg font-bold accent-link hover:underline">integrity@arshi.studio</a>
-                </li>
+                <div>
+                    <label for="message" class="block text-sm font-bold uppercase mb-1">Message</label>
+                    <textarea name="message" id="message" rows="6" required class="input-field" placeholder="Your inquiry details..."></textarea>
+                </div>
 
-                <li class="flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div class="mb-2 md:mb-0">
-                        <h3 class="text-2xl font-bold">Production & Events</h3>
-                        <p class="text-base text-[var(--fg)]/70">Inquiries related to ARSHI.production and ARSHI.events.</p>
-                    </div>
-                    <a href="mailto:production@arshi.studio" class="text-lg font-bold accent-link hover:underline">production@arshi.studio</a>
-                </li>
-            </ul>
+                <div>
+                    <button type="submit" class="submit-button w-full text-lg rounded">
+                        Send Message
+                    </button>
+                </div>
+            </form>
         </section>
 
-        <section class="mt-12 border-t-2 pt-10 border-[var(--fg)]/20">
+        <section class="mt-12 pt-8 border-t border-[var(--fg)]/20 grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-3xl font-extrabold mb-2 accent-link">EDITORIAL SUBMISSIONS</h3>
+                <p class="text-lg text-[var(--fg)]/80 mb-3">
+                    To pitch an article, visual piece, or creative project for ARSHI Magazine.
+                </p>
+                <a href="submit.html" class="inline-block py-2 px-4 text-lg font-bold bg-[var(--accent)] text-[var(--bg)] rounded hover:bg-[var(--accent)]/80 transition-colors">
+                    View Guidelines
+                </a>
+            </div>
+            
+            <div>
+                <h3 class="text-3xl font-extrabold mb-2 accent-link">LEGAL & ETHICS</h3>
+                <p class="text-lg text-[var(--fg)]/80 mb-3">
+                    Report factual errors, ethical concerns, or legal notices.
+                </p>
+                <a href="mailto:integrity@arshi.studio" class="text-lg font-bold accent-link hover:underline">
+                    Email integrity@arshi.studio
+                </a>
+            </div>
+        </section>
+        
+        <section class="mt-12 pt-8 border-t border-[var(--fg)]/20">
             <h2 class="text-4xl md:text-6xl font-extrabold mb-6">FOLLOW US</h2>
             <div class="flex space-x-6 text-2xl font-semibold">
                 <a href="#" class="accent-link hover:text-[var(--accent2)] transition-colors" aria-label="ARSHI on Instagram">INSTAGRAM</a>

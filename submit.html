@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit to ARSHI Magazine</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Editorial Vibe -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* Base (Terracotta) Theme */
+        /* Base (Terracotta) Theme - This is the LIGHT/DEFAULT theme */
         :root {
             --bg: #F8F7F4; /* Off-White */
             --fg: #111111; /* Near Black */
@@ -19,11 +21,20 @@
             --font-ui: 'Inter', sans-serif;
         }
 
+        /* DARK Theme Variables */
+        body.dark-theme {
+            --bg: #111111; /* Near Black */
+            --fg: #F8F7F4; /* Off-White */
+            --accent: #A4492F; /* Terracotta (Remains same) */
+            --accent2: #FFFFFF; /* White for contrast on dark blue headers */
+        }
+
         /* Applying Variables & General Styles */
         body {
             background-color: var(--bg);
             color: var(--fg);
             font-family: var(--font-ui);
+            transition: background-color 0.5s, color 0.5s; /* Smooth transition */
         }
         h1, h2, h3, .masthead {
             font-family: var(--font-display);
@@ -45,11 +56,11 @@
         }
         
         /* Form Styling */
-        .input-field, .select-field {
+        .input-field, .select-field, textarea {
             width: 100%;
             padding: 0.75rem;
             margin-top: 0.5rem;
-            background-color: transparent;
+            background-color: var(--bg);
             border: 1px solid var(--fg)/30;
             color: var(--fg);
             transition: border-color 0.3s;
@@ -72,6 +83,7 @@
         }
         .submit-button:hover {
             background-color: var(--accent2);
+            color: var(--fg); /* text color adjusts on hover */
         }
         
         /* Rule-Item styling for bold separation */
@@ -96,32 +108,84 @@
             color: var(--accent);
             margin-right: 0.5rem;
         }
+
+        /* Choice Button Styling */
+        .choice-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--fg);
+            border-radius: 8px;
+            transition: background-color 0.3s, border-color 0.3s;
+            cursor: pointer;
+            min-height: 250px;
+        }
+        .choice-button:hover {
+            background-color: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+        .choice-button:hover .choice-title {
+            color: var(--bg);
+        }
+        .choice-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            transition: color 0.3s;
+        }
+        .choice-description {
+            font-size: 1rem;
+            font-weight: 600;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        body.dark-theme .choice-button:hover {
+             background-color: var(--accent);
+             color: var(--fg);
+             border-color: var(--accent);
+        }
+        body.dark-theme .choice-button:hover .choice-title {
+            color: var(--fg);
+        }
     </style>
 </head>
 
 <body class="transition-colors">
 
+    <!-- Sticky Header (Consistent from index.html) -->
     <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
             style="background-color: var(--bg);">
         <div class="container mx-auto px-4 h-full flex items-center justify-between">
             
+            <!-- Left: Masthead -->
             <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
                 ARSHI
             </a>
 
+            <!-- Right: Desktop Nav & Icons (Simplified for utility pages) -->
             <nav class="flex items-center space-x-6">
+                <!-- Desktop Categories (Inline in Banner, Hidden on Mobile) -->
                 <div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Main Categories">
                     <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
                     <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
                     <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
                 </div>
 
+                <!-- Icons (Visible on Mobile and Desktop) -->
                 <div class="flex items-center space-x-4 lg:space-x-6">
-                    <button class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
+                    <!-- Theme Circle Button (NOW HAS ID FOR JS) -->
+                    <button id="theme-toggle" class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
                             style="background-color: var(--accent);"
-                            aria-label="Theme Color (Static)">
+                            aria-label="Toggle Theme">
                     </button>
 
+                    <!-- Back to Home Button -->
                     <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     </a>
@@ -130,26 +194,47 @@
         </div>
     </header>
 
+    <!-- Main Content Area (Centered) -->
     <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
-        <h1 class="text-7xl md:text-9xl font-extrabold mb-8 accent-link tracking-widest leading-none">
+        <h1 class="text-6xl md:text-7xl font-extrabold mb-8 accent-link tracking-widest leading-none">
             SUBMIT TO ARSHI
         </h1>
         <p class="text-xl font-semibold mb-10 border-b-2 pb-6 border-[var(--fg)]/20">
             ARSHI is an independent magazine open to writers, poets, critics, and researchers with fresh perspectives on culture. We welcome every voice that seeks to explore, question, and create with curiosity.
         </p>
         
-        <section class="mb-16">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">SUBMISSION WORKFLOW</h2>
+        <!-- ============================================== -->
+        <!-- VIEW 1: INITIAL CHOICE GATEWAY -->
+        <!-- ============================================== -->
+        <section id="choice-view" class="grid md:grid-cols-2 gap-8 my-16">
+            <button id="writer-button" class="choice-button">
+                <span class="choice-title">SUBMIT AS A WRITER</span>
+                <span class="choice-description">Pitch a single article or visual piece to be considered for our next issue.</span>
+            </button>
+            <button id="collaborator-button" class="choice-button">
+                <span class="choice-title">BECOME A COLLABORATOR</span>
+                <span class="choice-description">Join ARSHI's Contributors Circle to work with us consistently on ideas, editing, and events.</span>
+            </button>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- VIEW 2: FREE WRITER SUBMISSION -->
+        <!-- ============================================== -->
+        <section id="writer-submission-view" class="mb-16 hidden">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">SUBMISSION</h2>
             
+            <!-- Warning/Compensation Note -->
             <div class="p-4 bg-yellow-50 text-gray-800 border-l-4 border-yellow-500 rounded-lg mb-8 shadow-sm">
                 <p class="font-bold">⚠️ Please note:</p>
                 <p class="text-base mt-1">
-                    ARSHI is an independent project. At this stage, contributions are <strong class="font-bold">unpaid</strong>. However, all work is credited by name, and contributors retain their rights. As the magazine grows, building towards sustainability and fair compensation is a core priority.
+                    ARSHI is an independent project. At this stage, contributions are <strong class="font-bold">unpaid</strong>. However, all work is credited by name, and contributors retain their rights. As the magazine grows, we hope to build towards sustainability and fair compensation for contributors.
                 </p>
             </div>
 
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_SUBMISSION_ENDPOINT" method="POST" enctype="multipart/form-data" class="space-y-12">
-
+            <!-- WRITER FORM -->
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_SUBMISSION_ENDPOINT_WRITER" method="POST" enctype="multipart/form-data" class="space-y-12">
+                <!-- STEP 1: Contributor Info -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">1.</span>
@@ -157,24 +242,25 @@
                     </div>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="mb-4">
-                            <label for="name" class="block text-sm font-bold uppercase mb-1">Name</label>
-                            <input type="text" name="name" id="name" required class="input-field" placeholder="First Last">
+                            <label for="w-name" class="block text-sm font-bold uppercase mb-1">Name</label>
+                            <input type="text" name="name" id="w-name" required class="input-field" placeholder="First Last">
                         </div>
                         <div class="mb-4">
-                            <label for="email" class="block text-sm font-bold uppercase mb-1">Contact Email</label>
-                            <input type="email" name="_replyto" id="email" required class="input-field" placeholder="your@email.com">
+                            <label for="w-email" class="block text-sm font-bold uppercase mb-1">Contact Email</label>
+                            <input type="email" name="_replyto" id="w-email" required class="input-field" placeholder="your@email.com">
                         </div>
                     </div>
                     <div>
-                        <label for="bio" class="block text-sm font-bold uppercase mb-1">Short Bio (1-2 sentences)</label>
-                        <textarea name="bio" id="bio" rows="2" required class="input-field" placeholder="E.g., Writer and researcher based in London."></textarea>
+                        <label for="w-bio" class="block text-sm font-bold uppercase mb-1">Short Bio (1-2 sentences)</label>
+                        <textarea name="bio" id="w-bio" rows="2" required class="input-field" placeholder="E.g., Writer and researcher based in Amsterdam."></textarea>
                     </div>
                     <div class="mt-4">
-                        <label for="links" class="block text-sm font-bold uppercase mb-1">Links to Past Work (Optional)</label>
-                        <input type="text" name="links" id="links" class="input-field" placeholder="Portfolio URL, published articles, etc.">
+                        <label for="w-links" class="block text-sm font-bold uppercase mb-1">Links to Past Work (Optional)</label>
+                        <input type="text" name="links" id="w-links" class="input-field" placeholder="Portfolio URL, published articles, etc.">
                     </div>
                 </div>
                 
+                <!-- STEP 2: Theme Selection -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">2.</span>
@@ -186,35 +272,38 @@
                     <div class="space-y-3">
                         <label class="block">
                             <input type="checkbox" name="theme[]" value="Society & Culture" class="mr-2 accent-link">
-                            <span class="font-bold">Society & Culture:</span> Identity, politics, social change.
+                            <span class="font-bold">Society & Culture</span>
                         </label>
                         <label class="block">
                             <input type="checkbox" name="theme[]" value="Fashion & Art" class="mr-2 accent-link">
-                            <span class="font-bold">Fashion & Art:</span> Aesthetics, visual critique, design.
+                            <span class="font-bold">Fashion & Art</span>
                         </label>
                         <label class="block">
                             <input type="checkbox" name="theme[]" value="Music & Film" class="mr-2 accent-link">
-                            <span class="font-bold">Music & Film:</span> Cinema, documentary, soundscapes, and critique.
+                            <span class="font-bold">Music & Film</span>
                         </label>
                     </div>
                 </div>
 
+                <!-- STEP 3: Proposal Details -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">3.</span>
                         <h3 class="text-3xl font-extrabold leading-tight">PROPOSAL DETAILS</h3>
                     </div>
                     
+                    <!-- Pitch / Idea -->
                     <div class="mb-6">
-                        <label for="pitch" class="block text-sm font-bold uppercase mb-1">Pitch / Idea Summary (200 words max)</label>
-                        <textarea name="pitch" id="pitch" rows="6" required class="input-field" placeholder="Explain: What is it about? Why is it relevant? What's your angle?"></textarea>
+                        <label for="w-pitch" class="block text-sm font-bold uppercase mb-1">Pitch / Idea Summary (200 words max)</label>
+                        <textarea name="pitch" id="w-pitch" rows="6" required class="input-field" placeholder="Explain: What is it about? Why is it relevant? What's your angle?"></textarea>
                         <p class="text-xs text-[var(--fg)]/60 mt-1">This summary is mandatory.</p>
                     </div>
 
+                    <!-- Format & Status -->
                     <div class="grid md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label for="format" class="block text-sm font-bold uppercase mb-1">Format</label>
-                            <select name="format" id="format" required class="select-field">
+                            <label for="w-format" class="block text-sm font-bold uppercase mb-1">Format</label>
+                            <select name="format" id="w-format" required class="select-field">
                                 <option value="">— Choose One —</option>
                                 <option value="Essay">Essay</option>
                                 <option value="Reportage">Reportage</option>
@@ -225,8 +314,8 @@
                             </select>
                         </div>
                         <div>
-                            <label for="status" class="block text-sm font-bold uppercase mb-1">Status of Work</label>
-                            <select name="status" id="status" required class="select-field">
+                            <label for="w-status" class="block text-sm font-bold uppercase mb-1">Status of Work</label>
+                            <select name="status" id="w-status" required class="select-field">
                                 <option value="Idea">Idea (in development)</option>
                                 <option value="Draft">Draft (already written)</option>
                                 <option value="Research">Research (ongoing, not yet written)</option>
@@ -234,13 +323,15 @@
                         </div>
                     </div>
                     
+                    <!-- Optional Upload -->
                     <div class="mb-6">
-                        <label for="upload" class="block text-sm font-bold uppercase mb-1">Optional Upload (Draft, Images, PDF)</label>
-                        <input type="file" name="upload" id="upload" class="input-field border-dashed p-3">
+                        <label for="w-upload" class="block text-sm font-bold uppercase mb-1">Optional Upload (Draft, Images, PDF)</label>
+                        <input type="file" name="upload" id="w-upload" class="input-field border-dashed p-3">
                         <p class="text-xs text-[var(--fg)]/60 mt-1">Max file size 10MB. Accepted formats: PDF, DOCX, JPG, PNG.</p>
                     </div>
                 </div>
 
+                <!-- Final Action -->
                 <div class="text-center pt-8 border-t border-[var(--fg)]/20">
                     <button type="submit" class="submit-button text-2xl tracking-widest rounded-lg">
                         SUBMIT PROPOSAL
@@ -251,6 +342,239 @@
                 </div>
             </form>
         </section>
+
+        <!-- ============================================== -->
+        <!-- VIEW 3: COLLABORATOR SUBMISSION -->
+        <!-- ============================================== -->
+        <section id="collaborator-submission-view" class="mb-16 hidden">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">BECOME A COLLABORATOR</h2>
+
+            <!-- Collaborator Manifesto -->
+            <div class="bg-[var(--fg)]/5 p-6 rounded-lg mb-8">
+                <p class="text-lg font-semibold mb-4">
+                    ARSHI is an independent magazine built by the people who contribute to it.
+                </p>
+                <p class="mb-4">
+                    Collaborators are the voices that shape ARSHI from within: writers, photographers, editors, and cultural thinkers who contribute regularly and help guide the magazine’s direction. Becoming a collaborator is being part of ARSHI’s DNA: contributing ideas, producing work, and growing with the project. We’re building an independent space that thrives on consistency, curiosity, and cultural depth, and we need people who want to be present and active in that journey.
+                </p>
+
+                <h3 class="text-2xl font-bold mt-6 mb-2">What it means to collaborate</h3>
+                <ul class="list-disc list-inside space-y-1 ml-4 mb-4">
+                    <li>Contribute <strong>consistently</strong> (monthly, bi-monthly, or quarterly).</li>
+                    <li>Take part in <strong>theme discussions and brainstorms</strong> when possible.</li>
+                    <li>Bring your skills and interests to the table, whether through writing, photography, editing, events, or communications.</li>
+                    <li>Be part of ARSHI’s <strong>Contributors Circle</strong>, credited on our website and featured alongside your work.</li>
+                </ul>
+
+                <h3 class="text-2xl font-bold mt-6 mb-2">What you gain</h3>
+                <ul class="list-disc list-inside space-y-1 ml-4 mb-4">
+                    <li>A platform to publish your work under your own name.</li>
+                    <li>A space to experiment, question, and create without editorial gatekeeping.</li>
+                    <li>Visibility as part of a growing independent magazine.</li>
+                    <li>A place in a collective that values independence, recognition, and authenticity.</li>
+                </ul>
+                
+                <div class="p-3 bg-yellow-50 text-gray-800 border-l-4 border-yellow-500 rounded-lg mt-6 shadow-sm">
+                    <!-- CHANGE MADE HERE -->
+                    <p class="font-bold">⚠️ Please note:</p>
+                    <p class="text-sm mt-1">
+                        ARSHI is an independent, self-funded project. At this stage, contributions are <strong>unpaid</strong>. Collaborators retain ownership of their work and are always credited by name. As the magazine grows, we hope to build towards sustainability and fair compensation for contributors.
+                    </p>
+                </div>
+            </div>
+
+            <!-- COLLABORATOR FORM -->
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_SUBMISSION_ENDPOINT_COLLABORATOR" method="POST" enctype="multipart/form-data" class="space-y-12">
+                <!-- STEP 1: Details -->
+                <div class="rule-item">
+                    <div class="flex items-start mb-4">
+                        <span class="step-number">1.</span>
+                        <h3 class="text-3xl font-extrabold leading-tight">YOUR DETAILS</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="c-name" class="block text-sm font-bold uppercase mb-1">Name</label>
+                            <input type="text" name="name" id="c-name" required class="input-field" placeholder="First Last">
+                        </div>
+                        <div>
+                            <label for="c-email" class="block text-sm font-bold uppercase mb-1">Contact Email</label>
+                            <input type="email" name="_replyto" id="c-email" required class="input-field" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="c-socials" class="block text-sm font-bold uppercase mb-1">Socials / Website (Optional)</label>
+                        <input type="text" name="socials" id="c-socials" class="input-field" placeholder="@socialhandle or portfolio.com">
+                    </div>
+                    <div class="mt-4">
+                        <label for="c-bio" class="block text-sm font-bold uppercase mb-1">Short Bio (3–4 sentences)</label>
+                        <textarea name="bio" id="c-bio" rows="3" required class="input-field" placeholder="Who you are, what you do, and what you’d bring to ARSHI."></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Focus & Themes -->
+                <div class="rule-item">
+                    <div class="flex items-start mb-4">
+                        <span class="step-number">2.</span>
+                        <h3 class="text-3xl font-extrabold leading-tight">FOCUS & THEMES</h3>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-bold uppercase mb-3">Your Focus (Primary Skill Set)</label>
+                        <div class="grid sm:grid-cols-2 gap-2">
+                            <label class="block"><input type="checkbox" name="focus[]" value="Writing" class="mr-2 accent-link"><span class="font-bold">Writing</span> (essays, reportage, criticism)</label>
+                            <label class="block"><input type="checkbox" name="focus[]" value="Photography / Visual Art" class="mr-2 accent-link"><span class="font-bold">Photography / Visual Art</span></label>
+                            <label class="block"><input type="checkbox" name="focus[]" value="Editing" class="mr-2 accent-link"><span class="font-bold">Editing</span> (reviewing & shaping texts)</label>
+                            <label class="block"><input type="checkbox" name="focus[]" value="Events / Community" class="mr-2 accent-link"><span class="font-bold">Events / Community</span> (help with programming)</label>
+                            <label class="block"><input type="checkbox" name="focus[]" value="Communication" class="mr-2 accent-link"><span class="font-bold">Communication</span> (socials, promotion, outreach)</label>
+                            <label class="block">
+                                <input type="checkbox" name="focus[]" value="Other" id="other-focus" class="mr-2 accent-link">
+                                <span class="font-bold">Other:</span>
+                                <input type="text" name="other_focus_detail" class="input-field inline-block w-2/3 p-1" placeholder="Specify other focus">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-[var(--fg)]/10">
+                        <label class="block text-sm font-bold uppercase mb-3">Which themes do you work in?</label>
+                        <div class="space-y-2">
+                            <label class="block"><input type="checkbox" name="c-theme[]" value="Society & Culture" class="mr-2 accent-link"><span class="font-bold">Society & Culture</span></label>
+                            <label class="block"><input type="checkbox" name="c-theme[]" value="Fashion & Art" class="mr-2 accent-link"><span class="font-bold">Fashion & Art</span></label>
+                            <label class="block"><input type="checkbox" name="c-theme[]" value="Music & Film" class="mr-2 accent-link"><span class="font-bold">Music & Film</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Motivation & Commitment -->
+                <div class="rule-item">
+                    <div class="flex items-start mb-4">
+                        <span class="step-number">3.</span>
+                        <h3 class="text-3xl font-extrabold leading-tight">MOTIVATION & COMMITMENT</h3>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="c-why" class="block text-sm font-bold uppercase mb-1">Why ARSHI? (150–250 words)</label>
+                        <textarea name="why_arshi" id="c-why" rows="5" required class="input-field" placeholder="Why do you want to collaborate? What do you hope to explore here?"></textarea>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-[var(--fg)]/10 mb-6">
+                        <label class="block text-sm font-bold uppercase mb-3">Availability & Commitment</label>
+                        <div class="space-y-2">
+                            <label class="block"><input type="checkbox" name="commitment[]" value="Monthly" class="mr-2 accent-link">I can contribute <strong>monthly</strong> (at least 1 piece or project per month).</label>
+                            <label class="block"><input type="checkbox" name="commitment[]" value="Bi-Monthly" class="mr-2 accent-link">I can contribute <strong>bi-monthly</strong> (every 2 months).</label>
+                            <label class="block"><input type="checkbox" name="commitment[]" value="Quarterly" class="mr-2 accent-link">I can contribute <strong>quarterly</strong> (4 times a year).</label>
+                            <label class="block"><input type="checkbox" name="commitment[]" value="Team Meetings" class="mr-2 accent-link">I’m open to <strong>team meetings / brainstorms</strong> (remote).</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="c-support" class="block text-sm font-bold uppercase mb-1">How else could you support ARSHI’s growth?</label>
+                        <textarea name="support" id="c-support" rows="3" class="input-field" placeholder="e.g. editing, helping with socials, events, visual identity, research, outreach."></textarea>
+                    </div>
+
+                    <div class="pt-4 border-t border-[var(--fg)]/10">
+                        <label class="block text-sm font-bold uppercase mb-3">Have you ever been published on ARSHI before?</label>
+                        <div class="flex space-x-4">
+                            <label class="inline-flex items-center"><input type="radio" name="published_before" value="yes" class="mr-2 accent-link">Yes</label>
+                            <label class="inline-flex items-center"><input type="radio" name="published_before" value="no" checked class="mr-2 accent-link">No</label>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio / Sample Work -->
+                    <div class="mt-6">
+                        <label for="c-upload" class="block text-sm font-bold uppercase mb-1">Portfolio / Sample Work (Links or Upload)</label>
+                        <p class="text-xs text-[var(--fg)]/60 mb-2">Provide a link to your portfolio or upload a representative sample.</p>
+                        <input type="text" name="portfolio_links" class="input-field mb-2" placeholder="Links to past work, social media, etc.">
+                        <input type="file" name="portfolio_upload" id="c-upload" class="input-field border-dashed p-3">
+                        <p class="text-xs text-[var(--fg)]/60 mt-1">Max file size 10MB. Accepted formats: PDF, DOCX, JPG, PNG.</p>
+                    </div>
+                </div>
+
+                <!-- Final Action -->
+                <div class="text-center pt-8 border-t border-[var(--fg)]/20">
+                    <button type="submit" class="submit-button text-2xl tracking-widest rounded-lg">
+                        APPLY TO COLLABORATE
+                    </button>
+                    <p class="text-sm text-[var(--fg)]/70 mt-4">
+                        The Director reviews all applications. We will be in touch shortly to discuss next steps.
+                    </p>
+                </div>
+            </form>
+        </section>
+
+        <a href="#choice-view" id="back-to-choice" class="mt-8 py-2 px-4 rounded-lg border border-[var(--fg)]/30 font-semibold text-sm transition-colors hidden justify-center items-center gap-2 hover:bg-[var(--fg)]/10" onclick="showView('choice-view'); return false;">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Options
+        </a>
     </main>
+
+    <!-- Theme & View Toggle JavaScript -->
+    <script>
+        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeKey = 'arshiTheme';
+        
+        // View Elements
+        const choiceView = document.getElementById('choice-view');
+        const writerView = document.getElementById('writer-submission-view');
+        const collaboratorView = document.getElementById('collaborator-submission-view');
+        const backButton = document.getElementById('back-to-choice');
+        
+        // --- VIEW MANAGEMENT LOGIC ---
+
+        function showView(viewId) {
+            // Hide all main content views first
+            choiceView.classList.add('hidden');
+            writerView.classList.add('hidden');
+            collaboratorView.classList.add('hidden');
+            backButton.classList.add('hidden');
+
+            // Show the requested view
+            const targetView = document.getElementById(viewId);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+                
+                // Show back button only if we are in a submission view
+                if (viewId !== 'choice-view') {
+                    backButton.classList.remove('hidden');
+                    backButton.classList.add('flex');
+                }
+            }
+            
+            // Scroll to the top of the content area for better UX
+            window.scrollTo({ top: 0, behavior: 'smooth' }); 
+        }
+
+        // --- THEME MANAGEMENT LOGIC (UNTOUCHED) ---
+        function loadTheme() {
+            const savedTheme = localStorage.getItem(themeKey);
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = body.classList.toggle('dark-theme');
+            localStorage.setItem(themeKey, isDark ? 'dark' : 'light');
+        }
+        
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply theme on DOM ready
+            loadTheme();
+            
+            // Set initial view to the choice gateway
+            showView('choice-view'); 
+
+            // Add listeners for choice buttons
+            document.getElementById('writer-button').addEventListener('click', () => showView('writer-submission-view'));
+            document.getElementById('collaborator-button').addEventListener('click', () => showView('collaborator-submission-view'));
+            
+            // Event listener for the theme toggle button
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+        });
+    </script>
 </body>
 </html>

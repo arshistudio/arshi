@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact ARSHI Magazine</title>
+    <title>Contact ARSHI</title>
     <link rel="stylesheet" href="styles.css"> 
     <link rel="stylesheet" href="magazine-styles.css"> 
 </head>
@@ -11,50 +11,59 @@
 
     <header>
         <nav>
-            <div class="logo"><a href="index.html">ARSHI Magazine</a></div> 
-            <ul>
+            <div class="logo"><a href="index.html">ARSHI</a></div> 
+            <ul class="categories">
                 <li><a href="index.html#culture">Society & Culture</a></li>
                 <li><a href="index.html#fashion">Fashion & Art</a></li>
                 <li><a href="index.html#music">Music & Film</a></li>
+            </ul>
+            <ul class="secondary-links">
                 <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="submit.html">Submit</a></li>
             </ul>
             <button id="theme-switcher">Theme: Terracotta</button>
+            <div class="hamburger">☰</div>
         </nav>
+        <div class="mobile-menu">
+            <a href="index.html#culture">Society & Culture</a>
+            <a href="index.html#fashion">Fashion & Art</a>
+            <a href="index.html#music">Music & Film</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="submit.html">Submit</a>
+        </div>
     </header>
 
     <main class="magazine-layout">
         
         <section id="contact-content" class="text-focused">
             
-            <h1>Contact & Collaboration</h1>
+            <h1>Contact ARSHI</h1>
             
             <div class="body-text">
                 <p class="lead-paragraph">
-                    We are always open to questions, pitches, and collaborative ideas. Please direct your correspondence to the appropriate contact email below.
+                    Have a question, a partnership idea, or general inquiry? Use the simple form below, and your message will be forwarded directly to **shiraz@arshi.studio**.
                 </p>
 
-                <h2>Editorial Pitches</h2>
-                <p>
-                    For article proposals, interviews, and general editorial inquiries. Please review our submission guidelines before writing.
-                </p>
-                <p>
-                    <a href="mailto:pitches@arshi.studio" class="cta-button">Email Pitches</a>
-                </p>
-                
-                <h2>General Inquiries</h2>
-                <p>
-                    For press, partnerships, events, or questions about arshi.studio.
-                </p>
-                <p>
-                    <a href="mailto:info@arshi.studio" class="cta-button">Email Info</a>
-                </p>
+                <form id="contact-form" action="mailto:shiraz@arshi.studio" method="post" enctype="text/plain">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="Name" required>
 
-                <h2 style="margin-top: 40px;">Socials</h2>
-                <p>
-                    Follow our journey and discover new content on our social platforms.
-                </p>
-                <p>
-                    [Insert Social Media Links Here]
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="Email" required>
+
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="Subject" required>
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="Message" rows="6" required></textarea>
+
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+
+                <p style="margin-top: 50px;">
+                    For **Editorial Pitches**, please use our dedicated guidelines on the <a href="submit.html">Submission page</a>.
                 </p>
             </div>
 
@@ -63,9 +72,22 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 ARSHI Magazine. An independent creative house project.</p>
+        <p>&copy; 2025 ARSHI. An independent creative house project.</p>
     </footer>
 
     <script src="theme-switcher.js" defer></script>
+    <script>
+        // Client-side script to handle the hamburger menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

@@ -3,114 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit to ARSHI</title>
-    <link rel="stylesheet" href="styles.css"> 
-    <link rel="stylesheet" href="magazine-styles.css"> 
-</head>
-<body>
+    <title>Submit to ARSHI Magazine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base (Terracotta) Theme */
+        :root {
+            --bg: #F8F7F4; /* Off-White */
+            --fg: #111111; /* Near Black */
+            --accent: #A4492F; /* Terracotta */
+            --accent2: #1C2A44; /* Dark Blue */
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
 
-    <header>
-        <nav>
-            <div class="logo"><a href="index.html">ARSHI</a></div> 
-            <ul class="categories">
-                <li><a href="index.html#culture">Society & Culture</a></li>
-                <li><a href="index.html#fashion">Fashion & Art</a></li>
-                <li><a href="index.html#music">Music & Film</a></li>
-            </ul>
-            <ul class="secondary-links-desktop">
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="submit.html">Submit</a></li>
-            </ul>
-            
-            <div class="search-container">
-                <input type="search" placeholder="Search..." class="search-input">
-                <button class="search-button">🔍</button>
-            </div>
-            
-            <button id="theme-switcher">Theme: Terracotta</button>
-            <div class="hamburger">☰</div>
-        </nav>
+        /* Applying Variables & General Styles */
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-ui);
+        }
+        h1, h2, h3, .masthead {
+            font-family: var(--font-display);
+            letter-spacing: 0.05em;
+        }
         
-        <div class="mobile-menu">
-            <div class="mobile-search-container">
-                <input type="search" placeholder="Search ARSHI..." class="search-input">
-            </div>
+        .header-thin {
+            height: 64px;
+        }
+        .masthead-text {
+            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem);
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+        .hover-underline:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 4px;
+        }
+        
+        /* Softer Rule-Item styling for less aggression */
+        .rule-item {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem; /* Increased padding for subtle lift */
+            transition: background-color 0.3s;
+        }
+        .rule-item:hover {
+            background-color: var(--fg)/5;
+        }
+
+        /* Set accent color for links/buttons for consistency */
+        .accent-link {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body class="transition-colors">
+
+    <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
+            style="background-color: var(--bg);">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
             
-            <a href="index.html#culture">Society & Culture</a>
-            <a href="index.html#fashion">Fashion & Art</a>
-            <a href="index.html#music">Music & Film</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="submit.html">Submit</a>
+            <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
+                ARSHI
+            </a>
+
+            <nav class="flex items-center space-x-6">
+                <div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Main Categories">
+                    <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
+                    <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
+                    <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
+                </div>
+
+                <div class="flex items-center space-x-4 lg:space-x-6">
+                    <button class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
+                            style="background-color: var(--accent);"
+                            aria-label="Theme Color (Static)">
+                    </button>
+
+                    <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    </a>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <main class="magazine-layout">
-        
-        <section id="submit-content" class="text-focused">
-            
-            <h1>Submissions & Pitches</h1>
-            
-            <div class="body-text">
-                <p class="lead-paragraph">
-                    ARSHI is always looking for original, independent, and critical voices across all our categories. We prioritize **bold perspectives** and work that challenges conventional narratives.
-                </p>
+    <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
+        <h1 class="text-7xl md:text-9xl font-extrabold mb-8 accent-link tracking-widest leading-none">
+            SUBMIT
+        </h1>
+        <p class="text-xl font-semibold mb-12 border-b-2 pb-6 border-[var(--fg)]/20">
+            We are built on the value of **Independence** and committed to amplifying original, authentic voices—whether you are an emerging or an advanced contributor.
+        </p>
 
-                <h2>What We Are Looking For</h2>
-                
-                <p>We accept pitches across the following primary categories and formats:</p>
-
-                <ul>
-                    <li>**Society & Culture:** Long-form essays, critical theory, and investigative reportage on social and political movements.</li>
-                    <li>**Fashion & Art:** Deep dives into visual culture, textile design, analog photography, and gallery critique.</li>
-                    <li>**Music & Film:** Reviews, artist interviews, and historical analysis of independent cinema and underground music scenes.</li>
-                </ul>
-                
-                <h2>Pitch Guidelines</h2>
-                <p>Your submission email should include these three elements:</p>
-
-                <ol>
-                    <li>**A working title** (Use the bold, condensed style as inspiration).</li>
-                    <li>**A concise, 3-paragraph summary** of your piece: What is the thesis, why is it relevant now, and what sources will you use?</li>
-                    <li>**Your bio** and links to 1–2 relevant published works.</li>
-                </ol>
-
-                <p style="margin-top: 30px;">
-                    We target pieces between **1,200 and 2,000 words** (6–10 minutes reading time).
-                </p>
-
-                <p>
-                    <a href="mailto:pitches@arshi.studio" class="cta-button">Email Your Pitch to ARSHI</a>
-                </p>
+        <section class="mb-16">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6 text-[var(--accent2)]">ALIGNMENT & VOICE</h2>
+            <p class="text-lg mb-8">
+                We primarily look for two things: alignment with **ARSHI's core values** and a compelling, independent perspective.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-4 rule-item bg-[var(--fg)]/5 rounded-lg">
+                    <h3 class="text-2xl font-bold mb-2">CORE FIT</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base">
+                        <li>**Authenticity:** Unfiltered ideas and honest, personal perspective.</li>
+                        <li>**Independence:** Critical thought that avoids institutional or commercial constraint.</li>
+                        <li>**Curiosity:** Work that explores cultural complexities and asks difficult questions.</li>
+                    </ul>
+                </div>
+                <div class="p-4 rule-item bg-[var(--fg)]/5 rounded-lg">
+                    <h3 class="text-2xl font-bold mb-2">OUR CATEGORIES</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base">
+                        <li>**Society & Culture:** Identity, social movements, and cultural shifts.</li>
+                        <li>**Fashion & Art:** Aesthetics, design critique, and contemporary visual culture.</li>
+                        <li>**Music & Film:** Reviews, cultural commentary on sound, cinema, and documentary.</li>
+                    </ul>
+                </div>
             </div>
-
         </section>
 
+        <section class="mb-16">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8 text-[var(--accent2)]">PITCHING YOUR IDEA</h2>
+            <div class="space-y-6">
+                <div class="p-4 rounded-lg bg-[var(--fg)]/5 border-l-2 border-[var(--fg)]/20">
+                    <h3 class="text-xl font-bold mb-1 accent-link">Pitch First, Draft Later</h3>
+                    <p class="text-base">
+                        We prefer a **simple pitch:** a concise summary (1-2 paragraphs) of your idea, its unique angle, and why it's a vital read *right now*. For emerging writers, please include a short bio; for established writers, links to 1-2 published clips are helpful.
+                    </p>
+                </div>
+                <div class="p-4 rounded-lg bg-[var(--fg)]/5 border-l-2 border-[var(--fg)]/20">
+                    <h3 class="text-xl font-bold mb-1 accent-link">Article Length</h3>
+                    <p class="text-base">
+                        We generally publish pieces designed for a **4 to 8 minute read** (approximately 1000–2000 words), but we prioritize impact and depth over strict word count.
+                    </p>
+                </div>
+                <div class="p-4 rounded-lg bg-[var(--fg)]/5 border-l-2 border-[var(--fg)]/20">
+                    <h3 class="text-xl font-bold mb-1 accent-link">Visual Projects</h3>
+                    <p class="text-base">
+                        For photography or film proposals, submit a **Treatment** (1-2 pages) outlining the concept and visual references. Please send portfolio links (website, Vimeo, etc.), not large files.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center p-10 bg-[var(--accent)] text-[var(--bg)] rounded-lg shadow-xl">
+            <h2 class="text-5xl font-extrabold mb-4 tracking-widest leading-none">JOIN THE COLLECTIVE</h2>
+            <p class="text-lg font-semibold mb-8">
+                If your perspective aligns with our vision of independence and critique, we welcome your voice.
+            </p>
+            <a href="mailto:submissions@arshi.studio" class="inline-block py-3 px-8 text-lg font-bold bg-[var(--bg)] text-[var(--accent)] rounded-full hover:bg-gray-200 transition-colors">
+                Email Your Pitch to submissions@arshi.studio
+            </a>
+            <p class="mt-4 text-sm text-[var(--bg)]/70">
+                We aim to respond to all pitches within 10 days. Thank you for your interest in ARSHI.
+            </p>
+        </section>
     </main>
-
-    <footer>
-        <p>&copy; 2025 ARSHI. An independent creative house project.</p>
-    </footer>
-
-    <script src="theme-switcher.js" defer></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.querySelector('.hamburger');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            
-            if (hamburger && mobileMenu) {
-                hamburger.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('open');
-                });
-
-                mobileMenu.querySelectorAll('a').forEach(item => {
-                    item.addEventListener('click', () => {
-                        mobileMenu.classList.remove('open');
-                    });
-                });
-            }
-        });
-    </script>
 </body>
 </html>
+```eof
+
+This page now feels much more encouraging and open, aligning better with your studio's mission to support a diverse range of contributors.
+
+Now that the **Contact** and **Submit** pages are finalized to your preferences, the website is structurally complete.
+
+What would you like to focus on next: **Content Integration** (adding the actual text and images for your launch articles) or one of the final polish items, like a **Search Results Page**?

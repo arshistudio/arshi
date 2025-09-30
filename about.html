@@ -60,49 +60,35 @@
             color: var(--accent);
         }
 
-        /* NEW Unique Styling for the Core Values List */
+        /* NEW Core Values Styling: Centered and List-based with Robust Inline Numbers */
         .core-value-item {
-            position: relative;
-            padding: 1.5rem 0 1.5rem 0; /* Vertical spacing */
-            margin: 0.5rem 0;
-            border-bottom: 1px dashed var(--fg)/30; /* Subtle separator */
-            z-index: 1;
+            padding: 1.5rem 0;
+            /* Use a simple, reliable solid border for separation */
+            border-bottom: 1px solid var(--fg)/10; 
         }
         .core-value-item:last-child {
             border-bottom: none;
         }
-        /* Large, subtle number for visual indexing on desktop */
-        .core-value-number {
+        .core-value-container {
+            display: flex;
+            align-items: flex-start; /* Aligns number to the top of the text block */
+            gap: 1.5rem; /* Space between number and text */
+        }
+        .core-value-index {
             font-family: var(--font-display);
-            position: absolute;
-            left: -2.5rem; /* Offset to the left */
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 5rem; /* Large number */
+            font-size: 2.5rem; /* Large but not enormous */
             color: var(--accent);
-            opacity: 0.1; /* Very subtle */
             line-height: 1;
-            z-index: 0;
-            display: none; /* Default hidden */
+            flex-shrink: 0; /* Ensures the number doesn't shrink on small screens */
+            /* Slight adjustment to align number with title baseline */
+            margin-top: -0.25rem; 
         }
-        /* Show number and adjust padding for desktop */
-        @media (min-width: 768px) {
-            .core-value-number {
-                display: block;
-            }
-            .core-value-item {
-                padding-left: 5rem; /* Make space for the large number */
-            }
-        }
-
         .core-value-title {
             font-family: var(--font-display);
             font-size: 1.75rem; 
             font-weight: 700;
             color: var(--accent);
             line-height: 1.1;
-            position: relative;
-            z-index: 2; /* Ensure text is above the number */
             margin-bottom: 0.25rem;
         }
     </style>
@@ -174,8 +160,8 @@
             </p>
         </div>
 
-        <!-- --- Core Values Section (Updated Design) --- -->
-        <div class="mt-16 pt-8 border-t-2 border-[var(--accent)]/50">
+        <!-- --- Core Values Section (Revised Numbered Design) --- -->
+        <div class="mt-16 pt-8 border-t-2 border-[var(--accent)]/50 max-w-2xl mx-auto">
             <h2 class="text-4xl md:text-5xl font-extrabold mb-8 leading-tight text-center">
                 OUR CORE VALUES
             </h2>
@@ -184,51 +170,79 @@
                 
                 <!-- Value 1: Editorial Autonomy -->
                 <div class="core-value-item">
-                    <span class="core-value-number">01</span>
-                    <h3 class="core-value-title">Editorial Autonomy</h3>
-                    <p class="text-base text-[var(--fg)]/80">We are proudly independent, ensuring our content is free from institutional agendas and external gatekeeping.</p>
+                    <div class="core-value-container">
+                        <span class="core-value-index">01</span>
+                        <div>
+                            <h3 class="core-value-title">Editorial Autonomy</h3>
+                            <p class="text-base text-[var(--fg)]/80">We are proudly independent, ensuring our content is free from institutional agendas and external gatekeeping.</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Value 2: Authorial Credit -->
                 <div class="core-value-item">
-                    <span class="core-value-number">02</span>
-                    <h3 class="core-value-title">Authorial Credit</h3>
-                    <p class="text-base text-[var(--fg)]/80">Every contributor is published under their own name, guaranteeing full recognition and perpetual ownership of their work.</p>
+                    <div class="core-value-container">
+                        <span class="core-value-index">02</span>
+                        <div>
+                            <h3 class="core-value-title">Authorial Credit</h3>
+                            <p class="text-base text-[var(--fg)]/80">Every contributor is published under their own name, guaranteeing full recognition and perpetual ownership of their work.</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Value 3: Genuine Perspective -->
                 <div class="core-value-item">
-                    <span class="core-value-number">03</span>
-                    <h3 class="core-value-title">Genuine Perspective</h3>
-                    <p class="text-base text-[var(--fg)]/80">We prioritize original voices and honest exploration over overly polished or commercialized narratives.</p>
+                    <div class="core-value-container">
+                        <span class="core-value-index">03</span>
+                        <div>
+                            <h3 class="core-value-title">Genuine Perspective</h3>
+                            <p class="text-base text-[var(--fg)]/80">We prioritize original voices and honest exploration over overly polished or commercialized narratives.</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Value 4: Collective Growth -->
                 <div class="core-value-item">
-                    <span class="core-value-number">04</span>
-                    <h3 class="core-value-title">Collective Growth</h3>
-                    <p class="text-base text-[var(--fg)]/80">ARSHI thrives as a communal project, fostered by the shared expertise and collective effort of our collaborators.</p>
+                    <div class="core-value-container">
+                        <span class="core-value-index">04</span>
+                        <div>
+                            <h3 class="core-value-title">Collective Growth</h3>
+                            <p class="text-base text-[var(--fg)]/80">ARSHI thrives as a communal project, fostered by the shared expertise and collective effort of our collaborators.</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Value 5: Editorial Rigor -->
                 <div class="core-value-item">
-                    <span class="core-value-number">05</span>
-                    <h3 class="core-value-title">Editorial Rigor</h3>
-                    <p class="text-base text-[var(--fg)]/80">We uphold the highest standards of integrity, committing to thorough fact-checking, proper source attribution, and full transparency.</p>
+                    <div class="core-value-container">
+                        <span class="core-value-index">05</span>
+                        <div>
+                            <h3 class="core-value-title">Editorial Rigor</h3>
+                            <p class="text-base text-[var(--fg)]/80">We uphold the highest standards of integrity, committing to thorough fact-checking, proper source attribution, and full transparency.</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Value 6: Intellectual Discovery -->
                 <div class="core-value-item">
-                    <span class="core-value-number">06</span>
-                    <h3 class="core-value-title">Cultural Curiosity</h3>
-                    <p class="text-base text-[var(--fg)]/80">Our mission is to encourage constant exploration, seeking out new angles and amplifying voices that are often underrepresented.</p>
+                    <div class="core-value-container">
+                        <span class="core-value-index">06</span>
+                        <div>
+                            <h3 class="core-value-title">Cultural Curiosity</h3>
+                            <p class="text-base text-[var(--fg)]/80">Our mission is to encourage constant exploration, seeking out new angles and amplifying voices that are often underrepresented.</p>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Value 7: Open Platform -->
                 <div class="core-value-item">
-                    <span class="core-value-number">07</span>
-                    <h3 class="core-value-title">Open Platform</h3>
-                    <p class="text-base text-[var(--fg)]/80">We are fundamentally committed to providing an inclusive space that respects and encourages contributions from all backgrounds, regardless of race, gender, identity, or origin.</p>
+                    <div class="core-value-container">
+                        <span class="core-value-index">07</span>
+                        <div>
+                            <h3 class="core-value-title">Open Platform</h3>
+                            <p class="text-base text-[var(--fg)]/80">We are fundamentally committed to providing an inclusive space that respects and encourages contributions from all backgrounds, regardless of race, gender, identity, or origin.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

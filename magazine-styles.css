@@ -1,0 +1,149 @@
+/* magazine-styles.css - ARSHI Magazine Editorial Overrides */
+
+/* --- General Magazine Overrides --- */
+
+/* Ensures the magazine content is wider than the main site */
+.magazine-layout {
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 0;
+}
+
+/* --- Featured Story (Hero) --- */
+#featured-story {
+    padding: 0; /* Remove default padding for a full-bleed look */
+    border-bottom: none;
+    margin-bottom: 40px;
+}
+
+#featured-story a {
+    display: block;
+    color: var(--color-primary); /* Dark Navy from styles.css */
+}
+
+/* Image container for the hero */
+.feature-image {
+    height: 50vh; /* Takes up half the screen height (50% of viewport height) */
+    width: 100%;
+    background-color: var(--color-light); /* Placeholder color */
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+}
+
+#featured-story h1 {
+    font-size: 3rem; /* Large, editorial headline */
+    font-weight: 700;
+    margin: 0 5%; /* Indent text slightly from the edge */
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-light);
+}
+
+.section-tag {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0 5% 5px;
+}
+
+.byline {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 10px 5% 0;
+}
+
+
+/* --- Article Grid (Newest Stories) --- */
+#newest-content {
+    padding: 40px 5%; /* Padding around the grid */
+    border-bottom: 1px solid #ddd;
+}
+
+.article-grid {
+    display: grid;
+    /* This creates a responsive 3-column layout */
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.grid-item a {
+    display: block;
+    color: var(--color-primary);
+}
+
+.article-image {
+    height: 300px;
+    width: 100%;
+    background-color: var(--color-light);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+}
+
+/* Modifier to make one item taller for asymmetric look (like Dazed/i-D) */
+.grid-item.tall .article-image {
+    height: 400px; 
+}
+
+.grid-item h2 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+/* --- Category Focus --- */
+#category-focus {
+    text-align: center;
+}
+
+#category-focus h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.category-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cat-card {
+    border: 1px solid var(--color-primary);
+    padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cat-card:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* --- Responsive adjustments for magazine page --- */
+@media (max-width: 900px) {
+    .article-grid {
+        /* On medium screens, switch to 2 columns */
+        grid-template-columns: 1fr 1fr;
+    }
+    .grid-item.tall .article-image {
+        height: 300px; /* Normalize the height on 2 columns */
+    }
+    #featured-story h1 {
+        font-size: 2rem;
+    }
+    .category-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 600px) {
+    .article-grid {
+        /* On smallest screens, switch to 1 column */
+        grid-template-columns: 1fr;
+    }
+}

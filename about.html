@@ -48,6 +48,12 @@
         .accent-link {
             color: var(--accent);
         }
+
+        /* Styling for the mission image */
+        .mission-image {
+            object-fit: cover;
+            object-position: center;
+        }
     </style>
 </head>
 
@@ -84,69 +90,65 @@
 
     <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
         <h1 class="text-7xl md:text-9xl font-extrabold mb-8 accent-link tracking-widest leading-none">
-            ABOUT US
+            ABOUT ARSHI
         </h1>
         <p class="text-xl font-semibold mb-12 border-b-2 pb-6 border-[var(--fg)]/20">
-            ARSHI Studio exists to create a space where **journalism, art, and culture intersect freely**, championing independence and critical thought above all else.
+            **ARSHI Studio** is a living project, dedicated to creating a space where journalism, art, and culture intersect freely. We champion **Independence** and **Authenticity** above all else.
         </p>
 
-        <section class="mb-16">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">THE STUDIO STRUCTURE</h2>
-            <p class="text-lg mb-8">
-                ARSHI is more than a magazine; it is an umbrella for three interconnected branches, all driven by the same vision:
-            </p>
-            <div class="space-y-8">
-                <div class="p-6 border-l-4 border-[var(--accent)] bg-[var(--fg)]/5 rounded-lg">
-                    <h3 class="text-3xl font-bold mb-2">ARSHI MAGAZINE</h3>
-                    <p class="text-lg text-[var(--fg)]/80">
-                        The journalistic core. We provide critical, independent commentary across Society & Culture, Fashion & Art, and Music & Film. Our mission is to amplify raw, authentic voices and challenge conventional narratives.
-                    </p>
-                </div>
-                <div class="p-6 border-l-4 border-[var(--accent2)] bg-[var(--fg)]/5 rounded-lg">
-                    <h3 class="text-3xl font-bold mb-2">ARSHI.PRODUCTION</h3>
-                    <p class="text-lg text-[var(--fg)]/80">
-                        The visual platform. This branch focuses on developing original film, photography, and visual storytelling—from small, conceptual projects to full-scale creative productions.
-                    </p>
-                </div>
-                <div class="p-6 border-l-4 border-[var(--accent)] bg-[var(--fg)]/5 rounded-lg">
-                    <h3 class="text-3xl font-bold mb-2">ARSHI.EVENTS</h3>
-                    <p class="text-lg text-[var(--fg)]/80">
-                        The live space. We facilitate cultural gatherings, talks, exhibitions, and screenings that bring our collective creativity into the real world, fostering community engagement.
-                    </p>
-                </div>
+        <section class="mb-16 grid lg:grid-cols-2 gap-10 items-start">
+            <div>
+                <h2 class="text-4xl md:text-6xl font-extrabold mb-6">OUR MISSION</h2>
+                <p class="text-lg mb-4">
+                    We exist to amplify **independent, critical thought** and challenge conventional narratives. Our purpose is to provide a platform for creators whose work is raw, complex, and driven by an uncompromising vision. We believe the most valuable cultural insights come from voices not constrained by commercial trends.
+                </p>
+                <p class="text-lg font-bold">
+                    This is where **Authenticity** meets **Critique**.
+                </p>
+                <a href="submit.html" class="inline-block mt-6 text-xl font-bold accent-link underline hover:no-underline">
+                    View Submission Guidelines →
+                </a>
+            </div>
+            <div class="mt-4 lg:mt-0">
+                <img src="https://placehold.co/600x400/1C2A44/F8F7F4?text=ARSHI+MISSION+IMAGE" alt="Conceptual photo representing ARSHI Studio's mission" class="mission-image w-full h-auto rounded-lg shadow-xl">
             </div>
         </section>
 
         <section class="mb-16 border-t-2 pt-10 border-[var(--fg)]/20">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">OUR CORE VALUES</h2>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">CORE VALUES</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
-                    <h3 class="text-3xl font-bold mb-2 accent-link">01. Freedom of Expression</h3>
-                    <p class="text-lg">We prioritize critical thought and unfiltered opinion. Our content is not constrained by commercial trends or institutional narratives.</p>
+                    <h3 class="text-3xl font-bold mb-2">01. Freedom of Expression</h3>
+                    <p class="text-lg text-[var(--fg)]/80">Prioritizing critical thought and unfiltered opinion over mainstream conformity.</p>
                 </div>
                 <div>
-                    <h3 class="text-3xl font-bold mb-2 accent-link">02. Authenticity over Conformity</h3>
-                    <p class="text-lg">We celebrate original, challenging work that resists the urge to be polished or safe. We value the raw perspective of the creator.</p>
+                    <h3 class="text-3xl font-bold mb-2">02. Recognition of Authorship</h3>
+                    <p class="text-lg text-[var(--fg)]/80">Ensuring every contributor's voice is valued, protected, and given clear credit.</p>
                 </div>
                 <div>
-                    <h3 class="text-3xl font-bold mb-2 accent-link">03. Recognition of Authorship</h3>
-                    <p class="text-lg">Every contributor's voice is valued and protected. We ensure clear credit and recognition for the intellectual property of our collaborators.</p>
+                    <h3 class="text-3xl font-bold mb-2">03. Collective Creativity</h3>
+                    <p class="text-lg text-[var(--fg)]/80">Working as a collective where collaboration and open dialogue are central to our best work.</p>
                 </div>
                 <div>
-                    <h3 class="text-3xl font-bold mb-2 accent-link">04. Collective Creativity</h3>
-                    <p class="text-lg">We operate as a collective. Our best work is achieved through respectful collaboration, open dialogue, and shared ownership of the creative process.</p>
+                    <h3 class="text-3xl font-bold mb-2">04. Integrity</h3>
+                    <p class="text-lg text-[var(--fg)]/80">Maintaining ethical journalism standards and transparency in our operations and funding.</p>
                 </div>
             </div>
         </section>
 
         <section class="mt-20 border-t-2 pt-10 border-[var(--fg)]/20">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">FUTURE VISION</h2>
-            <p class="text-lg italic text-[var(--fg)]/80">
-                While we launch the online magazine on **October 10th**, our long-term goal is to expand. We plan to eventually move **ARSHI Magazine into print**, expand **Arshi.production** into a full production house, and grow **Arshi.events** into a significant cultural force, while always maintaining our core commitment to independence.
-            </p>
-            <a href="contact.html" class="inline-block mt-6 text-xl font-bold accent-link underline hover:no-underline">
-                Partner with us →
-            </a>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">OUR BRANCHES</h2>
+            <div class="space-y-4 text-xl">
+                <p>
+                    <strong class="accent-link">ARSHI MAGAZINE:</strong> The journalistic core for critical commentary across culture, art, and society.
+                </p>
+                <p>
+                    <strong class="text-[var(--accent2)]">ARSHI.PRODUCTION:</strong> The visual platform for original film, photography, and creative visual projects.
+                </p>
+                <p>
+                    <strong class="accent-link">ARSHI.EVENTS:</strong> The live space for cultural gatherings, talks, exhibitions, and community engagement.
+                </p>
+            </div>
         </section>
     </main>
 </body>

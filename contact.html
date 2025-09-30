@@ -17,15 +17,26 @@
                 <li><a href="index.html#fashion">Fashion & Art</a></li>
                 <li><a href="index.html#music">Music & Film</a></li>
             </ul>
-            <ul class="secondary-links">
+            <ul class="secondary-links-desktop">
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="submit.html">Submit</a></li>
             </ul>
+            
+            <div class="search-container">
+                <input type="search" placeholder="Search..." class="search-input">
+                <button class="search-button">🔍</button>
+            </div>
+            
             <button id="theme-switcher">Theme: Terracotta</button>
             <div class="hamburger">☰</div>
         </nav>
+        
         <div class="mobile-menu">
+            <div class="mobile-search-container">
+                <input type="search" placeholder="Search ARSHI..." class="search-input">
+            </div>
+            
             <a href="index.html#culture">Society & Culture</a>
             <a href="index.html#fashion">Fashion & Art</a>
             <a href="index.html#music">Music & Film</a>
@@ -43,7 +54,7 @@
             
             <div class="body-text">
                 <p class="lead-paragraph">
-                    Have a question, a partnership idea, or general inquiry? Use the simple form below, and your message will be forwarded directly to **shiraz@arshi.studio**.
+                    Have a question, a partnership idea, or general inquiry? Use the simple form below, and your message will be forwarded directly to **shiraz@arshi.studio** upon submission.
                 </p>
 
                 <form id="contact-form" action="mailto:shiraz@arshi.studio" method="post" enctype="text/plain">
@@ -53,8 +64,8 @@
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="Email" required>
 
-                    <label for="subject">Subject:</label>
-                    <input type="text" id="subject" name="Subject" required>
+                    <label for="subject">Subject (Optional):</label>
+                    <input type="text" id="subject" name="Subject">
 
                     <label for="message">Message:</label>
                     <textarea id="message" name="Message" rows="6" required></textarea>
@@ -77,7 +88,6 @@
 
     <script src="theme-switcher.js" defer></script>
     <script>
-        // Client-side script to handle the hamburger menu toggle
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.querySelector('.hamburger');
             const mobileMenu = document.querySelector('.mobile-menu');
@@ -85,6 +95,12 @@
             if (hamburger && mobileMenu) {
                 hamburger.addEventListener('click', () => {
                     mobileMenu.classList.toggle('open');
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(item => {
+                    item.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                    });
                 });
             }
         });

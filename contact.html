@@ -48,6 +48,15 @@
         .accent-link {
             color: var(--accent);
         }
+
+        /* Styling for the contact list */
+        .contact-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--fg)/10;
+        }
+        .contact-list li:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 
@@ -87,435 +96,56 @@
             CONTACT
         </h1>
         <p class="text-xl font-semibold mb-12 border-b-2 pb-6 border-[var(--fg)]/20">
-            We value **Integrity** and **Collaboration**. Use the channels below to reach the right part of the studio.
+            For all inquiries, please select the appropriate department below. This ensures your message reaches the right person efficiently.
         </p>
 
-        <section class="mb-16 grid md:grid-cols-2 gap-10">
-            <div>
-                <h2 class="text-4xl md:text-6xl font-extrabold mb-4">GENERAL</h2>
-                <p class="text-lg mb-4">For press inquiries, brand partnerships, or general questions about ARSHI Studio.</p>
-                <a href="mailto:info@arshi.studio" class="text-xl font-bold accent-link underline hover:no-underline">info@arshi.studio</a>
-            </div>
+        <section class="mb-16">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">INQUIRY CHANNELS</h2>
+            <ul class="contact-list divide-y divide-[var(--fg)]/20">
+                <li class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div class="mb-2 md:mb-0">
+                        <h3 class="text-2xl font-bold">Editorial Submissions</h3>
+                        <p class="text-base text-[var(--fg)]/70">To pitch an article, visual piece, or creative project.</p>
+                    </div>
+                    <a href="submit.html" class="inline-block py-2 px-4 text-lg font-bold bg-[var(--accent)] text-[var(--bg)] rounded hover:bg-[var(--accent)]/80 transition-colors">
+                        View Guidelines
+                    </a>
+                </li>
 
-            <div>
-                <h2 class="text-4xl md:text-6xl font-extrabold mb-4">SUBMISSIONS</h2>
-                <p class="text-lg mb-4">To pitch an article or a visual project for ARSHI Magazine.</p>
-                <a href="submit.html" class="inline-flex items-center text-xl font-bold accent-link underline hover:no-underline">
-                    View Submission Guidelines →
-                </a>
-            </div>
-            
-            <div>
-                <h2 class="text-4xl md:text-6xl font-extrabold mb-4">INTEGRITY</h2>
-                <p class="text-lg mb-4">Report factual errors, ethical concerns, or legal notices. Confidentiality guaranteed.</p>
-                <a href="mailto:integrity@arshi.studio" class="text-xl font-bold accent-link underline hover:no-underline">integrity@arshi.studio</a>
-            </div>
-            
-            <div>
-                <h2 class="text-4xl md:text-6xl font-extrabold mb-4">TEAM</h2>
-                <p class="text-lg mb-4">For direct communication with the Co-Directors about specific branches.</p>
-                <ul class="text-lg font-semibold space-y-2">
-                    <li>ARSHI Magazine: <a href="mailto:editorial@arshi.studio" class="accent-link underline hover:no-underline">editorial@arshi.studio</a></li>
-                    <li>Arshi.production: <a href="mailto:production@arshi.studio" class="accent-link underline hover:no-underline">production@arshi.studio</a></li>
-                    <li>Arshi.events: <a href="mailto:events@arshi.studio" class="accent-link underline hover:no-underline">events@arshi.studio</a></li>
-                </ul>
-            </div>
+                <li class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div class="mb-2 md:mb-0">
+                        <h3 class="text-2xl font-bold">General & Press</h3>
+                        <p class="text-base text-[var(--fg)]/70">For general questions, collaborations, or media requests.</p>
+                    </div>
+                    <a href="mailto:info@arshi.studio" class="text-lg font-bold accent-link hover:underline">info@arshi.studio</a>
+                </li>
+
+                <li class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div class="mb-2 md:mb-0">
+                        <h3 class="text-2xl font-bold">Legal, Errors & Ethics</h3>
+                        <p class="text-base text-[var(--fg)]/70">Report factual errors, ethical concerns, or legal notices.</p>
+                    </div>
+                    <a href="mailto:integrity@arshi.studio" class="text-lg font-bold accent-link hover:underline">integrity@arshi.studio</a>
+                </li>
+
+                <li class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div class="mb-2 md:mb-0">
+                        <h3 class="text-2xl font-bold">Production & Events</h3>
+                        <p class="text-base text-[var(--fg)]/70">Inquiries related to ARSHI.production and ARSHI.events.</p>
+                    </div>
+                    <a href="mailto:production@arshi.studio" class="text-lg font-bold accent-link hover:underline">production@arshi.studio</a>
+                </li>
+            </ul>
         </section>
 
-        <section class="mt-20 border-t-2 pt-10 border-[var(--fg)]/20">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">FOLLOW</h2>
-            <p class="text-lg mb-4">Connect with us on social media for updates and new releases.</p>
-            <div class="flex space-x-6 text-2xl">
-                <a href="#" class="accent-link hover:text-[var(--accent2)] transition-colors" aria-label="ARSHI on Instagram">IG</a>
-                <a href="#" class="accent-link hover:text-[var(--accent2)] transition-colors" aria-label="ARSHI on X (Twitter)">X</a>
+        <section class="mt-12 border-t-2 pt-10 border-[var(--fg)]/20">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">FOLLOW US</h2>
+            <div class="flex space-x-6 text-2xl font-semibold">
+                <a href="#" class="accent-link hover:text-[var(--accent2)] transition-colors" aria-label="ARSHI on Instagram">INSTAGRAM</a>
+                <a href="#" class="accent-link hover:text-[var(--accent2)] transition-colors" aria-label="ARSHI on X (Twitter)">X / TWITTER</a>
                 <a href="#" class="accent-link hover:text-[var(--accent2)] transition-colors" aria-label="ARSHI on Vimeo">VIMEO</a>
             </div>
         </section>
     </main>
 </body>
 </html>
-```eof
-
----
-
-## Step 3: Create the Submission Page (`submit.html`)
-
-This page is ready from the previous step, but I'll list it here for completeness in your project directory.
-
-**Action:** Create a new file named `submit.html` and add the code from the previous response.
-
-```html:ARSHI Studio Submission Page:submit.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit to ARSHI Magazine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        /* Base (Terracotta) Theme */
-        :root {
-            --bg: #F8F7F4; /* Off-White */
-            --fg: #111111; /* Near Black */
-            --accent: #A4492F; /* Terracotta */
-            --accent2: #1C2A44; /* Dark Blue */
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-ui: 'Inter', sans-serif;
-        }
-
-        /* Applying Variables & General Styles */
-        body {
-            background-color: var(--bg);
-            color: var(--fg);
-            font-family: var(--font-ui);
-        }
-        h1, h2, h3, .masthead {
-            font-family: var(--font-display);
-            letter-spacing: 0.05em;
-        }
-        
-        .header-thin {
-            height: 64px;
-        }
-        .masthead-text {
-            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem);
-            letter-spacing: 0.05em;
-            line-height: 1;
-        }
-        .hover-underline:hover {
-            text-decoration: underline;
-            text-decoration-color: var(--accent);
-            text-underline-offset: 4px;
-        }
-        
-        .rule-item {
-            border-left: 4px solid var(--accent);
-        }
-
-        /* Set accent color for links/buttons for consistency */
-        .accent-link {
-            color: var(--accent);
-        }
-        .accent-button {
-            background-color: var(--accent);
-        }
-    </style>
-</head>
-
-<body class="transition-colors">
-
-    <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
-            style="background-color: var(--bg);">
-        <div class="container mx-auto px-4 h-full flex items-center justify-between">
-            
-            <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
-                ARSHI
-            </a>
-
-            <nav class="flex items-center space-x-6">
-                <div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Main Categories">
-                    <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
-                    <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
-                    <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
-                </div>
-
-                <div class="flex items-center space-x-4 lg:space-x-6">
-                    <button class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
-                            style="background-color: var(--accent);"
-                            aria-label="Theme Color (Static)">
-                    </button>
-
-                    <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
-        <h1 class="text-7xl md:text-9xl font-extrabold mb-8 accent-link tracking-widest leading-none">
-            SUBMIT
-        </h1>
-        <p class="text-xl font-semibold mb-12 border-b-2 pb-6 border-[var(--fg)]/20">
-            ARSHI Magazine is built on the value of **Independence** and amplifying original, authentic voices. We accept pitches for written and visual work that are culturally curious and driven by critical thought.
-        </p>
-
-        <section class="mb-16">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">WHAT WE LOOK FOR</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-4 rule-item pl-6 bg-[var(--fg)]/5 rounded-lg">
-                    <h3 class="text-2xl font-bold mb-2">TONE & STYLE</h3>
-                    <ul class="list-disc list-inside space-y-2 text-base">
-                        <li>**Independent:** Critical and thought-provoking, not constrained by trends or institutions.</li>
-                        <li>**Sharp & Accessible:** Intelligent analysis presented clearly, avoiding academic jargon or elitism.</li>
-                        <li>**Authentic:** We value original, raw perspectives over polished conformity.</li>
-                    </ul>
-                </div>
-                <div class="p-4 rule-item pl-6 bg-[var(--fg)]/5 rounded-lg">
-                    <h3 class="text-2xl font-bold mb-2">OUR CATEGORIES</h3>
-                    <ul class="list-disc list-inside space-y-2 text-base">
-                        <li>**Society & Culture:** Identity, politics, social movements, and cultural shifts.</li>
-                        <li>**Fashion & Art:** Aesthetics, visual culture, design critique, and contemporary art.</li>
-                        <li>**Music & Film:** Reviews, cultural commentary on cinema, documentaries, and sound.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-16">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">GUIDELINES & FORMAT</h2>
-            <div class="space-y-6">
-                <div class="p-4 rounded-lg bg-[var(--fg)]/5">
-                    <h3 class="text-xl font-bold mb-1 accent-link">Pitch vs. Complete Draft</h3>
-                    <p class="text-base">We prefer a **pitch** first: a one-paragraph summary of your idea, its unique angle, and why it matters to ARSHI's readers. Include a short author bio and links to 1-2 published clips.</p>
-                </div>
-                <div class="p-4 rounded-lg bg-[var(--fg)]/5">
-                    <h3 class="text-xl font-bold mb-1 accent-link">Article Length</h3>
-                    <p class="text-base">Target a reading time of **4 to 8 minutes** (approx. 1000–2000 words). We prioritize depth and impact over word count.</p>
-                </div>
-                <div class="p-4 rounded-lg bg-[var(--fg)]/5">
-                    <h3 class="text-xl font-bold mb-1 accent-link">Visual Submissions (Photography/Film)</h3>
-                    <p class="text-base">For photography or film proposals, submit a **Treatment** (1-2 pages) outlining the concept, key visual references, and a brief plan for execution. Do not send large files initially; use a portfolio link (e.g., Google Drive, Vimeo, or website).</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="text-center p-10 bg-[var(--accent)] text-[var(--bg)] rounded-lg shadow-xl">
-            <h2 class="text-5xl font-extrabold mb-4 tracking-widest leading-none">READY TO SUBMIT?</h2>
-            <p class="text-lg font-semibold mb-8">
-                Send your pitch or portfolio link directly to the editorial team.
-            </p>
-            <a href="mailto:submissions@arshi.studio" class="inline-block py-3 px-8 text-lg font-bold bg-[var(--bg)] text-[var(--accent)] rounded-full hover:bg-gray-200 transition-colors">
-                Email Your Pitch to submissions@arshi.studio
-            </a>
-            <p class="mt-4 text-sm text-[var(--bg)]/70">
-                Please allow up to 10 days for a response due to volume.
-            </p>
-        </section>
-    </main>
-</body>
-</html>
-```eof
-
----
-
-## Step 4: Create the Article Blueprint (`article-blueprint.html`)
-
-Currently, all the article links on your homepage point to a non-existent file called `article-blueprint.html?slug=...`. To make the site functional and coherent, you must create a standard template for how every article will look.
-
-**Action:** Create a new file named `article-blueprint.html` and add the following code:
-
-```html:ARSHI Studio Article Blueprint:article-blueprint.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article Title | ARSHI Magazine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        /* Base (Terracotta) Theme */
-        :root {
-            --bg: #F8F7F4; /* Off-White */
-            --fg: #111111; /* Near Black */
-            --accent: #A4492F; /* Terracotta */
-            --accent2: #1C2A44; /* Dark Blue */
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-ui: 'Inter', sans-serif;
-        }
-
-        /* Midnight Theme */
-        [data-theme="midnight"] {
-            --bg: #0f1218;
-            --fg: #f4f3ef;
-            --accent: #1C2A44;
-            --accent2: #C8A951; /* Gold/Ochre */
-        }
-
-        /* Applying Variables & General Styles */
-        body {
-            background-color: var(--bg);
-            color: var(--fg);
-            font-family: var(--font-ui);
-            transition: background-color 0.3s, color 0.3s;
-        }
-        h1, h2, h3, .masthead {
-            font-family: var(--font-display);
-            letter-spacing: 0.05em;
-        }
-        
-        .header-thin {
-            height: 64px;
-        }
-        .masthead-text {
-            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem);
-            letter-spacing: 0.05em;
-            line-height: 1;
-        }
-        .hover-underline:hover {
-            text-decoration: underline;
-            text-decoration-color: var(--accent);
-            text-underline-offset: 4px;
-        }
-
-        /* Article content styling */
-        .article-content h2 {
-            font-family: var(--font-display);
-            font-size: 2.25rem;
-            margin-top: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent2);
-        }
-        .article-content p {
-            font-size: 1.125rem; /* large text */
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        .article-content img {
-            width: 100%;
-            height: auto;
-            margin: 2rem 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        .article-content a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-
-    </style>
-</head>
-
-<body data-theme="terracotta" class="transition-colors">
-
-    <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
-            style="background-color: var(--bg);">
-        <div class="container mx-auto px-4 h-full flex items-center justify-between">
-            
-            <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
-                ARSHI
-            </a>
-
-            <nav class="flex items-center space-x-6">
-                <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
-        
-        <header class="mb-12">
-            <div class="flex items-center gap-4 mb-4">
-                <span class="px-3 py-1 text-sm font-bold uppercase rounded-full border border-current text-[var(--fg)] transition-colors">
-                    Fashion & Art
-                </span>
-                <span class="text-sm font-semibold text-[var(--fg)]/60">
-                    4 min read
-                </span>
-            </div>
-
-            <h1 class="text-6xl md:text-8xl font-extrabold tracking-widest leading-tight" style="color: var(--accent);">
-                TRACING GOLD MYTHS ACROSS MAPS
-            </h1>
-            
-            <p class="text-2xl md:text-3xl font-light mt-6 italic text-[var(--fg)]/80">
-                On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.
-            </p>
-
-            <p class="text-base font-semibold mt-6 text-[var(--fg)]/60">
-                By <strong class="text-[var(--fg)]">Shiraz Hasnaoui</strong> | October 10, 2025
-            </p>
-        </header>
-
-        <figure class="mb-12">
-            <img src="https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" alt="Descriptive image for the article">
-            <figcaption class="text-sm text-center text-[var(--fg)]/60 mt-2">
-                Caption Placeholder: The rumored city of El Dorado, rendered by a 17th-century cartographer.
-            </figcaption>
-        </figure>
-
-        <div class="article-content max-w-2xl mx-auto">
-            <p class="first-letter:text-6xl first-letter:font-display first-letter:float-left first-letter:pr-2 first-letter:leading-none" style="color: var(--accent);">
-                Every great myth carries a seed of real-world impact. The legend of El Dorado, a city paved in gold, was never found, yet its phantom presence shaped continents. For ARSHI Magazine, we look not for the city, but for its influence: how the pursuit of mythic wealth continues to define design, fashion, and art across cultures. This is where the archive meets the runway.
-            </p>
-
-            <h2>The Cartographer's Dream</h2>
-            <p>
-                In the 16th century, the maps drawn by European explorers often blurred the line between cartography and fantasy. Rivers flowed not to the sea, but toward rumored treasures. These maps are not accurate geographically, but they are a perfect reflection of the colonial mind—a blueprint of desire. The design language of this era—intricate, bold, and obsessed with precious materials—mirrors this feverish desire for acquisition. Today, we see this aesthetic resurrected in avant-garde jewelry and textile work.
-            </p>
-
-            <p>
-                The color palettes employed in high-end fashion lines often reference these historical markers. Think deep terracottas, midnight blues, and sharp gold accents—the same colors that define the ARSHI brand's own aesthetic. This isn't just decoration; it's a conversation with history, whether intentional or not.
-            </p>
-
-            <h2>Authenticity in Materiality</h2>
-            <p>
-                One of the Core Values of ARSHI Studio is **Authenticity**. In contemporary design, this translates to an appreciation for raw materiality. We are seeing a shift away from polished, flawless surfaces toward materials that show their age, their process, and their origin. This movement directly contrasts the myth of "pure" gold—flawless and abstract.
-            </p>
-            
-            <figure>
-                <img src="https://placehold.co/800x600/1C2A44/F8F7F4?text=PROCESS+AND+MATERIAL+FOCUS" alt="A close-up of rough, textured ceramic art.">
-                <figcaption class="text-sm text-center text-[var(--fg)]/60 mt-2">
-                    A rejection of the 'flawless' myth: valuing materials that show their process.
-                </figcaption>
-            </figure>
-
-            <p>
-                From rough-spun textiles to visible weld marks on metalwork, the contemporary artist is inviting the viewer into the process, sharing the story of the object's creation. This act of transparency is, in itself, a form of ethical commentary on consumerism, suggesting that value lies in the narrative, not just the rarity.
-            </p>
-
-            <h2>Conclusion</h2>
-            <p>
-                The enduring fascination with myths of wealth is not about money; it is about power, narrative control, and aesthetic influence. By tracing these gold myths from ancient archives to today's design studios, we understand that true value for the contemporary creator lies in the **independence** to tell their story, unfiltered.
-            </p>
-
-            <div class="mt-16 pt-8 border-t border-[var(--fg)]/20">
-                <p class="text-base font-bold text-[var(--fg)]/80">SHARE THIS ARTICLE</p>
-                <div class="flex space-x-4 mt-2">
-                    <a href="#" class="accent-link hover:text-[var(--accent2)]">Twitter</a>
-                    <a href="#" class="accent-link hover:text-[var(--accent2)]">Facebook</a>
-                    <a href="#" class="accent-link hover:text-[var(--accent2)]">Email</a>
-                </div>
-            </div>
-            
-        </div>
-    </main>
-    
-    <script>
-        // Simple script to apply saved theme to this page
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('arshiTheme') || 'terracotta';
-            document.body.setAttribute('data-theme', savedTheme);
-            document.title = document.querySelector('h1').textContent.trim() + ' | ARSHI Magazine';
-        });
-    </script>
-</body>
-</html>
-```eof
-
----
-
-## Your To-Do List
-
-1.  **Upload** the new **`contact.html`** and **`submit.html`** files.
-2.  **Upload** the **`article-blueprint.html`** file.
-
-With these four files (`index.html`, `about.html`, `contact.html`, and `submit.html`) and the article blueprint, your website is now:
-
-* **Visually Coherent:** Consistent header, style, and themes across all pages.
-* **Functionally Coherent:** All major navigation links (About, Contact, Submit) now lead to working, well-structured pages.
-* **Brand Coherent:** The content of the utility pages directly reflects the values in your guide book.
-
-Once you have these files uploaded, the only remaining piece is the **Category Page** (`category-list.html`), which is the last main template you need.
-
-Do you want to proceed with creating the `category-list.html` next?

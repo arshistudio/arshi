@@ -3,76 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About ARSHI Magazine</title>
-    <link rel="stylesheet" href="styles.css"> 
-    <link rel="stylesheet" href="magazine-styles.css"> 
-</head>
-<body>
+    <title>About ARSHI Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base (Terracotta) Theme */
+        :root {
+            --bg: #F8F7F4; /* Off-White */
+            --fg: #111111; /* Near Black */
+            --accent: #A4492F; /* Terracotta */
+            --accent2: #1C2A44; /* Dark Blue */
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
 
-    <header>
-    <nav>
-        <div class="logo"><a href="index.html">ARSHI</a></div> 
-        <ul class="categories">
-            <li><a href="index.html#culture">Society & Culture</a></li>
-            <li><a href="index.html#fashion">Fashion & Art</a></li>
-            <li><a href="index.html#music">Music & Film</a></li>
-        </ul>
-        <ul class="secondary-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="submit.html">Submit</a></li>
-        </ul>
-        <button id="theme-switcher">Theme: Terracotta</button>
-        <div class="hamburger">☰</div>
-    </nav>
-    <div class="mobile-menu">
-        <a href="index.html#culture">Society & Culture</a>
-        <a href="index.html#fashion">Fashion & Art</a>
-        <a href="index.html#music">Music & Film</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="submit.html">Submit</a>
-    </div>
+        /* Applying Variables & General Styles */
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-ui);
+        }
+        h1, h2, h3, .masthead {
+            font-family: var(--font-display);
+            letter-spacing: 0.05em;
+        }
+        
+        .header-thin {
+            height: 64px;
+        }
+        .masthead-text {
+            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem);
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+        .hover-underline:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 4px;
+        }
+        
+        /* Set accent color for links/buttons for consistency */
+        .accent-link {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body class="transition-colors">
+
+    <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
+            style="background-color: var(--bg);">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
+            
+            <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
+                ARSHI
+            </a>
+
+            <nav class="flex items-center space-x-6">
+                <div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Main Categories">
+                    <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
+                    <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
+                    <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
+                </div>
+
+                <div class="flex items-center space-x-4 lg:space-x-6">
+                    <button class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
+                            style="background-color: var(--accent);"
+                            aria-label="Theme Color (Static)">
+                    </button>
+
+                    <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    </a>
+                </div>
+            </nav>
+        </div>
     </header>
 
-    <main class="magazine-layout">
-        
-        <section id="about-content" class="text-focused">
-            
-            <h1>About ARSHI Magazine</h1>
-            
-            <div class="body-text">
-                <p class="lead-paragraph">
-                    ARSHI Magazine is an independent publishing platform dedicated to giving space to **freelance journalists, writers, and cultural voices** who choose not to affiliate with a single outlet.
-                </p>
+    <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
+        <h1 class="text-7xl md:text-9xl font-extrabold mb-8 accent-link tracking-widest leading-none">
+            ABOUT US
+        </h1>
+        <p class="text-xl font-semibold mb-12 border-b-2 pb-6 border-[var(--fg)]/20">
+            ARSHI Studio exists to create a space where **journalism, art, and culture intersect freely**, championing independence and critical thought above all else.
+        </p>
 
-                <p>
-                    We believe that journalism and storytelling should be free from rigid structures and institutional branding. Here, every article is published under the writer's own name—no hidden agendas, no editorial gatekeeping, and no need to fit into a corporate house style.
-                </p>
-
-                <p>
-                    Our editorial focus is on **society & culture, fashion & art, and music & film**—subjects that shape how we live, think, and express ourselves. By bringing together diverse voices from different backgrounds, we aim to create a living archive of perspectives that might otherwise remain unseen.
-                </p>
-                
-                <p>
-                    ARSHI Magazine is not a newsroom, not a blog, not a corporate platform. It's a collective space where **independence comes first** and where readers can discover authentic work directly from the writers who create it.
-                </p>
+        <section class="mb-16">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">THE STUDIO STRUCTURE</h2>
+            <p class="text-lg mb-8">
+                ARSHI is more than a magazine; it is an umbrella for three interconnected branches, all driven by the same vision:
+            </p>
+            <div class="space-y-8">
+                <div class="p-6 border-l-4 border-[var(--accent)] bg-[var(--fg)]/5 rounded-lg">
+                    <h3 class="text-3xl font-bold mb-2">ARSHI MAGAZINE</h3>
+                    <p class="text-lg text-[var(--fg)]/80">
+                        The journalistic core. We provide critical, independent commentary across Society & Culture, Fashion & Art, and Music & Film. Our mission is to amplify raw, authentic voices and challenge conventional narratives.
+                    </p>
+                </div>
+                <div class="p-6 border-l-4 border-[var(--accent2)] bg-[var(--fg)]/5 rounded-lg">
+                    <h3 class="text-3xl font-bold mb-2">ARSHI.PRODUCTION</h3>
+                    <p class="text-lg text-[var(--fg)]/80">
+                        The visual platform. This branch focuses on developing original film, photography, and visual storytelling—from small, conceptual projects to full-scale creative productions.
+                    </p>
+                </div>
+                <div class="p-6 border-l-4 border-[var(--accent)] bg-[var(--fg)]/5 rounded-lg">
+                    <h3 class="text-3xl font-bold mb-2">ARSHI.EVENTS</h3>
+                    <p class="text-lg text-[var(--fg)]/80">
+                        The live space. We facilitate cultural gatherings, talks, exhibitions, and screenings that bring our collective creativity into the real world, fostering community engagement.
+                    </p>
+                </div>
             </div>
-            
-            <div class="category-cards" style="margin-top: 50px;">
-                <a href="index.html#culture" class="cat-card">Society & Culture</a>
-                <a href="index.html#fashion" class="cat-card">Fashion & Art</a>
-                <a href="index.html#music" class="cat-card">Music & Film</a>
-            </div>
-
         </section>
 
+        <section class="mb-16 border-t-2 pt-10 border-[var(--fg)]/20">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">OUR CORE VALUES</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-3xl font-bold mb-2 accent-link">01. Freedom of Expression</h3>
+                    <p class="text-lg">We prioritize critical thought and unfiltered opinion. Our content is not constrained by commercial trends or institutional narratives.</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-2 accent-link">02. Authenticity over Conformity</h3>
+                    <p class="text-lg">We celebrate original, challenging work that resists the urge to be polished or safe. We value the raw perspective of the creator.</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-2 accent-link">03. Recognition of Authorship</h3>
+                    <p class="text-lg">Every contributor's voice is valued and protected. We ensure clear credit and recognition for the intellectual property of our collaborators.</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-2 accent-link">04. Collective Creativity</h3>
+                    <p class="text-lg">We operate as a collective. Our best work is achieved through respectful collaboration, open dialogue, and shared ownership of the creative process.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-20 border-t-2 pt-10 border-[var(--fg)]/20">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">FUTURE VISION</h2>
+            <p class="text-lg italic text-[var(--fg)]/80">
+                While we launch the online magazine on **October 10th**, our long-term goal is to expand. We plan to eventually move **ARSHI Magazine into print**, expand **Arshi.production** into a full production house, and grow **Arshi.events** into a significant cultural force, while always maintaining our core commitment to independence.
+            </p>
+            <a href="contact.html" class="inline-block mt-6 text-xl font-bold accent-link underline hover:no-underline">
+                Partner with us →
+            </a>
+        </section>
     </main>
-
-    <footer>
-        <p>&copy; 2025 ARSHI Magazine. An independent creative house project.</p>
-    </footer>
-
-    <script src="theme-switcher.js" defer></script>
 </body>
 </html>
+```eof
+
+This code is ready to be saved as **`about.html`** in your project folder. Now, all your utility pages are complete and consistent!
+
+What would you like to tackle next? We can focus on the **content integration** or creating a **simple search results page**.

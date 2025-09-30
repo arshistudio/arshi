@@ -30,14 +30,11 @@
 }
 
 /* --- 3. THEME OVERRIDES (Controlled by theme-switcher.js) --- */
-
-/* Midnight-led Theme */
 [data-theme="midnight-led"] {
     --color-primary: var(--accent-2); 
     --color-secondary: var(--accent-1);
 }
 
-/* Olive-led Theme */
 [data-theme="olive-led"] {
     --color-primary: var(--accent-3); 
     --color-secondary: var(--accent-2);
@@ -63,7 +60,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- 5. TYPOGRAPHY SCALE (Adjusted H1) --- */
+/* --- 5. TYPOGRAPHY SCALE --- */
 h1, h2 {
     font-family: var(--font-masthead);
     text-transform: uppercase;
@@ -71,15 +68,15 @@ h1, h2 {
     margin-bottom: 0.5em;
 }
 
-h1 { /* H1: 56–64 (Used for article titles) */
+h1 { /* H1 for article titles (most condensed/bold) */
     font-size: clamp(2.5rem, 6vw, 4rem); 
-    font-weight: 700; /* Stays bold for impact */
+    font-weight: 700;
 }
 
 /* Specific H1 adjustment for general pages (About, Contact, Submit) */
 .text-focused h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 600; /* Slightly less "strong" */
+    font-size: clamp(2.5rem, 5vw, 3.5rem); 
+    font-weight: 600; 
     color: var(--fg);
     margin-bottom: 1rem;
 }
@@ -117,4 +114,271 @@ a {
 }
 
 a:hover {
-    color
+    color: var(--color-secondary);
+}
+
+nav a, .cta-button, .section-tag, .cat-card {
+    font-family: var(--font-ui);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--color-primary);
+    color: var(--bg);
+    padding: 10px 20px;
+    border-radius: 2px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+}
+.cta-button:hover {
+    background: var(--color-secondary);
+    color: var(--bg);
+}
+
+/* --- 7. HEADER & NAVIGATION --- */
+header {
+    background-color: var(--bg);
+    padding: 20px 5%;
+    border-bottom: 1px solid var(--color-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo Styling: ARSHI */
+nav .logo {
+    font-family: var(--font-masthead);
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--fg);
+}
+nav .logo a {
+    color: var(--fg);
+}
+
+/* Primary Categories */
+nav .categories {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin-left: auto; 
+    padding-right: 25px; 
+}
+
+nav .categories a {
+    color: var(--fg);
+    font-size: 0.8rem; 
+    letter-spacing: 0.5px;
+}
+
+/* Secondary Links Container (Desktop Hamburger Replacement) */
+nav .secondary-links-desktop {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding-right: 20px;
+}
+
+nav .secondary-links-desktop a {
+    color: var(--fg);
+    font-size: 0.8rem;
+}
+
+/* Search Container */
+.search-container {
+    position: relative;
+    display: none; /* Hide by default on desktop, show only when needed */
+    margin-right: 15px;
+}
+
+.search-input {
+    padding: 6px 10px;
+    border: 1px solid var(--color-light);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 200px;
+    transition: width 0.3s ease-in-out;
+    background-color: var(--bg);
+    color: var(--fg);
+}
+
+.search-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--fg);
+    font-size: 1.1rem;
+    padding: 0;
+    margin-left: -25px; /* Overlay on the input */
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 101;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin-left: 15px;
+}
+
+/* Mobile Drawer Menu (Initially hidden) */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--fg);
+    color: var(--bg);
+    z-index: 99;
+    display: none;
+    flex-direction: column;
+    padding-top: 100px;
+    align-items: center;
+    transition: transform 0.3s ease-out;
+    transform: translateX(100%);
+}
+
+.mobile-menu.open {
+    display: flex;
+    transform: translateX(0);
+}
+
+.mobile-menu a {
+    color: var(--bg);
+    font-family: var(--font-ui);
+    font-size: 1.5rem;
+    padding: 15px 0;
+    text-transform: uppercase;
+    width: 80%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.mobile-menu a:hover {
+    color: var(--color-primary);
+}
+
+/* Search in Mobile Menu */
+.mobile-search-container {
+    padding: 20px;
+    width: 80%;
+}
+.mobile-search-container .search-input {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: var(--fg);
+    color: var(--bg);
+}
+
+/* --- Mobile Layout: Hide Desktop Nav, Show Mobile Nav --- */
+@media (max-width: 768px) {
+    nav .categories, nav .secondary-links-desktop, .search-container {
+        display: none;
+    }
+    .hamburger {
+        display: block;
+    }
+}
+
+/* --- Desktop Layout: Show Search, Hide Mobile Nav --- */
+@media (min-width: 769px) {
+    nav .categories, nav .secondary-links-desktop {
+        display: flex;
+    }
+    .search-container {
+        display: block; /* Show Search on Desktop */
+    }
+    .hamburger {
+        display: none;
+    }
+    .mobile-menu {
+        display: none !important; 
+    }
+}
+
+
+/* --- 9. MAIN LAYOUT & FOOTER --- */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 5%;
+}
+
+section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--color-light);
+}
+
+/* Contact Form Styling */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+#contact-form label {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    padding: 12px;
+    border: 1px solid var(--color-light);
+    background-color: var(--bg);
+    font-family: var(--font-body);
+    font-size: 1em;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+#contact-form textarea {
+    resize: vertical;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.text-focused {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 5%;
+    background-color: var(--fg);
+    color: var(--bg);
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin-bottom: 0;
+}

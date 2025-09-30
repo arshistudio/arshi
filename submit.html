@@ -222,8 +222,15 @@
         <!-- VIEW 2: FREE WRITER SUBMISSION -->
         <!-- ============================================== -->
         <section id="writer-submission-view" class="mb-16 hidden">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">SUBMISSION</h2>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-2">SUBMISSION</h2>
             
+            <!-- NEW: Back to Options link at the top of the form -->
+            <a href="#" onclick="showView('choice-view'); return false;" class="text-sm font-semibold text-[var(--fg)]/70 hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1 mb-6">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Options
+            </a>
+            <!-- END NEW -->
+
             <!-- Warning/Compensation Note -->
             <div class="p-4 bg-yellow-50 text-gray-800 border-l-4 border-yellow-500 rounded-lg mb-8 shadow-sm">
                 <p class="font-bold">⚠️ Please note:</p>
@@ -347,7 +354,14 @@
         <!-- VIEW 3: COLLABORATOR SUBMISSION -->
         <!-- ============================================== -->
         <section id="collaborator-submission-view" class="mb-16 hidden">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">BECOME A COLLABORATOR</h2>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-2">BECOME A COLLABORATOR</h2>
+
+            <!-- NEW: Back to Options link at the top of the form -->
+            <a href="#" onclick="showView('choice-view'); return false;" class="text-sm font-semibold text-[var(--fg)]/70 hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1 mb-6">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Options
+            </a>
+            <!-- END NEW -->
 
             <!-- Collaborator Manifesto -->
             <div class="bg-[var(--fg)]/5 p-6 rounded-lg mb-8">
@@ -375,7 +389,6 @@
                 </ul>
                 
                 <div class="p-3 bg-yellow-50 text-gray-800 border-l-4 border-yellow-500 rounded-lg mt-6 shadow-sm">
-                    <!-- CHANGE MADE HERE -->
                     <p class="font-bold">⚠️ Please note:</p>
                     <p class="text-sm mt-1">
                         ARSHI is an independent, self-funded project. At this stage, contributions are <strong>unpaid</strong>. Collaborators retain ownership of their work and are always credited by name. As the magazine grows, we hope to build towards sustainability and fair compensation for contributors.
@@ -500,10 +513,7 @@
             </form>
         </section>
 
-        <a href="#choice-view" id="back-to-choice" class="mt-8 py-2 px-4 rounded-lg border border-[var(--fg)]/30 font-semibold text-sm transition-colors hidden justify-center items-center gap-2 hover:bg-[var(--fg)]/10" onclick="showView('choice-view'); return false;">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            Back to Options
-        </a>
+        <!-- Removed the redundant 'back-to-choice' button from the bottom of the page -->
     </main>
 
     <!-- Theme & View Toggle JavaScript -->
@@ -516,7 +526,6 @@
         const choiceView = document.getElementById('choice-view');
         const writerView = document.getElementById('writer-submission-view');
         const collaboratorView = document.getElementById('collaborator-submission-view');
-        const backButton = document.getElementById('back-to-choice');
         
         // --- VIEW MANAGEMENT LOGIC ---
 
@@ -525,25 +534,18 @@
             choiceView.classList.add('hidden');
             writerView.classList.add('hidden');
             collaboratorView.classList.add('hidden');
-            backButton.classList.add('hidden');
 
             // Show the requested view
             const targetView = document.getElementById(viewId);
             if (targetView) {
                 targetView.classList.remove('hidden');
-                
-                // Show back button only if we are in a submission view
-                if (viewId !== 'choice-view') {
-                    backButton.classList.remove('hidden');
-                    backButton.classList.add('flex');
-                }
             }
             
             // Scroll to the top of the content area for better UX
             window.scrollTo({ top: 0, behavior: 'smooth' }); 
         }
 
-        // --- THEME MANAGEMENT LOGIC (UNTOUCHED) ---
+        // --- THEME MANAGEMENT LOGIC ---
         function loadTheme() {
             const savedTheme = localStorage.getItem(themeKey);
             if (savedTheme === 'dark') {
@@ -578,3 +580,4 @@
     </script>
 </body>
 </html>
+

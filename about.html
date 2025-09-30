@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* Base (Terracotta) Theme */
+        /* Base (Terracotta) Theme - This is the LIGHT/DEFAULT theme */
         :root {
             --bg: #F8F7F4; /* Off-White */
             --fg: #111111; /* Near Black */
@@ -19,11 +19,20 @@
             --font-ui: 'Inter', sans-serif;
         }
 
+        /* DARK Theme Variables */
+        body.dark-theme {
+            --bg: #111111; /* Near Black */
+            --fg: #F8F7F4; /* Off-White */
+            --accent: #A4492F; /* Terracotta (Remains same) */
+            --accent2: #FFFFFF; /* White for contrast on dark blue headers */
+        }
+
         /* Applying Variables & General Styles */
         body {
             background-color: var(--bg);
             color: var(--fg);
             font-family: var(--font-ui);
+            transition: background-color 0.5s, color 0.5s; /* Smooth transition */
         }
         h1, h2, h3, .masthead {
             font-family: var(--font-display);
@@ -44,15 +53,24 @@
             text-underline-offset: 4px;
         }
         
-        /* Set accent color for links/buttons for consistency */
+        /* Utility Styles from previous pages for consistency */
         .accent-link {
             color: var(--accent);
         }
 
-        /* Styling for the mission image */
-        .mission-image {
-            object-fit: cover;
-            object-position: center;
+        /* Styling the core values list */
+        .core-value-item {
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--fg)/20;
+        }
+        .core-value-item:last-child {
+            border-bottom: none;
+        }
+        .core-value-title {
+            font-size: 1.125rem; /* lg equivalent */
+            font-weight: 800; /* extra bold */
+            margin-bottom: 0.25rem;
+            color: var(--accent);
         }
     </style>
 </head>
@@ -75,9 +93,9 @@
                 </div>
 
                 <div class="flex items-center space-x-4 lg:space-x-6">
-                    <button class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
+                    <button id="theme-toggle" class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
                             style="background-color: var(--accent);"
-                            aria-label="Theme Color (Static)">
+                            aria-label="Toggle Theme">
                     </button>
 
                     <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
@@ -89,67 +107,99 @@
     </header>
 
     <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
-        <h1 class="text-7xl md:text-9xl font-extrabold mb-8 accent-link tracking-widest leading-none">
+        
+        <h1 class="text-6xl md:text-7xl font-extrabold mb-8 accent-link tracking-widest leading-none">
             ABOUT ARSHI
         </h1>
-        <p class="text-xl font-semibold mb-12 border-b-2 pb-6 border-[var(--fg)]/20">
-            **ARSHI Studio** is a living project, dedicated to creating a space where journalism, art, and culture intersect freely. We champion **Independence** and **Authenticity** above all else.
+        
+        <p class="text-2xl font-bold mb-8">
+            ARSHI is an independent cultural magazine shaped by curiosity.
         </p>
 
-        <section class="mb-16 grid lg:grid-cols-2 gap-10 items-start">
-            <div>
-                <h2 class="text-4xl md:text-6xl font-extrabold mb-6">OUR MISSION</h2>
-                <p class="text-lg mb-4">
-                    We exist to amplify **independent, critical thought** and challenge conventional narratives. Our purpose is to provide a platform for creators whose work is raw, complex, and driven by an uncompromising vision. We believe the most valuable cultural insights come from voices not constrained by commercial trends.
-                </p>
-                <p class="text-lg font-bold">
-                    This is where **Authenticity** meets **Critique**.
-                </p>
-                <a href="submit.html" class="inline-block mt-6 text-xl font-bold accent-link underline hover:no-underline">
-                    View Submission Guidelines →
-                </a>
-            </div>
-            <div class="mt-4 lg:mt-0">
-                <img src="https://placehold.co/600x400/1C2A44/F8F7F4?text=ARSHI+MISSION+IMAGE" alt="Conceptual photo representing ARSHI Studio's mission" class="mission-image w-full h-auto rounded-lg shadow-xl">
-            </div>
-        </section>
+        <a href="index.html" class="text-sm font-semibold text-[var(--fg)]/70 hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1 mb-8">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Home
+        </a>
 
-        <section class="mb-16 border-t-2 pt-10 border-[var(--fg)]/20">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-8">CORE VALUES</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-3xl font-bold mb-2">01. Freedom of Expression</h3>
-                    <p class="text-lg text-[var(--fg)]/80">Prioritizing critical thought and unfiltered opinion over mainstream conformity.</p>
-                </div>
-                <div>
-                    <h3 class="text-3xl font-bold mb-2">02. Recognition of Authorship</h3>
-                    <p class="text-lg text-[var(--fg)]/80">Ensuring every contributor's voice is valued, protected, and given clear credit.</p>
-                </div>
-                <div>
-                    <h3 class="text-3xl font-bold mb-2">03. Collective Creativity</h3>
-                    <p class="text-lg text-[var(--fg)]/80">Working as a collective where collaboration and open dialogue are central to our best work.</p>
-                </div>
-                <div>
-                    <h3 class="text-3xl font-bold mb-2">04. Integrity</h3>
-                    <p class="text-lg text-[var(--fg)]/80">Maintaining ethical journalism standards and transparency in our operations and funding.</p>
-                </div>
-            </div>
-        </section>
+        <div class="space-y-6 text-lg">
+            <p>
+                Born from the need to give **recognition** to emerging voices, ARSHI is a space for writers and artists to publish their work under their own name, and to be read as they are.
+            </p>
+            <p>
+                We focus on **Society & Culture**, **Fashion & Art**, and **Music & Film**, welcoming contributions that explore intersections and unexpected perspectives. Essays, reportage, interviews, reviews, and visual work all have their place here. Crossovers are encouraged: a piece on politics in fashion, or music in protest culture, belongs in ARSHI.
+            </p>
+        </div>
 
-        <section class="mt-20 border-t-2 pt-10 border-[var(--fg)]/20">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">OUR BRANCHES</h2>
-            <div class="space-y-4 text-xl">
-                <p>
-                    <strong class="accent-link">ARSHI MAGAZINE:</strong> The journalistic core for critical commentary across culture, art, and society.
-                </p>
-                <p>
-                    <strong class="text-[var(--accent2)]">ARSHI.PRODUCTION:</strong> The visual platform for original film, photography, and creative visual projects.
-                </p>
-                <p>
-                    <strong class="accent-link">ARSHI.EVENTS:</strong> The live space for cultural gatherings, talks, exhibitions, and community engagement.
-                </p>
-            </div>
-        </section>
+        <div class="mt-16 pt-8 border-t-2 border-[var(--accent)]/50">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-8 leading-tight">
+                OUR CORE VALUES
+            </h2>
+            
+            <dl class="space-y-4">
+                <div class="core-value-item">
+                    <dt class="core-value-title">Independence</dt>
+                    <dd class="text-base">Free from editorial gatekeeping or institutional agendas.</dd>
+                </div>
+                
+                <div class="core-value-item">
+                    <dt class="core-value-title">Recognition</dt>
+                    <dd class="text-base">Contributors always publish under their own names.</dd>
+                </div>
+                
+                <div class="core-value-item">
+                    <dt class="core-value-title">Authenticity</dt>
+                    <dd class="text-base">Original perspectives matter more than polish.</dd>
+                </div>
+                
+                <div class="core-value-item">
+                    <dt class="core-value-title">Collaboration</dt>
+                    <dd class="text-base">ARSHI grows through collective effort.</dd>
+                </div>
+                
+                <div class="core-value-item">
+                    <dt class="core-value-title">Integrity</dt>
+                    <dd class="text-base">Facts are checked, sources credited, conflicts of interest disclosed.</dd>
+                </div>
+                
+                <div class="core-value-item">
+                    <dt class="core-value-title">Cultural Curiosity</dt>
+                    <dd class="text-base">New angles and underrepresented voices are central.</dd>
+                </div>
+                
+                <div class="core-value-item">
+                    <dt class="core-value-title">Inclusivity & Diversity</dt>
+                    <dd class="text-base">We respect and encourage contributions from LGBTQ+ voices and welcome writers, artists, and creators of all races, genders, origins, and classes.</dd>
+                </div>
+            </dl>
+        </div>
+        
     </main>
+
+    <script>
+        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeKey = 'arshiTheme';
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem(themeKey);
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = body.classList.toggle('dark-theme');
+            localStorage.setItem(themeKey, isDark ? 'dark' : 'light');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTheme();
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+        });
+    </script>
 </body>
 </html>

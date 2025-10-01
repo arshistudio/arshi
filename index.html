@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght=400;600;800&display=swap" rel="stylesheet">
     
     <style>
         
@@ -47,9 +47,9 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
         
-        /* LOGO FIX: Changed to 4rem (64px) to match header height */
+        /* LOGO FIX: Size set to 4rem (64px) to match header height */
         .logo {
-            font-size: 4rem; /* Changed to 4rem (64px) */
+            font-size: 4rem; /* 64px */
             letter-spacing: -0.07em; /* Tighter spacing */
             font-weight: 700 !important;
             color: var(--fg);
@@ -57,8 +57,9 @@
         }
 
         /* Masthead Styling for the Hero section text */
+        /* Increased hero font size for full-width impact */
         .masthead-text {
-            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem); 
+            font-size: clamp(3rem, 8vw + 1rem, 6.5rem); 
             letter-spacing: 0.05em; 
             line-height: 1;
         }
@@ -75,7 +76,7 @@
             opacity: 0.9;
         }
 
-        /* I-D LAYOUT: Maximizing Asymmetry and Space (3 columns on XL screens) */
+        /* BROKEN GRID (Masonry) LAYOUT */
         .masonry-grid {
             column-count: 1;
             column-gap: 24px;
@@ -84,7 +85,7 @@
         @media (min-width: 768px) { 
             .masonry-grid {
                 column-count: 2; 
-                column-fill: balance;
+                column-fill: balance; /* Tries to keep columns roughly equal in height */
             }
         }
         @media (min-width: 1280px) { 
@@ -96,11 +97,18 @@
         /* Masonry Item Style - crucial for broken grid effect and TIGHTER STRUCTURE */
         .article-card {
             break-inside: avoid;
-            margin-bottom: 24px; /* Reduced gap for tighter packing and less empty space */
+            margin-bottom: 24px; /* Space between articles for the 'broken' effect */
             display: block; 
         }
 
-        /* FIX: Style for articles that must break the column structure and take full width (1-column break) */
+        /* Full-span Hero Overrides for Max Width */
+        .hero-article-full {
+             /* Remove padding left/right so it spans edge to edge */
+            margin-left: -1rem; 
+            margin-right: -1rem;
+        }
+        
+        /* Style for articles that must break the column structure and take full width (1-column break) */
         .article-full-span {
             /* Full span properties for desktop */
             column-span: all;
@@ -110,7 +118,6 @@
             margin-left: 0;
             margin-right: 0;
             margin-bottom: 48px; 
-            /* On mobile, this will still be a regular article, but it ensures a strong break on larger screens */
         }
 
         /* Ensure the image container for the full span is appropriately sized */
@@ -118,10 +125,8 @@
             width: 100%;
         }
         .article-full-span .card-image {
-            /* Ensure the image is still tall on desktop when spanning full width for impact */
-            height: 28rem !important; /* ~h-112, custom size for full-span impact */
+            height: 28rem !important; /* Custom size for full-span impact */
         }
-
 
         /* Accessibility: Visible Focus States */
         *:focus-visible {
@@ -208,12 +213,15 @@
     	</div>
     </div>
 
+    <section id="hero-article" class="mb-12 transition-colors w-full">
+        <div id="hero-full-width" class="hero-article-full">
+            </div>
+    </section>
 
     <main class="container mx-auto px-4 py-8 md:py-12">
-    	<section id="hero-article" class="mb-12 transition-colors">
-    		</section>
-
+    	
     	<section id="article-grid-container" class="transition-colors">
+            <h2 class="text-3xl font-extrabold tracking-widest mb-6" style="font-family: var(--font-masthead);">LATEST STORIES</h2>
     		<div id="article-grid" class="masonry-grid">
     			</div>
     	</section>
@@ -251,38 +259,35 @@
     <script>
     	// --- Data Model ---
     	const articles = [
-    		// Hero article 
+    		// Hero article - FULL WIDTH HERO IMAGE AND TEXT
     		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
-    			image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" },
+    			image: "https://placehold.co/1600x900/A4492F/F8F7F4?text=FULL+WIDTH+FEATURED+EDITORIAL+IMAGE", isFullSpan: true },
     		
-    		// Grid articles - MADE PROMINENT to form a feature block (Article 1 and 2)
-    		{ isProminent: true, title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
-    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-112' }, 
-    		{ isProminent: true, title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
-    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-112' }, 
+    		// Grid articles - Articles 1 and 2 are now prominent and tall to "fill the space" of an article that would normally be below them
+    		{ isProminent: true, title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption. This story explores the intersection of architecture, clothing, and societal critique.",	
+    			image: "https://placehold.co/600x800/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-96' }, /* Tall image to create asymmetry and fill space */
+    		{ isProminent: true, title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema. We profile three directors pushing the boundaries of narrative and form.",	
+    			image: "https://placehold.co/600x500/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-80' }, /* Shorter image to contrast, but still prominent */
             
-            // Article 3 - Previously full-span, now normal size to allow the first two to fill the vertical space
-    		{ title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
-    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-64' }, 
-
-    		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
-    			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-80' }, 
-    		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
-    			image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-96' }, 
-    		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
-    			image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-56' }, 
+            // Remaining articles for the broken grid
+    		{ title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges. How concrete aesthetics translate to auditory production.",	
+    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-64' }, /* Shorter image for the dovetail effect */
+    		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality. An interview with the creator behind 'The Glitch Garden'.",	
+    			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-96' }, /* Tall image, for dovetail effect */
+    		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance. We analyze patterns and symbolism in cross-cultural textile art.",	
+    			image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-64' }, /* Short image */
+    		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history. A photo essay on the city's disappearing street economy.",	
+    			image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-80' }, /* Medium image */
             
-            // This is the final article, which we will force to span full width for a clean end.
-    		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
-    			image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT", imageHeightClass: 'h-80', isFullSpan: true }, 
+            // Final article spanning full width
+    		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media. An editorial on the necessity of slow, intentional journalism.",	
+    			image: "https://placehold.co/1200x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT", imageHeightClass: 'h-80', isFullSpan: true }, 
     	];
 
     	// --- Utility Functions ---
 
     	/**
     	 * Renders the status badge for 'coming_soon' articles.
-    	 * @param {string} status - The status string.
-    	 * @returns {string} HTML for the badge or an empty string.
     	 */
     	const renderStatusBadge = (status) => {
     		if (status === 'coming_soon') {
@@ -299,31 +304,31 @@
 
     	/**
     	 * Generates the HTML for a single article card.
-    	 * @param {object} article - The article data object.
-    	 * @param {boolean} isHero - Whether it's the large hero card.
-         * @param {boolean} isLast - Whether it's the last article in the grid.
-    	 * @returns {string} The complete HTML string.
     	 */
     	const renderArticleCard = (article, isHero = false, isLast = false) => {
             
-            // Determine if the article should span full width (if marked, or if it's the last one)
             const shouldSpanFull = isLast || article.isFullSpan;
-            const isProminent = article.isProminent; // Check for prominent flag
+            const isProminent = article.isProminent;
 
-            // If prominent, use a very large height class (h-112 is 28rem / 448px)
-            const prominentImageHeight = 'h-112';
-            // Use specific height for grid items or hero heights. If prominent or full-span, use the larger class.
-    		const cardImageHeightClass = shouldSpanFull ? 'h-96 md:h-112' : (isProminent ? prominentImageHeight : (article.imageHeightClass || 'h-64'));
-    		const imageSizeClass = isHero ? 'h-64 md:h-96' : cardImageHeightClass; 
+            // Use the image height specified in the data model for grid items
+            const gridImageHeightClass = article.imageHeightClass || 'h-64';
             
-            // Grid article titles are text-4xl. Prominent articles use text-5xl to stand out.
-    		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : (isProminent ? 'text-5xl mt-3 leading-snug' : 'text-4xl mt-3 leading-snug');
-    		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-2xl' : 'text-base font-ui mt-2 hidden md:block';
+            // Hero image height is large and dynamic
+            const heroImageHeight = 'h-96 md:h-[40rem]'; 
+
+            // Image size based on context
+    		const imageSizeClass = isHero ? heroImageHeight : gridImageHeightClass; 
             
-            // Styling for prominent author credit
+            // Title sizing
+    		const titleClass = isHero ? 'masthead-text mt-4 leading-none' : (isProminent ? 'text-5xl mt-3 leading-snug' : 'text-4xl mt-3 leading-snug');
+            
+            // Dek visibility and style
+    		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-3xl' : 'text-base font-ui mt-2 hidden lg:block';
+            
+            // AUTHOR-FIRST HIERARCHY: Prominent Author Styling
             const authorCredit = isHero 
-                ? `<p class="text-xl md:text-2xl font-extrabold mt-3" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`
-                : `<p class="text-lg font-extrabold mt-2" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
+                ? `<p class="text-xl md:text-2xl font-extrabold mt-3 text-[var(--color-primary)] transition-colors" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`
+                : `<p class="text-xl font-extrabold mt-3 text-[var(--color-primary)] transition-colors" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
 
             // Reading time is smaller, separate meta
             const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60 transition-colors">${article.readingMinutes} min read</p>`;
@@ -332,18 +337,18 @@
             const fullSpanClass = shouldSpanFull ? 'article-full-span' : '';
 
     		return `
-    			<a href="${article.slug}" class="card-link ${isHero ? '' : 'article-card'} ${fullSpanClass} group block transition-colors" aria-label="Read article by ${article.author}: ${article.title}">
+    			<a href="${article.slug}" class="card-link ${isHero ? 'hero-article-full' : 'article-card'} ${fullSpanClass} group block transition-colors" aria-label="Read article by ${article.author}: ${article.title}">
     					
     					<div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
     						<img loading="lazy"	
     							src="${article.image}"	
     							alt="${article.title}"	
-    							onerror="this.onerror=null;this.src='https://placehold.co/600x400/808080/FFF?text=Image+Missing';"
-    							class="card-image w-full object-cover transition-transform duration-500 ease-in-out ${imageSizeClass} rounded-lg"
+    							onerror="this.onerror=null;this.src='https://placehold.co/1200x800/808080/FFF?text=Image+Missing';"
+    							class="card-image w-full object-cover transition-transform duration-500 ease-in-out ${imageSizeClass} ${isHero ? 'rounded-none' : 'rounded-lg'}"
     						>
     					</div>
 
-    					<div class="py-4">
+    					<div class="${isHero ? 'container mx-auto px-4' : 'py-4'}">
     						<div class="flex items-center justify-between flex-wrap gap-2 mb-2">
     							<span class="px-2 py-1 text-xs font-bold uppercase rounded-full border border-current text-[var(--fg)] transition-colors">
     								${article.category}
@@ -351,13 +356,11 @@
     							${renderStatusBadge(article.status)}
     						</div>
 
-    						<h3 class="font-extrabold ${titleClass}" style="font-family: var(--font-masthead);">
+    						<h3 class="font-extrabold ${titleClass} tracking-wide" style="font-family: var(--font-masthead);">
     							${article.title.toUpperCase()}
     						</h3>
 
-                            ${authorCredit}
-
-    						<p class="${dekClass} text-[var(--fg)]/80">
+                            ${authorCredit} <p class="${dekClass} text-[var(--fg)]/80">
     							${article.dek}
     						</p>
 
@@ -371,13 +374,12 @@
     	 * Renders all articles into their respective containers (Hero and Grid).
     	 */
     	const renderContent = () => {
-    		const heroContainer = document.getElementById('hero-article');
+    		const heroContainer = document.getElementById('hero-full-width');
     		const gridContainer = document.getElementById('article-grid');
     		
     		let heroHtml = '';
     		let gridHtml = '';
             
-            // Separate grid articles to identify the last one
             const gridArticles = articles.filter(a => !a.isHero);
             const lastIndex = gridArticles.length - 1;
 
@@ -387,10 +389,8 @@
     			}
     		});
             
-            // Process grid articles separately to pass the isLast flag
             gridArticles.forEach((article, index) => {
                 const isLast = (index === lastIndex);
-                // Pass isLast flag to the renderer
                 gridHtml += renderArticleCard(article, false, isLast);
             });
 
@@ -419,7 +419,7 @@
             menuButton.addEventListener('click', () => {
                 if (window.innerWidth <= 1024) { // Mobile (lg breakpoint)
                     menuDrawer.classList.remove('translate-x-full');
-                    body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                    body.style.overflow = 'hidden'; 
                 } else { // Desktop
                     desktopUtilityDrawer.classList.toggle('hidden');
                 }
@@ -435,7 +435,7 @@
     		document.getElementById('search-button').addEventListener('click', () => {
     			searchOverlay.classList.remove('hidden');
     			body.style.overflow = 'hidden';
-    			searchOverlay.querySelector('input').focus(); // Focus the input
+    			searchOverlay.querySelector('input').focus(); 
     		});
     		document.getElementById('close-search-button').addEventListener('click', () => {
     			searchOverlay.classList.add('hidden');

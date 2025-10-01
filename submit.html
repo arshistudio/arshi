@@ -25,6 +25,9 @@
             background-color: var(--bg);
             color: var(--fg);
             font-family: var(--font-body);
+            display: flex; /* Added for sticky footer layout */
+            flex-direction: column; /* Added for sticky footer layout */
+            min-height: 100vh; /* Added for sticky footer layout */
         }
         h1, h2, h3, .masthead {
             font-family: var(--font-masthead);
@@ -73,6 +76,7 @@
 </head>
 
 <body>
+    
     <header id="main-header" class="header-thin sticky top-0 z-40 w-full"
     			style="background-color: var(--bg);">
     	<div class="container mx-auto px-4 h-full flex items-center justify-between">
@@ -82,7 +86,7 @@
 		</div>
     </header>
 
-    <main class="container mx-auto px-4 py-8 md:py-12">
+    <main class="container mx-auto px-4 py-8 md:py-12 flex-grow">
         <div class="max-w-4xl mx-auto">
             
             <h1 class="text-7xl md:text-8xl font-extrabold mb-8 tracking-wider text-[var(--fg)] text-center" style="line-height: 1;">
@@ -120,6 +124,32 @@
 
         </div>
     </main>
+    
+    <footer class="mt-20 py-10 border-t border-[var(--color-light)] text-[var(--color-secondary)]" style="background-color: var(--bg);">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left">
+                
+                <div class="flex space-x-6 mb-4 md:mb-0 text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider">
+                    <a href="about.html" class="hover:text-[var(--fg)] transition-colors">About</a>
+                    <a href="contact.html" class="hover:text-[var(--fg)] transition-colors">Contact</a>
+                    <a href="submit.html" class="text-[var(--color-primary)]">Submit</a>
+                </div>
+
+                <div class="flex space-x-6 mb-4 md:mb-0 text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider">
+                    <a href="#" class="hover:text-[var(--fg)] transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-[var(--fg)] transition-colors">X/Twitter</a>
+                    <a href="#" class="hover:text-[var(--fg)] transition-colors">Vimeo</a>
+                </div>
+
+                <div class="text-sm space-x-4">
+                    <a href="privacy.html" class="hover:text-[var(--fg)] transition-colors">Privacy Policy</a>
+                    <a href="legal.html" class="hover:text-[var(--fg)] transition-colors">Legal</a>
+                    <a href="accessibility.html" class="hover:text-[var(--fg)] transition-colors">Accessibility</a>
+                </div>
+            </div>
+            <p class="text-xs mt-6 text-center text-[var(--color-light)]">&copy; 2025 ARSHI Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

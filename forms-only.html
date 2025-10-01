@@ -1,4 +1,20 @@
 <form netlify 
+    name="contact" 
+    action="/thanks" 
+    method="POST" 
+    hidden 
+    netlify-honeypot="bot-field">
+    
+    <input type="hidden" name="form-name" value="contact" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="subject" />
+    <textarea name="message"></textarea>
+    <button type="submit">Register Contact Form</button>
+</form>
+
+<form netlify 
     name="writer-submission" 
     action="/thanks" 
     method="POST" 
@@ -7,8 +23,8 @@
     
     <input type="hidden" name="form-name" value="writer-submission" />
     <input type="text" name="bot-field" />
-    <input type="text" name="name">
-    <button type="submit">Register</button>
+    <input type="text" name="name" />
+    <button type="submit">Register Writer Form</button>
 </form>
 
 <form netlify 
@@ -20,6 +36,6 @@
 
     <input type="hidden" name="form-name" value="collaborator-application" />
     <input type="text" name="bot-field" />
-    <input type="text" name="name">
-    <button type="submit">Register</button>
+    <input type="text" name="name" />
+    <button type="submit">Register Collaborator Form</button>
 </form>

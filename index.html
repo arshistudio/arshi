@@ -25,7 +25,33 @@
             --font-masthead: 'Bebas Neue', cursive; 
         }
 
-        /* Tailwind Configuration Overrides (if needed) - otherwise rely on linked CSS files */
+        /* --- Custom Styles for Asymmetric Grid --- */
+        /* Note: The 'tall' class is defined in your original magazine-styles.css */
+        
+        .article-grid {
+            /* Standard 3-column grid, relying on article-image heights for asymmetry */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem; /* Consistent spacing */
+        }
+        
+        /* Ensures the text stays readable under the images */
+        .grid-item h3 {
+            font-size: 1.15rem; 
+            font-weight: 700;
+            margin-top: 0.5rem;
+            line-height: 1.3;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+            .grid-item.tall .article-image {
+                height: 300px; /* Normalize taller images on mobile */
+            }
+        }
     </style>
 </head>
 <body class="bg-[var(--bg)] text-[var(--fg)] min-h-screen flex flex-col">
@@ -36,23 +62,22 @@
                 <a href="index.html" class="text-[var(--fg)] hover:text-[var(--color-primary)] transition-colors">ARSHI</a>
             </div> 
             
-            <ul class="hidden lg:flex space-x-8 font-[var(--font-masthead)] text-lg uppercase tracking-wider">
+            <ul class="categories hidden lg:flex space-x-8 font-[var(--font-masthead)] text-lg uppercase tracking-wider">
                 <li><a href="category-list.html?cat=society-culture" class="hover:text-[var(--color-primary)] transition-colors">Society & Culture</a></li>
                 <li><a href="category-list.html?cat=fashion-art" class="hover:text-[var(--color-primary)] transition-colors">Fashion & Art</a></li>
                 <li><a href="category-list.html?cat=music-film" class="hover:text-[var(--color-primary)] transition-colors">Music & Film</a></li>
             </ul>
             
-            <div class="hidden lg:flex items-center space-x-6">
-                <a href="submit.html" class="text-[var(--color-primary)] hover:text-[var(--fg)] font-semibold transition-colors uppercase text-sm">Submit</a>
-                <button id="theme-switcher" class="text-xs uppercase font-semibold border border-[var(--color-secondary)] px-2 py-1 rounded hover:bg-[var(--color-secondary)] hover:text-[var(--bg)] transition-all">Theme: Terracotta</button>
-            </div>
+            <ul class="secondary-links-desktop hidden lg:flex space-x-6 text-sm uppercase font-semibold">
+                <li><a href="about.html" class="hover:text-[var(--color-primary)] transition-colors">About</a></li>
+                <li><a href="contact.html" class="hover:text-[var(--color-primary)] transition-colors">Contact</a></li>
+                <li><a href="submit.html" class="text-[var(--color-primary)] hover:text-[var(--fg)] transition-colors">Submit</a></li>
+                <li><button id="theme-switcher" class="text-xs uppercase font-semibold">Theme</button></li>
+            </ul>
             
-            <button class="lg:hidden hamburger text-2xl">☰</button>
+            <div class="hamburger text-2xl lg:hidden">☰</div>
         </nav>
-
-        <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-[var(--bg)] shadow-xl z-50 transform translate-x-full transition-transform duration-300 p-6">
-            </div>
-    </header>
+        </header>
 
     <main class="magazine-layout flex-grow">
         
@@ -72,26 +97,26 @@
             <section id="fashion-art-grid" class="border-b border-[var(--color-light)] pb-10">
                 <h2 class="category-heading text-2xl sm:text-3xl font-[var(--font-masthead)] uppercase tracking-wider mb-8 border-b-2 border-[var(--color-primary)] inline-block pb-1">Fashion & Art</h2>
                 
-                <div class="article-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="article-grid">
                     <div class="grid-item">
                         <a href="article-blueprint.html">
                             <div class="article-image" style="background-image: url('assets/fashion-1.jpg');"></div>
                             <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name A. / 8 min read</p>
-                            <h3 class="text-xl font-bold mt-1 hover:text-[var(--color-primary)] transition-colors">The Resurgence of Craftsmanship: Why 'Slow Design' is the New Black</h3>
+                            <h3 class="hover:text-[var(--color-primary)] transition-colors">The Resurgence of Craftsmanship: Why 'Slow Design' is the New Black</h3>
                         </a>
                     </div>
-                    <div class="grid-item tall">
+                    <div class="grid-item **tall**">
                         <a href="article-blueprint.html">
                             <div class="article-image" style="background-image: url('assets/art-2.jpg');"></div>
                             <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name B. / 5 min read</p>
-                            <h3 class="text-xl font-bold mt-1 hover:text-[var(--color-primary)] transition-colors">Challenging the Canon: An Interview with Abstract Painter Lei Wu</h3>
+                            <h3 class="hover:text-[var(--color-primary)] transition-colors">Challenging the Canon: An Interview with Abstract Painter Lei Wu</h3>
                         </a>
                     </div>
                     <div class="grid-item">
                         <a href="article-blueprint.html">
                             <div class="article-image" style="background-image: url('assets/fashion-3.jpg');"></div>
                             <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name C. / 6 min read</p>
-                            <h3 class="text-xl font-bold mt-1 hover:text-[var(--color-primary)] transition-colors">Digital Threads: How Avatars are Redefining Fashion's Boundaries</h3>
+                            <h3 class="hover:text-[var(--color-primary)] transition-colors">Digital Threads: How Avatars are Redefining Fashion's Boundaries</h3>
                         </a>
                     </div>
                 </div>
@@ -103,26 +128,26 @@
             <section id="music-film-grid" class="border-b border-[var(--color-light)] pb-10">
                 <h2 class="category-heading text-2xl sm:text-3xl font-[var(--font-masthead)] uppercase tracking-wider mb-8 border-b-2 border-[var(--color-primary)] inline-block pb-1">Music & Film</h2>
                 
-                <div class="article-grid grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="grid-item tall">
+                <div class="article-grid">
+                    <div class="grid-item **tall**">
                         <a href="article-blueprint.html">
                             <div class="article-image" style="background-image: url('assets/music-4.jpg');"></div>
                             <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name D. / 7 min read</p>
-                            <h3 class="text-xl font-bold mt-1 hover:text-[var(--color-primary)] transition-colors">Beyond the Algorithm: Finding Authenticity in Indie Sound</h3>
+                            <h3 class="hover:text-[var(--color-primary)] transition-colors">Beyond the Algorithm: Finding Authenticity in Indie Sound</h3>
                         </a>
                     </div>
                     <div class="grid-item">
                         <a href="article-blueprint.html">
                             <div class="article-image" style="background-image: url('assets/film-5.jpg');"></div>
                             <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name E. / 4 min read</p>
-                            <h3 class="text-xl font-bold mt-1 hover:text-[var(--color-primary)] transition-colors">The New Wave of Arab Cinema: Documenting Identity and Exile</h3>
+                            <h3 class="hover:text-[var(--color-primary)] transition-colors">The New Wave of Arab Cinema: Documenting Identity and Exile</h3>
                         </a>
                     </div>
-                    <div class="grid-item tall">
+                    <div class="grid-item">
                         <a href="article-blueprint.html">
                             <div class="article-image" style="background-image: url('assets/music-6.jpg');"></div>
                             <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name F. / 6 min read</p>
-                            <h3 class="text-xl font-bold mt-1 hover:text-[var(--color-primary)] transition-colors">How '90s Rave Culture is Inspiring Gen Z's Political Consciousness</h3>
+                            <h3 class="hover:text-[var(--color-primary)] transition-colors">How '90s Rave Culture is Inspiring Gen Z's Political Consciousness</h3>
                         </a>
                     </div>
                 </div>
@@ -142,8 +167,8 @@
 
     </main>
 
-    <footer class="bg-transparent border-t border-[var(--color-light)] mt-12 p-10 text-center text-sm">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left">
+    <footer>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left p-10">
             
             <div class="flex flex-wrap justify-center md:justify-start space-x-6 mb-4 md:mb-0 text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider">
                 <a href="about.html" class="hover:text-[var(--color-primary)] transition-colors">About</a>
@@ -160,32 +185,29 @@
             <div class="text-xs space-x-4">
                 <a href="privacy.html" class="hover:text-[var(--color-primary)] transition-colors">Privacy Policy</a>
                 <a href="legal.html" class="hover:text-[var(--color-primary)] transition-colors">Legal</a>
-                <a href="accessibility.html" class="hover:text-[var(--color-primary)] transition-colors">Accessibility</a>
             </div>
         </div>
-        <p class="text-xs mt-6 text-center text-[var(--color-secondary)]">&copy; 2025 ARSHI Studio. All Rights Reserved.</p>
+        <p class="text-xs mt-6 text-center text-[var(--color-secondary)] pb-6">&copy; 2025 ARSHI Studio. All Rights Reserved.</p>
     </footer>
 
     <script src="theme-switcher.js" defer></script>
     <script>
-        // NOTE: The main navigation JS (hamburger, search) is often consolidated.
-        // For now, assume simple functionality is in styles.css or a separate JS file.
+        // Hamburger and Mobile Menu JS (Restored functionality from your original index.html)
         document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.querySelector('.mobile-menu');
+            const body = document.body;
+            const menuDrawer = document.querySelector('.mobile-menu'); // Assuming you have a hidden mobile-menu element
             const hamburger = document.querySelector('.hamburger');
-            
-            if (hamburger && mobileMenu) {
+
+            if (hamburger && menuDrawer) {
                 hamburger.addEventListener('click', () => {
-                    // Toggles the mobile menu visibility/position
-                    mobileMenu.classList.toggle('translate-x-full');
-                    document.body.style.overflow = mobileMenu.classList.contains('translate-x-full') ? '' : 'hidden';
+                    menuDrawer.classList.toggle('translate-x-full');
+                    body.style.overflow = menuDrawer.classList.contains('translate-x-full') ? '' : 'hidden';
                 });
 
-                // Simple close on link click for better mobile UX
-                mobileMenu.querySelectorAll('a').forEach(item => {
+                menuDrawer.querySelectorAll('a').forEach(item => {
                     item.addEventListener('click', () => {
-                        mobileMenu.classList.add('translate-x-full');
-                        document.body.style.overflow = '';
+                        menuDrawer.classList.add('translate-x-full');
+                        body.style.overflow = '';
                     });
                 });
             }

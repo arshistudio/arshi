@@ -165,12 +165,10 @@
     	</div>
     </div>
     <main class="container mx-auto px-4 py-8 md:py-12">
-    	<section id="category-info" class="text-center mb-12">
+    	<section id="category-info" class="text-right mb-12">
             <h1 id="category-title" class="text-5xl md:text-6xl font-extrabold tracking-wide text-[var(--fg)]/90" style="font-family: var(--font-masthead);">
     			</h1>
-    		<p id="category-desc" class="text-lg text-[var(--fg)]/70 max-w-3xl mx-auto mt-4">
-    			</p>
-    	</section>
+    		</section>
     	
     	<section id="article-grid-container">
             <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -331,14 +329,14 @@
 
             const categoryInfo = categories[requestedCategory] || categories['all']; 
             const titleElement = document.getElementById('category-title');
-            const descElement = document.getElementById('category-desc');
+            // const descElement = document.getElementById('category-desc'); // Category description element removed
             const gridContainer = document.getElementById('article-grid');
             
             // 1. Inject Category Info
             titleElement.textContent = categoryInfo.name.toUpperCase();
-            descElement.textContent = categoryInfo.description;
+            // descElement.textContent = categoryInfo.description; // Category description text removed
             
-            // 2. Filter Articles
+            // 2. Filter Articles (CODE KEPT AS IS)
             const filteredArticles = allArticles.filter(article => {
                 if (requestedCategory === 'all') {
                     return true;

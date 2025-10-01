@@ -12,33 +12,14 @@
     <!-- Bebas Neue for Masthead/H1/H2 (Bold Condensed Vibe) & Inter for UI/Body -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* Base (Terracotta) Theme */
-        :root {
-            --bg: #F8F7F4; /* Off-White */
-            --fg: #111111; /* Near Black */
-            --accent: #A4492F; /* Terracotta */
-            --accent2: #1C2A44; /* Dark Blue */
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-ui: 'Inter', sans-serif;
-        }
-
-        /* Midnight Theme */
-        [data-theme="midnight"] {
-            --bg: #0f1218;
-            --fg: #f4f3ef;
-            --accent: #1C2A44;
-            --accent2: #C8A951; /* Gold/Ochre */
-        }
-
         /* Applying Variables & General Styles */
         body {
-            background-color: var(--bg);
-            color: var(--fg);
-            font-family: var(--font-ui);
+            /* Now relies solely on styles.html for background-color and color */
+            font-family: var(--font-body); /* Changed from --font-ui */
             transition: background-color 0.3s, color 0.3s;
         }
         h1, h2, .masthead {
-            font-family: var(--font-display);
+            font-family: var(--font-masthead); /* Changed from --font-display */
         }
         
         /* Thin Sticky Header Height */
@@ -56,7 +37,7 @@
         /* Custom Hover States */
         .hover-underline:hover {
             text-decoration: underline;
-            text-decoration-color: var(--accent);
+            text-decoration-color: var(--color-primary); /* Changed from --accent */
             text-underline-offset: 4px;
         }
 
@@ -90,7 +71,7 @@
 
         /* Accessibility: Visible Focus States */
         *:focus-visible {
-            outline: 3px solid var(--accent) !important;
+            outline: 3px solid var(--color-primary) !important; /* Changed from --accent */
             outline-offset: 2px;
             border-radius: 4px;
         }

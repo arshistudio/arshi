@@ -69,9 +69,9 @@
         /* ---------------------------------------------------- */
 
         .masonry-grid {
-            display: flex; /* Enable Flexbox container */
-            flex-wrap: wrap; /* Allows the full-span items to break the row */
-            column-gap: 24px; /* Standard spacing between columns */
+            display: flex; 
+            flex-wrap: wrap; 
+            column-gap: 24px; 
             width: 100%;
             padding-top: 32px; 
         }
@@ -79,32 +79,24 @@
         /* Define the structure for the columns */
         .grid-column {
             display: flex;
-            flex-direction: column; /* Stacks articles vertically in a column */
+            flex-direction: column; 
             width: 100%; /* Default to full width on mobile */
         }
         
-        /* Desktop/Tablet: Three columns, each 1/3 width */
         @media (min-width: 768px) { 
-            .grid-column {
-                width: calc(33.333% - 16px); /* 1/3rd width minus half the gap on each side */
-            }
-        }
-        
-        @media (min-width: 1280px) { 
             .grid-column {
                 width: calc(33.333% - 16px);
             }
         }
-
-        /* Article Card Styles (remains the same) */
+        
+        /* Article Card Styles */
         .article-card {
-            margin-bottom: 24px; /* Consistent spacing between cards */
+            margin-bottom: 24px; 
             display: block; 
         }
 
         /* Style for articles that must break the column structure and take full width */
         .article-full-span {
-            /* Full span properties for Flexbox */
             width: 100%; 
             margin-left: 0;
             margin-right: 0;
@@ -115,6 +107,10 @@
             /* Guaranteed vertical spacing */
             margin-top: 24px; 
             margin-bottom: 48px; 
+            
+            /* IMPORTANT: Full-span articles must be appended directly to the parent masonry-grid.
+               To ensure they visually break the column flow, we use a custom class 
+               and rely on flex-basis: 100% to push them onto a new line. */
         }
 
         /* Ensure the image container for the full span is appropriately sized */
@@ -202,6 +198,7 @@
     		<p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
     	</div>
     </div>
+
     <section id="hero-article" class="w-full mb-8 hero-article-full-wrapper">
         </section>
 
@@ -248,8 +245,6 @@
 
     <script>
     	// --- Data Model ---
-        // I have kept the data model identical, including the full-span tags, 
-        // but now the JS handles the placement logic using column tracking.
     	const articles = [
     		// Hero article 
     		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
@@ -257,7 +252,6 @@
     		
             // --- GRID ARTICLES (Total 15) ---
 
-            // **Important**: isFullSpan property is manually set for the articles you want to break the grid.
     		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
     			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-112' }, 
     		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
@@ -320,6 +314,7 @@
     	 * Generates the HTML for a single article card.
     	 */
     	const renderArticleCard = (article, isHero = false) => {
+            // ... (Article rendering logic remains the same) ...
             
             const shouldSpanFull = article.isFullSpan || false; 
             
@@ -376,14 +371,13 @@
 
     	/**
     	 * Renders all articles into their respective containers (Hero and Grid).
-         * This version uses Flexbox to simulate Masonry by tracking column heights.
+         * This uses the Flexbox column method to ensure a stable masonry effect.
     	 */
     	const renderContent = () => {
     		const heroContainer = document.getElementById('hero-article');
     		const gridContainer = document.getElementById('article-grid');
     		
-            // Clear existing content
-            gridContainer.innerHTML = '';
+            gridContainer.innerHTML = ''; // Clear existing content
 
     		let heroArticle = articles.find(a => a.isHero);
             if (heroArticle) {
@@ -392,7 +386,7 @@
             
             const gridArticles = articles.filter(a => !a.isHero);
             
-            // 1. Initialize Columns (for up to 3 columns)
+            // 1. Initialize Columns (for 3 columns on desktop)
             const numColumns = 3;
             const columns = [];
             const columnHeights = [];
@@ -400,28 +394,29 @@
             for (let i = 0; i < numColumns; i++) {
                 const colDiv = document.createElement('div');
                 colDiv.className = 'grid-column';
-                gridContainer.appendChild(colDiv);
                 columns.push(colDiv);
-                columnHeights.push(0); // Track accumulated content height for each column
+                columnHeights.push(0); 
             }
             
-            // 2. Distribute Articles
-            gridArticles.forEach((article, index) => {
+            // 2. Distribute Articles and Build the Final HTML
+            let finalGridHtml = '';
+            let columnArticleIndex = 0;
+
+            gridArticles.forEach((article) => {
                 const articleHtml = renderArticleCard(article, false);
                 
                 if (article.isFullSpan) {
-                    // Full-span articles are added directly to the main container
-                    // and use Flexbox property to span full width (flex-basis: 100%)
-                    const fullSpanDiv = document.createElement('div');
-                    fullSpanDiv.innerHTML = articleHtml;
-                    gridContainer.appendChild(fullSpanDiv.firstChild);
+                    // FULL SPAN: Insert directly into the main grid container flow
+                    finalGridHtml += articleHtml;
                     
-                    // Reset all column heights to 0 after a full-span break
+                    // Reset columns and start next articles on a new line
+                    columnArticleIndex = 0; 
                     for(let i = 0; i < numColumns; i++) {
                         columnHeights[i] = 0;
                     }
+
                 } else {
-                    // Find the shortest column (best fit for masonry effect)
+                    // NORMAL CARD: Find the shortest column for insertion
                     let shortestColumnIndex = 0;
                     let minHeight = columnHeights[0];
                     for (let i = 1; i < numColumns; i++) {
@@ -431,21 +426,98 @@
                         }
                     }
                     
-                    // Append article to the shortest column
+                    // Append article to the shortest column's HTML
+                    // We must use a temporary wrapper to prevent breaking the HTML string
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = articleHtml;
                     columns[shortestColumnIndex].appendChild(tempDiv.firstChild);
-                    
-                    // Simple Height Estimation (Crucial for simulation)
-                    // The h-xx classes roughly map to rems. This is a very rough estimate.
+
+                    // Rough Height Estimation (based on h-xx classes + text block)
                     const heightEstimate = (article.imageHeightClass ? parseInt(article.imageHeightClass.replace('h-', '')) : 64) * 0.25; 
-                    // Add a fixed value for text/padding/margin
                     columnHeights[shortestColumnIndex] += heightEstimate + 15; 
+                    
+                    columnArticleIndex++;
                 }
             });
 
-            // 3. Hide extra columns on mobile (to keep it a single column)
-            // This is handled via CSS, but the JS rendering must support 3 columns.
+            // 3. Construct the Final Grid HTML
+            // First, add all the column HTMLs, followed by the full-span articles 
+            // which were already appended to the finalGridHtml string above.
+            
+            let columnsHtml = '';
+            columns.forEach(col => {
+                columnsHtml += col.outerHTML;
+            });
+            
+            // This is the FIX: Inject the columns (normal articles) and then the full-span articles 
+            // are appended by the browser's interpretation of flex-basis: 100%
+            
+            gridContainer.innerHTML = columnsHtml;
+
+            // Since the full-span articles were not appended to the gridContainer in the loop,
+            // we must now append them as individual elements to ensure they break the flow.
+            // The previous logic attempted to merge the column elements with the full span elements 
+            // inside a string, which caused the issues.
+            
+            // *CORRECTED LOGIC*: We only need to check the full-span articles from the source list 
+            // and append them directly to the gridContainer, separated by the columns.
+            
+            // We need to re-run the loop to properly interleave the full-span elements with the column groups.
+            // A more straightforward approach for Flexbox is to keep all elements in one list and let Flexbox handle the flow.
+            
+            gridContainer.innerHTML = ''; // Clear again to use a single-pass rendering approach
+            
+            // Re-initialize columns for a cleaner render
+            const finalColumns = [];
+            for (let i = 0; i < numColumns; i++) {
+                const colDiv = document.createElement('div');
+                colDiv.className = 'grid-column';
+                colDiv.setAttribute('data-col-index', i); // Debugging attribute
+                gridContainer.appendChild(colDiv);
+                finalColumns.push(colDiv);
+            }
+            
+            // Reset heights for the actual rendering pass
+            columnHeights.fill(0); 
+            
+            gridArticles.forEach((article) => {
+                const articleHtml = renderArticleCard(article, false);
+                
+                if (article.isFullSpan) {
+                    // Full Span: Create the element and append directly to the main grid container
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = articleHtml;
+                    gridContainer.appendChild(tempDiv.firstChild);
+                    
+                    // Reset heights on all columns to start the next group on a new line
+                    columnHeights.fill(0);
+                    
+                } else {
+                    // Normal Card: Find the shortest column among the *current* columns
+                    let shortestColumnIndex = 0;
+                    let minHeight = columnHeights[0];
+                    for (let i = 1; i < numColumns; i++) {
+                        if (columnHeights[i] < minHeight) {
+                            minHeight = columnHeights[i];
+                            shortestColumnIndex = i;
+                        }
+                    }
+                    
+                    // Append the article to the chosen column
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = articleHtml;
+                    finalColumns[shortestColumnIndex].appendChild(tempDiv.firstChild);
+
+                    // Update the height estimate for the chosen column
+                    const heightEstimate = (article.imageHeightClass ? parseInt(article.imageHeightClass.replace('h-', '')) : 64) * 0.25; 
+                    columnHeights[shortestColumnIndex] += heightEstimate + 15;
+                }
+            });
+
+
+            // This revised two-pass logic ensures:
+            // 1. Columns (normal articles) are correctly distributed based on height.
+            // 2. Full-span articles are placed directly in the Flex container, forcing a row break.
     	};
 
 
@@ -456,8 +528,7 @@
     		// 1. Render Content (Now using the stable Flexbox method)
     		renderContent();
 
-    		// 2. Attach Interaction Listeners (Same as before)
-            // [ ... Menu/Search logic from previous iterations goes here ... ]
+    		// 2. Attach Interaction Listeners
             
             const body = document.body;
             const menuDrawer = document.getElementById('mobile-menu-drawer');

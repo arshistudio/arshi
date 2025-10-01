@@ -14,11 +14,11 @@
         
         /* NEW COLOR PALETTE: Palette Trial 3 (High Contrast Editorial) */
         :root {
-            --bg: #E5DCC5; /* Beige (E5DCC5) - Main Background */
-            --fg: #2D2D2A; /* Charcoal Black (2D2D2A) - Main Text */
-            --color-primary: #C14953; /* Red (C14953) - Accent/Underline/Focus */
-            --color-secondary: #4C4C47; /* Dark Gray (4C4C47) - Status Badge Background */
-            --color-light: #848FA5; /* Blue-Gray (848FA5) - Light divider/border */
+            --bg: #E5DCC5; [cite_start]/* Beige (E5DCC5) - Main Background [cite: 6] */
+            --fg: #2D2D2A; [cite_start]/* Charcoal Black (2D2D2A) - Main Text [cite: 1] */
+            --color-primary: #C14953; [cite_start]/* Red (C14953) - Accent/Underline/Focus [cite: 4] */
+            --color-secondary: #4C4C47; [cite_start]/* Dark Gray (4C4C47) - Status Badge Background [cite: 2] */
+            --color-light: #848FA5; [cite_start]/* Blue-Gray (848FA5) - Light divider/border [cite: 3] */
             --font-body: 'Inter', sans-serif;
             --font-masthead: 'Bebas Neue', cursive;
         }
@@ -117,6 +117,10 @@
             width: 100%; 
             margin-left: 0;
             margin-right: 0;
+            
+            /* FIX: Added margin-top to ensure separation after flusher clears columns */
+            margin-top: 24px; 
+            
             /* Give it extra bottom margin to clearly separate from content below */
             margin-bottom: 48px; 
         }
@@ -137,19 +141,17 @@
         /* THE FIX: Invisible element to clear all columns before a full-span item */
         .masonry-flusher {
             /* CRUCIAL: Forces the break across all columns */
-            column-span: all; 
+            column-span: all;
             -webkit-column-span: all;
             -moz-column-span: all;
             
-            /* CRUCIAL: Makes it invisible and zero-height, but still effective as a column break */
+            /* SIMPLEST FORM: Keep it zero height, as the next element will provide margin-top */
             height: 0; 
             margin: 0;
             padding: 0;
             display: block;
             line-height: 0; 
             font-size: 0;
-            /* Using a vertical padding here ensures separation from the last item in the column */
-            padding-top: 24px; 
         }
         
         /* Accessibility: Visible Focus States */
@@ -297,7 +299,7 @@
     		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
     			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-96' }, 
             
-            // Block 2 (1 article): FORCED FULL-WIDTH BREAK
+            // Block 2 (1 article): FORCED FULL-WIDTH BREAK (Index 2)
     		{ title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
     			image: "https://placehold.co/1200x500/3B5323/f7f6f2?text=FULL+SPAN+SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-112' },
 
@@ -309,7 +311,7 @@
     		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
     			image: "https://placehold.co/600x850/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-112' }, 
             
-            // Block 4 (1 article): FORCED FULL-WIDTH BREAK
+            // Block 4 (1 article): FORCED FULL-WIDTH BREAK (Index 6)
     		{ title: "The geometry of silence: A photographer's retreat to the desert", slug: "article-blueprint.html?slug=desert-silence", status: "published", category: "Fashion & Art", author: "Hana Al-Otaibi", readingMinutes: 6, dek: "Capturing the vast, empty landscapes where sound dies.", 
                 image: "https://placehold.co/1200x550/4C4C47/E5DCC5?text=FULL+SPAN+DESERT+PHOTO", imageHeightClass: 'h-112' }, 
 
@@ -333,7 +335,7 @@
     		{ title: "The rise of the decentralized art collective", slug: "article-blueprint.html?slug=decentralized-art", status: "published", category: "Fashion & Art", author: "Jules Verne", readingMinutes: 5, dek: "How technology enables new forms of artistic collaboration.", 
                 image: "https://placehold.co/600x400/2D2D2A/C14953?text=ART+COLLECTIVE+FUTURE", imageHeightClass: 'h-64' }, 
             
-            // Block 8 (1 article): The final full-width article is the natural end of the grid.
+            // Block 8 (1 article): The final full-width article is the natural end of the grid. (Index 14)
     		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
     			image: "https://placehold.co/1200x500/1C2A44/F8F7F4?text=FULL+SPAN+MAGAZINE+LAYOUT", imageHeightClass: 'h-112' }, 
     	];

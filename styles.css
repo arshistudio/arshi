@@ -3,30 +3,32 @@
 /* --- 1. FONT IMPORTS (Fallbacks for Druk, Inter, Merriweather) --- */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
-/* --- 2. BASE COLOR PALETTE & TYPOGRAPHY VARIABLES --- */
+/* --- 2. BASE COLOR PALETTE & TYPOGRAPHY VARIABLES (MODIFIED FOR PALETTE 3) --- */
 :root {
-    /* Global Palette from the brief */
-    --bg-base: #F8F7F4;
-    --fg-base: #111111;
-    --accent-1: #A4492F; /* Terracotta */
-    --accent-2: #1C2A44; /* Midnight Blue */
-    --accent-3: #3B5323; /* Olive Green */
-    --accent-4: #C8A951; /* Gold/Ochre */
+    /* NEW COLOR PALETTE (Trial 3: Bold & High-Contrast) */
+    --bg-base: #E5DCC5; [cite_start]/* Soft Cream for Background [cite: 13] */
+    --fg-base: #2D2D2A; [cite_start]/* Deep Charcoal for Foreground Text [cite: 8] */
+    
+    /* Assigning new colors to your existing accent variables */
+    --accent-1: #C14953; [cite_start]/* Striking Red (Primary Accent) [cite: 11] */
+    --accent-2: #4C4C47; [cite_start]/* Dark Grey (Secondary Dark) [cite: 9] */
+    --accent-3: #848FA5; [cite_start]/* Muted Periwinkle (Neutral/Borders) [cite: 10] */
+    --accent-4: #4C4C47; [cite_start]/* Dark Grey (Can be used for hover state) [cite: 9] */
 
-    /* Typography Variables */
-    --font-masthead: 'Anton', "Bebas Neue", "Impact", sans-serif; /* Condensed, Bold vibe */
-    --font-ui: 'Inter', "IBM Plex Sans", sans-serif;             /* Clean, Sans-serif */
-    --font-body: 'Merriweather', "Source Serif 4", Georgia, serif; /* Editorial Serif */
+    /* Typography Variables (REMAIN UNCHANGED) */
+    --font-masthead: 'Anton', "Bebas Neue", "Impact", sans-serif; 
+    --font-ui: 'Inter', "IBM Plex Sans", sans-serif;             
+    --font-body: 'Merriweather', "Source Serif 4", Georgia, serif; 
     --line-height-body: 1.65;
     --base-font-size: 18px;
 
-    /* Default Theme: Terracotta-led (Mapping global to specific theme vars) */
+    /* Default Theme: Red-led (Mapping global to specific theme vars) */
     --bg: var(--bg-base);
     --fg: var(--fg-base);
-    --color-primary: var(--accent-1); 
-    --color-secondary: var(--accent-4);
+    --color-primary: var(--accent-1); /* Links/Buttons will be Red */
+    --color-secondary: var(--accent-2); /* Hover state will be Dark Grey */
     --color-text: var(--fg);
-    --color-light: #DDD;
+    --color-light: var(--accent-3); /* Borders/Separators will be Periwinkle */
 }
 
 /* --- 3. THEME OVERRIDES (Controlled by theme-switcher.js) --- */

@@ -100,7 +100,7 @@
             display: block; 
         }
 
-        /* NEW FIX: Style for the LAST article to break the column structure and take full width (Mobile and Desktop) */
+        /* FIX: Style for articles that must break the column structure and take full width (1-column break) */
         .article-full-span {
             /* Full span properties for desktop */
             column-span: all;
@@ -110,12 +110,18 @@
             margin-left: 0;
             margin-right: 0;
             margin-bottom: 48px; 
+            /* On mobile, this will still be a regular article, but it ensures a strong break on larger screens */
         }
 
         /* Ensure the image container for the full span is appropriately sized */
         .article-full-span .overflow-hidden {
             width: 100%;
         }
+        .article-full-span .card-image {
+            /* Ensure the image is still tall on desktop when spanning full width for impact */
+            height: 28rem !important; /* ~h-112, custom size for full-span impact */
+        }
+
 
         /* Accessibility: Visible Focus States */
         *:focus-visible {
@@ -220,19 +226,24 @@
     		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
     			image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" },
     		
-    		// Grid articles - Heights assigned for maximum asymmetry
+    		// Grid articles - Heights and the isFullSpan flag assigned for controlled chaos
     		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
     			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-96' }, 
     		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
     			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-64' }, 
+            
+            // This article BREAKS the Masonry flow to create a single-column block
     		{ title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
-    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-48' }, 
+    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-48', isFullSpan: true }, 
+
     		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
     			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-80' }, 
     		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
     			image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-96' }, 
     		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
     			image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-56' }, 
+            
+            // This is the final article, which we will force to span full width for a clean end.
     		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
     			image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT", imageHeightClass: 'h-80' }, 
     	];
@@ -265,8 +276,12 @@
     	 * @returns {string} The complete HTML string.
     	 */
     	const renderArticleCard = (article, isHero = false, isLast = false) => {
-            // Use specific height for grid items or hero heights
-            const cardImageHeightClass = article.imageHeightClass || 'h-64';
+            
+            // Determine if the article should span full width (if marked, or if it's the last one)
+            const shouldSpanFull = (isLast && !isHero) || article.isFullSpan;
+
+            // Use specific height for grid items or hero heights. Override height for dramatic full-span break.
+            const cardImageHeightClass = shouldSpanFull ? 'h-96 md:h-112' : (article.imageHeightClass || 'h-64');
     		const imageSizeClass = isHero ? 'h-64 md:h-96' : cardImageHeightClass; 
             
             // Grid article titles are text-4xl
@@ -281,8 +296,8 @@
             // Reading time is smaller, separate meta
             const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60 transition-colors">${article.readingMinutes} min read</p>`;
 
-            // Apply full-span class only to the last grid article
-            const fullSpanClass = (isLast && !isHero) ? 'article-full-span' : '';
+            // Apply full-span class if needed
+            const fullSpanClass = shouldSpanFull ? 'article-full-span' : '';
 
     		return `
     			<a href="${article.slug}" class="card-link ${isHero ? '' : 'article-card'} ${fullSpanClass} group block transition-colors" aria-label="Read article by ${article.author}: ${article.title}">

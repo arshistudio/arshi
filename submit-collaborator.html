@@ -25,6 +25,9 @@
             background-color: var(--bg);
             color: var(--fg);
             font-family: var(--font-body);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         h1, h2, h3, .masthead {
             font-family: var(--font-masthead);
@@ -60,7 +63,7 @@
             display: block;
             margin-bottom: 0.25rem;
         }
-        .form-group input:not([type="checkbox"]):not([type="radio"]),
+        .form-group input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
         .form-group textarea,
         .form-group select {
             width: 100%;
@@ -76,17 +79,45 @@
             border-color: var(--color-primary);
             box-shadow: 0 0 0 1px var(--color-primary);
         }
+        .back-link {
+            font-family: var(--font-masthead);
+            color: var(--color-secondary);
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: var(--color-primary);
+        }
+        /* New Menu for themes from PDF */
+        .theme-menu {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--color-secondary);
+            font-size: 0.875rem; /* text-sm */
+            letter-spacing: 0.05em;
+        }
+        .theme-menu a {
+            transition: color 0.2s;
+        }
+        .theme-menu a:hover {
+            color: var(--color-primary);
+        }
     </style>
 </head>
 
 <body>
+    
     <header id="main-header" class="header-thin sticky top-0 z-40 w-full" style="background-color: var(--bg);">
         <div class="container mx-auto px-4 h-full flex items-center justify-between">
             <a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">ARSHI</a>
+            <nav class="theme-menu space-x-4 hidden sm:flex">
+                <a href="#">Society & Culture</a>
+                <a href="#">Fashion & Art</a>
+                <a href="#">Music & Film</a>
+            </nav>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8 md:py-12">
+    <main class="container mx-auto px-4 py-8 md:py-12 flex-grow">
         <div class="max-w-4xl mx-auto">
             
             <a href="submit.html" class="back-link inline-flex items-center text-xl mb-8 font-extrabold transition-colors duration-200 hover:text-[var(--color-primary)]">
@@ -180,5 +211,28 @@
                 </div>
         </div>
     </main>
+    
+    <footer class="mt-20 py-10 border-t border-[var(--color-light)] text-[var(--color-secondary)]" style="background-color: var(--bg);">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left">
+                <div class="flex space-x-6 mb-4 md:mb-0 text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider">
+                    <a href="about.html" class="hover:text-[var(--fg)] transition-colors">About</a>
+                    <a href="contact.html" class="hover:text-[var(--fg)] transition-colors">Contact</a>
+                    <a href="submit.html" class="text-[var(--color-primary)]">Submit</a>
+                </div>
+                <div class="flex space-x-6 mb-4 md:mb-0 text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider">
+                    <a href="#" class="hover:text-[var(--fg)] transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-[var(--fg)] transition-colors">X/Twitter</a>
+                    <a href="#" class="hover:text-[var(--fg)] transition-colors">Vimeo</a>
+                </div>
+                <div class="text-sm space-x-4">
+                    <a href="privacy.html" class="hover:text-[var(--fg)] transition-colors">Privacy Policy</a>
+                    <a href="legal.html" class="hover:text-[var(--fg)] transition-colors">Legal</a>
+                    <a href="accessibility.html" class="hover:text-[var(--fg)] transition-colors">Accessibility</a>
+                </div>
+            </div>
+            <p class="text-xs mt-6 text-center text-[var(--color-light)]">&copy; 2025 ARSHI Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

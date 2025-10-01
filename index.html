@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARSHI Studio | Independent Cultural Magazine</title>
+    <title>ARSHI Studio | Editorial Magazine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css"> 
-    <link rel="stylesheet" href="magazine-styles.css"> 
-
     <style>
+        
         /* NEW COLOR PALETTE: Palette Trial 3 (High Contrast Editorial) */
         :root {
             --bg: #E5DCC5; /* Beige (E5DCC5) - Main Background */
@@ -22,196 +20,497 @@
             --color-secondary: #4C4C47; /* Dark Gray (4C4C47) - Status Badge Background */
             --color-light: #848FA5; /* Blue-Gray (848FA5) - Light divider/border */
             --font-body: 'Inter', sans-serif;
-            --font-masthead: 'Bebas Neue', cursive; 
+            --font-masthead: 'Bebas Neue', cursive;
         }
 
-        /* --- Custom Styles for Asymmetric Grid --- */
-        /* Note: The 'tall' class is defined in your original magazine-styles.css */
-        
-        .article-grid {
-            /* Standard 3-column grid, relying on article-image heights for asymmetry */
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem; /* Consistent spacing */
+        /* Applying Variables & General Styles */
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-body);
+        }
+        h1, h2, .masthead {
+            font-family: var(--font-masthead);
         }
         
-        /* Ensures the text stays readable under the images */
-        .grid-item h3 {
-            font-size: 1.15rem; 
-            font-weight: 700;
-            margin-top: 0.5rem;
-            line-height: 1.3;
+        /* Thin Sticky Header Height */
+        .header-thin {
+            height: 64px;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .article-grid {
-                grid-template-columns: 1fr; /* Single column on small screens */
-            }
-            .grid-item.tall .article-image {
-                height: 300px; /* Normalize taller images on mobile */
+        /* HEADER FIX: Top banner is sticky and styled */
+        #main-header {
+            border-bottom: 1px solid var(--color-light); 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* LOGO FIX */
+        .logo {
+            font-size: 4rem;
+            letter-spacing: -0.07em;
+            font-weight: 700 !important;
+            color: var(--fg);
+            font-family: var(--font-masthead);
+        }
+
+        .masthead-text {
+            font-size: clamp(3rem, 8vw + 1rem, 6.5rem); 
+            letter-spacing: 0.05em; 
+            line-height: 1;
+        }
+        
+        .card-link:hover .card-image {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        /* ---------------------------------------------------- */
+        /* THE STABLE MASONRY FIX (Flexbox Columns)             */
+        /* ---------------------------------------------------- */
+
+        .masonry-grid {
+            /* The main container is NOT flex, it's a standard block to hold groups */
+            display: block; 
+            width: 100%;
+            padding-top: 32px; 
+        }
+
+        .grid-group {
+            display: flex; /* This is the Flex container for the columns */
+            column-gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        /* Define the structure for the columns */
+        .grid-column {
+            display: flex;
+            flex-direction: column; /* Stacks articles vertically in a column */
+            width: 100%; /* Default to full width on mobile */
+        }
+        
+        /* Desktop/Tablet: Three columns, each 1/3 width */
+        @media (min-width: 768px) { 
+            .grid-column {
+                width: calc(33.333% - 16px); /* 1/3rd width minus half the gap on each side */
             }
         }
+        
+        /* Article Card Styles */
+        .article-card {
+            margin-bottom: 24px; /* Consistent spacing between cards */
+            display: block; 
+        }
+
+        /* Style for articles that must break the column structure and take full width */
+        .article-full-span {
+            width: 100%; 
+            margin-top: 24px; 
+            margin-bottom: 48px; 
+            /* Full-span items are not inside a .grid-column, they are direct children of .masonry-grid */
+        }
+
+        /* Ensure the image container for the full span is appropriately sized */
+        .article-full-span .card-image {
+            height: 28rem !important;
+        }
+        
+        .hero-article-card .card-image {
+             height: 28rem !important;
+        }
+        
+        /* ---------------------------------------------------- */
+
+        /* Accessibility: Visible Focus States */
+        *:focus-visible {
+            outline: 3px solid var(--color-primary) !important;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
     </style>
 </head>
-<body class="bg-[var(--bg)] text-[var(--fg)] min-h-screen flex flex-col">
 
-    <header class="shadow-sm">
-        <nav class="flex items-center justify-between p-4 max-w-7xl mx-auto">
-            <div class="logo text-3xl font-[var(--font-masthead)] tracking-widest">
-                <a href="index.html" class="text-[var(--fg)] hover:text-[var(--color-primary)] transition-colors">ARSHI</a>
-            </div> 
-            
-            <ul class="categories hidden lg:flex space-x-8 font-[var(--font-masthead)] text-lg uppercase tracking-wider">
-                <li><a href="category-list.html?cat=society-culture" class="hover:text-[var(--color-primary)] transition-colors">Society & Culture</a></li>
-                <li><a href="category-list.html?cat=fashion-art" class="hover:text-[var(--color-primary)] transition-colors">Fashion & Art</a></li>
-                <li><a href="category-list.html?cat=music-film" class="hover:text-[var(--color-primary)] transition-colors">Music & Film</a></li>
-            </ul>
-            
-            <ul class="secondary-links-desktop hidden lg:flex space-x-6 text-sm uppercase font-semibold">
-                <li><a href="about.html" class="hover:text-[var(--color-primary)] transition-colors">About</a></li>
-                <li><a href="contact.html" class="hover:text-[var(--color-primary)] transition-colors">Contact</a></li>
-                <li><a href="submit.html" class="text-[var(--color-primary)] hover:text-[var(--fg)] transition-colors">Submit</a></li>
-                <li><button id="theme-switcher" class="text-xs uppercase font-semibold">Theme</button></li>
-            </ul>
-            
-            <div class="hamburger text-2xl lg:hidden">☰</div>
-        </nav>
-        </header>
+<body>
 
-    <main class="magazine-layout flex-grow">
-        
-        <section id="featured-story" class="mb-10">
-            <a href="article-blueprint.html" class="block">
-                <div class="feature-image" style="background-image: url('assets/featured-hero.jpg');">
-                    </div>
-                <p class="section-tag text-base mt-4 ml-[5%]">Society & Culture</p>
-                <h1 class="text-[3rem] sm:text-[4.5rem] font-[var(--font-masthead)] leading-none mt-2 ml-[5%] mr-[5%] border-b border-[var(--color-light)] pb-4 hover:text-[var(--color-primary)] transition-colors">
-                    The Silent Language of Cities: A Global Report on Urban Isolation
-                </h1>
-            </a>
-        </section>
+    <header id="main-header" class="header-thin sticky top-0 z-40 w-full"
+    			style="background-color: var(--bg);">
+    	<div class="container mx-auto px-4 h-full flex items-center justify-between">
+    			
+    			<a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
+    				ARSHI
+    			</a>
 
-        <div class="flex flex-col space-y-16 p-4 sm:p-6 lg:p-10">
+    			<nav class="flex items-center space-x-6">
+    				<div class="hidden lg:flex space-x-6 text-base font-semibold" role="navigation" aria-label="Main Categories">
+    					<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
+    					<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
+    					<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
+    				</div>
 
-            <section id="fashion-art-grid" class="border-b border-[var(--color-light)] pb-10">
-                <h2 class="category-heading text-2xl sm:text-3xl font-[var(--font-masthead)] uppercase tracking-wider mb-8 border-b-2 border-[var(--color-primary)] inline-block pb-1">Fashion & Art</h2>
-                
-                <div class="article-grid">
-                    <div class="grid-item">
-                        <a href="article-blueprint.html">
-                            <div class="article-image" style="background-image: url('assets/fashion-1.jpg');"></div>
-                            <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name A. / 8 min read</p>
-                            <h3 class="hover:text-[var(--color-primary)] transition-colors">The Resurgence of Craftsmanship: Why 'Slow Design' is the New Black</h3>
-                        </a>
-                    </div>
-                    <div class="grid-item **tall**">
-                        <a href="article-blueprint.html">
-                            <div class="article-image" style="background-image: url('assets/art-2.jpg');"></div>
-                            <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name B. / 5 min read</p>
-                            <h3 class="hover:text-[var(--color-primary)] transition-colors">Challenging the Canon: An Interview with Abstract Painter Lei Wu</h3>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="article-blueprint.html">
-                            <div class="article-image" style="background-image: url('assets/fashion-3.jpg');"></div>
-                            <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name C. / 6 min read</p>
-                            <h3 class="hover:text-[var(--color-primary)] transition-colors">Digital Threads: How Avatars are Redefining Fashion's Boundaries</h3>
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-8 text-center">
-                    <a href="category-list.html?cat=fashion-art" class="cat-card inline-block text-[var(--color-primary)] border border-[var(--color-primary)] px-6 py-2 uppercase font-semibold text-sm hover:bg-[var(--color-primary)] hover:text-[var(--bg)] transition-all">View All Fashion & Art</a>
-                </div>
-            </section>
+    				<div class="flex items-center space-x-4 lg:space-x-6">
+    					<button id="search-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Search">
+    						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    					</button>
 
-            <section id="music-film-grid" class="border-b border-[var(--color-light)] pb-10">
-                <h2 class="category-heading text-2xl sm:text-3xl font-[var(--font-masthead)] uppercase tracking-wider mb-8 border-b-2 border-[var(--color-primary)] inline-block pb-1">Music & Film</h2>
-                
-                <div class="article-grid">
-                    <div class="grid-item **tall**">
-                        <a href="article-blueprint.html">
-                            <div class="article-image" style="background-image: url('assets/music-4.jpg');"></div>
-                            <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name D. / 7 min read</p>
-                            <h3 class="hover:text-[var(--color-primary)] transition-colors">Beyond the Algorithm: Finding Authenticity in Indie Sound</h3>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="article-blueprint.html">
-                            <div class="article-image" style="background-image: url('assets/film-5.jpg');"></div>
-                            <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name E. / 4 min read</p>
-                            <h3 class="hover:text-[var(--color-primary)] transition-colors">The New Wave of Arab Cinema: Documenting Identity and Exile</h3>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="article-blueprint.html">
-                            <div class="article-image" style="background-image: url('assets/music-6.jpg');"></div>
-                            <p class="article-meta text-sm text-[var(--color-secondary)] mt-2">By Name F. / 6 min read</p>
-                            <h3 class="hover:text-[var(--color-primary)] transition-colors">How '90s Rave Culture is Inspiring Gen Z's Political Consciousness</h3>
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-8 text-center">
-                    <a href="category-list.html?cat=music-film" class="cat-card inline-block text-[var(--color-primary)] border border-[var(--color-primary)] px-6 py-2 uppercase font-semibold text-sm hover:bg-[var(--color-primary)] hover:text-[var(--bg)] transition-all">View All Music & Film</a>
-                </div>
-            </section>
+    					<button id="menu-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Menu">
+    						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    					</button>
+    				</div>
+    			</nav>
+    	</div>
+    			
+    </header>
+    	
+    <div id="desktop-utility-drawer" class="hidden absolute top-16 right-0 z-30 w-64 p-6 border-l border-b border-[var(--fg)]/20 shadow-xl" style="background-color: var(--bg);">
+    	<nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
+    		<a href="about.html" class="hover-underline">About</a>
+    		<a href="contact.html" class="hover-underline">Contact</a>
+    		<a href="submit.html" class="hover-underline">Submit</a>
+    	</nav>
+    </div>
+    
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full duration-300 ease-in-out lg:hidden" style="background-color: var(--bg);">
+    	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl" style="background-color: var(--bg);">
+    		<button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
+    			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    		</button>
+    		<nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
+    			<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
+    			<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
+    			<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
+    			<div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
+    				<a href="about.html" class="block hover-underline">About</a>
+    				<a href="contact.html" class="block hover-underline">Contact</a>
+    				<a href="submit.html" class="block hover-underline">Submit</a>
+    			</div>
+    		</nav>
+    	</div>
+    </div>
+    
+    <div id="search-overlay" class="fixed inset-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md hidden" aria-modal="true" role="dialog" aria-label="Search">
+    	<div class="flex flex-col items-center justify-start pt-20 h-full">
+    		<button id="close-search-button" class="absolute top-8 right-8 p-4 text-[var(--fg)]" aria-label="Close Search">
+    			<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    		</button>
+    		<input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none" style="font-family: var(--font-masthead);">
+    		<p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
+    	</div>
+    </div>
+    
+    <section id="hero-article" class="w-full mb-8 hero-article-full-wrapper">
+    	</section>
 
-            <section id="submission-cta" class="pb-10 pt-10 text-center bg-[var(--bg)] border-2 border-dashed border-[var(--color-primary)] max-w-4xl mx-auto p-8">
-                <h2 class="text-3xl font-[var(--font-masthead)] uppercase tracking-wider mb-4">Got an Independent Voice?</h2>
-                <p class="text-lg mb-6">ARSHI is a platform for emerging, unpolished, and original voices. We champion freedom of expression and full recognition of authorship.</p>
-                <a href="submit.html" class="inline-block bg-[var(--color-primary)] text-[var(--bg)] font-bold text-lg uppercase tracking-widest px-10 py-3 hover:bg-[var(--fg)] transition-colors">
-                    Submit Your Work
-                </a>
-            </section>
-        </div>
+    <div class="container mx-auto px-4">
+    	<hr class="border-t-2 border-[var(--fg)]/20 my-4 md:my-8">
+    </div>
 
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+    	
+    	<section id="article-grid-container">
+    		<div id="article-grid" class="masonry-grid">
+    			</div>
+    	</section>
     </main>
 
-    <footer>
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left p-10">
-            
-            <div class="flex flex-wrap justify-center md:justify-start space-x-6 mb-4 md:mb-0 text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider">
-                <a href="about.html" class="hover:text-[var(--color-primary)] transition-colors">About</a>
-                <a href="contact.html" class="hover:text-[var(--color-primary)] transition-colors">Contact</a>
-                <a href="submit.html" class="text-[var(--color-primary)] hover:text-[var(--fg)] transition-colors">Submit</a>
-            </div>
+    <footer class="mt-12 py-6 border-t border-[var(--color-light)]" style="background-color: var(--bg);">
+    	<div class="container mx-auto px-4 text-sm flex flex-col md:flex-row justify-between items-center md:items-start space-y-4 md:space-y-0">
+    			
+    		<div class="flex space-x-4 font-semibold order-2 md:order-1 text-center md:text-left">
+    			<a href="about.html" class="hover-underline">About</a>
+    			<a href="contact.html" class="hover-underline">Contact</a>
+    			<a href="submit.html" class="hover-underline">Submit</a>
+    		</div>
 
-            <div class="flex flex-wrap justify-center md:justify-end space-x-6 mb-4 md:mb-0 text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider">
-                <a href="#" class="hover:text-[var(--color-primary)] transition-colors">Instagram</a>
-                <a href="#" class="hover:text-[var(--color-primary)] transition-colors">X/Twitter</a>
-                <a href="#" class="hover:text-[var(--color-primary)] transition-colors">Vimeo</a>
-            </div>
+    		<div class="flex space-x-6 order-1 md:order-2">
+    			<a href="#" target="_blank" aria-label="Follow us on Instagram" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
+    				Instagram
+    			</a>
+    		</div>
+    			
+    		<div class="flex space-x-4 text-xs font-medium text-[var(--fg)]/70 order-3 md:order-3 text-center md:text-right">
+    			<a href="privacy.html" class="hover:text-[var(--color-primary)]">Privacy Policy</a>
+    			<a href="legal.html" class="hover:text-[var(--color-primary)]">Legal</a>
+    			<a href="accessibility.html" class="hover:text-[var(--color-primary)]">Accessibility</a>
+    		</div>
 
-            <div class="text-xs space-x-4">
-                <a href="privacy.html" class="hover:text-[var(--color-primary)] transition-colors">Privacy Policy</a>
-                <a href="legal.html" class="hover:text-[var(--color-primary)] transition-colors">Legal</a>
-            </div>
-        </div>
-        <p class="text-xs mt-6 text-center text-[var(--color-secondary)] pb-6">&copy; 2025 ARSHI Studio. All Rights Reserved.</p>
+    	</div>
     </footer>
 
-    <script src="theme-switcher.js" defer></script>
+
     <script>
-        // Hamburger and Mobile Menu JS (Restored functionality from your original index.html)
-        document.addEventListener('DOMContentLoaded', () => {
-            const body = document.body;
-            const menuDrawer = document.querySelector('.mobile-menu'); // Assuming you have a hidden mobile-menu element
-            const hamburger = document.querySelector('.hamburger');
+    	// --- Data Model ---
+    	const articles = [
+    		// Hero article 
+    		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
+    			image: "https://placehold.co/1600x900/A4492F/F8F7F4?text=FULL+WIDTH+FEATURED+EDITORIAL+IMAGE" },
+    		
+    		// --- GRID ARTICLES (Total 15) ---
 
-            if (hamburger && menuDrawer) {
-                hamburger.addEventListener('click', () => {
-                    menuDrawer.classList.toggle('translate-x-full');
-                    body.style.overflow = menuDrawer.classList.contains('translate-x-full') ? '' : 'hidden';
-                });
+    		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
+    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-112' },	
+    		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
+    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-96' },	
+    			
+    		{ isFullSpan: true, title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
+    			image: "https://placehold.co/1200x500/3B5323/f7f6f2?text=FULL+SPAN+SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-112' },
 
-                menuDrawer.querySelectorAll('a').forEach(item => {
-                    item.addEventListener('click', () => {
-                        menuDrawer.classList.add('translate-x-full');
-                        body.style.overflow = '';
-                    });
-                });
-            }
-        });
+    		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
+    			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-96' },	
+    		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
+    			image: "https://placehold.co/600x400/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-64' },	
+    		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
+    			image: "https://placehold.co/600x850/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-112' },	
+    			
+    		{ isFullSpan: true, title: "The geometry of silence: A photographer's retreat to the desert", slug: "article-blueprint.html?slug=desert-silence", status: "published", category: "Fashion & Art", author: "Hana Al-Otaibi", readingMinutes: 6, dek: "Capturing the vast, empty landscapes where sound dies.",	
+    			image: "https://placehold.co/1200x550/4C4C47/E5DCC5?text=FULL+SPAN+DESERT+PHOTO", imageHeightClass: 'h-112' },	
+
+    		{ title: "Why micro-narratives dominate TikTok: The attention economy", slug: "article-blueprint.html?slug=tiktok-economy", status: "published", category: "Society & Culture", author: "Kenji Tanaka", readingMinutes: 4, dek: "How 15-second clips rewrite the rules of storytelling.",	
+    			image: "https://placehold.co/600x600/848FA5/2D2D2A?text=SOCIAL+MEDIA+ANALYSIS", imageHeightClass: 'h-80' },	
+    		{ title: "Revival of the handmade: Slow fashion in a fast world", slug: "article-blueprint.html?slug=slow-fashion", status: "published", category: "Fashion & Art", author: "Maria Lopez", readingMinutes: 7, dek: "The artisans pushing back against mass production.",	
+    			image: "https://placehold.co/600x850/C14953/E5DCC5?text=ARTISAN+FASHION", imageHeightClass: 'h-112' },	
+
+    		{ isFullSpan: true, title: "Beyond the algorithm: Finding the true underground music scene", slug: "article-blueprint.html?slug=underground-music", status: "coming_soon", category: "Music & Film", author: "Zack Jones", readingMinutes: 5, dek: "A guide to the venues and labels the internet ignores.",	
+    			image: "https://placehold.co/1200x500/2D2D2A/848FA5?text=FULL+SPAN+UNDERGROUND+SOUND", imageHeightClass: 'h-112' },	
+    			
+    		{ title: "The paradox of heritage in contemporary architecture", slug: "article-blueprint.html?slug=heritage-architecture", status: "published", category: "Society & Culture", author: "Sarah Kim", readingMinutes: 8, dek: "Building the future while honoring the past.",	
+    			image: "https://placehold.co/600x500/4C4C47/E5DCC5?text=ARCHITECTURE+DEBATE", imageHeightClass: 'h-80' },	
+    		{ title: "Color theory and emotional marketing: A deep dive", slug: "article-blueprint.html?slug=color-theory", status: "published", category: "Fashion & Art", author: "David Chen", readingMinutes: 6, dek: "How brands use psychology to influence purchasing.",	
+    			image: "https://placehold.co/600x700/C14953/2D2D2A?text=MARKETING+PSYCH", imageHeightClass: 'h-96' },
+
+    		{ title: "The forgotten sound of analogue synthesisers", slug: "article-blueprint.html?slug=analogue-synths", status: "coming_soon", category: "Music & Film", author: "Anna Brandt", readingMinutes: 4, dek: "Warmth, drift, and the human element in machine music.",	
+    			image: "https://placehold.co/600x700/848FA5/E5DCC5?text=VINTAGE+GEAR", imageHeightClass: 'h-96' },	
+    		{ title: "The rise of the decentralized art collective", slug: "article-blueprint.html?slug=decentralized-art", status: "published", category: "Fashion & Art", author: "Jules Verne", readingMinutes: 5, dek: "How technology enables new forms of artistic collaboration.",	
+    			image: "https://placehold.co/600x400/2D2D2A/C14953?text=ART+COLLECTIVE+FUTURE", imageHeightClass: 'h-64' },	
+    			
+    		{ isFullSpan: true, title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
+    			image: "https://placehold.co/1200x500/1C2A44/F8F7F4?text=FULL+SPAN+MAGAZINE+LAYOUT", imageHeightClass: 'h-112' },	
+    	];
+
+    	// --- Utility Functions ---
+
+    	/**
+    	 * Renders the status badge for 'coming_soon' articles.
+    	 */
+    	const renderStatusBadge = (status) => {
+    		if (status === 'coming_soon') {
+    			return `
+    				<span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)]"
+    							style="background-color: var(--color-secondary);">	
+    						COMING SOON
+    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCTOBER 10th 2025</span>	
+    				</span>
+    			`;
+    		}
+    		return '';
+    	};
+
+    	/**
+    	 * Generates the HTML for a single article card.
+    	 */
+    	const renderArticleCard = (article, isHero = false) => {
+    			const shouldSpanFull = article.isFullSpan || false;	
+    			
+    			const heroImageHeight = 'h-96 md:h-[40rem]';
+    			const cardImageHeightClass = article.imageHeightClass || 'h-64';	
+    			const imageSizeClass = isHero ? heroImageHeight : cardImageHeightClass;	
+    			
+    			const titleClass = isHero ? 'masthead-text mt-4 leading-none' : (shouldSpanFull ? 'text-5xl mt-3 leading-snug' : 'text-4xl mt-3 leading-snug');
+    			const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-3xl' : 'text-base font-ui mt-2 hidden lg:block';
+    			
+    			const authorCredit = isHero	
+    				? `<p class="text-xl md:text-2xl font-extrabold mt-3 text-[var(--color-primary)]" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`
+    				: `<p class="text-xl font-extrabold mt-3 text-[var(--color-primary)]" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
+
+    			const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60">${article.readingMinutes} min read</p>`;
+
+    			const fullSpanClass = shouldSpanFull ? 'article-full-span' : '';
+
+    		return `
+    			<a href="${article.slug}" class="card-link ${isHero ? 'hero-article-card' : 'article-card'} ${fullSpanClass} group block" aria-label="Read article by ${article.author}: ${article.title}">
+    					
+    					<div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
+    						<img loading="lazy"	
+    							src="${article.image}"	
+    							alt="${article.title}"	
+    							onerror="this.onerror=null;this.src='https://placehold.co/1200x800/808080/FFF?text=Image+Missing';"
+    							class="card-image w-full object-cover transition-transform duration-500 ease-in-out ${imageSizeClass} ${isHero ? 'rounded-none' : 'rounded-lg'}"
+    						>
+    					</div>
+
+    					<div class="${isHero ? 'container mx-auto px-4' : 'py-4'}">
+    						<div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+    							<span class="px-2 py-1 text-xs font-bold uppercase rounded-full border border-current text-[var(--fg)]">
+    								${article.category}
+    							</span>
+    							${renderStatusBadge(article.status)}
+    						</div>
+
+    						<h3 class="font-extrabold ${titleClass} tracking-wide" style="font-family: var(--font-masthead);">
+    							${article.title.toUpperCase()}
+    						</h3>
+
+    							${authorCredit}
+
+    						<p class="${dekClass} text-[var(--fg)]/80">
+    							${article.dek}
+    						</p>
+
+    						${readingMeta}
+    					</div>
+    			</a>
+    		`;
+    	};
+
+    	/**
+    	 * Renders all articles into their respective containers (Hero and Grid).
+    	 * This revised version correctly handles the insertion of columns and full-span articles.
+    	 */
+    	const renderContent = () => {
+    		const heroContainer = document.getElementById('hero-article');
+    		const gridContainer = document.getElementById('article-grid');
+    		
+    			gridContainer.innerHTML = ''; // Clear existing content
+
+    		let heroArticle = articles.find(a => a.isHero);
+    			if (heroArticle) {
+    			heroContainer.innerHTML = renderArticleCard(heroArticle, true);
+    		}
+    			
+    			const gridArticles = articles.filter(a => !a.isHero);
+    			
+    			const numColumns = 3;
+    			let currentColumnHtmls = Array(numColumns).fill(''); // Stores HTML strings for each column
+    			let columnHeights = Array(numColumns).fill(0); // Tracks virtual height
+
+    			// Helper to reset and build a new group of columns
+    			const buildAndAppendColumnGroup = () => {
+    				const groupDiv = document.createElement('div');
+    				groupDiv.className = 'grid-group';
+    				
+    				for (let i = 0; i < numColumns; i++) {
+    					const colDiv = document.createElement('div');
+    					colDiv.className = 'grid-column';
+    					colDiv.innerHTML = currentColumnHtmls[i];
+    					groupDiv.appendChild(colDiv);
+    				}
+    				gridContainer.appendChild(groupDiv);
+    				
+    				// Reset for the next group
+    				currentColumnHtmls = Array(numColumns).fill('');
+    				columnHeights.fill(0);
+    			};
+
+    			gridArticles.forEach((article) => {
+    				const articleHtml = renderArticleCard(article, false);
+    				
+    				if (article.isFullSpan) {
+    					// 1. If a full-span article is hit, first close the current column group (if it has content)
+    					if (columnHeights.some(h => h > 0)) {
+    						buildAndAppendColumnGroup();
+    					}
+
+    					// 2. Append the full-span article directly to the main grid container
+    					const fullSpanDiv = document.createElement('div');
+    					fullSpanDiv.innerHTML = articleHtml;
+    					gridContainer.appendChild(fullSpanDiv.firstChild);
+    					
+    					// 3. The next articles must start a new column group, so heights are already zeroed by buildAndAppendColumnGroup.
+    				} else {
+    					// Normal Card: Find the shortest column (index of the lowest height)
+    					let shortestColumnIndex = 0;
+    					let minHeight = columnHeights[0];
+    					for (let i = 1; i < numColumns; i++) {
+    						if (columnHeights[i] < minHeight) {
+    							minHeight = columnHeights[i];
+    							shortestColumnIndex = i;
+    						}
+    					}
+    					
+    					// Append article HTML to the chosen column's string
+    					currentColumnHtmls[shortestColumnIndex] += articleHtml;
+
+    					// Update the height estimate (Rough estimate: h-xx * 0.25 + text/padding)
+    					const heightEstimate = (article.imageHeightClass ? parseInt(article.imageHeightClass.replace('h-', '')) : 64) * 0.25;	
+    					columnHeights[shortestColumnIndex] += heightEstimate + 15;
+    				}
+    			});
+
+    			// After the loop, append any remaining articles in the last column group
+    			if (columnHeights.some(h => h > 0)) {
+    				buildAndAppendColumnGroup();
+    			}
+    	};
+
+
+    	// --- Event Listeners and Initializers ---
+
+    	document.addEventListener('DOMContentLoaded', () => {
+    		
+    		// 1. Render Content (Now using the stable Flexbox method)
+    		renderContent();
+
+    		// 2. Attach Interaction Listeners (Standard logic)
+    			
+    			const body = document.body;
+    			const menuDrawer = document.getElementById('mobile-menu-drawer');
+    			const searchOverlay = document.getElementById('search-overlay');
+    			const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
+
+    			const menuButton = document.getElementById('menu-button');
+    			
+    			menuButton.addEventListener('click', () => {
+    				if (window.innerWidth <= 1024) {	
+    					menuDrawer.classList.remove('translate-x-full');
+    					body.style.overflow = 'hidden';	
+    				} else {	
+    					desktopUtilityDrawer.classList.toggle('hidden');
+    				}
+    			});
+
+    			document.getElementById('close-menu-button').addEventListener('click', () => {
+    				menuDrawer.classList.add('translate-x-full');
+    				body.style.overflow = '';
+    			});
+
+    			document.getElementById('search-button').addEventListener('click', () => {
+    				searchOverlay.classList.remove('hidden');
+    				body.style.overflow = 'hidden';
+    				searchOverlay.querySelector('input').focus();	
+    			});
+    			document.getElementById('close-search-button').addEventListener('click', () => {
+    				searchOverlay.classList.add('hidden');
+    				body.style.overflow = '';
+    			});
+
+    			document.addEventListener('keydown', (e) => {
+    				if (e.key === 'Escape') {
+    					if (!searchOverlay.classList.contains('hidden')) {
+    						searchOverlay.classList.add('hidden');
+    						body.style.overflow = '';
+    					}
+    					if (!menuDrawer.classList.contains('translate-x-full')) {
+    						menuDrawer.classList.add('translate-x-full');
+    						body.style.overflow = '';
+    					}
+    					if (!desktopUtilityDrawer.classList.contains('hidden')) {
+    						desktopUtilityDrawer.classList.add('hidden');
+    					}
+    				}
+    			});
+
+    			document.addEventListener('click', (e) => {
+    				const headerRight = document.querySelector('header .flex.items-center.space-x-6');
+    				const isClickInsideHeader = headerRight.contains(e.target);
+
+    				if (window.innerWidth > 1024 && !desktopUtilityDrawer.classList.contains('hidden')) {
+    					if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
+    						desktopUtilityDrawer.classList.add('hidden');
+    					}
+    				}
+    			});
+    	});
     </script>
 </body>
 </html>

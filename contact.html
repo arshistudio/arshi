@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
+        
         /* NEW COLOR PALETTE: Palette Trial 3 (High Contrast Editorial) */
         :root {
             --bg: #E5DCC5; /* Beige (E5DCC5) - Main Background */
@@ -33,7 +34,12 @@
             letter-spacing: 0.05em;
         }
         
-        /* Header Logo Style from index.html */
+        /* Consistent Thin Header Height */
+        .header-thin {
+            height: 64px;
+        }
+        
+        /* LOGO FIX (Exact match to index) */
         .logo {
             font-size: 4rem;
             letter-spacing: -0.07em;
@@ -42,11 +48,12 @@
             font-family: var(--font-masthead);
         }
 
-        /* Consistent Thin Header Height */
-        .header-thin {
-            height: 64px;
+        /* HEADER FIX: Top banner is sticky and styled */
+        #main-header {
+            border-bottom: 1px solid var(--color-light); 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
-        
+
         /* Consistent Hover Underline */
         .hover-underline {
             position: relative;
@@ -68,14 +75,14 @@
             left: 0;
             background: var(--color-primary);
         }
-
+        
         /* Form Styling */
         .input-field {
             width: 100%;
             padding: 1rem;
             margin-top: 0.5rem;
             background-color: transparent;
-            border: 2px solid var(--fg);
+            border: 2px solid var(--fg); 
             color: var(--fg);
             transition: border-color 0.3s;
             outline: none;
@@ -85,10 +92,11 @@
             box-shadow: 0 0 0 1px var(--color-primary);
         }
 
-        /* Button Styling */
+        /* Button Styling (Used for Send Message & Submit Pitch) */
         .submit-button {
             background-color: var(--color-primary);
             color: var(--bg);
+            font-family: var(--font-body);
             font-weight: 700;
             padding: 1rem 2rem;
             transition: background-color 0.3s, opacity 0.3s;
@@ -103,7 +111,7 @@
 <body>
 
     <header id="main-header" class="header-thin sticky top-0 z-40 w-full"
-    			style="background-color: var(--bg); border-bottom: 1px solid var(--color-light); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+    			style="background-color: var(--bg);">
     	<div class="container mx-auto px-4 h-full flex items-center justify-between">
     			
     			<a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
@@ -130,9 +138,47 @@
     	</div>
     			
     </header>
-
+    	
+    <div id="desktop-utility-drawer" class="hidden absolute top-16 right-0 z-30 w-64 p-6 border-l border-b border-[var(--fg)]/20 shadow-xl" style="background-color: var(--bg);">
+    	<nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
+    		<a href="about.html" class="hover-underline">About</a>
+    		<a href="contact.html" class="hover-underline">Contact</a>
+    		<a href="submit.html" class="hover-underline">Submit</a>
+    	</nav>
+    </div>
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full duration-300 ease-in-out lg:hidden" style="background-color: var(--bg);">
+    	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl" style="background-color: var(--bg);">
+    		<button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
+    			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    		</button>
+    		<nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
+    			<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
+    			<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
+    			<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
+    			<div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
+    				<a href="about.html" class="block hover-underline">About</a>
+    				<a href="contact.html" class="block hover-underline">Contact</a>
+    				<a href="submit.html" class="block hover-underline">Submit</a>
+    			</div>
+    		</nav>
+    	</div>
+    </div>
+    <div id="search-overlay" class="fixed inset-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md hidden" aria-modal="true" role="dialog" aria-label="Search">
+    	<div class="flex flex-col items-center justify-start pt-20 h-full">
+    		<button id="close-search-button" class="absolute top-8 right-8 p-4 text-[var(--fg)]" aria-label="Close Search">
+    			<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    		</button>
+    		<input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none" style="font-family: var(--font-masthead);">
+    		<p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
+    	</div>
+    </div>
     <main class="container mx-auto px-4 py-12 md:py-20 max-w-3xl">
         
+        <a href="#" id="back-button" class="inline-flex items-center text-sm font-semibold mb-6 group" aria-label="Go back to previous page">
+            <svg class="w-5 h-5 mr-2 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span class="hover-underline">BACK TO PREVIOUS PAGE</span>
+        </a>
+
         <h1 class="text-7xl md:text-9xl font-extrabold mb-8 tracking-widest leading-none" style="color: var(--color-primary);">
             CONTACT
         </h1>
@@ -181,8 +227,8 @@
                 <p class="text-lg text-[var(--fg)]/80 mb-3">
                     To pitch an article, visual piece, or creative project for ARSHI Magazine.
                 </p>
-                <a href="submit.html" class="inline-block py-2 px-4 text-lg font-bold text-[var(--bg)] rounded transition-colors" style="background-color: var(--color-primary);">
-                    View Guidelines
+                <a href="submit.html" class="submit-button inline-block text-lg rounded">
+                    SUBMIT YOUR PITCH
                 </a>
             </div>
             
@@ -191,39 +237,132 @@
                 <p class="text-lg text-[var(--fg)]/80 mb-3">
                     Report factual errors, ethical concerns, or legal notices related to content.
                 </p>
-                <a href="legal.html" class="inline-block py-2 px-4 text-lg font-bold text-[var(--bg)] rounded transition-colors" style="background-color: var(--color-secondary);">
-                    View Guidelines & Report
+                <a href="legal.html" class="inline-block py-2 px-4 text-sm font-bold text-[var(--bg)] rounded transition-colors" style="background-color: var(--color-secondary); font-family: var(--font-body);">
+                    REPORT AN ISSUE
                 </a>
             </div>
         </section>
         
         <section class="mt-12 pt-8" style="border-top: 1px solid var(--color-light);">
             <h2 class="text-4xl md:text-6xl font-extrabold mb-6" style="font-family: var(--font-masthead);">FOLLOW US</h2>
-            <div class="flex flex-col space-y-2 text-2xl font-extrabold md:text-3xl" style="font-family: var(--font-masthead);">
-                <a href="#" class="hover-underline block tracking-wider" style="color: var(--color-primary);" aria-label="ARSHI on Instagram">INSTAGRAM</a>
-                <a href="#" class="hover-underline block tracking-wider" style="color: var(--color-primary);" aria-label="ARSHI on X (Twitter)">X / TWITTER</a>
-                <a href="#" class="hover-underline block tracking-wider" style="color: var(--color-primary);" aria-label="ARSHI on Vimeo">VIMEO</a>
+            <div class="flex flex-col space-y-2 text-xl font-extrabold" style="font-family: var(--font-masthead);">
+                <a href="#" class="hover-underline block tracking-wider" style="color: var(--fg);" aria-label="ARSHI on Instagram">INSTAGRAM</a>
+                <a href="#" class="hover-underline block tracking-wider" style="color: var(--fg);" aria-label="ARSHI on X (Twitter)">X / TWITTER</a>
             </div>
         </section>
     </main>
     
+    <footer class="mt-12 py-6 border-t border-[var(--color-light)]" style="background-color: var(--bg);">
+        <div class="container mx-auto px-4 text-sm flex flex-col md:flex-row justify-between items-center md:items-start space-y-4 md:space-y-0">
+            
+            <div class="flex space-x-4 font-semibold order-2 md:order-1 text-center md:text-left">
+                <a href="about.html" class="hover-underline">About</a>
+                <a href="contact.html" class="hover-underline">Contact</a>
+                <a href="submit.html" class="hover-underline">Submit</a>
+            </div>
+
+            <div class="flex space-x-6 order-1 md:order-2">
+                <a href="#" target="_blank" aria-label="Follow us on Instagram" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
+                    Instagram
+                </a>
+                <a href="#" target="_blank" aria-label="Follow us on X (Twitter)" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
+                    X
+                </a>
+            </div>
+            
+            <div class="flex space-x-4 text-xs font-medium text-[var(--fg)]/70 order-3 md:order-3 text-center md:text-right">
+                <a href="privacy.html" class="hover:text-[var(--color-primary)]">Privacy Policy</a>
+                <a href="legal.html" class="hover:text-[var(--color-primary)]">Legal</a>
+                <a href="accessibility.html" class="hover:text-[var(--color-primary)]">Accessibility</a>
+            </div>
+
+        </div>
+    </footer>
+
     <script>
-        // Placeholder for simple menu/search interaction if needed, 
-        // kept minimal as the main focus was styling.
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchButton = document.getElementById('search-button');
-            if (searchButton) {
-                 searchButton.addEventListener('click', () => {
-                    alert('Search functionality activated. Implement search overlay.');
-                });
-            }
+    	document.addEventListener('DOMContentLoaded', () => {
+    		
+            const body = document.body;
+            const menuDrawer = document.getElementById('mobile-menu-drawer');
+            const searchOverlay = document.getElementById('search-overlay');
+            const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
+            const backButton = document.getElementById('back-button');
+
             const menuButton = document.getElementById('menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const searchButton = document.getElementById('search-button');
+            const closeSearchButton = document.getElementById('close-search-button');
+            
+            // --- HEADER INTERACTION LOGIC ---
+
             if (menuButton) {
-                 menuButton.addEventListener('click', () => {
-                    alert('Menu functionality activated. Implement mobile/desktop menu drawer.');
+                menuButton.addEventListener('click', () => {
+                    if (window.innerWidth <= 1024) { 
+                        menuDrawer.classList.remove('translate-x-full');
+                        body.style.overflow = 'hidden'; 
+                    } else { 
+                        desktopUtilityDrawer.classList.toggle('hidden');
+                    }
                 });
             }
-        });
+
+            if (closeMenuButton) {
+                closeMenuButton.addEventListener('click', () => {
+                    menuDrawer.classList.add('translate-x-full');
+                    body.style.overflow = '';
+                });
+            }
+
+            if (searchButton) {
+                searchButton.addEventListener('click', () => {
+                    searchOverlay.classList.remove('hidden');
+                    body.style.overflow = 'hidden';
+                    searchOverlay.querySelector('input').focus(); 
+                });
+            }
+            if (closeSearchButton) {
+                closeSearchButton.addEventListener('click', () => {
+                    searchOverlay.classList.add('hidden');
+                    body.style.overflow = '';
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (!searchOverlay.classList.contains('hidden')) {
+                        searchOverlay.classList.add('hidden');
+                        body.style.overflow = '';
+                    }
+                    if (!menuDrawer.classList.contains('translate-x-full')) {
+                        menuDrawer.classList.add('translate-x-full');
+                        body.style.overflow = '';
+                    }
+                    if (desktopUtilityDrawer && !desktopUtilityDrawer.classList.contains('hidden')) {
+                        desktopUtilityDrawer.classList.add('hidden');
+                    }
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                const headerRight = document.querySelector('header .flex.items-center.space-x-6');
+                const isClickInsideHeader = headerRight ? headerRight.contains(e.target) : false;
+
+                if (window.innerWidth > 1024 && desktopUtilityDrawer && !desktopUtilityDrawer.classList.contains('hidden')) {
+                    if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
+                        desktopUtilityDrawer.classList.add('hidden');
+                    }
+                }
+            });
+            
+            // --- PREVIOUS PAGE FUNCTIONALITY ---
+            if (backButton) {
+                backButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Uses the browser's history API to go back
+                    history.back();
+                });
+            }
+    	});
     </script>
 </body>
 </html>

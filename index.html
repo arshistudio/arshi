@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght=400;600;800&display=swap" rel="stylesheet">
     
     <style>
         
@@ -28,17 +28,12 @@
             height: 64px; /* Target ~56-64px */
         }
 
-        /* NEW: Header Scroll State Management */
+        /* FIXED: Header Scroll State REMOVED for visibility on load */
         #main-header {
             transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
-            border-bottom: none; /* Starts without border */
-            box-shadow: none; /* Starts without shadow */
-        }
-        
-        #main-header.scrolled-header {
-            /* Adds the necessary visual cues when scrolling down */
-            border-bottom: 1px solid var(--color-light); /* Adds border */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Adds shadow */
+            /* Header is fully visible on load */
+            border-bottom: 1px solid var(--color-light); 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
         
         /* Logo Size Fix: ensures it uses the size defined in styles.html (2.2rem) */
@@ -50,8 +45,8 @@
 
         /* Masthead Styling for the Hero section text */
         .masthead-text {
-            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem); /* Reduced from 4.5rem max */
-            letter-spacing: 0.05em; /* Tighter tracking for condensed look */
+            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem); 
+            letter-spacing: 0.05em; 
             line-height: 1;
         }
         
@@ -147,7 +142,7 @@
 
     <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
     	style="background-color: var(--bg);">
-    	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl">
+    	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl" style="background-color: var(--bg);">
     		<button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
     			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
     		</button>
@@ -190,11 +185,11 @@
     <script>
     	// --- Data Model ---
     	const articles = [
-    		// Hero article - Updated with a better placeholder image for visual coherence
+    		// Hero article 
     		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
     			image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" },
     		
-    		// Grid articles - Updated with more visually coherent placeholders
+    		// Grid articles 
     		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
     			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO" },
     		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
@@ -220,11 +215,12 @@
     	 */
     	const renderStatusBadge = (status) => {
     		if (status === 'coming_soon') {
+                // FIXED: Removed the inline JS comments
     			return `
     				<span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)] transition-colors"
-    							style="background-color: var(--color-secondary);"> /* Uses secondary dark accent from Palette 3 */
+    							style="background-color: var(--color-secondary);"> 
     						COMING SOON
-    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCT 2025</span> /* Shortened date to prevent overflow/disappearance */
+    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCT 2025</span>
     				</span>
     			`;
     		}
@@ -301,21 +297,8 @@
     	};
 
 
-    	// --- Theme Switching Logic REMOVED ---
-
-        /**
-         * Handles the sticky header's scroll state (shadow/border).
-         * Header is opaque by default (var(--bg)) and gains shadow/border when scrolled.
-         */
-        const handleScroll = () => {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 20) {
-                header.classList.add('scrolled-header');
-            } else {
-                header.classList.remove('scrolled-header');
-            }
-        };
-
+        // FIXED: Scroll logic is no longer needed as the header is always visible/shadowed
+        // The handleScroll function is removed.
 
     	// --- Event Listeners and Initializers ---
 
@@ -331,10 +314,7 @@
     		const searchOverlay = document.getElementById('search-overlay');
     		const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
 
-            // Scroll Handler
-            window.addEventListener('scroll', handleScroll);
-            // Initial check in case user refreshed partway down the page
-            handleScroll(); 
+            // Scroll Handler (REMOVED)
 
     		// Menu Button Handlers - Logic is consolidated here for both mobile and desktop utility
             const menuButton = document.getElementById('menu-button');

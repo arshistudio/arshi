@@ -74,26 +74,20 @@
             border-radius: 4px;
         }
         
-        /* Category-specific coherence */
-        .category-header {
-            /* Now uses the new primary accent color */
-            color: var(--color-primary); 
-        }
-
     </style>
 </head>
 
 <body class="transition-colors">
 
-    <header class="sticky top-0 z-40 w-full transition-colors border-b border-[var(--color-light)]/70 shadow-md" style="background-color: var(--bg);">
-        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+    <header class="sticky top-0 z-40 w-full transition-colors border-b border-[var(--color-light)]/70 shadow-md h-20" style="background-color: var(--bg);">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
             <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
                 ARSHI
             </a>
 
             <nav class="hidden lg:flex items-center space-x-6">
                 <a href="index.html" class="p-2 text-[var(--fg)]/80 hover-link font-bold uppercase text-sm">INDEX</a>
-                <a href="category-list.html?category=society-culture" class="p-2 text-[var(--fg)]/80 hover-link font-bold uppercase text-sm">SOCIETY & CULTURE</a>
+                <a href="category-list.html?category=society-culture" class="p-2 text-[var(--fg)] hover-link font-bold uppercase text-sm font-extrabold text-[var(--color-primary)]">SOCIETY & CULTURE</a>
                 <a href="category-list.html?category=fashion-art" class="p-2 text-[var(--fg)]/80 hover-link font-bold uppercase text-sm">FASHION & ART</a>
                 <a href="category-list.html?category=music-film" class="p-2 text-[var(--fg)]/80 hover-link font-bold uppercase text-sm">MUSIC & FILM</a>
             </nav>
@@ -154,17 +148,18 @@
             <button id="theme-switcher" class="text-sm font-semibold uppercase text-left hover:text-[var(--color-primary)] transition-colors">Theme: terracotta</button>
         </div>
     </div>
-    <main class="container mx-auto px-4 py-12 md:py-20">
-        
-        <header class="mb-12 border-b-2 pb-8 border-[var(--fg)]/20">
-            <p class="text-lg font-semibold mb-2 text-[var(--fg)]/70">ARSHI MAGAZINE</p>
-            <h1 id="category-title" class="text-7xl md:text-9xl font-extrabold category-header tracking-widest leading-none">
+    <section id="category-masthead" class="w-full sticky top-20 z-30 transition-colors shadow-md" style="background-color: var(--color-primary); color: var(--bg);">
+        <div class="container mx-auto px-4 py-6 md:py-8 flex flex-col md:flex-row md:items-baseline justify-between">
+            <p class="text-xs md:text-sm font-semibold mb-1 md:mb-0 uppercase tracking-widest text-[var(--bg)]/80">ARSHI MAGAZINE /</p>
+            <h1 id="category-title" class="text-4xl md:text-5xl font-extrabold tracking-widest leading-tight" style="font-family: var(--font-masthead);">
                 CATEGORY NAME
             </h1>
-            <p id="category-description" class="text-xl md:text-2xl font-light mt-4 italic text-[var(--fg)]/80">
-                Description of what this category covers (e.g., identity, politics, and social movements).
+            <p id="category-description" class="hidden md:block text-base font-light italic mt-1 max-w-xs text-right text-[var(--bg)]/80">
+                Description of what this category covers.
             </p>
-        </header>
+        </div>
+    </section>
+    <main class="container mx-auto px-4 py-12 md:py-20">
 
         <section>
             <h2 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-widest" style="font-family: var(--font-masthead);">ALL STORIES</h2>
@@ -214,7 +209,7 @@
         </div>
     </footer>
     <script>
-        // --- Data Model (Kept from old code) ---
+        // --- Data Model (Kept for filtering demonstration) ---
         const allArticles = [
             { title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.", 
               image: "https://placehold.co/600x450/A4492F/F8F7F4?text=FASHION+ART+1" },
@@ -234,7 +229,6 @@
               image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=SOCIETY+CULTURE+3" },
         ];
 
-        // Map for converting URL parameter to display name and description (Kept from old code)
         const categoryMap = {
             'society-culture': {
                 name: 'SOCIETY & CULTURE',
@@ -256,14 +250,12 @@
 
         // --- Utility Functions ---
 
-        /** Fetches URL parameters for category filtering. (Kept from old code) */
         const getCategoryParam = () => {
             const urlParams = new URLSearchParams(window.location.search);
-            // Default to 'all' if no parameter is found
             return urlParams.get('category') || 'all';
         };
 
-        /** Renders the status badge for 'coming_soon' articles. (UPDATED to use --color-secondary) */
+        /** Renders the status badge for 'coming_soon' articles (Updated to use --color-secondary). */
         const renderStatusBadge = (status) => {
             if (status === 'coming_soon') {
                 return `
@@ -276,7 +268,6 @@
             return '';
         };
 
-        /** Generates the HTML for a single article card (simplified grid version). (Kept from old code) */
         const renderArticleCard = (article) => {
             return `
                 <a href="${article.slug}" class="card-link group block transition-colors" aria-label="Read article: ${article.title}">
@@ -310,7 +301,7 @@
             `;
         };
 
-        /** Filters and renders articles based on the URL parameter. (Kept from old code) */
+        /** Filters and renders articles based on the URL parameter, and updates the new masthead. */
         const renderCategoryContent = () => {
             const requestedCategory = getCategoryParam();
             const categoryInfo = categoryMap[requestedCategory] || categoryMap['all'];
@@ -318,7 +309,7 @@
             const titleElement = document.getElementById('category-title');
             const descElement = document.getElementById('category-description');
             
-            // 1. Update Header
+            // 1. Update NEW Masthead
             titleElement.textContent = categoryInfo.name;
             descElement.textContent = categoryInfo.description;
             
@@ -327,7 +318,6 @@
                 if (requestedCategory === 'all') {
                     return true;
                 }
-                // Normalize category strings for comparison
                 const categorySlug = article.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
                 return categorySlug === requestedCategory;
             });
@@ -346,7 +336,7 @@
         };
 
 
-        // --- Initialization and Utility Drawer Logic (NEW DESIGN) ---
+        // --- Initialization and Utility Drawer Logic (COPIED FROM INDEX/ABOUT) ---
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
             const menuDrawer = document.getElementById('menu-drawer');
@@ -354,26 +344,35 @@
             const closeMenuButton = document.getElementById('close-menu-button');
             const searchOverlay = document.getElementById('search-overlay');
             const openSearchButton = document.getElementById('open-search-button');
+            const closeSearchButton = document.getElementById('close-search-button');
             const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
             const openUtilityButton = document.getElementById('open-utility-button');
+            const themeSwitcher = document.getElementById('theme-switcher');
 
-            // Apply saved theme (for visual consistency across pages)
-            // The actual theme cycling logic is expected in a separate theme-switcher.js
+            // Apply saved theme 
             const savedTheme = localStorage.getItem('arshiTheme') || 'terracotta';
             document.body.setAttribute('data-theme', savedTheme);
+            if (themeSwitcher) {
+                // Assuming theme is stored as 'terracotta' or 'midnight'
+                themeSwitcher.textContent = `Theme: ${savedTheme}`; 
+            }
             
             // Render the specific category content
             renderCategoryContent();
 
             // Mobile Menu Drawer Logic
-            openMenuButton.addEventListener('click', () => {
-                menuDrawer.classList.remove('translate-x-full');
-                body.style.overflow = 'hidden'; // Prevent scrolling on body
-            });
-            closeMenuButton.addEventListener('click', () => {
-                menuDrawer.classList.add('translate-x-full');
-                body.style.overflow = '';
-            });
+            if (openMenuButton && menuDrawer) {
+                openMenuButton.addEventListener('click', () => {
+                    menuDrawer.classList.remove('translate-x-full');
+                    body.style.overflow = 'hidden'; 
+                });
+            }
+            if (closeMenuButton && menuDrawer) {
+                closeMenuButton.addEventListener('click', () => {
+                    menuDrawer.classList.add('translate-x-full');
+                    body.style.overflow = '';
+                });
+            }
 
             // Desktop Utility Drawer Logic
             if (openUtilityButton) {
@@ -384,16 +383,20 @@
             }
 
             // Search Overlay Logic
-            openSearchButton.addEventListener('click', () => {
-                searchOverlay.classList.remove('hidden');
-                body.style.overflow = 'hidden';
-                searchOverlay.querySelector('input').focus(); 
-            });
+            if (openSearchButton && searchOverlay) {
+                openSearchButton.addEventListener('click', () => {
+                    searchOverlay.classList.remove('hidden');
+                    body.style.overflow = 'hidden';
+                    searchOverlay.querySelector('input').focus(); 
+                });
+            }
             
-            document.getElementById('close-search-button').addEventListener('click', () => {
-                searchOverlay.classList.add('hidden');
-                body.style.overflow = '';
-            });
+            if (closeSearchButton && searchOverlay) {
+                closeSearchButton.addEventListener('click', () => {
+                    searchOverlay.classList.add('hidden');
+                    body.style.overflow = '';
+                });
+            }
 
             // Close all on ESC key
             document.addEventListener('keydown', (e) => {
@@ -414,17 +417,17 @@
 
             // Close desktop utility on outside click
             document.addEventListener('click', (e) => {
-                const headerRight = document.querySelector('header .flex.items-center.space-x-4, header .flex.items-center.space-x-6');
-                const isClickInsideHeader = headerRight ? headerRight.contains(e.target) : false;
+                const headerRight = document.querySelector('header .flex.items-center.space-x-6');
+                // Check if e.target is within the utility area or the button
+                const isClickInsideUtilityArea = headerRight ? headerRight.contains(e.target) : false;
 
                 if (window.innerWidth > 1024 && desktopUtilityDrawer && !desktopUtilityDrawer.classList.contains('hidden')) {
-                    if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
+                    if (!isClickInsideUtilityArea && !desktopUtilityDrawer.contains(e.target)) {
                         desktopUtilityDrawer.classList.add('hidden');
                     }
                 }
             });
         });
     </script>
-    
-    </body>
+</body>
 </html>

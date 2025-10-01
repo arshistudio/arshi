@@ -101,150 +101,150 @@
 <body>
     
     <header id="main-header" class="header-thin sticky top-0 z-40 w-full"
-    			style="background-color: var(--bg);">
-    	<div class="container mx-auto px-4 h-full flex items-center justify-between">
-    			
-    			<a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
-    				ARSHI
-    			</a>
+    style="background-color: var(--bg);">
+    <div class="container mx-auto px-4 h-full flex items-center justify-between">
+    
+    <a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
+    ARSHI
+    </a>
 
-    			<nav class="flex items-center space-x-6">
-    				<div class="hidden lg:flex space-x-6 text-base font-semibold" role="navigation" aria-label="Main Categories">
-    					<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
-    					<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
-    					<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
-    				</div>
+    <nav class="flex items-center space-x-6">
+    <div class="hidden lg:flex space-x-6 text-base font-semibold" role="navigation" aria-label="Main Categories">
+    <a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
+    <a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
+    <a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
+    </div>
 
-    				<div class="flex items-center space-x-4 lg:space-x-6">
-    					<button id="search-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Search">
-    						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-    					</button>
+    <div class="flex items-center space-x-4 lg:space-x-6">
+    <button id="search-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Search">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    </button>
 
-    					<button id="menu-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Menu">
-    						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-    					</button>
-    				</div>
-    			</nav>
-    	</div>
-    			
+    <button id="menu-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Menu">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+    </div>
+    </nav>
+    </div>
+    
     </header>
-    	
-    <div id="desktop-utility-drawer" class="hidden absolute top-16 right-0 z-30 w-64 p-6 border-l border-b border-[var(--fg)]/20 shadow-xl" style="background-color: var(--bg);">
-    	<nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
-    		<a href="about.html" class="hover-underline">About</a>
-    		<a href="contact.html" class="hover-underline">Contact</a>
-    		<a href="submit.html" class="hover-underline">Submit</a>
-    	</nav>
+    
+    <div id="desktop-utility-drawer" class="hidden fixed top-16 right-0 z-30 w-64 p-6 border-l border-b border-[var(--fg)]/20 shadow-xl" style="background-color: var(--bg);">
+    <nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
+    <a href="about.html" class="hover-underline">About</a>
+    <a href="contact.html" class="hover-underline">Contact</a>
+    <a href="submit.html" class="hover-underline">Submit</a>
+    </nav>
     </div>
-    	
+    
     <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full duration-300 ease-in-out lg:hidden" style="background-color: var(--bg);">
-    	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl" style="background-color: var(--bg);">
-    		<button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
-    			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    		</button>
-    		<nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
-    			<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
-    			<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
-    			<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
-    			<div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
-    				<a href="about.html" class="block hover-underline">About</a>
-    				<a href="contact.html" class="block hover-underline">Contact</a>
-    				<a href="submit.html" class="block hover-underline">Submit</a>
-    			</div>
-    		</nav>
-    	</div>
+    <div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl" style="background-color: var(--bg);">
+    <button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
+    <a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
+    <a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
+    <a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
+    <div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
+    <a href="about.html" class="block hover-underline">About</a>
+    <a href="contact.html" class="block hover-underline">Contact</a>
+    <a href="submit.html" class="block hover-underline">Submit</a>
     </div>
-    	
+    </nav>
+    </div>
+    </div>
+    
     <div id="search-overlay" class="fixed inset-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md hidden" aria-modal="true" role="dialog" aria-label="Search">
-    	<div class="flex flex-col items-center justify-start pt-20 h-full">
-    		<button id="close-search-button" class="absolute top-8 right-8 p-4 text-[var(--fg)]" aria-label="Close Search">
-    			<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    		</button>
-    		<input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none" style="font-family: var(--font-masthead);">
-    		<p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
-    	</div>
+    <div class="flex flex-col items-center justify-start pt-20 h-full">
+    <button id="close-search-button" class="absolute top-8 right-8 p-4 text-[var(--fg)]" aria-label="Close Search">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none" style="font-family: var(--font-masthead);">
+    <p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
+    </div>
     </div>
     <main class="container mx-auto px-4 py-8 md:py-12">
-    	<section id="category-info" class="text-right mb-12">
-            <h1 id="category-title" class="text-5xl md:text-6xl font-extrabold tracking-wide text-[var(--fg)]/90" style="font-family: var(--font-masthead);">
-    			</h1>
-    	</section>
-    	
-    	<section id="article-grid-container">
-            <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    			</div>
-    	</section>
-        
-        <section id="suggested-articles-footer" class="pt-12 md:pt-16 mt-8 md:mt-12 border-t border-[var(--color-light)]">
-            <h2 class="text-3xl md:text-4xl font-extrabold tracking-wide mb-8 text-center" style="font-family: var(--font-masthead);">
-                READ NEXT
-            </h2>
-            <div id="suggested-articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                </div>
-        </section>
-        
+    <section id="category-info" class="text-right mb-12">
+    <h1 id="category-title" class="text-5xl md:text-6xl font-extrabold tracking-wide text-[var(--fg)]/90" style="font-family: var(--font-masthead);">
+    </h1>
+    </section>
+    
+    <section id="article-grid-container">
+    <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    </div>
+    </section>
+    
+    <section id="suggested-articles-footer" class="pt-12 md:pt-16 mt-8 md:mt-12 border-t border-[var(--color-light)]">
+    <h2 class="text-3xl md:text-4xl font-extrabold tracking-wide mb-8 col-span-full text-center" style="font-family: var(--font-masthead);">
+    READ NEXT
+    </h2>
+    <div id="suggested-articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    </div>
+    </section>
+    
     </main>
 
     <footer class="mt-12 py-6 border-t border-[var(--color-light)]" style="background-color: var(--bg);">
-    	<div class="container mx-auto px-4 text-sm flex flex-col md:flex-row justify-between items-center md:items-start space-y-4 md:space-y-0">
-    			
-    		<div class="flex space-x-4 font-semibold order-2 md:order-1 text-center md:text-left">
-    			<a href="about.html" class="hover-underline">About</a>
-    			<a href="contact.html" class="hover-underline">Contact</a>
-    			<a href="submit.html" class="hover-underline">Submit</a>
-    		</div>
+    <div class="container mx-auto px-4 text-sm flex flex-col md:flex-row justify-between items-center md:items-start space-y-4 md:space-y-0">
+    
+    <div class="flex space-x-4 font-semibold order-2 md:order-1 text-center md:text-left">
+    <a href="about.html" class="hover-underline">About</a>
+    <a href="contact.html" class="hover-underline">Contact</a>
+    <a href="submit.html" class="hover-underline">Submit</a>
+    </div>
 
-    		<div class="flex space-x-6 order-1 md:order-2">
-    			<a href="#" target="_blank" aria-label="Follow us on Instagram" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
-    				Instagram
-    			</a>
-    		</div>
-    			
-    		<div class="flex space-x-4 text-xs font-medium text-[var(--fg)]/70 order-3 md:order-3 text-center md:text-right">
-    			<a href="privacy.html" class="hover:text-[var(--color-primary)]">Privacy Policy</a>
-    			<a href="legal.html" class="hover:text-[var(--color-primary)]">Legal</a>
-    			<a href="accessibility.html" class="hover:text-[var(--color-primary)]">Accessibility</a>
-    		</div>
+    <div class="flex space-x-6 order-1 md:order-2">
+    <a href="#" target="_blank" aria-label="Follow us on Instagram" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
+    Instagram
+    </a>
+    </div>
+    
+    <div class="flex space-x-4 text-xs font-medium text-[var(--fg)]/70 order-3 md:order-3 text-center md:text-right">
+    <a href="privacy.html" class="hover:text-[var(--color-primary)]">Privacy Policy</a>
+    <a href="legal.html" class="hover:text-[var(--color-primary)]">Legal</a>
+    <a href="accessibility.html" class="hover:text-[var(--color-primary)]">Accessibility</a>
+    </div>
 
-    	</div>
+    </div>
     </footer>
 
 
     <script>
         // --- Data Model (Preserved from category-list.html) ---
         const allArticles = [
-    		// Grid articles (based on the index.html data model, but simplified for the category list view)
-            { title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
-    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO" },	
-            { title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
-    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA" },	
-            { title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
-    			image: "https://placehold.co/1200x500/3B5323/f7f6f2?text=FULL+SPAN+SOUND+SCAPE+ANALYSIS" },
-    		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
-    			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE" },	
-    		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
-    			image: "https://placehold.co/600x400/A4492F/F8F7F4?text=TEXTILE+ART" },	
-    		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
-    			image: "https://placehold.co/600x850/111/f7f6f2?text=REPORTAGE+PHOTO" },	
-    		{ title: "The geometry of silence: A photographer's retreat to the desert", slug: "article-blueprint.html?slug=desert-silence", status: "published", category: "Fashion & Art", author: "Hana Al-Otaibi", readingMinutes: 6, dek: "Capturing the vast, empty landscapes where sound dies.",	
-    			image: "https://placehold.co/1200x550/4C4C47/E5DCC5?text=FULL+SPAN+DESERT+PHOTO" },	
-    		{ title: "Why micro-narratives dominate TikTok: The attention economy", slug: "article-blueprint.html?slug=tiktok-economy", status: "published", category: "Society & Culture", author: "Kenji Tanaka", readingMinutes: 4, dek: "How 15-second clips rewrite the rules of storytelling.",	
-    			image: "https://placehold.co/600x600/848FA5/2D2D2A?text=SOCIAL+MEDIA+ANALYSIS" },	
-    		{ title: "Revival of the handmade: Slow fashion in a fast world", slug: "article-blueprint.html?slug=slow-fashion", status: "published", category: "Fashion & Art", author: "Maria Lopez", readingMinutes: 7, dek: "The artisans pushing back against mass production.",	
-    			image: "https://placehold.co/600x850/C14953/E5DCC5?text=ARTISAN+FASHION" },	
-    		{ title: "Beyond the algorithm: Finding the true underground music scene", slug: "article-blueprint.html?slug=underground-music", status: "coming_soon", category: "Music & Film", author: "Zack Jones", readingMinutes: 5, dek: "A guide to the venues and labels the internet ignores.",	
-    			image: "https://placehold.co/1200x500/2D2D2A/848FA5?text=FULL+SPAN+UNDERGROUND+SOUND" },	
-    		{ title: "The paradox of heritage in contemporary architecture", slug: "article-blueprint.html?slug=heritage-architecture", status: "published", category: "Society & Culture", author: "Sarah Kim", readingMinutes: 8, dek: "Building the future while honoring the past.",	
-    			image: "https://placehold.co/600x500/4C4C47/E5DCC5?text=ARCHITECTURE+DEBATE" },	
-    		{ title: "Color theory and emotional marketing: A deep dive", slug: "article-blueprint.html?slug=color-theory", status: "published", category: "Fashion & Art", author: "David Chen", readingMinutes: 6, dek: "How brands use psychology to influence purchasing.",	
-    			image: "https://placehold.co/600x700/C14953/2D2D2A?text=MARKETING+PSYCH" },
-    		{ title: "The forgotten sound of analogue synthesisers", slug: "article-blueprint.html?slug=analogue-synths", status: "coming_soon", category: "Music & Film", author: "Anna Brandt", readingMinutes: 4, dek: "Warmth, drift, and the human element in machine music.",	
-    			image: "https://placehold.co/600x700/848FA5/E5DCC5?text=VINTAGE+GEAR" },	
-    		{ title: "The rise of the decentralized art collective", slug: "article-blueprint.html?slug=decentralized-art", status: "published", category: "Fashion & Art", author: "Jules Verne", readingMinutes: 5, dek: "How technology enables new forms of artistic collaboration.",	
-    			image: "https://placehold.co/600x400/2D2D2A/C14953?text=ART+COLLECTIVE+FUTURE" },	
-    		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
-    			image: "https://placehold.co/1200x500/1C2A44/F8F7F4?text=FULL+SPAN+MAGAZINE+LAYOUT" },	
-    	];
+    // Grid articles (based on the index.html data model, but simplified for the category list view)
+            { title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",
+    image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO" },
+            { title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",
+    image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA" },
+            { title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",
+    image: "https://placehold.co/1200x500/3B5323/f7f6f2?text=FULL+SPAN+SOUND+SCAPE+ANALYSIS" },
+    { title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",
+    image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE" },
+    { title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",
+    image: "https://placehold.co/600x400/A4492F/F8F7F4?text=TEXTILE+ART" },
+    { title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",
+    image: "https://placehold.co/600x850/111/f7f6f2?text=REPORTAGE+PHOTO" },
+    { title: "The geometry of silence: A photographer's retreat to the desert", slug: "article-blueprint.html?slug=desert-silence", status: "published", category: "Fashion & Art", author: "Hana Al-Otaibi", readingMinutes: 6, dek: "Capturing the vast, empty landscapes where sound dies.",
+    image: "https://placehold.co/1200x550/4C4C47/E5DCC5?text=FULL+SPAN+DESERT+PHOTO" },
+    { title: "Why micro-narratives dominate TikTok: The attention economy", slug: "article-blueprint.html?slug=tiktok-economy", status: "published", category: "Society & Culture", author: "Kenji Tanaka", readingMinutes: 4, dek: "How 15-second clips rewrite the rules of storytelling.",
+    image: "https://placehold.co/600x600/848FA5/2D2D2A?text=SOCIAL+MEDIA+ANALYSIS" },
+    { title: "Revival of the handmade: Slow fashion in a fast world", slug: "article-blueprint.html?slug=slow-fashion", status: "published", category: "Fashion & Art", author: "Maria Lopez", readingMinutes: 7, dek: "The artisans pushing back against mass production.",
+    image: "https://placehold.co/600x850/C14953/E5DCC5?text=ARTISAN+FASHION" },
+    { title: "Beyond the algorithm: Finding the true underground music scene", slug: "article-blueprint.html?slug=underground-music", status: "coming_soon", category: "Music & Film", author: "Zack Jones", readingMinutes: 5, dek: "A guide to the venues and labels the internet ignores.",
+    image: "https://placehold.co/1200x500/2D2D2A/848FA5?text=FULL+SPAN+UNDERGROUND+SOUND" },
+    { title: "The paradox of heritage in contemporary architecture", slug: "article-blueprint.html?slug=heritage-architecture", status: "published", category: "Society & Culture", author: "Sarah Kim", readingMinutes: 8, dek: "Building the future while honoring the past.",
+    image: "https://placehold.co/600x500/4C4C47/E5DCC5?text=ARCHITECTURE+DEBATE" },
+    { title: "Color theory and emotional marketing: A deep dive", slug: "article-blueprint.html?slug=color-theory", status: "published", category: "Fashion & Art", author: "David Chen", readingMinutes: 6, dek: "How brands use psychology to influence purchasing.",
+    image: "https://placehold.co/600x700/C14953/2D2D2A?text=MARKETING+PSYCH" },
+    { title: "The forgotten sound of analogue synthesisers", slug: "article-blueprint.html?slug=analogue-synths", status: "coming_soon", category: "Music & Film", author: "Anna Brandt", readingMinutes: 4, dek: "Warmth, drift, and the human element in machine music.",
+    image: "https://placehold.co/600x700/848FA5/E5DCC5?text=VINTAGE+GEAR" },
+    { title: "The rise of the decentralized art collective", slug: "article-blueprint.html?slug=decentralized-art", status: "published", category: "Fashion & Art", author: "Jules Verne", readingMinutes: 5, dek: "How technology enables new forms of artistic collaboration.",
+    image: "https://placehold.co/600x400/2D2D2A/C14953?text=ART+COLLECTIVE+FUTURE" },
+    { title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",
+    image: "https://placehold.co/1200x500/1C2A44/F8F7F4?text=FULL+SPAN+MAGAZINE+LAYOUT" },
+    ];
 
         const categories = {
             'all': {
@@ -265,7 +265,7 @@
             },
         };
 
-    	// --- Utility Functions (Updated) ---
+    // --- Utility Functions (Updated) ---
         
         /**
          * Helper function to convert a category name into its URL-friendly slug.
@@ -274,69 +274,69 @@
             categoryName.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
 
 
-    	/**
-    	 * Renders the status badge for 'coming_soon' articles.
-    	 */
-    	const renderStatusBadge = (status) => {
-    		if (status === 'coming_soon') {
-    			return `
-    				<span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)]"
-    							style="background-color: var(--color-secondary);">	
-    						COMING SOON
-    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCTOBER 10th 2025</span>	
-    				</span>
-    			`;
-    		}
-    		return '';
-    	};
+    /**
+    * Renders the status badge for 'coming_soon' articles.
+    */
+    const renderStatusBadge = (status) => {
+    if (status === 'coming_soon') {
+    return `
+    <span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)]"
+    style="background-color: var(--color-secondary);">
+    COMING SOON
+    <span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCTOBER 10th 2025</span>
+    </span>
+    `;
+    }
+    return '';
+    };
 
-    	/**
-    	 * Generates the HTML for a single article card.
-    	 */
-    	const renderArticleCard = (article) => {
-    			
-    			const titleClass = 'text-4xl mt-3 leading-snug';
-    			const dekClass = 'text-base font-ui mt-2 hidden lg:block';
-    			
-    			const authorCredit = `<p class="text-xl font-extrabold mt-3 text-[var(--color-primary)]" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
+    /**
+    * Generates the HTML for a single article card.
+    */
+    const renderArticleCard = (article) => {
+    
+    const titleClass = 'text-4xl mt-3 leading-snug';
+    const dekClass = 'text-base font-ui mt-2 hidden lg:block';
+    
+    const authorCredit = `<p class="text-xl font-extrabold mt-3 text-[var(--color-primary)]" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
 
-    			const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60">${article.readingMinutes} min read</p>`;
+    const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60">${article.readingMinutes} min read</p>`;
 
-    		return `
-    			<a href="${article.slug}" class="card-link article-card group block" aria-label="Read article by ${article.author}: ${article.title}">
-    					
-    					<div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
-    						<img loading="lazy"	
-    							src="${article.image}"	
-    							alt="${article.title}"	
-    							onerror="this.onerror=null;this.src='https://placehold.co/1200x800/808080/FFF?text=Image+Missing';"
-    							class="card-image w-full object-cover transition-transform duration-500 ease-in-out rounded-lg"
-    						>
-    					</div>
+    return `
+    <a href="${article.slug}" class="card-link article-card group block" aria-label="Read article by ${article.author}: ${article.title}">
+    
+    <div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
+    <img loading="lazy"
+    src="${article.image}"
+    alt="${article.title}"
+    onerror="this.onerror=null;this.src='https://placehold.co/1200x800/808080/FFF?text=Image+Missing';"
+    class="card-image w-full object-cover transition-transform duration-500 ease-in-out rounded-lg"
+    >
+    </div>
 
-    					<div class="py-4">
-    						<div class="flex items-center justify-between flex-wrap gap-2 mb-2">
-    							<span class="px-2 py-1 text-xs font-bold uppercase rounded-full border border-current text-[var(--fg)]">
-    								${article.category}
-    							</span>
-    							${renderStatusBadge(article.status)}
-    						</div>
+    <div class="py-4">
+    <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+    <span class="px-2 py-1 text-xs font-bold uppercase rounded-full border border-current text-[var(--fg)]">
+    ${article.category}
+    </span>
+    ${renderStatusBadge(article.status)}
+    </div>
 
-    						<h3 class="font-extrabold ${titleClass} tracking-wide" style="font-family: var(--font-masthead);">
-    							${article.title.toUpperCase()}
-    						</h3>
+    <h3 class="font-extrabold ${titleClass} tracking-wide" style="font-family: var(--font-masthead);">
+    ${article.title.toUpperCase()}
+    </h3>
 
-    							${authorCredit}
+    ${authorCredit}
 
-    						<p class="${dekClass} text-[var(--fg)]/80">
-    							${article.dek}
-    						</p>
+    <p class="${dekClass} text-[var(--fg)]/80">
+    ${article.dek}
+    </p>
 
-    						${readingMeta}
-    					</div>
-    			</a>
-    		`;
-    	};
+    ${readingMeta}
+    </div>
+    </a>
+    `;
+    };
         
         /**
          * Renders a grid of suggested articles from *other* categories.
@@ -375,13 +375,13 @@
 
             // If we still need more suggestions, pull any other published article not yet used.
             if (suggestedArticles.length < articlesToRenderCount) {
-                 const remainingNeeded = articlesToRenderCount - suggestedArticles.length;
-                 const fillerArticles = allArticles.filter(article => 
-                     article.status === 'published' &&
-                     !usedArticleSlugs.has(article.slug)
-                 ).slice(0, remainingNeeded);
+                   const remainingNeeded = articlesToRenderCount - suggestedArticles.length;
+                   const fillerArticles = allArticles.filter(article => 
+                       article.status === 'published' &&
+                       !usedArticleSlugs.has(article.slug)
+                   ).slice(0, remainingNeeded);
 
-                 suggestedArticles.push(...fillerArticles);
+                   suggestedArticles.push(...fillerArticles);
             }
 
             // 3. Render the selected articles
@@ -391,8 +391,8 @@
                     gridHtml += renderArticleCard(article);
                 });
             } else {
-                 // Fallback text if there are no other articles to suggest
-                 gridHtml = `<p class="col-span-3 text-lg text-[var(--fg)]/70 text-center">We couldn't find any other articles to suggest right now. Check back soon!</p>`;
+                // Fallback text if there are no other articles to suggest
+                gridHtml = `<p class="col-span-3 text-lg text-[var(--fg)]/70 text-center">We couldn't find any other articles to suggest right now. Check back soon!</p>`;
             }
 
             container.innerHTML = gridHtml;
@@ -435,74 +435,74 @@
 
         // --- Event Listeners and Initializers ---
 
-    	document.addEventListener('DOMContentLoaded', () => {
-    		
-    		// 1. Render Main Category Content 
-    		renderCategoryContent();
+    document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Render Main Category Content 
+    renderCategoryContent();
             
             // 2. Render Suggested Articles Footer
             renderSuggestedArticles();
 
-    		// 3. Attach Interaction Listeners (Standard logic)
-    			
-    			const body = document.body;
-    			const menuDrawer = document.getElementById('mobile-menu-drawer');
-    			const searchOverlay = document.getElementById('search-overlay');
-    			const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
+    // 3. Attach Interaction Listeners (Standard logic)
+    
+    const body = document.body;
+    const menuDrawer = document.getElementById('mobile-menu-drawer');
+    const searchOverlay = document.getElementById('search-overlay');
+    const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
 
-    			const menuButton = document.getElementById('menu-button');
-    			
-    			menuButton.addEventListener('click', () => {
-    				if (window.innerWidth <= 1024) {	
-    					menuDrawer.classList.remove('translate-x-full');
-    					body.style.overflow = 'hidden';	
-    				} else {	
-    					desktopUtilityDrawer.classList.toggle('hidden');
-    				}
-    			});
+    const menuButton = document.getElementById('menu-button');
+    
+    menuButton.addEventListener('click', () => {
+    if (window.innerWidth <= 1024) {
+    menuDrawer.classList.remove('translate-x-full');
+    body.style.overflow = 'hidden';
+    } else {
+    desktopUtilityDrawer.classList.toggle('hidden');
+    }
+    });
 
-    			document.getElementById('close-menu-button').addEventListener('click', () => {
-    				menuDrawer.classList.add('translate-x-full');
-    				body.style.overflow = '';
-    			});
+    document.getElementById('close-menu-button').addEventListener('click', () => {
+    menuDrawer.classList.add('translate-x-full');
+    body.style.overflow = '';
+    });
 
-    			document.getElementById('search-button').addEventListener('click', () => {
-    				searchOverlay.classList.remove('hidden');
-    				body.style.overflow = 'hidden';
-    				searchOverlay.querySelector('input').focus();	
-    			});
-    			document.getElementById('close-search-button').addEventListener('click', () => {
-    				searchOverlay.classList.add('hidden');
-    				body.style.overflow = '';
-    			});
+    document.getElementById('search-button').addEventListener('click', () => {
+    searchOverlay.classList.remove('hidden');
+    body.style.overflow = 'hidden';
+    searchOverlay.querySelector('input').focus();
+    });
+    document.getElementById('close-search-button').addEventListener('click', () => {
+    searchOverlay.classList.add('hidden');
+    body.style.overflow = '';
+    });
 
-    			document.addEventListener('keydown', (e) => {
-    				if (e.key === 'Escape') {
-    					if (!searchOverlay.classList.contains('hidden')) {
-    						searchOverlay.classList.add('hidden');
-    						body.style.overflow = '';
-    					}
-    					if (!menuDrawer.classList.contains('translate-x-full')) {
-    						menuDrawer.classList.add('translate-x-full');
-    						body.style.overflow = '';
-    					}
-    					if (!desktopUtilityDrawer.classList.contains('hidden')) {
-    						desktopUtilityDrawer.classList.add('hidden');
-    					}
-    				}
-    			});
+    document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+    if (!searchOverlay.classList.contains('hidden')) {
+    searchOverlay.classList.add('hidden');
+    body.style.overflow = '';
+    }
+    if (!menuDrawer.classList.contains('translate-x-full')) {
+    menuDrawer.classList.add('translate-x-full');
+    body.style.overflow = '';
+    }
+    if (!desktopUtilityDrawer.classList.contains('hidden')) {
+    desktopUtilityDrawer.classList.add('hidden');
+    }
+    }
+    });
 
-    			document.addEventListener('click', (e) => {
-    				const headerRight = document.querySelector('header .flex.items-center.space-x-6');
-    				const isClickInsideHeader = headerRight.contains(e.target);
+    document.addEventListener('click', (e) => {
+    const headerRight = document.querySelector('header .flex.items-center.space-x-6');
+    const isClickInsideHeader = headerRight.contains(e.target);
 
-    				if (window.innerWidth > 1024 && !desktopUtilityDrawer.classList.contains('hidden')) {
-    					if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
-    						desktopUtilityDrawer.classList.add('hidden');
-    					}
-    				}
-    			});
-    	});
+    if (window.innerWidth > 1024 && !desktopUtilityDrawer.classList.contains('hidden')) {
+    if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
+    desktopUtilityDrawer.classList.add('hidden');
+    }
+    }
+    });
+    });
     </script>
 </body>
 </html>

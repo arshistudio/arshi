@@ -76,7 +76,7 @@
             background: var(--color-primary);
         }
 
-        /* Core Values Styling (Adapted to new aesthetic) */
+        /* Core Values Styling (Editorial, numbered list) */
         .core-value-item {
             padding: 1.5rem 0;
             border-bottom: 1px solid var(--color-light);	
@@ -92,7 +92,7 @@
         .core-value-index {
             font-family: var(--font-masthead);
             font-size: 2.5rem;
-            color: var(--color-primary); /* New Accent Color */
+            color: var(--color-primary); /* Accent Color for numbers */
             line-height: 1;
             flex-shrink: 0;
             margin-top: -0.25rem;
@@ -101,7 +101,7 @@
             font-family: var(--font-masthead);
             font-size: 1.75rem;
             font-weight: 700;
-            color: var(--fg); /* Use foreground color for main titles, keeps accent for numbers */
+            color: var(--fg); 
             line-height: 1.1;
             margin-bottom: 0.25rem;
         }
@@ -176,54 +176,58 @@
     <main class="container mx-auto px-4 py-8 md:py-12">
         <div class="max-w-4xl mx-auto">
             
+            <a href="javascript:history.back()" class="flex items-center text-base font-semibold mb-6 hover:text-[var(--color-primary)] transition-colors">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to previous page
+            </a>
+            
             <h1 class="text-7xl md:text-8xl font-extrabold mb-8 tracking-wider text-[var(--fg)]" style="line-height: 1;">
                 ABOUT ARSHI
             </h1>
 
-            <p class="text-xl md:text-2xl font-semibold max-w-2xl mb-12">
-                ARSHI is an **independent cultural magazine** shaped by curiosity, providing a space for writers and artists to publish their work under their own name.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-lg">
-                <div class="space-y-6">
-                    <h2 class="text-3xl font-extrabold mt-0 text-[var(--color-primary)]">OUR MISSION</h2>
-                    <p>
-                        Born from the need to give recognition to **emerging voices**, ARSHI is a space where contributors retain their rights and are read as they are. We seek out new angles and amplify voices that are often underrepresented.
-                    </p>
-                    <p>
-                        We focus on **Society & Culture**, **Fashion & Art**, and **Music & Film**, welcoming contributions that explore intersections and unexpected perspectives. Crossovers are encouraged: a piece on politics in fashion, or music in protest culture, belongs in ARSHI.
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="text-3xl font-extrabold mt-0 text-[var(--color-primary)]">CORE VALUES</h2>
+            <div class="space-y-6 text-xl font-semibold max-w-4xl mb-12">
+                <p>
+                    ARSHI is an **independent cultural magazine shaped by curiosity**.
+                </p>
+                <p>
+                    Born from the need to give recognition to **emerging voices**, it is a space for writers and artists to publish their work under their own name, and to be read as they are.
+                </p>
+                <p>
+                    We focus on **Society & Culture**, **Fashion & Art**, and **Music & Film**, welcoming contributions that explore intersections and unexpected perspectives. Essays, reportage, interviews, reviews, and visual work all have their place here. **Crossovers are encouraged**: a piece on politics in fashion, or music in protest culture, belongs in ARSHI.
+                </p>
+            </div>
+            
+            <section class="pt-8">
+                <h2 class="text-4xl font-extrabold mb-6 text-[var(--color-primary)]">OUR CORE VALUES</h2>
+                
+                <div class="space-y-4 text-lg">
                     
                     <div class="core-value-item">
                         <div class="core-value-container">
                             <span class="core-value-index">01</span>
                             <div>
-                                <h3 class="core-value-title">EDITORIAL AUTONOMY</h3>
-                                <p class="text-sm font-medium text-[var(--fg)]/80">We are independent, ensuring our content is free from institutional agendas and gatekeeping.</p>
+                                <h3 class="core-value-title">INDEPENDENCE</h3>
+                                <p class="text-base font-medium text-[var(--fg)]/80">We are free from editorial gatekeeping or institutional agendas, ensuring **full creative autonomy** for our contributors.</p>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="core-value-item">
                         <div class="core-value-container">
                             <span class="core-value-index">02</span>
                             <div>
-                                <h3 class="core-value-title">AUTHORIAL CREDIT</h3>
-                                <p class="text-sm font-medium text-[var(--fg)]/80">Every contributor is published under their own name, guaranteeing full recognition.</p>
+                                <h3 class="core-value-title">AUTHORIAL RECOGNITION</h3>
+                                <p class="text-base font-medium text-[var(--fg)]/80">Contributors always publish under their own names and **retain perpetual ownership** of their work.</p>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="core-value-item">
                         <div class="core-value-container">
                             <span class="core-value-index">03</span>
                             <div>
-                                <h3 class="core-value-title">GENUINE PERSPECTIVE</h3>
-                                <p class="text-sm font-medium text-[var(--fg)]/80">We prioritize original voices and honest exploration over overly polished or commercialized narratives.</p>
+                                <h3 class="core-value-title">UNFILTERED AUTHENTICITY</h3>
+                                <p class="text-base font-medium text-[var(--fg)]/80">We prioritize **original, honest perspectives** that matter more than polish or commercial appeal.</p>
                             </div>
                         </div>
                     </div>
@@ -232,19 +236,51 @@
                         <div class="core-value-container">
                             <span class="core-value-index">04</span>
                             <div>
-                                <h3 class="core-value-title">COLLECTIVE GROWTH</h3>
-                                <p class="text-sm font-medium text-[var(--fg)]/80">ARSHI thrives as a communal project, fostered by the shared expertise and collective effort of our collaborators.</p>
+                                <h3 class="core-value-title">COMMUNAL COLLABORATION</h3>
+                                <p class="text-base font-medium text-[var(--fg)]/80">ARSHI grows through the **collective effort** and shared expertise of our global community.</p>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="core-value-item">
+                        <div class="core-value-container">
+                            <span class="core-value-index">05</span>
+                            <div>
+                                <h3 class="core-value-title">EDITORIAL INTEGRITY</h3>
+                                <p class="text-base font-medium text-[var(--fg)]/80">We maintain high standards: facts are checked, sources credited, and **conflicts of interest are disclosed**.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="core-value-item">
+                        <div class="core-value-container">
+                            <span class="core-value-index">06</span>
+                            <div>
+                                <h3 class="core-value-title">CULTURAL CURIOSITY</h3>
+                                <p class="text-base font-medium text-[var(--fg)]/80">Our mission is to encourage constant exploration, seeking out **new angles** and underrepresented voices.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="core-value-item">
+                        <div class="core-value-container">
+                            <span class="core-value-index">07</span>
+                            <div>
+                                <h3 class="core-value-title">INCLUSIVITY & DIVERSITY</h3>
+                                <p class="text-base font-medium text-[var(--fg)]/80">We respect and encourage contributions from **all backgrounds**—LGBTQ+ voices, all races, genders, origins, and classes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
-            </div>
+            </section>
             
             <div class="text-center mt-12 pt-8 border-t border-[var(--color-light)]">
-                <a href="submit.html" class="inline-block px-8 py-3 text-xl font-extrabold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90" style="background-color: var(--color-primary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
-                    JOIN THE ARSHI COLLECTIVE
+                <a href="submit.html" class="inline-block px-6 py-2 text-lg font-extrabold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90" style="background-color: var(--color-secondary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
+                    JOIN ARSHI
                 </a>
             </div>
+            
         </div>
     </main>
 
@@ -278,7 +314,7 @@
 
     <script>
     	
-    	// --- Event Listeners and Initializers (Copied from index.html) ---
+    	// --- Event Listeners and Initializers (Copied from previous versions) ---
 
     	document.addEventListener('DOMContentLoaded', () => {
     		

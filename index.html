@@ -47,9 +47,11 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
         
-        /* Logo Size Fix: ensures it uses the size defined in styles.html (2.2rem) */
+        /* LOGO FIX: Bigger, Bolder, Tighter Spacing for IMPACT */
         .logo {
-            font-size: 2.2rem;
+            font-size: 2.8rem; 
+            letter-spacing: -0.05em; 
+            font-weight: 700 !important;
             color: var(--fg);
             font-family: var(--font-masthead);
         }
@@ -74,19 +76,18 @@
         }
 
         /* START OF I-D LAYOUT CHANGES - Maximizing Asymmetry and Space */
-        /* Articles now scale up to 3 columns on large screens for maximum 'broken' grid effect */
         .masonry-grid {
             column-count: 1;
             column-gap: 24px;
-            padding-top: 32px; /* Add vertical space since 'LATEST STORIES' title is gone */
+            padding-top: 32px; 
         }
-        @media (min-width: 768px) { /* Start 2 columns on MD screens */
+        @media (min-width: 768px) { 
             .masonry-grid {
                 column-count: 2; 
                 column-fill: balance;
             }
         }
-        @media (min-width: 1280px) { /* Go to 3 columns on XL screens for maximum asymmetry and space usage */
+        @media (min-width: 1280px) { 
             .masonry-grid {
                 column-count: 3;
             }
@@ -203,21 +204,21 @@
     		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
     			image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" },
     		
-    		// Grid articles 
+    		// Grid articles - NOTE: imageHeightClass added for asymmetry
     		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
-    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO" },
+    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-96' }, // TALL
     		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
-    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA" },
+    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-64' }, // MEDIUM
     		{ title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
-    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS" },
+    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-48' }, // SHORT
     		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
-    			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE" },
+    			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-80' }, // TALLER
     		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
-    			image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART" },
+    			image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-96' }, // VERY TALL
     		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
-    			image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO" },
+    			image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-56' }, // SHORTER
     		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
-    			image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT" },
+    			image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT", imageHeightClass: 'h-80' }, // TALLER
     	];
 
     	// --- Utility Functions ---
@@ -247,8 +248,12 @@
     	 * @returns {string} The complete HTML string.
     	 */
     	const renderArticleCard = (article, isHero = false) => {
-    		const imageSizeClass = isHero ? 'h-64 md:h-96' : 'h-64';
-    		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : 'text-3xl mt-3 leading-snug';
+            // FIX: Use specific height for grid items or hero heights
+            const cardImageHeightClass = article.imageHeightClass || 'h-64';
+    		const imageSizeClass = isHero ? 'h-64 md:h-96' : cardImageHeightClass; 
+            
+            // FIX: Increase grid article title size from text-3xl to text-4xl
+    		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : 'text-4xl mt-3 leading-snug';
     		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-2xl' : 'text-base font-ui mt-2 hidden md:block';
             
             // Styling for prominent author credit

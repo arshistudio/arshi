@@ -125,7 +125,7 @@
             width: 100%;
         }
         .article-full-span .card-image {
-            height: 28rem !important; /* Custom size for full-span impact */
+            height: 28rem !important; /* Custom size for full-span impact (h-112) */
         }
         
         /* Ensure the hero image is also large */
@@ -219,13 +219,17 @@
     	</div>
     </div>
 
-    <section id="hero-article" class="w-full mb-12 transition-colors hero-article-full-wrapper">
+    <section id="hero-article" class="w-full mb-8 transition-colors hero-article-full-wrapper">
         </section>
+
+    <div class="container mx-auto px-4">
+        <hr class="border-t-2 border-[var(--fg)]/20 my-4 md:my-8 transition-colors">
+    </div>
+
 
     <main class="container mx-auto px-4 py-8 md:py-12">
     	
     	<section id="article-grid-container" class="transition-colors">
-            <h2 class="text-3xl font-extrabold tracking-widest mb-6" style="font-family: var(--font-masthead);">LATEST STORIES</h2>
     		<div id="article-grid" class="masonry-grid">
     			</div>
     	</section>
@@ -263,49 +267,57 @@
     <script>
     	// --- Data Model ---
     	const articles = [
-    		// Hero article - FULL WIDTH HERO IMAGE AND TEXT
+    		// Hero article 
     		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
     			image: "https://placehold.co/1600x900/A4492F/F8F7F4?text=FULL+WIDTH+FEATURED+EDITORIAL+IMAGE" },
     		
             // --- GRID ARTICLES (Total 15) ---
 
-    		// Block 1 (2 articles): Tall, Broken Grid Effect
+    		// Block 1 (2 articles): Use ASYMMETRICAL HEIGHTS (h-112 & h-96) to maximize space filling
     		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
-    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-96' }, 
+    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-112' }, 
     		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
-    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-80' }, 
+    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-96' }, 
             
-            // Block 2 (1 article): Full-Width Article
+            // Block 2 (1 article): FORCED FULL-WIDTH BREAK
     		{ title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
-    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-64' }, 
+    			image: "https://placehold.co/1200x500/3B5323/f7f6f2?text=FULL+SPAN+SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-112' },
 
-            // Block 3 (3 articles): Asymmetrical broken grid
+            // Block 3 (3 articles): ASYMMETRICAL HEIGHTS (h-96, h-64, h-112)
     		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
     			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-96' }, 
     		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
-    			image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-80' }, 
+    			image: "https://placehold.co/600x400/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-64' }, 
     		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
-    			image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-56' }, 
+    			image: "https://placehold.co/600x850/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-112' }, 
             
-            // Block 4 (1 article): Full-Width Article
-    		{ title: "The geometry of silence: A photographer's retreat to the desert", slug: "article-blueprint.html?slug=desert-silence", status: "published", category: "Fashion & Art", author: "Hana Al-Otaibi", readingMinutes: 6, dek: "Capturing the vast, empty landscapes where sound dies.", image: "https://placehold.co/600x650/4C4C47/E5DCC5?text=DESERT+PHOTO", imageHeightClass: 'h-80' }, 
+            // Block 4 (1 article): FORCED FULL-WIDTH BREAK
+    		{ title: "The geometry of silence: A photographer's retreat to the desert", slug: "article-blueprint.html?slug=desert-silence", status: "published", category: "Fashion & Art", author: "Hana Al-Otaibi", readingMinutes: 6, dek: "Capturing the vast, empty landscapes where sound dies.", 
+                image: "https://placehold.co/1200x550/4C4C47/E5DCC5?text=FULL+SPAN+DESERT+PHOTO", imageHeightClass: 'h-112' }, 
 
-            // Block 5 (2 articles): Asymmetrical broken grid
-    		{ title: "Why micro-narratives dominate TikTok: The attention economy", slug: "article-blueprint.html?slug=tiktok-economy", status: "published", category: "Society & Culture", author: "Kenji Tanaka", readingMinutes: 4, dek: "How 15-second clips rewrite the rules of storytelling.", image: "https://placehold.co/600x500/848FA5/2D2D2A?text=SOCIAL+MEDIA+ANALYSIS", imageHeightClass: 'h-64' }, 
-    		{ title: "Revival of the handmade: Slow fashion in a fast world", slug: "article-blueprint.html?slug=slow-fashion", status: "published", category: "Fashion & Art", author: "Maria Lopez", readingMinutes: 7, dek: "The artisans pushing back against mass production.", image: "https://placehold.co/600x850/C14953/E5DCC5?text=ARTISAN+FASHION", imageHeightClass: 'h-96' }, 
+            // Block 5 (2 articles): ASYMMETRICAL HEIGHTS (h-80 & h-112)
+    		{ title: "Why micro-narratives dominate TikTok: The attention economy", slug: "article-blueprint.html?slug=tiktok-economy", status: "published", category: "Society & Culture", author: "Kenji Tanaka", readingMinutes: 4, dek: "How 15-second clips rewrite the rules of storytelling.", 
+                image: "https://placehold.co/600x600/848FA5/2D2D2A?text=SOCIAL+MEDIA+ANALYSIS", imageHeightClass: 'h-80' }, 
+    		{ title: "Revival of the handmade: Slow fashion in a fast world", slug: "article-blueprint.html?slug=slow-fashion", status: "published", category: "Fashion & Art", author: "Maria Lopez", readingMinutes: 7, dek: "The artisans pushing back against mass production.", 
+                image: "https://placehold.co/600x850/C14953/E5DCC5?text=ARTISAN+FASHION", imageHeightClass: 'h-112' }, 
 
-            // Block 6 (3 articles): Asymmetrical broken grid
-    		{ title: "Beyond the algorithm: Finding the true underground music scene", slug: "article-blueprint.html?slug=underground-music", status: "coming_soon", category: "Music & Film", author: "Zack Jones", readingMinutes: 5, dek: "A guide to the venues and labels the internet ignores.", image: "https://placehold.co/600x700/2D2D2A/848FA5?text=UNDERGROUND+SOUND", imageHeightClass: 'h-80' },
-    		{ title: "The paradox of heritage in contemporary architecture", slug: "article-blueprint.html?slug=heritage-architecture", status: "published", category: "Society & Culture", author: "Sarah Kim", readingMinutes: 8, dek: "Building the future while honoring the past.", image: "https://placehold.co/600x400/4C4C47/E5DCC5?text=ARCHITECTURE+DEBATE", imageHeightClass: 'h-64' },
-    		{ title: "Color theory and emotional marketing: A deep dive", slug: "article-blueprint.html?slug=color-theory", status: "published", category: "Fashion & Art", author: "David Chen", readingMinutes: 6, dek: "How brands use psychology to influence purchasing.", image: "https://placehold.co/600x900/C14953/2D2D2A?text=MARKETING+PSYCH", imageHeightClass: 'h-96' },
+            // Block 6 (3 articles): ASYMMETRICAL HEIGHTS (h-112, h-80, h-96)
+    		{ title: "Beyond the algorithm: Finding the true underground music scene", slug: "article-blueprint.html?slug=underground-music", status: "coming_soon", category: "Music & Film", author: "Zack Jones", readingMinutes: 5, dek: "A guide to the venues and labels the internet ignores.", 
+                image: "https://placehold.co/600x800/2D2D2A/848FA5?text=UNDERGROUND+SOUND", imageHeightClass: 'h-112' }, 
+    		{ title: "The paradox of heritage in contemporary architecture", slug: "article-blueprint.html?slug=heritage-architecture", status: "published", category: "Society & Culture", author: "Sarah Kim", readingMinutes: 8, dek: "Building the future while honoring the past.", 
+                image: "https://placehold.co/600x500/4C4C47/E5DCC5?text=ARCHITECTURE+DEBATE", imageHeightClass: 'h-80' }, 
+    		{ title: "Color theory and emotional marketing: A deep dive", slug: "article-blueprint.html?slug=color-theory", status: "published", category: "Fashion & Art", author: "David Chen", readingMinutes: 6, dek: "How brands use psychology to influence purchasing.", 
+                image: "https://placehold.co/600x700/C14953/2D2D2A?text=MARKETING+PSYCH", imageHeightClass: 'h-96' },
 
-            // Block 7 (2 articles): Asymmetrical broken grid
-    		{ title: "The forgotten sound of analogue synthesisers", slug: "article-blueprint.html?slug=analogue-synths", status: "coming_soon", category: "Music & Film", author: "Anna Brandt", readingMinutes: 4, dek: "Warmth, drift, and the human element in machine music.", image: "https://placehold.co/600x600/848FA5/E5DCC5?text=VINTAGE+GEAR", imageHeightClass: 'h-80' }, 
-    		{ title: "The rise of the decentralized art collective", slug: "article-blueprint.html?slug=decentralized-art", status: "published", category: "Fashion & Art", author: "Jules Verne", readingMinutes: 5, dek: "How technology enables new forms of artistic collaboration.", image: "https://placehold.co/600x450/2D2D2A/C14953?text=ART+COLLECTIVE+FUTURE", imageHeightClass: 'h-64' }, 
+            // Block 7 (2 articles): ASYMMETRICAL HEIGHTS (h-96 & h-64)
+    		{ title: "The forgotten sound of analogue synthesisers", slug: "article-blueprint.html?slug=analogue-synths", status: "coming_soon", category: "Music & Film", author: "Anna Brandt", readingMinutes: 4, dek: "Warmth, drift, and the human element in machine music.", 
+                image: "https://placehold.co/600x700/848FA5/E5DCC5?text=VINTAGE+GEAR", imageHeightClass: 'h-96' }, 
+    		{ title: "The rise of the decentralized art collective", slug: "article-blueprint.html?slug=decentralized-art", status: "published", category: "Fashion & Art", author: "Jules Verne", readingMinutes: 5, dek: "How technology enables new forms of artistic collaboration.", 
+                image: "https://placehold.co/600x400/2D2D2A/C14953?text=ART+COLLECTIVE+FUTURE", imageHeightClass: 'h-64' }, 
             
-            // Block 8 (1 article): The final full-width article is handled by the `isLast` flag.
+            // Block 8 (1 article): The final full-width article is the natural end of the grid.
     		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
-    			image: "https://placehold.co/1200x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT", imageHeightClass: 'h-80' }, 
+    			image: "https://placehold.co/1200x500/1C2A44/F8F7F4?text=FULL+SPAN+MAGAZINE+LAYOUT", imageHeightClass: 'h-112' }, 
     	];
 
     	// --- Utility Functions ---
@@ -331,17 +343,15 @@
     	 */
     	const renderArticleCard = (article, isHero = false) => {
             
-            const shouldSpanFull = article.isFullSpan || false; // Use the flag set in renderContent
+            const shouldSpanFull = article.isFullSpan || false; 
             
-            // Image size based on context
+            // Image height selection for visual drama
             const heroImageHeight = 'h-96 md:h-[40rem]';
-            const cardImageHeightClass = article.imageHeightClass || 'h-64';
+            const cardImageHeightClass = article.imageHeightClass || 'h-64'; 
     		const imageSizeClass = isHero ? heroImageHeight : cardImageHeightClass; 
             
             // Title sizing
     		const titleClass = isHero ? 'masthead-text mt-4 leading-none' : (shouldSpanFull ? 'text-5xl mt-3 leading-snug' : 'text-4xl mt-3 leading-snug');
-            
-            // Dek visibility and style
     		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-3xl' : 'text-base font-ui mt-2 hidden lg:block';
             
             // AUTHOR-FIRST HIERARCHY: Prominent Author Styling
@@ -349,10 +359,8 @@
                 ? `<p class="text-xl md:text-2xl font-extrabold mt-3 text-[var(--color-primary)] transition-colors" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`
                 : `<p class="text-xl font-extrabold mt-3 text-[var(--color-primary)] transition-colors" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
 
-            // Reading time is smaller, separate meta
             const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60 transition-colors">${article.readingMinutes} min read</p>`;
 
-            // Apply full-span class if needed
             const fullSpanClass = shouldSpanFull ? 'article-full-span' : '';
 
     		return `
@@ -379,7 +387,9 @@
     							${article.title.toUpperCase()}
     						</h3>
 
-                            ${authorCredit} <p class="${dekClass} text-[var(--fg)]/80">
+                            ${authorCredit}
+
+    						<p class="${dekClass} text-[var(--fg)]/80">
     							${article.dek}
     						</p>
 
@@ -396,7 +406,7 @@
     		const heroContainer = document.getElementById('hero-article');
     		const gridContainer = document.getElementById('article-grid');
     		
-            // Indices in the gridArticles array that should be forced to full-span
+            // The indices (0-indexed in gridArticles array) that mark the end of a block and must force a full-width break.
             // RHYTHM: (2), (1), (3), (1), (2), (3), (2), (1)
             // Indices: 1 (end of 2), 2 (end of 1), 5 (end of 3), 6 (end of 1), 8 (end of 2), 11 (end of 3), 13 (end of 2)
             const breakIndices = [1, 2, 5, 6, 8, 11, 13];

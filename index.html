@@ -73,16 +73,22 @@
             opacity: 0.9;
         }
 
-        /* START OF I-D LAYOUT CHANGES */
-        /* Implements Asymmetrical/Staggered 2-column Layout on Desktop */
+        /* START OF I-D LAYOUT CHANGES - Maximizing Asymmetry and Space */
+        /* Articles now scale up to 3 columns on large screens for maximum 'broken' grid effect */
         .masonry-grid {
             column-count: 1;
             column-gap: 24px;
+            padding-top: 32px; /* Add vertical space since 'LATEST STORIES' title is gone */
         }
-        @media (min-width: 1024px) { 
+        @media (min-width: 768px) { /* Start 2 columns on MD screens */
             .masonry-grid {
-                column-count: 2;
+                column-count: 2; 
                 column-fill: balance;
+            }
+        }
+        @media (min-width: 1280px) { /* Go to 3 columns on XL screens for maximum asymmetry and space usage */
+            .masonry-grid {
+                column-count: 3;
             }
         }
         
@@ -185,7 +191,6 @@
     		</section>
 
     	<section id="article-grid-container" class="transition-colors">
-    		<h2 class="text-4xl md:text-6xl font-extrabold mb-6 mt-10 tracking-widest" style="font-family: var(--font-masthead);">LATEST STORIES</h2>
     		<div id="article-grid" class="masonry-grid">
     			</div>
     	</section>
@@ -246,7 +251,7 @@
     		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : 'text-3xl mt-3 leading-snug';
     		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-2xl' : 'text-base font-ui mt-2 hidden md:block';
             
-            // Styling for prominent author credit (from previous step)
+            // Styling for prominent author credit
             const authorCredit = isHero 
                 ? `<p class="text-xl md:text-2xl font-extrabold mt-3" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`
                 : `<p class="text-lg font-extrabold mt-2" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;

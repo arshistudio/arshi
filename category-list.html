@@ -174,6 +174,15 @@
             <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     			</div>
     	</section>
+        
+        <section id="category-links-footer" class="pt-12 md:pt-16 mt-8 md:mt-12 border-t border-[var(--color-light)]">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-wide mb-6 text-center" style="font-family: var(--font-masthead);">
+                EXPLORE OTHER CATEGORIES
+            </h2>
+            <div id="category-links-list" class="flex flex-wrap justify-center gap-4 text-lg font-semibold uppercase">
+                </div>
+        </section>
+        
     </main>
 
     <footer class="mt-12 py-6 border-t border-[var(--color-light)]" style="background-color: var(--bg);">
@@ -256,7 +265,7 @@
             },
         };
 
-    	// --- Utility Functions (Preserved/Updated) ---
+    	// --- Utility Functions (Updated) ---
 
     	/**
     	 * Renders the status badge for 'coming_soon' articles.
@@ -321,6 +330,32 @@
     			</a>
     		`;
     	};
+        
+        /**
+         * Renders the list of category links at the bottom of the page.
+         */
+        const renderCategoryLinksFooter = () => {
+            const container = document.getElementById('category-links-list');
+            if (!container) return;
+
+            let linksHtml = '';
+
+            // Iterate through the categories object
+            for (const [slug, info] of Object.entries(categories)) {
+                // Skip the 'all' category for the footer display
+                if (slug === 'all') continue; 
+                
+                const categoryUrl = `category-list.html?category=${slug}`;
+
+                linksHtml += `
+                    <a href="${categoryUrl}" class="p-3 hover-underline text-[var(--color-primary)] font-extrabold" style="font-family: var(--font-masthead);">
+                        ${info.name.toUpperCase()}
+                    </a>
+                `;
+            }
+
+            container.innerHTML = linksHtml;
+        };
 
 
         const renderCategoryContent = () => {
@@ -366,8 +401,11 @@
     		
     		// 1. Render Content 
     		renderCategoryContent();
+            
+            // 2. Render Category Footer Links
+            renderCategoryLinksFooter();
 
-    		// 2. Attach Interaction Listeners (Standard logic)
+    		// 3. Attach Interaction Listeners (Standard logic)
     			
     			const body = document.body;
     			const menuDrawer = document.getElementById('mobile-menu-drawer');

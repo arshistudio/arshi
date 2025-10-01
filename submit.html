@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit to ARSHI Magazine</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Editorial Vibe -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -61,7 +59,8 @@
             padding: 0.75rem;
             margin-top: 0.5rem;
             background-color: var(--bg);
-            border: 1px solid var(--fg)/30;
+            /* Updated border to use calc for opacity on var(--fg) to improve dark mode compatibility */
+            border: 1px solid rgba(var(--fg), 0.3); 
             color: var(--fg);
             transition: border-color 0.3s;
             outline: none;
@@ -90,7 +89,8 @@
         .rule-item {
             border-left: 4px solid var(--accent);
             padding-left: 1.5rem;
-            background-color: var(--fg)/5;
+            /* Updated background color to use calc for opacity on var(--fg) */
+            background-color: rgba(var(--fg), 0.05); 
             padding-top: 1rem;
             padding-bottom: 1rem;
         }
@@ -145,56 +145,49 @@
             max-width: 80%;
             margin: 0 auto;
         }
+        /* Adjusted dark theme hover styles for better contrast */
         body.dark-theme .choice-button:hover {
              background-color: var(--accent);
-             color: var(--fg);
+             color: var(--fg); /* Use foreground color on dark theme for hovered button text */
              border-color: var(--accent);
         }
         body.dark-theme .choice-button:hover .choice-title {
-            color: var(--fg);
+            color: var(--fg); /* Use foreground color on dark theme for hovered button title */
         }
     </style>
 </head>
 
-<body class="transition-colors">
+<body id="top" class="transition-colors">
 
-    <!-- Sticky Header (Consistent from index.html) -->
     <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
             style="background-color: var(--bg);">
         <div class="container mx-auto px-4 h-full flex items-center justify-between">
             
-            <!-- Left: Masthead -->
             <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
                 ARSHI
             </a>
 
-            <!-- Right: Desktop Nav & Icons (Simplified for utility pages) -->
             <nav class="flex items-center space-x-6">
-                <!-- Desktop Categories (Inline in Banner, Hidden on Mobile) -->
                 <div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Main Categories">
                     <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
                     <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
                     <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
                 </div>
 
-                <!-- Icons (Visible on Mobile and Desktop) -->
                 <div class="flex items-center space-x-4 lg:space-x-6">
-                    <!-- Theme Circle Button (NOW HAS ID FOR JS) -->
                     <button id="theme-toggle" class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
                             style="background-color: var(--accent);"
                             aria-label="Toggle Theme">
                     </button>
 
-                    <!-- Back to Home Button -->
-                    <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
+                    <button onclick="window.history.back()" class="p-2 transition-transform hover:scale-110" aria-label="Go Back to Previous Page">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    </a>
+                    </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Area (Centered) -->
     <main class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
         <h1 class="text-6xl md:text-7xl font-extrabold mb-8 accent-link tracking-widest leading-none">
             SUBMIT TO ARSHI
@@ -203,9 +196,6 @@
             ARSHI is an independent magazine open to writers, poets, critics, and researchers with fresh perspectives on culture. We welcome every voice that seeks to explore, question, and create with curiosity.
         </p>
         
-        <!-- ============================================== -->
-        <!-- VIEW 1: INITIAL CHOICE GATEWAY -->
-        <!-- ============================================== -->
         <section id="choice-view" class="grid md:grid-cols-2 gap-8 my-16">
             <button id="writer-button" class="choice-button">
                 <span class="choice-title">SUBMIT AS A WRITER</span>
@@ -218,20 +208,13 @@
         </section>
 
 
-        <!-- ============================================== -->
-        <!-- VIEW 2: FREE WRITER SUBMISSION -->
-        <!-- ============================================== -->
         <section id="writer-submission-view" class="mb-16 hidden">
             <h2 class="text-4xl md:text-6xl font-extrabold mb-2">SUBMISSION</h2>
             
-            <!-- NEW: Back to Options link at the top of the form -->
             <a href="#" onclick="showView('choice-view'); return false;" class="text-sm font-semibold text-[var(--fg)]/70 hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1 mb-6">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 Back to Options
             </a>
-            <!-- END NEW -->
-
-            <!-- Warning/Compensation Note -->
             <div class="p-4 bg-yellow-50 text-gray-800 border-l-4 border-yellow-500 rounded-lg mb-8 shadow-sm">
                 <p class="font-bold">⚠️ Please note:</p>
                 <p class="text-base mt-1">
@@ -239,9 +222,7 @@
                 </p>
             </div>
 
-            <!-- WRITER FORM -->
             <form action="https://formspree.io/f/YOUR_FORMSPREE_SUBMISSION_ENDPOINT_WRITER" method="POST" enctype="multipart/form-data" class="space-y-12">
-                <!-- STEP 1: Contributor Info -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">1.</span>
@@ -267,7 +248,6 @@
                     </div>
                 </div>
                 
-                <!-- STEP 2: Theme Selection -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">2.</span>
@@ -292,21 +272,18 @@
                     </div>
                 </div>
 
-                <!-- STEP 3: Proposal Details -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">3.</span>
                         <h3 class="text-3xl font-extrabold leading-tight">PROPOSAL DETAILS</h3>
                     </div>
                     
-                    <!-- Pitch / Idea -->
                     <div class="mb-6">
                         <label for="w-pitch" class="block text-sm font-bold uppercase mb-1">Pitch / Idea Summary (200 words max)</label>
                         <textarea name="pitch" id="w-pitch" rows="6" required class="input-field" placeholder="Explain: What is it about? Why is it relevant? What's your angle?"></textarea>
                         <p class="text-xs text-[var(--fg)]/60 mt-1">This summary is mandatory.</p>
                     </div>
 
-                    <!-- Format & Status -->
                     <div class="grid md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="w-format" class="block text-sm font-bold uppercase mb-1">Format</label>
@@ -330,7 +307,6 @@
                         </div>
                     </div>
                     
-                    <!-- Optional Upload -->
                     <div class="mb-6">
                         <label for="w-upload" class="block text-sm font-bold uppercase mb-1">Optional Upload (Draft, Images, PDF)</label>
                         <input type="file" name="upload" id="w-upload" class="input-field border-dashed p-3">
@@ -338,7 +314,6 @@
                     </div>
                 </div>
 
-                <!-- Final Action -->
                 <div class="text-center pt-8 border-t border-[var(--fg)]/20">
                     <button type="submit" class="submit-button text-2xl tracking-widest rounded-lg">
                         SUBMIT PROPOSAL
@@ -350,20 +325,13 @@
             </form>
         </section>
 
-        <!-- ============================================== -->
-        <!-- VIEW 3: COLLABORATOR SUBMISSION -->
-        <!-- ============================================== -->
         <section id="collaborator-submission-view" class="mb-16 hidden">
             <h2 class="text-4xl md:text-6xl font-extrabold mb-2">BECOME A COLLABORATOR</h2>
 
-            <!-- NEW: Back to Options link at the top of the form -->
             <a href="#" onclick="showView('choice-view'); return false;" class="text-sm font-semibold text-[var(--fg)]/70 hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1 mb-6">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 Back to Options
             </a>
-            <!-- END NEW -->
-
-            <!-- Collaborator Manifesto -->
             <div class="bg-[var(--fg)]/5 p-6 rounded-lg mb-8">
                 <p class="text-lg font-semibold mb-4">
                     ARSHI is an independent magazine built by the people who contribute to it.
@@ -396,9 +364,7 @@
                 </div>
             </div>
 
-            <!-- COLLABORATOR FORM -->
             <form action="https://formspree.io/f/YOUR_FORMSPREE_SUBMISSION_ENDPOINT_COLLABORATOR" method="POST" enctype="multipart/form-data" class="space-y-12">
-                <!-- STEP 1: Details -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">1.</span>
@@ -424,7 +390,6 @@
                     </div>
                 </div>
 
-                <!-- STEP 2: Focus & Themes -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">2.</span>
@@ -456,7 +421,6 @@
                     </div>
                 </div>
 
-                <!-- STEP 3: Motivation & Commitment -->
                 <div class="rule-item">
                     <div class="flex items-start mb-4">
                         <span class="step-number">3.</span>
@@ -491,7 +455,6 @@
                         </div>
                     </div>
 
-                    <!-- Portfolio / Sample Work -->
                     <div class="mt-6">
                         <label for="c-upload" class="block text-sm font-bold uppercase mb-1">Portfolio / Sample Work (Links or Upload)</label>
                         <p class="text-xs text-[var(--fg)]/60 mb-2">Provide a link to your portfolio or upload a representative sample.</p>
@@ -501,7 +464,6 @@
                     </div>
                 </div>
 
-                <!-- Final Action -->
                 <div class="text-center pt-8 border-t border-[var(--fg)]/20">
                     <button type="submit" class="submit-button text-2xl tracking-widest rounded-lg">
                         APPLY TO COLLABORATE
@@ -513,10 +475,66 @@
             </form>
         </section>
 
-        <!-- Removed the redundant 'back-to-choice' button from the bottom of the page -->
-    </main>
+        </main>
 
-    <!-- Theme & View Toggle JavaScript -->
+    <footer class="mt-20 border-t border-[var(--fg)]/20 shadow-lg" style="background-color: var(--bg); color: var(--fg);">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                
+                <div class="col-span-2 lg:col-span-2">
+                    <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider block mb-4" aria-label="ARSHI Studio Home">
+                        ARSHI
+                    </a>
+                    <p class="text-sm font-light opacity-80">&copy; 2025 ARSHI Magazine.</p>
+                    <p class="text-sm font-light opacity-80">All rights reserved.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase mb-4 text-[var(--accent)]">Sections</h4>
+                    <ul class="space-y-2 text-sm font-semibold">
+                        <li><a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a></li>
+                        <li><a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a></li>
+                        <li><a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase mb-4 text-[var(--accent)]">The Magazine</h4>
+                    <ul class="space-y-2 text-sm font-semibold">
+                        <li><a href="about.html" class="hover-underline">About ARSHI</a></li>
+                        <li><a href="submit.html" class="hover-underline">Submit</a></li>
+                        <li><a href="contact.html" class="hover-underline">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase mb-4 text-[var(--accent)]">Connect</h4>
+                    <ul class="space-y-2 text-sm font-semibold">
+                        <li><a href="#" class="hover-underline">Instagram</a></li>
+                        <li><a href="#" class="hover-underline">X / Twitter</a></li>
+                        <li><a href="#" class="hover-underline">Vimeo</a></li>
+                    </ul>
+                </div>
+
+                <div class="hidden lg:block">
+                    <h4 class="text-xs font-bold uppercase mb-4 text-[var(--accent)]">Theme</h4>
+                    <button onclick="toggleTheme()" class="w-8 h-8 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
+                        style="background-color: var(--accent);"
+                        aria-label="Toggle Theme">
+                    </button>
+                    <p class="text-xs mt-2 opacity-80">Toggle Light/Dark</p>
+                </div>
+            </div>
+            
+            <div class="text-right pt-8 mt-8 border-t border-[var(--fg)]/10">
+                <a href="#top" class="text-sm font-semibold text-[var(--accent)] hover-underline">
+                    Back to Top ↑
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
     <script>
         const body = document.body;
         const themeToggle = document.getElementById('theme-toggle');
@@ -545,6 +563,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' }); 
         }
 
+        // Event listeners for choice buttons
+        document.getElementById('writer-button').addEventListener('click', () => showView('writer-submission-view'));
+        document.getElementById('collaborator-button').addEventListener('click', () => showView('collaborator-submission-view'));
+
+
         // --- THEME MANAGEMENT LOGIC ---
         function loadTheme() {
             const savedTheme = localStorage.getItem(themeKey);
@@ -556,28 +579,23 @@
         }
 
         function toggleTheme() {
-            const isDark = body.classList.toggle('dark-theme');
-            localStorage.setItem(themeKey, isDark ? 'dark' : 'light');
-        }
-        
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Apply theme on DOM ready
-            loadTheme();
-            
-            // Set initial view to the choice gateway
-            showView('choice-view'); 
-
-            // Add listeners for choice buttons
-            document.getElementById('writer-button').addEventListener('click', () => showView('writer-submission-view'));
-            document.getElementById('collaborator-button').addEventListener('click', () => showView('collaborator-submission-view'));
-            
-            // Event listener for the theme toggle button
-            if (themeToggle) {
-                themeToggle.addEventListener('click', toggleTheme);
+            body.classList.toggle('dark-theme');
+            if (body.classList.contains('dark-theme')) {
+                localStorage.setItem(themeKey, 'dark');
+            } else {
+                localStorage.setItem(themeKey, 'light');
             }
+        }
+
+        // Initialize theme and set initial view to 'choice-view'
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTheme();
+            // Ensure the initial view is shown on page load
+            showView('choice-view'); 
         });
+
+        // Attach toggle function to the button
+        themeToggle.addEventListener('click', toggleTheme);
     </script>
 </body>
 </html>
-

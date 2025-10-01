@@ -253,36 +253,102 @@
 
             </section>
             
-            <section id="writer-form-view" class="hidden max-w-2xl mx-auto text-center">
+            <section id="writer-form-view" class="hidden">
                 <h2 class="text-5xl md:text-6xl font-extrabold mb-8 text-[var(--color-primary)] text-center" style="font-family: var(--font-masthead);">
                     SUBMIT YOUR WORK
                 </h2>
-                
-                <div class="bg-white p-6 md:p-10 shadow-lg border border-[var(--color-light)] space-y-6">
-                    <p class="text-xl font-medium">
-                        To ensure we can properly receive and review your submission, please email us directly with your pitch, work, or portfolio link.
-                    </p>
 
-                    <h3 class="text-3xl font-extrabold text-[var(--fg)]" style="font-family: var(--font-masthead);">
-                        EMAIL YOUR PROPOSAL TO:
-                    </h3>
+                <div class="bg-white p-6 md:p-10 shadow-lg border border-[var(--color-light)]">
 
-                    <a href="mailto:submissions@arshistudio.com" class="text-2xl font-bold text-[var(--color-primary)] hover:opacity-80 transition-opacity block" style="word-break: break-all;">
-                        submissions@arshistudio.com
-                    </a>
-
-                    <p class="text-base font-semibold p-4 border-l-4 border-[var(--color-primary)] bg-gray-50/50">
-                        **Important:** Please use the subject line format: **"Submission: [Category]"** (e.g., "Submission: Fashion & Art") to ensure your proposal is routed correctly.
-                    </p>
                     <p class="text-base text-[var(--color-primary)] font-semibold mb-6 p-4 border-2 border-[var(--color-primary)]">
-                        Please note: ARSHI is an independent project. At this stage, contributions are **unpaid**. However, all work is credited by name, and contributors retain their rights.
+                        Please note: ARSHI is an independent project. At this stage, contributions are **unpaid**. However, all work is credited by name, and contributors retain their rights. As the magazine grows, we hope to build towards sustainability and fair compensation for contributors.
                     </p>
-                    <p class="text-sm text-[var(--fg)]/70">
-                        The Director reviews all submissions. We aim to reply to all proposals within 10 days.
-                    </p>
-                    <a href="mailto:submissions@arshistudio.com" class="inline-block px-8 py-3 text-xl font-extrabold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90 mt-4" style="background-color: var(--color-secondary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
-                        SEND EMAIL NOW
-                    </a>
+
+                    <form class="space-y-8" 
+                        action="/thanks" 
+                        method="POST" 
+                        data-netlify="true" 
+                        name="writer-submission" 
+                        enctype="multipart/form-data">
+                        
+                        <div class="space-y-4">
+                            <h3 class="form-section-title">1. YOUR DETAILS</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="writer-name">NAME (First Last)</label>
+                                    <input type="text" id="writer-name" name="name" placeholder="First Last" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="writer-email">CONTACT EMAIL</label>
+                                    <input type="email" id="writer-email" name="email" placeholder="your@email.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="writer-bio">SHORT BIO (1-2 SENTENCES)</label>
+                                <input type="text" id="writer-bio" name="bio" placeholder="E.g., Writer and researcher based in Amsterdam" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="writer-links">LINKS TO PAST WORK (OPTIONAL)</label>
+                                <input type="text" id="writer-links" name="portfolio-links" placeholder="Portfolio URL, published articles, etc">
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="form-section-title">2. THEME SELECTION</h3>
+                            <div class="form-group">
+                                <label class="text-base">SELECT THE PRIMARY THEME(S) YOUR PROPOSAL ALIGNS WITH (CROSSOVERS ARE WELCOME)</label>
+                                <div class="flex flex-wrap gap-4 mt-2 text-sm">
+                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Society & Culture"> Society & Culture</label>
+                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Fashion & Art"> Fashion & Art</label>
+                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Music & Film"> Music & Film</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="form-section-title">3. PROPOSAL DETAILS</h3>
+                            <div class="form-group">
+                                <label for="writer-pitch">PITCH/IDEA SUMMARY (200 WORDS MAX)</label>
+                                <textarea id="writer-pitch" name="pitch-summary" rows="5" placeholder="Explain: What is it about? Why is it relevant? What's your angle?" required></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label for="writer-format">FORMAT</label>
+                                    <select id="writer-format" name="format" required>
+                                        <option value="" disabled selected>- Choose One -</option>
+                                        <option value="Essay/Reportage">Essay / Reportage</option>
+                                        <option value="Visual Project">Visual Project (Photo/Art)</option>
+                                        <option value="Review/Critique">Review / Critique</option>
+                                        <option value="Interview">Interview</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="writer-status">STATUS OF WORK</label>
+                                    <select id="writer-status" name="work-status" required>
+                                        <option value="" disabled selected>- Choose One -</option>
+                                        <option value="Idea (in development)">Idea (in development)</option>
+                                        <option value="First Draft Complete">First Draft Complete</option>
+                                        <option value="Final Draft">Final Draft</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group pt-4">
+                                <label for="writer-upload">OPTIONAL UPLOAD (DRAFT, IMAGES, PDF)</label>
+                                <input type="file" id="writer-upload" name="submission-upload" class="p-2 border-0 mt-2">
+                                <p class="text-xs text-[var(--fg)]/70 mt-1">Max file size 10MB. Accepted formats: PDF, DOCX, JPG, PNG.</p>
+                            </div>
+                        </div>
+
+                        <div class="text-center pt-4">
+                            <button type="submit" class="inline-block px-8 py-3 text-xl font-extrabold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90" style="background-color: var(--color-secondary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
+                                SUBMIT PROPOSAL
+                            </button>
+                            <p class="text-sm text-[var(--fg)]/70 mt-3">The Director reviews all submissions. We aim to reply to all proposals within 10 days.</p>
+                        </div>
+                    </form>
                 </div>
             </section>
             

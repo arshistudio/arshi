@@ -5,60 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category | ARSHI Magazine</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* Base (Terracotta) Theme */
+        
+        /* NEW COLOR PALETTE: Palette Trial 3 (High Contrast Editorial) */
         :root {
-            --bg: #F8F7F4; /* Off-White */
-            --fg: #111111; /* Near Black */
-            --accent: #A4492F; /* Terracotta */
-            --accent2: #1C2A44; /* Dark Blue */
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-ui: 'Inter', sans-serif;
-        }
-
-        /* Midnight Theme */
-        [data-theme="midnight"] {
-            --bg: #0f1218;
-            --fg: #f4f3ef;
-            --accent: #1C2A44;
-            --accent2: #C8A951; /* Gold/Ochre */
+            --bg: #E5DCC5; /* Beige (E5DCC5) - Main Background */
+            --fg: #2D2D2A; /* Charcoal Black (2D2D2A) - Main Text */
+            --color-primary: #C14953; /* Red (C14953) - Accent/Underline/Focus */
+            --color-secondary: #4C4C47; /* Dark Gray (4C4C47) - Secondary Accent/Button BG */
+            --color-light: #848FA5; /* Blue-Gray (848FA5) - Light divider/border */
+            --font-body: 'Inter', sans-serif;
+            --font-masthead: 'Bebas Neue', cursive; 
         }
 
         /* Applying Variables & General Styles */
         body {
             background-color: var(--bg);
             color: var(--fg);
-            font-family: var(--font-ui);
+            font-family: var(--font-body);
             transition: background-color 0.3s, color 0.3s;
         }
-        h1, h2, h3, .masthead {
-            font-family: var(--font-display);
+        h1, h2, h3 {
+            font-family: var(--font-masthead);
             letter-spacing: 0.05em;
         }
-        
-        .header-thin {
-            height: 64px;
+        .hover-link:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--color-primary);
+            text-underline-offset: 4px;
         }
         .masthead-text {
-            font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem);
+            font-family: var(--font-masthead);
+            font-size: clamp(1.5rem, 4vw + 1rem, 2.5rem);
             letter-spacing: 0.05em;
             line-height: 1;
         }
-        .hover-underline:hover {
-            text-decoration: underline;
-            text-decoration-color: var(--accent);
-            text-underline-offset: 4px;
-        }
-
         .card-link:hover .card-image {
             transform: scale(1.03);
             opacity: 0.9;
         }
-
-        /* Category Card Grid (3 columns desktop) */
+        
+        /* Category Card Grid (3 columns desktop) - Reused from old code */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -77,42 +69,91 @@
 
         /* Accessibility: Visible Focus States */
         *:focus-visible {
-            outline: 3px solid var(--accent) !important;
+            outline: 3px solid var(--color-primary) !important;
             outline-offset: 2px;
             border-radius: 4px;
         }
         
-        /* Utility styles for category coherence */
+        /* Category-specific coherence */
         .category-header {
-            color: var(--accent);
+            /* Now uses the new primary accent color */
+            color: var(--color-primary); 
         }
 
     </style>
 </head>
 
-<body data-theme="terracotta" class="transition-colors">
+<body class="transition-colors">
 
-    <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
-            style="background-color: var(--bg);">
-        <div class="container mx-auto px-4 h-full flex items-center justify-between">
-            
+    <header class="sticky top-0 z-40 w-full transition-colors border-b border-[var(--color-light)]/70 shadow-md" style="background-color: var(--bg);">
+        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
             <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
                 ARSHI
             </a>
 
-            <nav class="flex items-center space-x-6">
-                <button class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
-                        style="background-color: var(--accent);"
-                        aria-label="Theme Color (Static)">
-                </button>
-
-                <a href="index.html" class="p-2 transition-transform hover:scale-110" aria-label="Back to Home">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </a>
+            <nav class="hidden lg:flex items-center space-x-6">
+                <a href="index.html" class="p-2 text-[var(--fg)]/80 hover-link font-bold uppercase text-sm">INDEX</a>
+                <a href="category-list.html?category=society-culture" class="p-2 text-[var(--fg)]/80 hover-link font-bold uppercase text-sm">SOCIETY & CULTURE</a>
+                <a href="category-list.html?category=fashion-art" class="p-2 text-[var(--fg)]/80 hover-link font-bold uppercase text-sm">FASHION & ART</a>
+                <a href="category-list.html?category=music-film" class="p-2 text-[var(--fg)]/80 hover-link font-bold uppercase text-sm">MUSIC & FILM</a>
             </nav>
+
+            <div class="flex items-center space-x-4 lg:space-x-6">
+                <button id="open-search-button" class="p-2 transition-transform hover:scale-110" aria-label="Open Search">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                
+                <button id="open-utility-button" class="p-2 hidden lg:block transition-transform hover:scale-110" aria-label="Open Utility Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                
+                <button id="open-menu-button" class="p-2 lg:hidden transition-transform hover:scale-110" aria-label="Open Mobile Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
         </div>
     </header>
 
+    <div id="search-overlay" class="fixed inset-0 bg-[var(--bg)]/95 backdrop-blur-sm z-50 hidden transition-opacity duration-300">
+        <div class="container mx-auto px-4 h-full flex flex-col justify-start pt-24">
+            <div class="flex justify-end">
+                <button id="close-search-button" class="p-4 transition-transform hover:scale-110 absolute top-4 right-4" aria-label="Close Search">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <input type="text" placeholder="Type to search ARSHI..." class="w-full text-5xl md:text-7xl font-extrabold tracking-wider p-4 border-b-2 border-[var(--fg)]/20 focus:outline-none" style="background-color: transparent; font-family: var(--font-masthead);">
+            <p class="text-sm text-[var(--fg)]/70 mt-4 px-4">Press ESC to close.</p>
+        </div>
+    </div>
+    
+    <nav id="menu-drawer" class="fixed top-0 right-0 h-full w-64 md:w-80 bg-[var(--fg)] text-[var(--bg)] z-50 transform translate-x-full transition-transform duration-300 shadow-xl">
+        <div class="p-6 flex flex-col h-full">
+            <button id="close-menu-button" class="self-end p-2 transition-transform hover:scale-110 mb-8" aria-label="Close Menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="flex flex-col space-y-6 text-xl font-bold uppercase font-['Bebas_Neue'] tracking-wider">
+                <a href="index.html" class="hover:text-[var(--color-primary)] transition-colors">INDEX</a>
+                <a href="category-list.html?category=society-culture" class="hover:text-[var(--color-primary)] transition-colors">SOCIETY & CULTURE</a>
+                <a href="category-list.html?category=fashion-art" class="hover:text-[var(--color-primary)] transition-colors">FASHION & ART</a>
+                <a href="category-list.html?category=music-film" class="hover:text-[var(--color-primary)] transition-colors">MUSIC & FILM</a>
+                <hr class="border-[var(--bg)]/20 my-4">
+                <a href="about.html" class="hover:text-[var(--color-primary)] transition-colors">About</a>
+                <a href="contact.html" class="hover:text-[var(--color-primary)] transition-colors">Contact</a>
+                <a href="submit.html" class="hover:text-[var(--color-primary)] transition-colors">Submit</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="desktop-utility-drawer" class="fixed top-20 right-4 w-64 bg-[var(--bg)] border border-[var(--color-light)] shadow-xl z-50 hidden transition-opacity duration-200 p-4">
+        <div class="flex flex-col space-y-3">
+            <a href="about.html" class="text-sm font-semibold uppercase hover-link">About</a>
+            <a href="contact.html" class="text-sm font-semibold uppercase hover-link">Contact</a>
+            <a href="submit.html" class="text-sm font-semibold uppercase hover-link">Submit</a>
+            <hr class="border-[var(--color-light)]/50">
+            <button id="theme-switcher" class="text-sm font-semibold uppercase text-left hover:text-[var(--color-primary)] transition-colors">Theme: terracotta</button>
+        </div>
+    </div>
     <main class="container mx-auto px-4 py-12 md:py-20">
         
         <header class="mb-12 border-b-2 pb-8 border-[var(--fg)]/20">
@@ -126,15 +167,54 @@
         </header>
 
         <section>
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-widest" style="font-family: var(--font-display);">ALL STORIES</h2>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-widest" style="font-family: var(--font-masthead);">ALL STORIES</h2>
             <div id="category-article-grid" class="category-grid">
                 </div>
         </section>
 
     </main>
 
+    <footer class="bg-[var(--fg)] text-[var(--bg)] py-12 md:py-20 mt-12">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left">
+            
+            <div class="flex flex-col mb-8 md:mb-0">
+                <a href="index.html" class="masthead-text font-extrabold text-[var(--bg)] tracking-wider mb-4 text-5xl">
+                    ARSHI
+                </a>
+                <p class="text-sm max-w-sm text-[var(--bg)]/70">
+                    An independent cultural magazine exploring society, fashion, and art through fresh, emerging voices.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:space-x-12 space-y-6 md:space-y-0 text-[var(--bg)]/80">
+                <div class="flex flex-col space-y-2">
+                    <h4 class="text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider mb-1">Magazine</h4>
+                    <a href="about.html" class="hover:text-[var(--color-primary)] transition-colors">About</a>
+                    <a href="contact.html" class="hover:text-[var(--color-primary)] transition-colors">Contact</a>
+                    <a href="submit.html" class="hover:text-[var(--color-primary)] transition-colors">Submit</a>
+                </div>
+
+                <div class="flex flex-col space-y-2">
+                    <h4 class="text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider mb-1">Connect</h4>
+                    <a href="#" class="hover:text-[var(--color-primary)] transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-[var(--color-primary)] transition-colors">X/Twitter</a>
+                    <a href="#" class="hover:text-[var(--color-primary)] transition-colors">Vimeo</a>
+                </div>
+
+                <div class="flex flex-col space-y-2">
+                    <h4 class="text-lg font-semibold uppercase font-['Bebas_Neue'] tracking-wider mb-1">Legal</h4>
+                    <a href="privacy.html" class="hover:text-[var(--color-primary)] transition-colors">Privacy Policy</a>
+                    <a href="legal.html" class="hover:text-[var(--color-primary)] transition-colors">Legal</a>
+                    <a href="accessibility.html" class="hover:text-[var(--color-primary)] transition-colors">Accessibility</a>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-12">
+            <p class="text-xs text-center text-[var(--bg)]/50">&copy; 2025 ARSHI Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
     <script>
-        // --- Data Model (Copied from index.html for consistency) ---
+        // --- Data Model (Kept from old code) ---
         const allArticles = [
             { title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.", 
               image: "https://placehold.co/600x450/A4492F/F8F7F4?text=FASHION+ART+1" },
@@ -154,7 +234,7 @@
               image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=SOCIETY+CULTURE+3" },
         ];
 
-        // Map for converting URL parameter to display name and description
+        // Map for converting URL parameter to display name and description (Kept from old code)
         const categoryMap = {
             'society-culture': {
                 name: 'SOCIETY & CULTURE',
@@ -176,19 +256,19 @@
 
         // --- Utility Functions ---
 
-        /** Fetches URL parameters for category filtering. */
+        /** Fetches URL parameters for category filtering. (Kept from old code) */
         const getCategoryParam = () => {
             const urlParams = new URLSearchParams(window.location.search);
             // Default to 'all' if no parameter is found
             return urlParams.get('category') || 'all';
         };
 
-        /** Renders the status badge for 'coming_soon' articles. */
+        /** Renders the status badge for 'coming_soon' articles. (UPDATED to use --color-secondary) */
         const renderStatusBadge = (status) => {
             if (status === 'coming_soon') {
                 return `
                     <span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)] transition-colors"
-                          style="background-color: var(--accent2);">
+                          style="background-color: var(--color-secondary);">
                         COMING SOON
                     </span>
                 `;
@@ -196,7 +276,7 @@
             return '';
         };
 
-        /** Generates the HTML for a single article card (simplified grid version). */
+        /** Generates the HTML for a single article card (simplified grid version). (Kept from old code) */
         const renderArticleCard = (article) => {
             return `
                 <a href="${article.slug}" class="card-link group block transition-colors" aria-label="Read article: ${article.title}">
@@ -218,7 +298,7 @@
                             ${renderStatusBadge(article.status)}
                         </div>
 
-                        <h3 class="font-extrabold text-3xl mt-3 leading-snug" style="font-family: var(--font-display);">
+                        <h3 class="font-extrabold text-3xl mt-3 leading-snug" style="font-family: var(--font-masthead);">
                             ${article.title.toUpperCase()}
                         </h3>
 
@@ -230,7 +310,7 @@
             `;
         };
 
-        /** Filters and renders articles based on the URL parameter. */
+        /** Filters and renders articles based on the URL parameter. (Kept from old code) */
         const renderCategoryContent = () => {
             const requestedCategory = getCategoryParam();
             const categoryInfo = categoryMap[requestedCategory] || categoryMap['all'];
@@ -266,16 +346,85 @@
         };
 
 
-        // --- Initialization ---
-
+        // --- Initialization and Utility Drawer Logic (NEW DESIGN) ---
         document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const menuDrawer = document.getElementById('menu-drawer');
+            const openMenuButton = document.getElementById('open-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const searchOverlay = document.getElementById('search-overlay');
+            const openSearchButton = document.getElementById('open-search-button');
+            const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
+            const openUtilityButton = document.getElementById('open-utility-button');
+
             // Apply saved theme (for visual consistency across pages)
+            // The actual theme cycling logic is expected in a separate theme-switcher.js
             const savedTheme = localStorage.getItem('arshiTheme') || 'terracotta';
             document.body.setAttribute('data-theme', savedTheme);
             
             // Render the specific category content
             renderCategoryContent();
+
+            // Mobile Menu Drawer Logic
+            openMenuButton.addEventListener('click', () => {
+                menuDrawer.classList.remove('translate-x-full');
+                body.style.overflow = 'hidden'; // Prevent scrolling on body
+            });
+            closeMenuButton.addEventListener('click', () => {
+                menuDrawer.classList.add('translate-x-full');
+                body.style.overflow = '';
+            });
+
+            // Desktop Utility Drawer Logic
+            if (openUtilityButton) {
+                openUtilityButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    desktopUtilityDrawer.classList.toggle('hidden');
+                });
+            }
+
+            // Search Overlay Logic
+            openSearchButton.addEventListener('click', () => {
+                searchOverlay.classList.remove('hidden');
+                body.style.overflow = 'hidden';
+                searchOverlay.querySelector('input').focus(); 
+            });
+            
+            document.getElementById('close-search-button').addEventListener('click', () => {
+                searchOverlay.classList.add('hidden');
+                body.style.overflow = '';
+            });
+
+            // Close all on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (!searchOverlay.classList.contains('hidden')) {
+                        searchOverlay.classList.add('hidden');
+                        body.style.overflow = '';
+                    }
+                    if (!menuDrawer.classList.contains('translate-x-full')) {
+                        menuDrawer.classList.add('translate-x-full');
+                        body.style.overflow = '';
+                    }
+                    if (desktopUtilityDrawer && !desktopUtilityDrawer.classList.contains('hidden')) {
+                        desktopUtilityDrawer.classList.add('hidden');
+                    }
+                }
+            });
+
+            // Close desktop utility on outside click
+            document.addEventListener('click', (e) => {
+                const headerRight = document.querySelector('header .flex.items-center.space-x-4, header .flex.items-center.space-x-6');
+                const isClickInsideHeader = headerRight ? headerRight.contains(e.target) : false;
+
+                if (window.innerWidth > 1024 && desktopUtilityDrawer && !desktopUtilityDrawer.classList.contains('hidden')) {
+                    if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
+                        desktopUtilityDrawer.classList.add('hidden');
+                    }
+                }
+            });
         });
     </script>
-</body>
+    
+    </body>
 </html>

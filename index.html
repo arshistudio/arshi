@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARSHI Studio | Editorial Magazine</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
         
-        /* Applying Variables & General Styles (No color variables here, they come from styles.html) */
+        /* Applying Variables & General Styles */
         body {
             background-color: var(--bg);
             color: var(--fg);
@@ -27,7 +28,27 @@
             height: 64px; /* Target ~56-64px */
         }
 
-        /* Masthead Styling - ADJUSTED for slightly smaller, tighter condensation */
+        /* NEW: Header Scroll State Management */
+        #main-header {
+            transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+            border-bottom: none; /* Starts without border */
+            box-shadow: none; /* Starts without shadow */
+        }
+        
+        #main-header.scrolled-header {
+            /* Adds the necessary visual cues when scrolling down */
+            border-bottom: 1px solid var(--color-light); /* Adds border */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Adds shadow */
+        }
+        
+        /* Logo Size Fix: ensures it uses the size defined in styles.html (2.2rem) */
+        .logo {
+            font-size: 2.2rem;
+            color: var(--fg); /* Ensure color is set */
+            font-family: var(--font-masthead); /* Ensure font is set */
+        }
+
+        /* Masthead Styling for the Hero section text */
         .masthead-text {
             font-size: clamp(2.5rem, 5vw + 1rem, 4.0rem); /* Reduced from 4.5rem max */
             letter-spacing: 0.05em; /* Tighter tracking for condensed look */
@@ -86,11 +107,11 @@
 
 <body data-theme="terracotta">
 
-    <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
+    <header id="main-header" class="header-thin sticky top-0 z-40 w-full transition-colors"
     			style="background-color: var(--bg);">
     	<div class="container mx-auto px-4 h-full flex items-center justify-between">
     			
-    			<a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
+    			<a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
     				ARSHI
     			</a>
 
@@ -102,24 +123,13 @@
     				</div>
 
     				<div class="flex items-center space-x-4 lg:space-x-6">
-    					<button id="search-button" class="p-2 transition-transform hover:scale-110" aria-label="Open Search">
+    					<button id="search-button" class="p-2 transition-transform hover:scale-110 text-[var(--fg)]" aria-label="Open Search">
     						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
     					</button>
 
-    					<button id="theme-button" class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
-    							style="background-color: var(--color-primary);" /* Uses the primary accent color */
-    							aria-label="Cycle Theme Color">
-    					</button>
-
-    					<button id="menu-button" class="lg:hidden p-2 transition-transform hover:scale-110" aria-label="Open Mobile Menu">
-    						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-    					</button>
-
-    					<div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Utility Navigation">
-    						<button onclick="document.getElementById('desktop-utility-drawer').classList.toggle('hidden')" class="p-2 transition-transform hover:scale-110" aria-label="Open Utility Menu">
-    							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-    						</button>
-    					</div>
+    					<button id="menu-button" class="p-2 transition-transform hover:scale-110 text-[var(--fg)]" aria-label="Open Menu">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        </button>
 
     				</div>
     			</nav>
@@ -138,7 +148,7 @@
     <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
     	style="background-color: var(--bg);">
     	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl">
-    		<button id="close-menu-button" class="absolute top-4 right-4 p-2" aria-label="Close Mobile Menu">
+    		<button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
     			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
     		</button>
     		<nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
@@ -157,7 +167,7 @@
 
     <div id="search-overlay" class="fixed inset-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md hidden transition-colors" aria-modal="true" role="dialog" aria-label="Search">
     	<div class="flex flex-col items-center justify-start pt-20 h-full">
-    		<button id="close-search-button" class="absolute top-8 right-8 p-4" aria-label="Close Search">
+    		<button id="close-search-button" class="absolute top-8 right-8 p-4 text-[var(--fg)]" aria-label="Close Search">
     			<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
     		</button>
     		<input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none transition-colors" style="font-family: var(--font-masthead);">
@@ -212,9 +222,9 @@
     		if (status === 'coming_soon') {
     			return `
     				<span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)] transition-colors"
-    							style="background-color: var(--color-secondary);"> /* Changed to use secondary dark accent */
+    							style="background-color: var(--color-secondary);"> /* Uses secondary dark accent from Palette 3 */
     						COMING SOON
-    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">10th of October 2025</span>
+    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCT 2025</span> /* Shortened date to prevent overflow/disappearance */
     				</span>
     			`;
     		}
@@ -291,62 +301,54 @@
     	};
 
 
-    	// --- Theme Switching Logic ---
+    	// --- Theme Switching Logic REMOVED ---
 
-    	// Removed 'olive' theme from the list
-    	const themes = ['terracotta', 'midnight'];	
-    	let currentThemeIndex = 0;
+        /**
+         * Handles the sticky header's scroll state (shadow/border).
+         * Header is opaque by default (var(--bg)) and gains shadow/border when scrolled.
+         */
+        const handleScroll = () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled-header');
+            } else {
+                header.classList.remove('scrolled-header');
+            }
+        };
 
-    	/**
-    	 * Cycles the website's theme using CSS variables.
-    	 */
-    	const cycleTheme = () => {
-    		currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-    		const newTheme = themes[currentThemeIndex];
-    		document.body.setAttribute('data-theme', newTheme);
-    		localStorage.setItem('arshiTheme', newTheme);
-    	};
-
-    	/**
-    	 * Initializes the theme from localStorage or sets the default.
-    	 */
-    	const initializeTheme = () => {
-    		const savedTheme = localStorage.getItem('arshiTheme') || 'terracotta';
-    		// Ensure saved theme is one of the valid options
-    		if (!themes.includes(savedTheme)) {
-    			document.body.setAttribute('data-theme', 'terracotta');
-    			currentThemeIndex = 0;
-    		} else {
-    			document.body.setAttribute('data-theme', savedTheme);
-    			currentThemeIndex = themes.indexOf(savedTheme);
-    		}
-    	};
 
     	// --- Event Listeners and Initializers ---
 
     	document.addEventListener('DOMContentLoaded', () => {
-    		// 1. Initialize Theme
-    		initializeTheme();
-
-    		// 2. Render Content
+    		
+    		// 1. Render Content
     		renderContent();
 
-    		// 3. Attach Interaction Listeners
+    		// 2. Attach Interaction Listeners
 
     		const body = document.body;
     		const menuDrawer = document.getElementById('mobile-menu-drawer');
     		const searchOverlay = document.getElementById('search-overlay');
     		const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
 
-    		// Theme Button
-    		document.getElementById('theme-button').addEventListener('click', cycleTheme);
+            // Scroll Handler
+            window.addEventListener('scroll', handleScroll);
+            // Initial check in case user refreshed partway down the page
+            handleScroll(); 
 
-    		// Menu Drawer Handlers
-    		document.getElementById('menu-button').addEventListener('click', () => {
-    			menuDrawer.classList.remove('translate-x-full');
-    			body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-    			menuDrawer.focus();
-    		});
+    		// Menu Button Handlers - Logic is consolidated here for both mobile and desktop utility
+            const menuButton = document.getElementById('menu-button');
+            
+            menuButton.addEventListener('click', () => {
+                if (window.innerWidth <= 1024) { // Mobile (lg breakpoint)
+                    menuDrawer.classList.remove('translate-x-full');
+                    body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                } else { // Desktop
+                    desktopUtilityDrawer.classList.toggle('hidden');
+                }
+            });
+
+    		// Close Mobile Menu Button
     		document.getElementById('close-menu-button').addEventListener('click', () => {
     			menuDrawer.classList.add('translate-x-full');
     			body.style.overflow = '';
@@ -388,10 +390,10 @@
     			const headerRight = document.querySelector('header .flex.items-center.space-x-6');
     			const isClickInsideHeader = headerRight.contains(e.target);
 
-    			// Check if the click was on the header's right side elements, if not, close the utility drawer
-    			if (!isClickInsideHeader && !desktopUtilityDrawer.classList.contains('hidden')) {
-    				// Check if the click target is outside the drawer itself
-    				if (!desktopUtilityDrawer.contains(e.target)) {
+    			// Only run on desktop and if the drawer is open
+    			if (window.innerWidth > 1024 && !desktopUtilityDrawer.classList.contains('hidden')) {
+    				// If the click was outside the header icons AND outside the drawer, close it.
+    				if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
     					desktopUtilityDrawer.classList.add('hidden');
     				}
     			}

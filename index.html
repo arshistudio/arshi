@@ -8,29 +8,41 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght=400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
         
+        /* NEW COLOR PALETTE: Palette Trial 3 (High Contrast Editorial) */
+        :root {
+            --bg: #E5DCC5; /* Beige (E5DCC5) - Main Background */
+            --fg: #2D2D2A; /* Charcoal Black (2D2D2A) - Main Text */
+            --color-primary: #C14953; /* Red (C14953) - Accent/Underline/Focus */
+            --color-secondary: #4C4C47; /* Dark Gray (4C4C47) - Status Badge Background */
+            --color-light: #848FA5; /* Blue-Gray (848FA5) - Light divider/border */
+            --font-body: 'Inter', sans-serif;
+            --font-masthead: 'Bebas Neue', cursive;
+        }
+
         /* Applying Variables & General Styles */
         body {
             background-color: var(--bg);
             color: var(--fg);
-            font-family: var(--font-body); /* Using font from styles.html */
+            font-family: var(--font-body);
             transition: background-color 0.3s, color 0.3s;
         }
         h1, h2, .masthead {
-            font-family: var(--font-masthead); /* Using font from styles.html */
+            font-family: var(--font-masthead);
         }
         
         /* Thin Sticky Header Height */
         .header-thin {
-            height: 64px; /* Target ~56-64px */
+            height: 64px;
         }
 
-        /* Header remains visible on load (FIXED) */
+        /* HEADER FIX: Top banner is static (sticky) when scrolling, with a consistent background/shadow */
         #main-header {
             transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+            /* Ensures it is solid and has a border/shadow */
             border-bottom: 1px solid var(--color-light); 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
@@ -38,8 +50,8 @@
         /* Logo Size Fix: ensures it uses the size defined in styles.html (2.2rem) */
         .logo {
             font-size: 2.2rem;
-            color: var(--fg); /* Ensure color is set */
-            font-family: var(--font-masthead); /* Ensure font is set */
+            color: var(--fg);
+            font-family: var(--font-masthead);
         }
 
         /* Masthead Styling for the Hero section text */
@@ -52,7 +64,7 @@
         /* Custom Hover States */
         .hover-underline:hover {
             text-decoration: underline;
-            text-decoration-color: var(--color-primary); /* Using color from styles.html */
+            text-decoration-color: var(--color-primary);
             text-underline-offset: 4px;
         }
 
@@ -67,25 +79,24 @@
             column-count: 1;
             column-gap: 24px;
         }
-        @media (min-width: 1024px) { /* Changed from md to lg for clarity */
+        @media (min-width: 1024px) { 
             .masonry-grid {
-                column-count: 2; /* Two columns */
-                column-fill: balance; /* Allows for slightly uneven column heights */
+                column-count: 2;
+                column-fill: balance;
             }
         }
-        /* Removed 3-column layout to simplify to the strong 2-column editorial aesthetic */
         
         /* Masonry Item Style - crucial for broken grid effect */
         .article-card {
             break-inside: avoid;
-            margin-bottom: 32px; /* Increased margin for visual separation */
+            margin-bottom: 32px;
             display: block; 
         }
         /* END OF I-D LAYOUT CHANGES */
 
         /* Accessibility: Visible Focus States */
         *:focus-visible {
-            outline: 3px solid var(--color-primary) !important; /* Using color from styles.html */
+            outline: 3px solid var(--color-primary) !important;
             outline-offset: 2px;
             border-radius: 4px;
         }
@@ -98,7 +109,7 @@
     </style>
 </head>
 
-<body data-theme="terracotta">
+<body>
 
     <header id="main-header" class="header-thin sticky top-0 z-40 w-full transition-colors"
     			style="background-color: var(--bg);">
@@ -217,7 +228,7 @@
     				<span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)] transition-colors"
     							style="background-color: var(--color-secondary);"> 
     						COMING SOON
-    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCT 2025</span>
+    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCTOBER 10th 2025</span> 
     				</span>
     			`;
     		}
@@ -235,12 +246,12 @@
     		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : 'text-3xl mt-3 leading-snug';
     		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-2xl' : 'text-base font-ui mt-2 hidden md:block';
             
-            // NEW: Styling for prominent author credit
+            // Styling for prominent author credit (from previous step)
             const authorCredit = isHero 
                 ? `<p class="text-xl md:text-2xl font-extrabold mt-3" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`
                 : `<p class="text-lg font-extrabold mt-2" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
 
-            // NEW: Reading time is smaller, separate meta
+            // Reading time is smaller, separate meta
             const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60 transition-colors">${article.readingMinutes} min read</p>`;
 
     		return `

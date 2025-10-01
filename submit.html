@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS VARIABLES: Palette Trial 3 (Keeping your styles) */
+        /* CSS VARIABLES: Palette Trial 3 */
         :root {
             --bg: #E5DCC5; /* Beige - Main Background */
             --fg: #2D2D2A; /* Charcoal Black - Main Text */
@@ -25,9 +25,9 @@
             background-color: var(--bg);
             color: var(--fg);
             font-family: var(--font-body);
-            display: flex; /* Added for sticky footer layout */
-            flex-direction: column; /* Added for sticky footer layout */
-            min-height: 100vh; /* Added for sticky footer layout */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         h1, h2, h3, .masthead {
             font-family: var(--font-masthead);
@@ -72,6 +72,20 @@
         .back-link:hover {
             color: var(--color-primary);
         }
+        /* New Menu for themes from PDF */
+        .theme-menu {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--color-secondary);
+            font-size: 0.875rem; /* text-sm */
+            letter-spacing: 0.05em;
+        }
+        .theme-menu a {
+            transition: color 0.2s;
+        }
+        .theme-menu a:hover {
+            color: var(--color-primary);
+        }
     </style>
 </head>
 
@@ -83,17 +97,22 @@
 			<a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
 				ARSHI
 			</a>
+            <nav class="theme-menu space-x-4 hidden sm:flex">
+                <a href="#">Society & Culture</a>
+                <a href="#">Fashion & Art</a>
+                <a href="#">Music & Film</a>
+            </nav>
 		</div>
     </header>
 
     <main class="container mx-auto px-4 py-8 md:py-12 flex-grow">
         <div class="max-w-4xl mx-auto">
             
-            <h1 class="text-7xl md:text-8xl font-extrabold mb-8 tracking-wider text-[var(--fg)] text-center" style="line-height: 1;">
+            <h1 class="text-6xl md:text-7xl font-extrabold mb-6 tracking-wider text-[var(--fg)] text-center" style="line-height: 1;">
                 SUBMIT TO ARSHI
             </h1>
 
-            <p class="text-xl md:text-2xl font-semibold max-w-3xl mx-auto mb-16 text-center">
+            <p class="text-xl font-semibold max-w-3xl mx-auto mb-16 text-center text-[var(--fg)]">
                 ARSHI is an **open platform** dedicated to publishing emerging and established voices. We welcome every voice that seeks to explore, question, and create with curiosity.
             </p>
             

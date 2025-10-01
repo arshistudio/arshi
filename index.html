@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARSHI Studio | Editorial Magazine</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Editorial Vibe -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Bebas Neue for Masthead/H1/H2 (Bold Condensed Vibe) & Inter for UI/Body -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* Applying Variables & General Styles */
+        
+        /* Applying Variables & General Styles (No color variables here, they come from styles.html) */
         body {
-            /* Now relies solely on styles.html for background-color and color */
-            font-family: var(--font-body); /* Changed from --font-ui */
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-body); /* Using font from styles.html */
             transition: background-color 0.3s, color 0.3s;
         }
         h1, h2, .masthead {
-            font-family: var(--font-masthead); /* Changed from --font-display */
+            font-family: var(--font-masthead); /* Using font from styles.html */
         }
         
         /* Thin Sticky Header Height */
@@ -37,7 +37,7 @@
         /* Custom Hover States */
         .hover-underline:hover {
             text-decoration: underline;
-            text-decoration-color: var(--color-primary); /* Changed from --accent */
+            text-decoration-color: var(--color-primary); /* Using color from styles.html */
             text-underline-offset: 4px;
         }
 
@@ -71,7 +71,7 @@
 
         /* Accessibility: Visible Focus States */
         *:focus-visible {
-            outline: 3px solid var(--color-primary) !important; /* Changed from --accent */
+            outline: 3px solid var(--color-primary) !important; /* Using color from styles.html */
             outline-offset: 2px;
             border-radius: 4px;
         }
@@ -86,342 +86,317 @@
 
 <body data-theme="terracotta">
 
-    <!-- Sticky Header -->
     <header class="header-thin sticky top-0 z-40 w-full transition-colors border-b border-[var(--fg)]/20 shadow-md"
-            style="background-color: var(--bg);">
-        <div class="container mx-auto px-4 h-full flex items-center justify-between">
-            
-            <!-- Left: Masthead -->
-            <a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
-                ARSHI
-            </a>
+    			style="background-color: var(--bg);">
+    	<div class="container mx-auto px-4 h-full flex items-center justify-between">
+    			
+    			<a href="index.html" class="masthead-text font-extrabold text-[var(--fg)] tracking-wider" aria-label="ARSHI Studio Home">
+    				ARSHI
+    			</a>
 
-            <!-- Right: Desktop Nav & Icons -->
-            <nav class="flex items-center space-x-6">
-                <!-- Desktop Categories (Inline in Banner, Hidden on Mobile) -->
-                <div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Main Categories">
-                    <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
-                    <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
-                    <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
-                </div>
+    			<nav class="flex items-center space-x-6">
+    				<div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Main Categories">
+    					<a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
+    					<a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
+    					<a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
+    				</div>
 
-                <!-- Icons (Visible on Mobile and Desktop) -->
-                <div class="flex items-center space-x-4 lg:space-x-6">
-                    <!-- Search Icon -->
-                    <button id="search-button" class="p-2 transition-transform hover:scale-110" aria-label="Open Search">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </button>
+    				<div class="flex items-center space-x-4 lg:space-x-6">
+    					<button id="search-button" class="p-2 transition-transform hover:scale-110" aria-label="Open Search">
+    						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    					</button>
 
-                    <!-- Theme Circle Button -->
-                    <button id="theme-button" class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
-                            style="background-color: var(--accent);"
-                            aria-label="Cycle Theme Color">
-                    </button>
+    					<button id="theme-button" class="w-6 h-6 rounded-full border-2 border-[var(--fg)]/50 transition-colors"
+    							style="background-color: var(--color-primary);" /* Uses the primary accent color */
+    							aria-label="Cycle Theme Color">
+    					</button>
 
-                    <!-- Hamburger Menu Icon (Mobile) -->
-                    <button id="menu-button" class="lg:hidden p-2 transition-transform hover:scale-110" aria-label="Open Mobile Menu">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
+    					<button id="menu-button" class="lg:hidden p-2 transition-transform hover:scale-110" aria-label="Open Mobile Menu">
+    						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    					</button>
 
-                    <!-- Desktop Utility Menu Trigger (Hamburger) -->
-                    <div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Utility Navigation">
-                        <button onclick="document.getElementById('desktop-utility-drawer').classList.toggle('hidden')" class="p-2 transition-transform hover:scale-110" aria-label="Open Utility Menu">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                        </button>
-                    </div>
+    					<div class="hidden lg:flex space-x-6 text-base font-semibold transition-colors" role="navigation" aria-label="Utility Navigation">
+    						<button onclick="document.getElementById('desktop-utility-drawer').classList.toggle('hidden')" class="p-2 transition-transform hover:scale-110" aria-label="Open Utility Menu">
+    							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    						</button>
+    					</div>
 
-                </div>
-            </nav>
-        </div>
-        
+    				</div>
+    			</nav>
+    	</div>
+    			
     </header>
-    
-    <!-- Desktop Utility Drawer (Hidden by default) -->
+    	
     <div id="desktop-utility-drawer" class="hidden absolute top-16 right-0 z-30 w-64 p-6 border-l border-b border-[var(--fg)]/20 shadow-xl transition-colors" style="background-color: var(--bg);">
-        <nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
-            <a href="about.html" class="hover-underline transition-colors">About</a>
-            <a href="contact.html" class="hover-underline transition-colors">Contact</a>
-            <a href="submit.html" class="hover-underline transition-colors">Submit</a>
-        </nav>
+    	<nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
+    		<a href="about.html" class="hover-underline transition-colors">About</a>
+    		<a href="contact.html" class="hover-underline transition-colors">Contact</a>
+    		<a href="submit.html" class="hover-underline transition-colors">Submit</a>
+    	</nav>
     </div>
 
-    <!-- Mobile Menu Drawer (Hidden by default) - Now includes categories and utility links -->
     <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
-         style="background-color: var(--bg);">
-        <div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl">
-            <button id="close-menu-button" class="absolute top-4 right-4 p-2" aria-label="Close Mobile Menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
-                <!-- Categories -->
-                <a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
-                <a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
-                <a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
-                
-                <!-- Utility Links -->
-                <div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
-                    <a href="about.html" class="block hover-underline transition-colors">About</a>
-                    <a href="contact.html" class="block hover-underline transition-colors">Contact</a>
-                    <a href="submit.html" class="block hover-underline transition-colors">Submit</a>
-                </div>
-            </nav>
-        </div>
+    	style="background-color: var(--bg);">
+    	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl">
+    		<button id="close-menu-button" class="absolute top-4 right-4 p-2" aria-label="Close Mobile Menu">
+    			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    		</button>
+    		<nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
+    			<a href="category-list.html?category=society-culture" class="hover-underline transition-colors">Society & Culture</a>
+    			<a href="category-list.html?category=fashion-art" class="hover-underline transition-colors">Fashion & Art</a>
+    			<a href="category-list.html?category=music-film" class="hover-underline transition-colors">Music & Film</a>
+    			
+    			<div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
+    				<a href="about.html" class="block hover-underline transition-colors">About</a>
+    				<a href="contact.html" class="block hover-underline transition-colors">Contact</a>
+    				<a href="submit.html" class="block hover-underline transition-colors">Submit</a>
+    			</div>
+    		</nav>
+    	</div>
     </div>
 
-    <!-- Search Overlay (Hidden by default) -->
     <div id="search-overlay" class="fixed inset-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md hidden transition-colors" aria-modal="true" role="dialog" aria-label="Search">
-        <div class="flex flex-col items-center justify-start pt-20 h-full">
-            <button id="close-search-button" class="absolute top-8 right-8 p-4" aria-label="Close Search">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--accent)] focus:outline-none transition-colors" style="font-family: var(--font-display);">
-            <p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
-        </div>
+    	<div class="flex flex-col items-center justify-start pt-20 h-full">
+    		<button id="close-search-button" class="absolute top-8 right-8 p-4" aria-label="Close Search">
+    			<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    		</button>
+    		<input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none transition-colors" style="font-family: var(--font-masthead);">
+    		<p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
+    	</div>
     </div>
 
 
-    <!-- Main Content Area -->
     <main class="container mx-auto px-4 py-8 md:py-12">
-        <section id="hero-article" class="mb-12 transition-colors">
-            <!-- Hero content will be injected here -->
-        </section>
+    	<section id="hero-article" class="mb-12 transition-colors">
+    		</section>
 
-        <section id="article-grid-container" class="transition-colors">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6 mt-10 tracking-widest" style="font-family: var(--font-display);">LATEST STORIES</h2>
-            <!-- Masonry Grid -->
-            <div id="article-grid" class="masonry-grid">
-                <!-- Grid articles will be injected here -->
-            </div>
-        </section>
+    	<section id="article-grid-container" class="transition-colors">
+    		<h2 class="text-4xl md:text-6xl font-extrabold mb-6 mt-10 tracking-widest" style="font-family: var(--font-masthead);">LATEST STORIES</h2>
+    		<div id="article-grid" class="masonry-grid">
+    			</div>
+    	</section>
     </main>
 
-    <!-- JavaScript for Interactions and Data Rendering -->
     <script>
-        // --- Data Model ---
-        const articles = [
-            // Hero article - Updated with a better placeholder image for visual coherence
-            { isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.", 
-              image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" },
-            
-            // Grid articles - Updated with more visually coherent placeholders
-            { title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.", 
-              image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO" },
-            { title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.", 
-              image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA" },
-            { title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.", 
-              image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS" },
-            { title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.", 
-              image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE" },
-            { title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.", 
-              image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART" },
-            { title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.", 
-              image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO" },
-            { title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.", 
-              image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT" },
-        ];
+    	// --- Data Model ---
+    	const articles = [
+    		// Hero article - Updated with a better placeholder image for visual coherence
+    		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
+    			image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" },
+    		
+    		// Grid articles - Updated with more visually coherent placeholders
+    		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
+    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO" },
+    		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
+    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA" },
+    		{ title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
+    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS" },
+    		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
+    			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE" },
+    		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
+    			image: "https://placehold.co/600x600/A4492F/F8F7F4?text=TEXTILE+ART" },
+    		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
+    			image: "https://placehold.co/600x700/111/f7f6f2?text=REPORTAGE+PHOTO" },
+    		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
+    			image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT" },
+    	];
 
-        // --- Utility Functions ---
+    	// --- Utility Functions ---
 
-        /**
-         * Renders the status badge for 'coming_soon' articles.
-         * @param {string} status - The status string.
-         * @returns {string} HTML for the badge or an empty string.
-         */
-        const renderStatusBadge = (status) => {
-            if (status === 'coming_soon') {
-                return `
-                    <span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)] transition-colors"
-                          style="background-color: var(--accent2);">
-                        COMING SOON
-                        <span class="ml-2 text-xs opacity-70 whitespace-nowrap">10th of October 2025</span>
-                    </span>
-                `;
-            }
-            return '';
-        };
+    	/**
+    	 * Renders the status badge for 'coming_soon' articles.
+    	 * @param {string} status - The status string.
+    	 * @returns {string} HTML for the badge or an empty string.
+    	 */
+    	const renderStatusBadge = (status) => {
+    		if (status === 'coming_soon') {
+    			return `
+    				<span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)] transition-colors"
+    							style="background-color: var(--color-secondary);"> /* Changed to use secondary dark accent */
+    						COMING SOON
+    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">10th of October 2025</span>
+    				</span>
+    			`;
+    		}
+    		return '';
+    	};
 
-        /**
-         * Generates the HTML for a single article card.
-         * @param {object} article - The article data object.
-         * @param {boolean} isHero - Whether it's the large hero card.
-         * @returns {string} The complete HTML string.
-         */
-        const renderArticleCard = (article, isHero = false) => {
-            const imageSizeClass = isHero ? 'h-64 md:h-96' : 'h-64';
-            const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : 'text-3xl mt-3 leading-snug';
-            const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-2xl' : 'text-base font-ui mt-2 hidden md:block';
+    	/**
+    	 * Generates the HTML for a single article card.
+    	 * @param {object} article - The article data object.
+    	 * @param {boolean} isHero - Whether it's the large hero card.
+    	 * @returns {string} The complete HTML string.
+    	 */
+    	const renderArticleCard = (article, isHero = false) => {
+    		const imageSizeClass = isHero ? 'h-64 md:h-96' : 'h-64';
+    		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : 'text-3xl mt-3 leading-snug';
+    		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-2xl' : 'text-base font-ui mt-2 hidden md:block';
 
-            return `
-                <a href="${article.slug}" class="card-link ${isHero ? '' : 'article-card'} group block transition-colors" aria-label="Read article: ${article.title}">
-                    
-                    <!-- Image Area -->
-                    <div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
-                        <img loading="lazy" 
-                             src="${article.image}" 
-                             alt="${article.title}" 
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/808080/FFF?text=Image+Missing';"
-                             class="card-image w-full object-cover transition-transform duration-500 ease-in-out ${imageSizeClass} rounded-lg"
-                        >
-                    </div>
+    		return `
+    			<a href="${article.slug}" class="card-link ${isHero ? '' : 'article-card'} group block transition-colors" aria-label="Read article: ${article.title}">
+    					
+    					<div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
+    						<img loading="lazy"	
+    							src="${article.image}"	
+    							alt="${article.title}"	
+    							onerror="this.onerror=null;this.src='https://placehold.co/600x400/808080/FFF?text=Image+Missing';"
+    							class="card-image w-full object-cover transition-transform duration-500 ease-in-out ${imageSizeClass} rounded-lg"
+    						>
+    					</div>
 
-                    <!-- Text Content -->
-                    <div class="py-4">
-                        <!-- Category Pill & Status Badge -->
-                        <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
-                            <span class="px-2 py-1 text-xs font-bold uppercase rounded-full border border-current text-[var(--fg)] transition-colors">
-                                ${article.category}
-                            </span>
-                            ${renderStatusBadge(article.status)}
-                        </div>
+    					<div class="py-4">
+    						<div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+    							<span class="px-2 py-1 text-xs font-bold uppercase rounded-full border border-current text-[var(--fg)] transition-colors">
+    								${article.category}
+    							</span>
+    							${renderStatusBadge(article.status)}
+    						</div>
 
-                        <!-- Title -->
-                        <h3 class="font-extrabold ${titleClass}" style="font-family: var(--font-display);">
-                            ${article.title.toUpperCase()}
-                        </h3>
+    						<h3 class="font-extrabold ${titleClass}" style="font-family: var(--font-masthead);">
+    							${article.title.toUpperCase()}
+    						</h3>
 
-                        <!-- Dek (Summary) -->
-                        <p class="${dekClass} text-[var(--fg)]/80">
-                            ${article.dek}
-                        </p>
+    						<p class="${dekClass} text-[var(--fg)]/80">
+    							${article.dek}
+    						</p>
 
-                        <!-- Meta -->
-                        <p class="text-sm font-semibold mt-3 text-[var(--fg)]/60 transition-colors">
-                            ${article.author} • ${article.readingMinutes} min read
-                        </p>
-                    </div>
-                </a>
-            `;
-        };
+    						<p class="text-sm font-semibold mt-3 text-[var(--fg)]/60 transition-colors">
+    							${article.author} • ${article.readingMinutes} min read
+    						</p>
+    					</div>
+    			</a>
+    		`;
+    	};
 
-        /**
-         * Renders all articles into their respective containers (Hero and Grid).
-         */
-        const renderContent = () => {
-            const heroContainer = document.getElementById('hero-article');
-            const gridContainer = document.getElementById('article-grid');
-            
-            let heroHtml = '';
-            let gridHtml = '';
+    	/**
+    	 * Renders all articles into their respective containers (Hero and Grid).
+    	 */
+    	const renderContent = () => {
+    		const heroContainer = document.getElementById('hero-article');
+    		const gridContainer = document.getElementById('article-grid');
+    		
+    		let heroHtml = '';
+    		let gridHtml = '';
 
-            articles.forEach(article => {
-                if (article.isHero) {
-                    heroHtml = renderArticleCard(article, true);
-                } else {
-                    gridHtml += renderArticleCard(article, false);
-                }
-            });
+    		articles.forEach(article => {
+    			if (article.isHero) {
+    				heroHtml = renderArticleCard(article, true);
+    			} else {
+    				gridHtml += renderArticleCard(article, false);
+    			}
+    		});
 
-            heroContainer.innerHTML = heroHtml;
-            gridContainer.innerHTML = gridHtml;
-        };
+    		heroContainer.innerHTML = heroHtml;
+    		gridContainer.innerHTML = gridHtml;
+    	};
 
 
-        // --- Theme Switching Logic ---
+    	// --- Theme Switching Logic ---
 
-        // Removed 'olive' theme from the list
-        const themes = ['terracotta', 'midnight']; 
-        let currentThemeIndex = 0;
+    	// Removed 'olive' theme from the list
+    	const themes = ['terracotta', 'midnight'];	
+    	let currentThemeIndex = 0;
 
-        /**
-         * Cycles the website's theme using CSS variables.
-         */
-        const cycleTheme = () => {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            const newTheme = themes[currentThemeIndex];
-            document.body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('arshiTheme', newTheme);
-        };
+    	/**
+    	 * Cycles the website's theme using CSS variables.
+    	 */
+    	const cycleTheme = () => {
+    		currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+    		const newTheme = themes[currentThemeIndex];
+    		document.body.setAttribute('data-theme', newTheme);
+    		localStorage.setItem('arshiTheme', newTheme);
+    	};
 
-        /**
-         * Initializes the theme from localStorage or sets the default.
-         */
-        const initializeTheme = () => {
-            const savedTheme = localStorage.getItem('arshiTheme') || 'terracotta';
-            // Ensure saved theme is one of the valid options
-            if (!themes.includes(savedTheme)) {
-                document.body.setAttribute('data-theme', 'terracotta');
-                currentThemeIndex = 0;
-            } else {
-                document.body.setAttribute('data-theme', savedTheme);
-                currentThemeIndex = themes.indexOf(savedTheme);
-            }
-        };
+    	/**
+    	 * Initializes the theme from localStorage or sets the default.
+    	 */
+    	const initializeTheme = () => {
+    		const savedTheme = localStorage.getItem('arshiTheme') || 'terracotta';
+    		// Ensure saved theme is one of the valid options
+    		if (!themes.includes(savedTheme)) {
+    			document.body.setAttribute('data-theme', 'terracotta');
+    			currentThemeIndex = 0;
+    		} else {
+    			document.body.setAttribute('data-theme', savedTheme);
+    			currentThemeIndex = themes.indexOf(savedTheme);
+    		}
+    	};
 
-        // --- Event Listeners and Initializers ---
+    	// --- Event Listeners and Initializers ---
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Initialize Theme
-            initializeTheme();
+    	document.addEventListener('DOMContentLoaded', () => {
+    		// 1. Initialize Theme
+    		initializeTheme();
 
-            // 2. Render Content
-            renderContent();
+    		// 2. Render Content
+    		renderContent();
 
-            // 3. Attach Interaction Listeners
+    		// 3. Attach Interaction Listeners
 
-            const body = document.body;
-            const menuDrawer = document.getElementById('mobile-menu-drawer');
-            const searchOverlay = document.getElementById('search-overlay');
-            const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
+    		const body = document.body;
+    		const menuDrawer = document.getElementById('mobile-menu-drawer');
+    		const searchOverlay = document.getElementById('search-overlay');
+    		const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
 
-            // Theme Button
-            document.getElementById('theme-button').addEventListener('click', cycleTheme);
+    		// Theme Button
+    		document.getElementById('theme-button').addEventListener('click', cycleTheme);
 
-            // Menu Drawer Handlers
-            document.getElementById('menu-button').addEventListener('click', () => {
-                menuDrawer.classList.remove('translate-x-full');
-                body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-                menuDrawer.focus();
-            });
-            document.getElementById('close-menu-button').addEventListener('click', () => {
-                menuDrawer.classList.add('translate-x-full');
-                body.style.overflow = '';
-            });
+    		// Menu Drawer Handlers
+    		document.getElementById('menu-button').addEventListener('click', () => {
+    			menuDrawer.classList.remove('translate-x-full');
+    			body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+    			menuDrawer.focus();
+    		});
+    		document.getElementById('close-menu-button').addEventListener('click', () => {
+    			menuDrawer.classList.add('translate-x-full');
+    			body.style.overflow = '';
+    		});
 
-            // Search Overlay Handlers
-            document.getElementById('search-button').addEventListener('click', () => {
-                searchOverlay.classList.remove('hidden');
-                body.style.overflow = 'hidden';
-                searchOverlay.querySelector('input').focus(); // Focus the input
-            });
-            document.getElementById('close-search-button').addEventListener('click', () => {
-                searchOverlay.classList.add('hidden');
-                body.style.overflow = '';
-            });
+    		// Search Overlay Handlers
+    		document.getElementById('search-button').addEventListener('click', () => {
+    			searchOverlay.classList.remove('hidden');
+    			body.style.overflow = 'hidden';
+    			searchOverlay.querySelector('input').focus(); // Focus the input
+    		});
+    		document.getElementById('close-search-button').addEventListener('click', () => {
+    			searchOverlay.classList.add('hidden');
+    			body.style.overflow = '';
+    		});
 
-            // Close overlays/drawers on ESC key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    // Close search overlay
-                    if (!searchOverlay.classList.contains('hidden')) {
-                        searchOverlay.classList.add('hidden');
-                        body.style.overflow = '';
-                    }
-                    // Close mobile menu
-                    if (!menuDrawer.classList.contains('translate-x-full')) {
-                        menuDrawer.classList.add('translate-x-full');
-                        body.style.overflow = '';
-                    }
-                    // Close desktop utility drawer
-                    if (!desktopUtilityDrawer.classList.contains('hidden')) {
-                        desktopUtilityDrawer.classList.add('hidden');
-                    }
-                }
-            });
+    		// Close overlays/drawers on ESC key
+    		document.addEventListener('keydown', (e) => {
+    			if (e.key === 'Escape') {
+    				// Close search overlay
+    				if (!searchOverlay.classList.contains('hidden')) {
+    					searchOverlay.classList.add('hidden');
+    					body.style.overflow = '';
+    				}
+    				// Close mobile menu
+    				if (!menuDrawer.classList.contains('translate-x-full')) {
+    					menuDrawer.classList.add('translate-x-full');
+    					body.style.overflow = '';
+    				}
+    				// Close desktop utility drawer
+    				if (!desktopUtilityDrawer.classList.contains('hidden')) {
+    					desktopUtilityDrawer.classList.add('hidden');
+    				}
+    			}
+    		});
 
-            // Close desktop utility drawer if clicking outside
-            document.addEventListener('click', (e) => {
-                const headerRight = document.querySelector('header .flex.items-center.space-x-6');
-                const isClickInsideHeader = headerRight.contains(e.target);
+    		// Close desktop utility drawer if clicking outside
+    		document.addEventListener('click', (e) => {
+    			const headerRight = document.querySelector('header .flex.items-center.space-x-6');
+    			const isClickInsideHeader = headerRight.contains(e.target);
 
-                // Check if the click was on the header's right side elements, if not, close the utility drawer
-                if (!isClickInsideHeader && !desktopUtilityDrawer.classList.contains('hidden')) {
-                    // Check if the click target is outside the drawer itself
-                    if (!desktopUtilityDrawer.contains(e.target)) {
-                        desktopUtilityDrawer.classList.add('hidden');
-                    }
-                }
-            });
-        });
+    			// Check if the click was on the header's right side elements, if not, close the utility drawer
+    			if (!isClickInsideHeader && !desktopUtilityDrawer.classList.contains('hidden')) {
+    				// Check if the click target is outside the drawer itself
+    				if (!desktopUtilityDrawer.contains(e.target)) {
+    					desktopUtilityDrawer.classList.add('hidden');
+    				}
+    			}
+    		});
+    	});
     </script>
 </body>
 </html>

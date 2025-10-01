@@ -47,9 +47,9 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
         
-        /* LOGO FIX: Bigger (3.5rem), Tighter Spacing (-0.07em) for maximum IMPACT */
+        /* LOGO FIX: Changed to 4rem (64px) to match header height */
         .logo {
-            font-size: 3.5rem; /* Increased for maximum impact */
+            font-size: 4rem; /* Changed to 4rem (64px) */
             letter-spacing: -0.07em; /* Tighter spacing */
             font-weight: 700 !important;
             color: var(--fg);
@@ -255,15 +255,15 @@
     		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
     			image: "https://placehold.co/1200x800/A4492F/F8F7F4?text=FEATURED+EDITORIAL+IMAGE" },
     		
-    		// Grid articles - Heights adjusted for tighter packing
-    		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
-    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-80' }, 
-    		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
-    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-72' }, 
+    		// Grid articles - MADE PROMINENT to form a feature block (Article 1 and 2)
+    		{ isProminent: true, title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
+    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-112' }, 
+    		{ isProminent: true, title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
+    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-112' }, 
             
-            // This article BREAKS the Masonry flow to create a single-column block
+            // Article 3 - Previously full-span, now normal size to allow the first two to fill the vertical space
     		{ title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
-    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-48', isFullSpan: true }, 
+    			image: "https://placehold.co/600x400/3B5323/f7f6f2?text=SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-64' }, 
 
     		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
     			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-80' }, 
@@ -274,7 +274,7 @@
             
             // This is the final article, which we will force to span full width for a clean end.
     		{ title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
-    			image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT", imageHeightClass: 'h-80' }, 
+    			image: "https://placehold.co/600x450/1C2A44/F8F7F4?text=MAGAZINE+LAYOUT", imageHeightClass: 'h-80', isFullSpan: true }, 
     	];
 
     	// --- Utility Functions ---
@@ -307,14 +307,17 @@
     	const renderArticleCard = (article, isHero = false, isLast = false) => {
             
             // Determine if the article should span full width (if marked, or if it's the last one)
-            const shouldSpanFull = (isLast && !isHero) || article.isFullSpan;
+            const shouldSpanFull = isLast || article.isFullSpan;
+            const isProminent = article.isProminent; // Check for prominent flag
 
-            // Use specific height for grid items or hero heights. Override height for dramatic full-span break.
-            const cardImageHeightClass = shouldSpanFull ? 'h-96 md:h-112' : (article.imageHeightClass || 'h-64');
+            // If prominent, use a very large height class (h-112 is 28rem / 448px)
+            const prominentImageHeight = 'h-112';
+            // Use specific height for grid items or hero heights. If prominent or full-span, use the larger class.
+    		const cardImageHeightClass = shouldSpanFull ? 'h-96 md:h-112' : (isProminent ? prominentImageHeight : (article.imageHeightClass || 'h-64'));
     		const imageSizeClass = isHero ? 'h-64 md:h-96' : cardImageHeightClass; 
             
-            // Grid article titles are text-4xl
-    		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : 'text-4xl mt-3 leading-snug';
+            // Grid article titles are text-4xl. Prominent articles use text-5xl to stand out.
+    		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : (isProminent ? 'text-5xl mt-3 leading-snug' : 'text-4xl mt-3 leading-snug');
     		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-2xl' : 'text-base font-ui mt-2 hidden md:block';
             
             // Styling for prominent author credit

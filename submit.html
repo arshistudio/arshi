@@ -11,14 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        
-        /* NEW COLOR PALETTE: Palette Trial 3 (High Contrast Editorial) */
+        /* CSS VARIABLES: Palette Trial 3 */
         :root {
-            --bg: #E5DCC5; /* Beige (E5DCC5) - Main Background */
-            --fg: #2D2D2A; /* Charcoal Black (2D2D2A) - Main Text */
-            --color-primary: #C14953; /* Red (C14953) - Accent/Underline/Focus */
-            --color-secondary: #4C4C47; /* Dark Gray (4C4C47) - Secondary Accent/Button BG */
-            --color-light: #848FA5; /* Blue-Gray (848FA5) - Light divider/border */
+            --bg: #E5DCC5; /* Beige - Main Background */
+            --fg: #2D2D2A; /* Charcoal Black - Main Text */
+            --color-primary: #C14953; /* Red - Accent/Underline/Focus */
+            --color-secondary: #4C4C47; /* Dark Gray - Secondary Accent/Button BG */
+            --color-light: #848FA5; /* Blue-Gray - Light divider/border */
             --font-body: 'Inter', sans-serif;
             --font-masthead: 'Bebas Neue', cursive;
         }
@@ -33,13 +32,9 @@
             font-family: var(--font-masthead);
             letter-spacing: 0.05em;
         }
-        
-        /* Consistent Thin Header Height */
         .header-thin {
             height: 64px;
         }
-        
-        /* LOGO FIX (Exact match to index) */
         .logo {
             font-size: 4rem;
             letter-spacing: -0.07em;
@@ -47,49 +42,9 @@
             color: var(--fg);
             font-family: var(--font-masthead);
         }
-
-        /* HEADER FIX: Top banner is sticky and styled */
         #main-header {
             border-bottom: 1px solid var(--color-light);	
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Consistent Hover Underline */
-        .hover-underline {
-            position: relative;
-            display: inline-block;
-        }
-        .hover-underline:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            display: block;
-            margin-top: 2px;
-            right: 0;
-            background: var(--color-primary);
-            transition: width 0.3s ease;
-        }
-        .hover-underline:hover:after {
-            width: 100%;
-            left: 0;
-            background: var(--color-primary);
-        }
-
-        /* Card/Link Style for Submission Choice */
-        .submission-card {
-            border: 2px solid var(--fg); 
-            transition: background-color 0.3s, transform 0.3s;
-            cursor: pointer;
-        }
-        .submission-card:hover {
-            background-color: var(--color-primary);
-            color: var(--bg);
-            border-color: var(--color-primary);
-            transform: translateY(-4px);
-        }
-        .submission-card:hover .text-fg {
-            color: var(--bg); /* Override text color on hover for inner elements */
         }
 
         /* Form Styling */
@@ -106,19 +61,15 @@
             font-weight: 600;
             display: block;
             margin-bottom: 0.25rem;
-            font-size: 0.875rem; /* text-sm */
-            color: var(--color-secondary);
         }
-        .form-group input[type="text"],
-        .form-group input[type="email"],
+        .form-group input:not([type="checkbox"]):not([type="radio"]),
         .form-group textarea,
         .form-group select {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid var(--color-light);
+            border: 1px solid var(--color-secondary);
             background-color: white;
-            color: var(--fg);
-            transition: border-color 0.3s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
         .form-group input:focus,
         .form-group textarea:focus,
@@ -128,6 +79,21 @@
             box-shadow: 0 0 0 1px var(--color-primary);
         }
 
+        /* Tabs/Navigation */
+        .tab-button {
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            border-bottom: 2px solid transparent;
+            font-family: var(--font-masthead);
+            letter-spacing: 0.05em;
+        }
+        .tab-button.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+            background-color: var(--bg);
+        }
+        .tab-button:not(.active):hover {
+            color: var(--color-secondary);
+        }
     </style>
 </head>
 
@@ -136,132 +102,41 @@
     <header id="main-header" class="header-thin sticky top-0 z-40 w-full"
     			style="background-color: var(--bg);">
     	<div class="container mx-auto px-4 h-full flex items-center justify-between">
-			
 			<a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
 				ARSHI
 			</a>
-
-			<nav class="flex items-center space-x-6">
-				<div class="hidden lg:flex space-x-6 text-base font-semibold" role="navigation" aria-label="Main Categories">
-					<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
-					<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
-					<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
-				</div>
-
-				<div class="flex items-center space-x-4 lg:space-x-6">
-					<button id="search-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Search">
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-					</button>
-
-					<button id="menu-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Menu">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
-				</div>
-			</nav>
-    	</div>
-    			
+			</div>
     </header>
-    	
-    <div id="desktop-utility-drawer" class="hidden absolute top-16 right-0 z-30 w-64 p-6 border-l border-b border-[var(--fg)]/20 shadow-xl" style="background-color: var(--bg);">
-    	<nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
-    		<a href="about.html" class="hover-underline">About</a>
-    		<a href="contact.html" class="hover-underline">Contact</a>
-    		<a href="submit.html" class="hover-underline">Submit</a>
-    	</nav>
-    </div>
-    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full duration-300 ease-in-out lg:hidden" style="background-color: var(--bg);">
-    	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl" style="background-color: var(--bg);">
-    		<button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
-    			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    		</button>
-    		<nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
-    			<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
-    			<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
-    			<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
-    			<div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
-    				<a href="about.html" class="block hover-underline">About</a>
-    				<a href="contact.html" class="block hover-underline">Contact</a>
-    				<a href="submit.html" class="block hover-underline">Submit</a>
-    			</div>
-    		</nav>
-    	</div>
-    </div>
-    <div id="search-overlay" class="fixed inset-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md hidden" aria-modal="true" role="dialog" aria-label="Search">
-    	<div class="flex flex-col items-center justify-start pt-20 h-full">
-    		<button id="close-search-button" class="absolute top-8 right-8 p-4 text-[var(--fg)]" aria-label="Close Search">
-    			<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    		</button>
-    		<input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none" style="font-family: var(--font-masthead);">
-    		<p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
-    	</div>
-    </div>
 
     <main class="container mx-auto px-4 py-8 md:py-12">
         <div class="max-w-4xl mx-auto">
             
-            <div id="back-button-container" class="hidden mb-6">
-                <a href="#" onclick="showView('choice')" class="flex items-center text-base font-semibold hover:text-[var(--color-primary)] transition-colors">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to Options
-                </a>
-            </div>
-
             <h1 class="text-7xl md:text-8xl font-extrabold mb-8 tracking-wider text-[var(--fg)] text-center" style="line-height: 1;">
                 SUBMIT TO ARSHI
             </h1>
 
             <p class="text-xl md:text-2xl font-semibold max-w-3xl mx-auto mb-12 text-center">
-                ARSHI is an <strong>open platform</strong> dedicated to publishing emerging and established voices. We welcome every voice that seeks to explore, question, and create with curiosity.
+                ARSHI is an **open platform** dedicated to publishing emerging and established voices. We welcome every voice that seeks to explore, question, and create with curiosity.
             </p>
-
             
-            <section id="choice-view" class="space-y-8">
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="flex justify-center border-b border-[var(--color-secondary)] mb-10">
+                <button id="writer-tab-button" class="tab-button active text-lg md:text-xl px-6 py-3" data-target="writer-form-container">
+                    SUBMIT AS A WRITER
+                </button>
+                <button id="collaborator-tab-button" class="tab-button text-lg md:text-xl px-6 py-3" data-target="collaborator-form-container">
+                    BECOME A COLLABORATOR
+                </button>
+            </div>
 
-                    <div class="submission-card p-8 flex flex-col justify-between" onclick="showView('writer-form')" role="button" tabindex="0" aria-label="Submit as a Writer">
-                        <div>
-                            <h2 class="text-4xl font-extrabold mb-3 text-fg" style="font-family: var(--font-masthead);">
-                                SUBMIT AS A WRITER
-                            </h2>
-                            <p class="text-base font-medium text-fg/80">
-                                Pitch a single article, visual piece, or creative project to be considered for our next issue.
-                            </p>
-                        </div>
-                        <span class="mt-6 text-lg font-bold flex items-center justify-end text-fg">
-                            Start Submission
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </span>
-                    </div>
 
-                    <div class="submission-card p-8 flex flex-col justify-between" onclick="showView('collaborator-form')" role="button" tabindex="0" aria-label="Become a Collaborator">
-                        <div>
-                            <h2 class="text-4xl font-extrabold mb-3 text-fg" style="font-family: var(--font-masthead);">
-                                BECOME A COLLABORATOR
-                            </h2>
-                            <p class="text-base font-medium text-fg/80">
-                                Join ARSHI's Contributors Circle to work with us consistently on ideas, editing, and events.
-                            </p>
-                        </div>
-                        <span class="mt-6 text-lg font-bold flex items-center justify-end text-fg">
-                            Start Application
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </span>
-                    </div>
+            <div class="max-w-3xl mx-auto bg-white p-6 md:p-10 shadow-lg border border-[var(--color-light)]">
 
-                </div>
-
-            </section>
-            
-            <section id="writer-form-view" class="hidden">
-                <h2 class="text-5xl md:text-6xl font-extrabold mb-8 text-[var(--color-primary)] text-center" style="font-family: var(--font-masthead);">
-                    SUBMIT YOUR WORK
-                </h2>
-
-                <div class="bg-white p-6 md:p-10 shadow-lg border border-[var(--color-light)]">
-
-                    <p class="text-base text-[var(--color-primary)] font-semibold mb-6 p-4 border-2 border-[var(--color-primary)]">
-                        Please note: ARSHI is an independent project. At this stage, contributions are <strong>unpaid</strong>. However, all work is credited by name, and contributors retain their rights. As the magazine grows, we hope to build towards sustainability and fair compensation for contributors.
+                <div id="writer-form-container" class="tab-content">
+                    <h2 class="form-section-title text-center text-4xl md:text-5xl mb-6">
+                        WRITER SUBMISSION
+                    </h2>
+                    <p class="text-center mb-6 text-sm text-[var(--color-primary)] font-semibold">
+                        **Please note:** Contributions are currently **unpaid**. All work is credited by name.
                     </p>
 
                     <form class="space-y-8" 
@@ -273,346 +148,196 @@
                         
                         <input type="hidden" name="form-name" value="writer-submission" />
                         <input type="hidden" name="bot-field" />
-                        <div class="space-y-4">
-                            <h3 class="form-section-title">1. YOUR DETAILS</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="form-group">
-                                    <label for="writer-name">NAME (First Last)</label>
-                                    <input type="text" id="writer-name" name="name" placeholder="First Last" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="writer-email">CONTACT EMAIL</label>
-                                    <input type="email" id="writer-email" name="email" placeholder="your@email.com" required>
-                                </div>
+                        <h3 class="text-lg font-bold border-b pb-2 mb-4">1. YOUR DETAILS</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label for="writer-name">NAME</label>
+                                <input type="text" id="writer-name" name="name" required placeholder="First Last">
                             </div>
                             <div class="form-group">
-                                <label for="writer-bio">SHORT BIO (1-2 SENTENCES)</label>
-                                <input type="text" id="writer-bio" name="bio" placeholder="E.g., Writer and researcher based in Amsterdam" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="writer-links">LINKS TO PAST WORK (OPTIONAL)</label>
-                                <input type="text" id="writer-links" name="portfolio-links" placeholder="Portfolio URL, published articles, etc">
+                                <label for="writer-email">CONTACT EMAIL</label>
+                                <input type="email" id="writer-email" name="email" required placeholder="your@email.com">
                             </div>
                         </div>
-
-                        <div class="space-y-4">
-                            <h3 class="form-section-title">2. THEME SELECTION</h3>
-                            <div class="form-group">
-                                <label class="text-base">SELECT THE PRIMARY THEME(S) YOUR PROPOSAL ALIGNS WITH (CROSSOVERS ARE WELCOME)</label>
-                                <div class="flex flex-wrap gap-4 mt-2 text-sm">
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Society & Culture"> Society & Culture</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Fashion & Art"> Fashion & Art</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Music & Film"> Music & Film</label>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="writer-bio">SHORT BIO (1-2 SENTENCES)</label>
+                            <input type="text" id="writer-bio" name="short-bio" required placeholder="E.g., Writer and researcher based in Amsterdam">
+                        </div>
+                        <div class="form-group">
+                            <label for="writer-links">LINKS TO PAST WORK (OPTIONAL)</label>
+                            <input type="url" id="writer-links" name="past-work-links" placeholder="Portfolio URL, published articles, etc.">
                         </div>
 
-                        <div class="space-y-4">
-                            <h3 class="form-section-title">3. PROPOSAL DETAILS</h3>
-                            <div class="form-group">
-                                <label for="writer-pitch">PITCH/IDEA SUMMARY (200 WORDS MAX)</label>
-                                <textarea id="writer-pitch" name="pitch-summary" rows="5" placeholder="Explain: What is it about? Why is it relevant? What's your angle?" required></textarea>
-                            </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="form-group">
-                                    <label for="writer-format">FORMAT</label>
-                                    <select id="writer-format" name="format" required>
-                                        <option value="" disabled selected>- Choose One -</option>
-                                        <option value="Essay/Reportage">Essay / Reportage</option>
-                                        <option value="Visual Project">Visual Project (Photo/Art)</option>
-                                        <option value="Review/Critique">Review / Critique</option>
-                                        <option value="Interview">Interview</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="writer-status">STATUS OF WORK</label>
-                                    <select id="writer-status" name="work-status" required>
-                                        <option value="" disabled selected>- Choose One -</option>
-                                        <option value="Idea (in development)">Idea (in development)</option>
-                                        <option value="First Draft Complete">First Draft Complete</option>
-                                        <option value="Final Draft">Final Draft</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group pt-4">
-                                <label for="writer-upload">OPTIONAL UPLOAD (DRAFT, IMAGES, PDF)</label>
-                                <input type="file" id="writer-upload" name="submission-upload" class="p-2 border-0 mt-2">
-                                <p class="text-xs text-[var(--fg)]/70 mt-1">Max file size 10MB. Accepted formats: PDF, DOCX, JPG, PNG.</p>
-                            </div>
+                        <h3 class="text-lg font-bold border-b pb-2 mb-4 pt-6">2. PROPOSAL DETAILS</h3>
+                        <div class="form-group">
+                            <label for="writer-theme">PRIMARY THEME SELECTION</label>
+                            <select id="writer-theme" name="theme-selection" required>
+                                <option value="" disabled selected>— Choose One —</option>
+                                <option value="Society & Culture">Society & Culture</option>
+                                <option value="Fashion & Art">Fashion & Art</option>
+                                <option value="Music & Film">Music & Film</option>
+                                <option value="Crossover">Crossover / Multiple Themes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="writer-pitch">PITCH/IDEA SUMMARY (200 WORDS MAX)</label>
+                            <textarea id="writer-pitch" name="pitch-summary" rows="5" required placeholder="Explain: What is it about? Why is it relevant? What's your angle?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="writer-format">FORMAT</label>
+                            <select id="writer-format" name="format" required>
+                                <option value="" disabled selected>— Choose One —</option>
+                                <option value="Essay">Essay</option>
+                                <option value="Reportage">Reportage / Journalism</option>
+                                <option value="Review">Review (Book/Film/Music)</option>
+                                <option value="Visual Project">Visual Project (Photo/Art)</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="writer-status">STATUS OF WORK</label>
+                            <select id="writer-status" name="status" required>
+                                <option value="Idea (in development)">Idea (in development)</option>
+                                <option value="First Draft">First Draft</option>
+                                <option value="Final Draft">Final Draft</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="writer-upload">OPTIONAL UPLOAD (Draft, Images, PDF) - Max 10MB</label>
+                            <input type="file" id="writer-upload" name="submission-upload"> 
                         </div>
 
                         <div class="text-center pt-4">
-                            <input type="submit" value="SUBMIT PROPOSAL" class="inline-block px-8 py-3 text-xl font-extrabold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90 cursor-pointer" style="background-color: var(--color-secondary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
-                            <p class="text-sm text-[var(--fg)]/70 mt-3">The Director reviews all submissions. We aim to reply to all proposals within 10 days.</p>
+                            <input type="submit" 
+                                value="SUBMIT PROPOSAL" 
+                                class="inline-block px-8 py-3 text-xl font-extrabold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90 cursor-pointer" 
+                                style="background-color: var(--color-secondary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
                         </div>
                     </form>
-                </div>
-            </section>
-            
-            <section id="collaborator-form-view" class="hidden">
-                <h2 class="text-5xl md:text-6xl font-extrabold mb-8 text-[var(--color-primary)] text-center" style="font-family: var(--font-masthead);">
-                    COLLABORATOR APPLICATION
-                </h2>
-
-                <div class="bg-white p-6 md:p-10 shadow-lg border border-[var(--color-light)]">
-                    <h3 class="text-xl font-extrabold mb-4 text-[var(--fg)]" style="font-family: var(--font-masthead); border-bottom: 2px solid var(--color-light); padding-bottom: 0.5rem;">
-                        WHAT IT MEANS TO COLLABORATE
-                    </h3>
-                    <ul class="list-disc list-outside space-y-2 text-base ml-5 mb-8">
-                        <li>Contribute consistently (monthly, bi-monthly, or quarterly).</li>
-                        <li>Take part in theme discussions and brainstorms when possible.</li>
-                        <li>Bring your skills and interests to the table, whether through writing, photography, editing, events, or communications.</li>
-                        <li>Be part of ARSHI's Contributors Circle, credited on our website and featured alongside your work.</li>
-                    </ul>
-
-                    <p class="text-base text-[var(--color-primary)] font-semibold mb-6 p-4 border-2 border-[var(--color-primary)]">
-                        Please note: Contributions are currently <strong>unpaid</strong>. Collaborators retain ownership of their work and are always credited by name. As the magazine grows, we hope to build towards sustainability and fair compensation for contributors.
+                </div> <div id="collaborator-form-container" class="tab-content hidden">
+                    <h2 class="form-section-title text-center text-4xl md:text-5xl mb-6">
+                        COLLABORATOR APPLICATION
+                    </h2>
+                    <p class="text-center mb-6 text-sm text-[var(--color-primary)] font-semibold">
+                        Collaborators are expected to contribute consistently (monthly, bi-monthly, or quarterly).
                     </p>
 
                     <form class="space-y-8" 
-                          action="/thanks" 
-                          method="POST" 
-                          netlify 
-                          name="collaborator-application" 
-                          enctype="multipart/form-data">
+                        action="/thanks" 
+                        method="POST" 
+                        netlify 
+                        name="collaborator-application" 
+                        enctype="multipart/form-data">
                         
                         <input type="hidden" name="form-name" value="collaborator-application" />
                         <input type="hidden" name="bot-field" />
-                        <div class="space-y-4">
-                            <h3 class="form-section-title">1. YOUR DETAILS</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="form-group">
-                                    <label for="coll-name">NAME (First Last)</label>
-                                    <input type="text" id="coll-name" name="name" placeholder="First Last" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="coll-email">CONTACT EMAIL</label>
-                                    <input type="email" id="coll-email" name="email" placeholder="your@email.com" required>
-                                </div>
+                        <h3 class="text-lg font-bold border-b pb-2 mb-4">1. YOUR DETAILS</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label for="collab-name">NAME</label>
+                                <input type="text" id="collab-name" name="name" required placeholder="First Last">
                             </div>
                             <div class="form-group">
-                                <label for="coll-bio">SHORT BIO (3-4 SENTENCES)</label>
-                                <textarea id="coll-bio" name="bio" rows="3" placeholder="Who you are, what you do, and what you bring to ARSHI."></textarea>
+                                <label for="collab-email">CONTACT EMAIL</label>
+                                <input type="email" id="collab-email" name="email" required placeholder="your@email.com">
                             </div>
-                            <div class="form-group">
-                                <label for="coll-socials">SOCIALS/WEBSITE (OPTIONAL)</label>
-                                <input type="text" id="coll-socials" name="socials" placeholder="Instagram handle or personal website URL">
+                        </div>
+                        <div class="form-group">
+                            <label for="collab-socials">SOCIALS/WEBSITE (OPTIONAL)</label>
+                            <input type="url" id="collab-socials" name="socials-website" placeholder="Link to website or social media profile.">
+                        </div>
+                        <div class="form-group">
+                            <label for="collab-bio">SHORT BIO (3-4 SENTENCES)</label>
+                            <textarea id="collab-bio" name="short-bio" rows="3" required placeholder="Who you are, what you do, and what you bring to ARSHI."></textarea>
+                        </div>
+
+                        <h3 class="text-lg font-bold border-b pb-2 mb-4 pt-6">2. FOCUS & COMMITMENT</h3>
+                        
+                        <div class="form-group">
+                            <label class="mb-2">YOUR FOCUS (PRIMARY SKILL SET)</label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="focus[]" value="Writing"><span>Writing</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="focus[]" value="Photography/Visual Art"><span>Visual Art</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="focus[]" value="Editing"><span>Editing</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="focus[]" value="Events/Community"><span>Events</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="focus[]" value="Communication"><span>Communication</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="focus[]" value="Other"><span>Other</span></label>
                             </div>
                         </div>
 
-                        <div class="space-y-4">
-                            <h3 class="form-section-title">2. FOCUS & THEMES</h3>
-                            
-                            <div class="form-group">
-                                <label class="text-base">YOUR FOCUS (PRIMARY SKILL SET)</label>
-                                <div class="grid grid-cols-2 gap-2 mt-1 text-sm">
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="skill-set[]" value="Writing"> Writing (essays, reportage, criticism)</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="skill-set[]" value="Photography"> Photography/Visual Art</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="skill-set[]" value="Editing"> Editing (reviewing & shaping texts)</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="skill-set[]" value="Events"> Events/Community (help with programming)</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="skill-set[]" value="Communication"> Communication (socials, promotion, outreach)</label>
-                                    <label class="flex items-center space-x-2"><input type="text" name="skill-set-other" placeholder="Other: Specify here" class="w-full text-sm py-1 px-2 mt-1"></label>
-                                </div>
-                            </div>
-
-                            <div class="form-group pt-4">
-                                <label class="text-base">WHICH THEMES DO YOU WORK IN?</label>
-                                <div class="flex flex-wrap gap-4 mt-1 text-sm">
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Society & Culture"> Society & Culture</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Fashion & Art"> Fashion & Art</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="themes[]" value="Music & Film"> Music & Film</label>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="collab-motivation">WHY ARSHI? (150-250 WORDS)</label>
+                            <textarea id="collab-motivation" name="motivation" rows="5" required placeholder="Why do you want to collaborate? What do you hope to explore here?"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="collab-availability">AVAILABILITY & COMMITMENT</label>
+                            <select id="collab-availability" name="availability" required>
+                                <option value="" disabled selected>— Select Expected Frequency —</option>
+                                <option value="Monthly">I can contribute monthly (at least 1 piece/project).</option>
+                                <option value="Bi-Monthly">I can contribute bi-monthly (every 2 months).</option>
+                                <option value="Quarterly">I can contribute quarterly (4 times a year).</option>
+                            </select>
                         </div>
 
-                        <div class="space-y-4">
-                            <h3 class="form-section-title">3. MOTIVATION & COMMITMENT</h3>
-                            <div class="form-group">
-                                <label for="coll-why">WHY ARSHI? (150-250 WORDS)</label>
-                                <textarea id="coll-why" name="why-arshi" rows="4" placeholder="Why do you want to collaborate? What do you hope to explore here?"></textarea>
-                            </div>
-                            
-                            <div class="form-group pt-4">
-                                <label class="text-base">AVAILABILITY & COMMITMENT</label>
-                                <div class="space-y-2 mt-1 text-sm">
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="commitment[]" value="Monthly"> I can contribute monthly (at least 1 piece or project per month).</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="commitment[]" value="Bi-Monthly"> I can contribute bi-monthly (every 2 months).</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="commitment[]" value="Quarterly"> I can contribute quarterly (4 times a year).</label>
-                                    <label class="flex items-center space-x-2"><input type="checkbox" name="commitment[]" value="Meetings"> I'm open to team meetings/brainstorms (remote).</label>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="collab-support">HOW ELSE COULD YOU SUPPORT ARSHI'S GROWTH? (E.g., Editing, Research, Outreach)</label>
+                            <input type="text" id="collab-support" name="additional-support" placeholder="Specify skills like editing, client work, research, etc.">
+                        </div>
 
-                            <div class="form-group pt-4">
-                                <label for="coll-support">HOW ELSE COULD YOU SUPPORT ARSHI'S GROWTH?</label>
-                                <input type="text" id="coll-support" name="support-growth" placeholder="E.g., editing, helping with grants, outreach, research.">
-                            </div>
-
-                            <div class="form-group pt-4">
-                                <label for="coll-published" class="text-base">HAVE YOU EVER BEEN PUBLISHED ON ARSHI BEFORE?</label>
-                                <div class="flex gap-4">
-                                    <label class="flex items-center space-x-2"><input type="radio" name="published-before" value="Yes"> Yes</label>
-                                    <label class="flex items-center space-x-2"><input type="radio" name="published-before" value="No" checked> No</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group pt-4">
-                                <label for="coll-portfolio">PORTFOLIO/SAMPLE WORK (LINKS OR UPLOAD)</label>
-                                <input type="text" id="coll-portfolio" name="portfolio-link" placeholder="Links to past work, social media, etc. (preferred)">
-                                <input type="file" id="coll-upload" name="portfolio-upload" class="p-2 border-0 mt-2">
-                                <p class="text-xs text-[var(--fg)]/70 mt-1">Provide a link to your portfolio or representative sample upload. Max file size 10MB.</p>
-                            </div>
+                        <div class="form-group">
+                            <label for="collab-portfolio">PORTFOLIO/SAMPLE WORK (LINK OR UPLOAD)</label>
+                            <input type="file" id="collab-portfolio" name="portfolio-upload">
                         </div>
 
                         <div class="text-center pt-4">
-                            <input type="submit" value="SUBMIT APPLICATION" class="inline-block px-8 py-3 text-xl font-extrabold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90 cursor-pointer" style="background-color: var(--color-secondary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
+                            <input type="submit" 
+                                value="SUBMIT APPLICATION" 
+                                class="inline-block px-8 py-3 text-xl font-extrabold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90 cursor-pointer" 
+                                style="background-color: var(--color-secondary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
                         </div>
                     </form>
-                </div>
-            </section>
-            
-        </div>
+                </div> </div> </div>
     </main>
 
-    <footer class="mt-12 py-6 border-t border-[var(--color-light)]" style="background-color: var(--bg);">
-        <div class="container mx-auto px-4 text-sm flex flex-col md:flex-row justify-between items-center md:items-start space-y-4 md:space-y-0">
-            
-            <div class="flex space-x-4 font-semibold order-2 md:order-1 text-center md:text-left">
-                <a href="about.html" class="hover-underline">About</a>
-                <a href="contact.html" class="hover-underline">Contact</a>
-                <a href="submit.html" class="hover-underline">Submit</a>
-            </div>
-
-            <div class="flex space-x-6 order-1 md:order-2">
-                <a href="#" target="_blank" aria-label="Follow us on Instagram" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
-                    Instagram
-                </a>
-                <a href="#" target="_blank" aria-label="Follow us on X (Twitter)" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
-                    X
-                </a>
-            </div>
-            
-            <div class="flex space-x-4 text-xs font-medium text-[var(--fg)]/70 order-3 md:order-3 text-center md:text-right">
-                <a href="privacy.html" class="hover:text-[var(--color-primary)]">Privacy Policy</a>
-                <a href="legal.html" class="hover:text-[var(--color-primary)]">Legal</a>
-                <a href="accessibility.html" class="hover:text-[var(--color-primary)]">Accessibility</a>
-            </div>
-
-        </div>
-    </footer>
-
-
     <script>
-    	
-    	// --- Page View Management for Submission Flow ---
-        const views = {
-            'choice': document.getElementById('choice-view'),
-            'writer-form': document.getElementById('writer-form-view'),
-            'collaborator-form': document.getElementById('collaborator-form-view')
-        };
-        const backButtonContainer = document.getElementById('back-button-container');
-        const h1Title = document.querySelector('h1');
-        const introParagraph = document.querySelector('.text-xl.md\\:text-2xl');
+        document.addEventListener('DOMContentLoaded', () => {
+            const writerButton = document.getElementById('writer-tab-button');
+            const collaboratorButton = document.getElementById('collaborator-tab-button');
+            const writerContainer = document.getElementById('writer-form-container');
+            const collaboratorContainer = document.getElementById('collaborator-form-container');
 
-        function showView(viewName) {
-            // Hide all views and the back button container
-            Object.values(views).forEach(view => view.classList.add('hidden'));
-            backButtonContainer.classList.add('hidden');
-            
-            // Show the requested view
-            const activeView = views[viewName];
-            if (activeView) {
-                activeView.classList.remove('hidden');
-                window.scrollTo(0, 0); // Scroll to top on view change
+            function showTab(targetContainer) {
+                // Deactivate all buttons/containers
+                writerButton.classList.remove('active');
+                collaboratorButton.classList.remove('active');
+                writerContainer.classList.add('hidden');
+                collaboratorContainer.classList.add('hidden');
 
-                // Update visibility of elements based on view
-                if (viewName !== 'choice') {
-                    backButtonContainer.classList.remove('hidden');
-                    // Hide the global intro text when in a form view
-                    introParagraph.classList.add('hidden'); 
-                    h1Title.classList.add('mb-4'); // Reduce margin for forms
-                    h1Title.classList.remove('mb-8');
-                } else {
-                    introParagraph.classList.remove('hidden');
-                    h1Title.classList.remove('mb-4');
-                    h1Title.classList.add('mb-8');
+                // Activate the selected button/container
+                if (targetContainer === 'writer-form-container') {
+                    writerButton.classList.add('active');
+                    writerContainer.classList.remove('hidden');
+                } else if (targetContainer === 'collaborator-form-container') {
+                    collaboratorButton.classList.add('active');
+                    collaboratorContainer.classList.remove('hidden');
                 }
             }
-        }
-        
-        // Initialize the view when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            showView('choice');
-    		
-    		// --- Header/Menu/Search Event Listeners (Copied from previous) ---
 
-    		const body = document.body;
-    		const menuDrawer = document.getElementById('mobile-menu-drawer');
-    		const searchOverlay = document.getElementById('search-overlay');
-    		const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
+            // Initial setup (Writer tab is active by default in HTML)
+            showTab('writer-form-container');
 
-    		const menuButton = document.getElementById('menu-button');
-    		
-    		// Handles opening of desktop utility or mobile drawer
-    		menuButton.addEventListener('click', () => {
-    			if (window.innerWidth <= 1024) {	
-    				menuDrawer.classList.remove('translate-x-full');
-    				body.style.overflow = 'hidden';	
-    			} else {	
-    				desktopUtilityDrawer.classList.toggle('hidden');
-    			}
-    		});
+            writerButton.addEventListener('click', () => {
+                showTab('writer-form-container');
+            });
 
-    		// Closes mobile menu
-    		document.getElementById('close-menu-button').addEventListener('click', () => {
-    			menuDrawer.classList.add('translate-x-full');
-    			body.style.overflow = '';
-    		});
+            collaboratorButton.addEventListener('click', () => {
+                showTab('collaborator-form-container');
+            });
 
-    		// Opens search overlay
-    		document.getElementById('search-button').addEventListener('click', () => {
-    			searchOverlay.classList.remove('hidden');
-    			body.style.overflow = 'hidden';
-    			searchOverlay.querySelector('input').focus();	
-    		});
-    		
-    		// Closes search overlay
-    		document.getElementById('close-search-button').addEventListener('click', () => {
-    			searchOverlay.classList.add('hidden');
-    			body.style.overflow = '';
-    		});
-
-    		// Close all on ESC key
-    		document.addEventListener('keydown', (e) => {
-    			if (e.key === 'Escape') {
-    				if (!searchOverlay.classList.contains('hidden')) {
-    					searchOverlay.classList.add('hidden');
-    					body.style.overflow = '';
-    				}
-    				if (!menuDrawer.classList.contains('translate-x-full')) {
-    					menuDrawer.classList.add('translate-x-full');
-    					body.style.overflow = '';
-    				}
-    				if (!desktopUtilityDrawer.classList.contains('hidden')) {
-    					desktopUtilityDrawer.classList.add('hidden');
-    				}
-    			}
-    		});
-
-    		// Close desktop utility on outside click
-    		document.addEventListener('click', (e) => {
-    			const headerRight = document.querySelector('header .flex.items-center.space-x-6');
-    			const isClickInsideHeader = headerRight.contains(e.target);
-
-    			if (window.innerWidth > 1024 && !desktopUtilityDrawer.classList.contains('hidden')) {
-    				if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
-    					desktopUtilityDrawer.classList.add('hidden');
-    				}
-    			}
-    		});
-    	});
+            // Note: Menu/Search/Utility drawer scripts from previous responses are omitted here.
+        });
     </script>
 </body>
 </html>

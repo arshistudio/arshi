@@ -28,10 +28,9 @@
             height: 64px; /* Target ~56-64px */
         }
 
-        /* FIXED: Header Scroll State REMOVED for visibility on load */
+        /* Header remains visible on load (FIXED) */
         #main-header {
             transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
-            /* Header is fully visible on load */
             border-bottom: 1px solid var(--color-light); 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
@@ -62,28 +61,27 @@
             opacity: 0.9;
         }
 
-        /* Masonry Layout (2 columns desktop, 3 columns large desktop) */
+        /* START OF I-D LAYOUT CHANGES */
+        /* Implements Asymmetrical/Staggered 2-column Layout on Desktop */
         .masonry-grid {
             column-count: 1;
             column-gap: 24px;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) { /* Changed from md to lg for clarity */
             .masonry-grid {
-                column-count: 2;
+                column-count: 2; /* Two columns */
+                column-fill: balance; /* Allows for slightly uneven column heights */
             }
         }
-        @media (min-width: 1280px) {
-            .masonry-grid {
-                column-count: 3;
-            }
-        }
-
-        /* Masonry Item Style */
+        /* Removed 3-column layout to simplify to the strong 2-column editorial aesthetic */
+        
+        /* Masonry Item Style - crucial for broken grid effect */
         .article-card {
             break-inside: avoid;
-            margin-bottom: 24px;
-            display: block; /* Important for break-inside */
+            margin-bottom: 32px; /* Increased margin for visual separation */
+            display: block; 
         }
+        /* END OF I-D LAYOUT CHANGES */
 
         /* Accessibility: Visible Focus States */
         *:focus-visible {
@@ -215,7 +213,6 @@
     	 */
     	const renderStatusBadge = (status) => {
     		if (status === 'coming_soon') {
-                // FIXED: Removed the inline JS comments
     			return `
     				<span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)] transition-colors"
     							style="background-color: var(--color-secondary);"> 
@@ -237,9 +234,17 @@
     		const imageSizeClass = isHero ? 'h-64 md:h-96' : 'h-64';
     		const titleClass = isHero ? 'text-5xl md:text-7xl mt-4 leading-none' : 'text-3xl mt-3 leading-snug';
     		const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-2xl' : 'text-base font-ui mt-2 hidden md:block';
+            
+            // NEW: Styling for prominent author credit
+            const authorCredit = isHero 
+                ? `<p class="text-xl md:text-2xl font-extrabold mt-3" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`
+                : `<p class="text-lg font-extrabold mt-2" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
+
+            // NEW: Reading time is smaller, separate meta
+            const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60 transition-colors">${article.readingMinutes} min read</p>`;
 
     		return `
-    			<a href="${article.slug}" class="card-link ${isHero ? '' : 'article-card'} group block transition-colors" aria-label="Read article: ${article.title}">
+    			<a href="${article.slug}" class="card-link ${isHero ? '' : 'article-card'} group block transition-colors" aria-label="Read article by ${article.author}: ${article.title}">
     					
     					<div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
     						<img loading="lazy"	
@@ -262,13 +267,13 @@
     							${article.title.toUpperCase()}
     						</h3>
 
+                            ${authorCredit}
+
     						<p class="${dekClass} text-[var(--fg)]/80">
     							${article.dek}
     						</p>
 
-    						<p class="text-sm font-semibold mt-3 text-[var(--fg)]/60 transition-colors">
-    							${article.author} • ${article.readingMinutes} min read
-    						</p>
+    						${readingMeta}
     					</div>
     			</a>
     		`;
@@ -297,9 +302,6 @@
     	};
 
 
-        // FIXED: Scroll logic is no longer needed as the header is always visible/shadowed
-        // The handleScroll function is removed.
-
     	// --- Event Listeners and Initializers ---
 
     	document.addEventListener('DOMContentLoaded', () => {
@@ -313,8 +315,6 @@
     		const menuDrawer = document.getElementById('mobile-menu-drawer');
     		const searchOverlay = document.getElementById('search-overlay');
     		const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
-
-            // Scroll Handler (REMOVED)
 
     		// Menu Button Handlers - Logic is consolidated here for both mobile and desktop utility
             const menuButton = document.getElementById('menu-button');

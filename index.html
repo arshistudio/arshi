@@ -133,7 +133,20 @@
              height: 28rem !important;
         }
 
-
+        /* ************************************************************ */
+        /* THE FIX: Invisible element to clear all columns before a full-span item */
+        /* This prevents the article in the tallest column from being stuck behind the full-span item */
+        .masonry-flusher {
+            column-span: all;
+            -webkit-column-span: all;
+            -moz-column-span: all;
+            height: 0; /* Important: Make it invisible */
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+        /* ************************************************************ */
+        
         /* Accessibility: Visible Focus States */
         *:focus-visible {
             outline: 3px solid var(--color-primary) !important;
@@ -401,6 +414,7 @@
 
     	/**
     	 * Renders all articles into their respective containers (Hero and Grid).
+    	 * FIX: The logic has been updated to inject a hidden flushing element before every full-span article.
     	 */
     	const renderContent = () => {
     		const heroContainer = document.getElementById('hero-article');
@@ -423,12 +437,16 @@
     		});
             
             gridArticles.forEach((article, index) => {
-                // If its index is in the breakIndices list, mark it as full-span
                 const shouldBeFullSpan = breakIndices.includes(index);
                 
-                // Temporarily modify object for easy passing to renderArticleCard
-                article.isFullSpan = shouldBeFullSpan; 
+                // 1. INJECT THE FLUSHER BEFORE A FULL-SPAN ARTICLE
+                if (shouldBeFullSpan) {
+                    // This div is hidden (height: 0) but forces a break after the tallest column.
+                    gridHtml += '<div class="masonry-flusher" aria-hidden="true"></div>';
+                }
                 
+                // 2. RENDER THE ARTICLE
+                article.isFullSpan = shouldBeFullSpan; 
                 gridHtml += renderArticleCard(article, false);
             });
 

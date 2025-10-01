@@ -97,7 +97,7 @@
         /* Masonry Item Style - crucial for broken grid effect and TIGHTER STRUCTURE */
         .article-card {
             break-inside: avoid;
-            margin-bottom: 24px; 
+            margin-bottom: 24px; /* Standard spacing between cards */
             display: block; 
         }
 
@@ -108,7 +108,7 @@
             margin-right: 0;
         }
 
-        /* FIX: Style for articles that must break the column structure and take full width (1-column break) */
+        /* Style for articles that must break the column structure and take full width (1-column break) */
         .article-full-span {
             /* Full span properties for desktop */
             column-span: all;
@@ -117,6 +117,7 @@
             width: 100%; 
             margin-left: 0;
             margin-right: 0;
+            /* Give it extra bottom margin to clearly separate from content below */
             margin-bottom: 48px; 
         }
 
@@ -133,19 +134,23 @@
              height: 28rem !important;
         }
 
-        /* ************************************************************ */
         /* THE FIX: Invisible element to clear all columns before a full-span item */
-        /* This prevents the article in the tallest column from being stuck behind the full-span item */
         .masonry-flusher {
-            column-span: all;
+            /* CRUCIAL: Forces the break across all columns */
+            column-span: all; 
             -webkit-column-span: all;
             -moz-column-span: all;
-            height: 0; /* Important: Make it invisible */
+            
+            /* CRUCIAL: Makes it invisible and zero-height, but still effective as a column break */
+            height: 0; 
             margin: 0;
             padding: 0;
             display: block;
+            line-height: 0; 
+            font-size: 0;
+            /* Using a vertical padding here ensures separation from the last item in the column */
+            padding-top: 24px; 
         }
-        /* ************************************************************ */
         
         /* Accessibility: Visible Focus States */
         *:focus-visible {
@@ -414,16 +419,14 @@
 
     	/**
     	 * Renders all articles into their respective containers (Hero and Grid).
-    	 * FIX: The logic has been updated to inject a hidden flushing element before every full-span article.
     	 */
     	const renderContent = () => {
     		const heroContainer = document.getElementById('hero-article');
     		const gridContainer = document.getElementById('article-grid');
     		
-            // The indices (0-indexed in gridArticles array) that mark the end of a block and must force a full-width break.
-            // RHYTHM: (2), (1), (3), (1), (2), (3), (2), (1)
-            // Indices: 1 (end of 2), 2 (end of 1), 5 (end of 3), 6 (end of 1), 8 (end of 2), 11 (end of 3), 13 (end of 2)
-            const breakIndices = [1, 2, 5, 6, 8, 11, 13];
+            // These are the indices (0-indexed) of the articles that should force a full-span break.
+            // Full-span articles are at index: 2, 6, 9, 14
+            const fullSpanIndices = [2, 6, 9, 14]; 
 
     		let heroHtml = '';
     		let gridHtml = '';
@@ -437,11 +440,11 @@
     		});
             
             gridArticles.forEach((article, index) => {
-                const shouldBeFullSpan = breakIndices.includes(index);
+                const shouldBeFullSpan = fullSpanIndices.includes(index);
                 
-                // 1. INJECT THE FLUSHER BEFORE A FULL-SPAN ARTICLE
-                if (shouldBeFullSpan) {
-                    // This div is hidden (height: 0) but forces a break after the tallest column.
+                // 1. INJECT THE FLUSHER *BEFORE* A FULL-SPAN ARTICLE
+                // This flusher clears the columns, forcing the full-span article to start below the tallest card in the previous block.
+                if (shouldBeFullSpan && index > 0) {
                     gridHtml += '<div class="masonry-flusher" aria-hidden="true"></div>';
                 }
                 

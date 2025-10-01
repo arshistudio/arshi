@@ -28,9 +28,13 @@
             background-color: var(--bg);
             color: var(--fg);
             font-family: var(--font-body);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        h1, h2, .masthead {
+        h1, h2, h3, .masthead {
             font-family: var(--font-masthead);
+            letter-spacing: 0.05em;
         }
         
         /* Thin Sticky Header Height */
@@ -53,73 +57,74 @@
             font-family: var(--font-masthead);
         }
 
-        .masthead-text {
-            font-size: clamp(3rem, 8vw + 1rem, 6.5rem); 
-            letter-spacing: 0.05em; 
-            line-height: 1;
+        /* General UI Styles */
+        .hover-underline {
+            position: relative;
         }
-        
-        .card-link:hover .card-image {
-            transform: scale(1.03);
-            opacity: 0.9;
-        }
-
-        /* ---------------------------------------------------- */
-        /* THE STABLE MASONRY FIX (Flexbox Columns)             */
-        /* ---------------------------------------------------- */
-
-        .masonry-grid {
-            /* The main container is NOT flex, it's a standard block to hold groups */
-            display: block; 
+        .hover-underline:hover:after {
             width: 100%;
-            padding-top: 32px; 
+        }
+        .hover-underline:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: width 0.3s ease-out;
         }
 
-        .grid-group {
-            display: flex; /* This is the Flex container for the columns */
-            column-gap: 24px;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
-        }
-
-        /* Define the structure for the columns */
-        .grid-column {
-            display: flex;
-            flex-direction: column; /* Stacks articles vertically in a column */
-            width: 100%; /* Default to full width on mobile */
-        }
-        
-        /* Desktop/Tablet: Three columns, each 1/3 width */
-        @media (min-width: 768px) { 
-            .grid-column {
-                width: calc(33.333% - 16px); /* 1/3rd width minus half the gap on each side */
-            }
-        }
-        
         /* Article Card Styles */
-        .article-card {
-            margin-bottom: 24px; /* Consistent spacing between cards */
-            display: block; 
+        .article-card-image {
+            width: 100%;
+            height: 300px;
+            background-color: var(--color-light);
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 10px;
         }
-
-        /* Style for articles that must break the column structure and take full width */
-        .article-full-span {
-            width: 100%; 
-            margin-top: 24px; 
-            margin-bottom: 48px; 
-            /* Full-span items are not inside a .grid-column, they are direct children of .masonry-grid */
+        .article-card-meta {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--fg);
         }
-
-        /* Ensure the image container for the full span is appropriately sized */
-        .article-full-span .card-image {
-            height: 28rem !important;
+        .article-card-title {
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            margin-top: 5px;
+            color: var(--fg);
+            transition: color 0.3s;
         }
-        
-        .hero-article-card .card-image {
-             height: 28rem !important;
+        .article-card:hover .article-card-title {
+            color: var(--color-primary);
         }
-        
-        /* ---------------------------------------------------- */
+        .article-card-category-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background-color: var(--color-secondary);
+            color: var(--bg);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        .submit-button {
+            padding: 12px 20px;
+            background-color: var(--color-secondary);
+            color: var(--bg);
+            border: 2px solid var(--color-secondary);
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .submit-button:hover {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
 
         /* Accessibility: Visible Focus States */
         *:focus-visible {
@@ -127,390 +132,368 @@
             outline-offset: 2px;
             border-radius: 4px;
         }
-
     </style>
 </head>
 
 <body>
-
+    
     <header id="main-header" class="header-thin sticky top-0 z-40 w-full"
-    			style="background-color: var(--bg);">
-    	<div class="container mx-auto px-4 h-full flex items-center justify-between">
-    			
-    			<a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
-    				ARSHI
-    			</a>
+        style="background-color: var(--bg);">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
+            
+            <a href="index.html" class="logo font-extrabold tracking-wider" aria-label="ARSHI Studio Home">
+                ARSHI
+            </a>
 
-    			<nav class="flex items-center space-x-6">
-    				<div class="hidden lg:flex space-x-6 text-base font-semibold" role="navigation" aria-label="Main Categories">
-    					<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
-    					<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
-    					<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
-    				</div>
+            <nav class="flex items-center space-x-6">
+                <div class="hidden lg:flex space-x-6 text-base font-semibold" role="navigation" aria-label="Main Categories">
+                    <a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
+                    <a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
+                    <a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
+                </div>
 
-    				<div class="flex items-center space-x-4 lg:space-x-6">
-    					<button id="search-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Search">
-    						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-    					</button>
+                <div class="flex items-center space-x-4 lg:space-x-6">
+                    <button id="search-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Search">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
 
-    					<button id="menu-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Menu">
-    						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-    					</button>
-    				</div>
-    			</nav>
-    	</div>
-    			
+                    <button id="menu-button" class="p-2 hover:scale-110 text-[var(--fg)]" aria-label="Open Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
     </header>
-    	
+    
     <div id="desktop-utility-drawer" class="hidden fixed top-16 right-0 z-30 w-64 p-6 border-l border-b border-[var(--fg)]/20 shadow-xl" style="background-color: var(--bg);">
-    	<nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
-    		<a href="about.html" class="hover-underline">About</a>
-    		<a href="contact.html" class="hover-underline">Contact</a>
-    		<a href="submit.html" class="hover-underline">Submit</a>
-    	</nav>
+        <nav class="flex flex-col space-y-3 font-semibold" aria-label="Desktop Utility Menu">
+            <a href="about.html" class="hover-underline">About</a>
+            <a href="contact.html" class="hover-underline">Contact</a>
+            <a href="submit.html" class="hover-underline">Submit</a>
+        </nav>
     </div>
-    	
+
     <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full duration-300 ease-in-out lg:hidden" style="background-color: var(--bg);">
-    	<div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl" style="background-color: var(--bg);">
-    		<button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
-    			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    		</button>
-    		<nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
-    			<a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
-    			<a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
-    			<a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
-    			<div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
-    				<a href="about.html" class="block hover-underline">About</a>
-    				<a href="contact.html" class="block hover-underline">Contact</a>
-    				<a href="submit.html" class="block hover-underline">Submit</a>
-    			</div>
-    		</nav>
-    	</div>
+        <div class="absolute top-0 right-0 w-full max-w-sm h-full p-8 border-l border-[var(--fg)]/30 shadow-2xl" style="background-color: var(--bg);">
+            <button id="close-menu-button" class="absolute top-4 right-4 p-2 text-[var(--fg)]" aria-label="Close Mobile Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <nav class="flex flex-col space-y-6 pt-12 text-2xl font-semibold" role="navigation" aria-label="Full Mobile Navigation">
+                <a href="category-list.html?category=society-culture" class="hover-underline">Society & Culture</a>
+                <a href="category-list.html?category=fashion-art" class="hover-underline">Fashion & Art</a>
+                <a href="category-list.html?category=music-film" class="hover-underline">Music & Film</a>
+                <div class="border-t border-[var(--fg)]/20 pt-4 mt-4 space-y-4 text-xl">
+                    <a href="about.html" class="block hover-underline">About</a>
+                    <a href="contact.html" class="block hover-underline">Contact</a>
+                    <a href="submit.html" class="block hover-underline">Submit</a>
+                </div>
+            </nav>
+        </div>
     </div>
-    	
+    
     <div id="search-overlay" class="fixed inset-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md hidden" aria-modal="true" role="dialog" aria-label="Search">
-    	<div class="flex flex-col items-center justify-start pt-20 h-full">
-    		<button id="close-search-button" class="absolute top-8 right-8 p-4 text-[var(--fg)]" aria-label="Close Search">
-    			<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    		</button>
-    		<input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none" style="font-family: var(--font-masthead);">
-    		<p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
-    	</div>
-    </div>
-    	
-    <section id="hero-article" class="w-full mb-8 hero-article-full-wrapper">
-    	</section>
-
-    <div class="container mx-auto px-4">
-    	<hr class="border-t-2 border-[var(--fg)]/20 my-4 md:my-8">
+        <div class="flex flex-col items-center justify-start pt-20 h-full">
+            <button id="close-search-button" class="absolute top-8 right-8 p-4 text-[var(--fg)]" aria-label="Close Search">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <input type="text" placeholder="Start typing to search..." class="w-11/12 md:w-1/2 lg:w-1/3 p-4 text-4xl font-extrabold text-[var(--fg)] bg-transparent border-b-4 border-[var(--color-primary)] focus:outline-none" style="font-family: var(--font-masthead);">
+            <p class="mt-4 text-sm text-[var(--fg)]/70">Press ESC or click the 'X' to close.</p>
+        </div>
     </div>
 
+    <main class="container mx-auto px-4 py-8 md:py-16 flex-grow">
+        
+        <section id="featured-story" class="mb-12 border-b border-[var(--color-light)] pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-wide mb-6" style="font-family: var(--font-masthead);">
+                LATEST STORY
+            </h2>
+            <a href="article-blueprint.html" class="block">
+                <div class="feature-image w-full h-96 bg-[var(--color-light)] mb-6" style="background-image: url('assets/hero-image.jpg'); background-size: cover; background-position: center;"></div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <p class="article-card-category-tag">Fashion & Art</p>
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-wide text-left mb-4" style="font-family: var(--font-masthead); line-height: 1.1;">
+                        THE QUIET REVOLUTION: RETHINKING LUXURY IN THE AGE OF SPEED
+                    </h1>
+                    <p class="text-lg md:text-xl text-[var(--fg)]/80 mb-6">
+                        An essay on the shift from conspicuous consumption to mindful acquisition, exploring the new ethics of 'slow luxury' and its cultural impact.
+                    </p>
+                    <div class="article-card-meta flex space-x-3 text-sm">
+                        <span>BY ELARA V.</span>
+                        <span>&bull;</span>
+                        <span>5 MIN READ</span>
+                    </div>
+                </div>
+            </a>
+        </section>
 
-    <main class="container mx-auto px-4 py-8 md:py-12">
-    	
-    	<section id="article-grid-container">
-    		<div id="article-grid" class="masonry-grid">
-    			</div>
-    	</section>
+        <section id="articles-grid" class="mb-12 border-b border-[var(--color-light)] pb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-wide mb-8" style="font-family: var(--font-masthead);">
+                EXPLORE ARSHI
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <a href="article-blueprint.html" class="article-card group block">
+                    <div class="article-card-image" style="background-image: url('assets/placeholder1.jpg');"></div>
+                    <p class="article-card-category-tag">Society & Culture</p>
+                    <h3 class="article-card-title">
+                        The Ghost of the Internet: What Happens to Our Digital Selves?
+                    </h3>
+                    <div class="article-card-meta mt-2 flex space-x-3">
+                        <span>BY SAM R.</span>
+                        <span>&bull;</span>
+                        <span>7 MIN READ</span>
+                    </div>
+                </a>
+
+                <a href="article-blueprint.html" class="article-card group block">
+                    <div class="article-card-image" style="background-image: url('assets/placeholder2.jpg');"></div>
+                    <p class="article-card-category-tag">Music & Film</p>
+                    <h3 class="article-card-title">
+                        Sound as Resistance: Tracing the Political History of Ambient Noise
+                    </h3>
+                    <div class="article-card-meta mt-2 flex space-x-3">
+                        <span>BY ANNA K.</span>
+                        <span>&bull;</span>
+                        <span>6 MIN READ</span>
+                    </div>
+                </a>
+
+                <a href="article-blueprint.html" class="article-card group block">
+                    <div class="article-card-image" style="background-image: url('assets/placeholder3.jpg');"></div>
+                    <p class="article-card-category-tag">Fashion & Art</p>
+                    <h3 class="article-card-title">
+                        The Fabric of Memory: How Clothes Tell Our Ancestors' Stories
+                    </h3>
+                    <div class="article-card-meta mt-2 flex space-x-3">
+                        <span>BY CHEN L.</span>
+                        <span>&bull;</span>
+                        <span>4 MIN READ</span>
+                    </div>
+                </a>
+                
+                <a href="article-blueprint.html" class="article-card group block">
+                    <div class="article-card-image" style="background-image: url('assets/placeholder4.jpg');"></div>
+                    <p class="article-card-category-tag">Society & Culture</p>
+                    <h3 class="article-card-title">
+                        The End of the Party: Why Nightlife Culture is Trading Flash for Intimacy
+                    </h3>
+                    <div class="article-card-meta mt-2 flex space-x-3">
+                        <span>BY RILEY T.</span>
+                        <span>&bull;</span>
+                        <span>8 MIN READ</span>
+                    </div>
+                </a>
+
+                <a href="article-blueprint.html" class="article-card group block">
+                    <div class="article-card-image" style="background-image: url('assets/placeholder5.jpg');"></div>
+                    <p class="article-card-category-tag">Music & Film</p>
+                    <h3 class="article-card-title">
+                        From VHS to VR: Deconstructing Nostalgia in Indie Film Aesthetics
+                    </h3>
+                    <div class="article-card-meta mt-2 flex space-x-3">
+                        <span>BY MARK N.</span>
+                        <span>&bull;</span>
+                        <span>5 MIN READ</span>
+                    </div>
+                </a>
+
+                <a href="article-blueprint.html" class="article-card group block">
+                    <div class="article-card-image" style="background-image: url('assets/placeholder6.jpg');"></div>
+                    <p class="article-card-category-tag">Fashion & Art</p>
+                    <h3 class="article-card-title">
+                        Reclaiming the Archive: The New Generation of Digital Art Curators
+                    </h3>
+                    <div class="article-card-meta mt-2 flex space-x-3">
+                        <span>BY ELARA V.</span>
+                        <span>&bull;</span>
+                        <span>7 MIN READ</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="category-list.html?category=all" class="submit-button text-lg font-bold uppercase tracking-wider inline-block">
+                    View All Stories &rarr;
+                </a>
+            </div>
+        </section>
+
+        <section id="submit-section" class="py-12 md:py-16">
+            <h2 class="text-5xl md:text-6xl font-extrabold tracking-wide mb-4 text-center" style="font-family: var(--font-masthead);">
+                BECOME A CONTRIBUTOR
+            </h2>
+            <p class="text-center text-lg md:text-xl mb-12 text-[var(--fg)]/80 max-w-3xl mx-auto">
+                ARSHI Studio is a platform for emerging, independent voices. We welcome submissions from writers, photographers, and creatives.
+            </p>
+
+            <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8 max-w-4xl mx-auto">
+                
+                <div class="w-full md:w-1/2 p-6 border-4 border-[var(--color-primary)] text-center shadow-lg">
+                    <h3 class="text-3xl font-extrabold tracking-wider mb-3" style="font-family: var(--font-masthead);">
+                        WRITER SUBMISSION
+                    </h3>
+                    <p class="mb-6 text-[var(--fg)]/80">
+                        Submit a finished essay, article, or reportage for review by our editorial team.
+                    </p>
+                    <a href="submit-writer.html" class="submit-button text-base font-bold uppercase tracking-wider inline-block">
+                        Start Submission &rarr;
+                    </a>
+                </div>
+
+                <div class="w-full md:w-1/2 p-6 border-4 border-[var(--color-primary)] text-center shadow-lg">
+                    <h3 class="text-3xl font-extrabold tracking-wider mb-3" style="font-family: var(--font-masthead);">
+                        COLLABORATOR APPLICATION
+                    </h3>
+                    <p class="mb-6 text-[var(--fg)]/80">
+                        Apply to join our network of photographers, artists, and creative collaborators.
+                    </p>
+                    <a href="submit-collaborator.html" class="submit-button text-base font-bold uppercase tracking-wider inline-block">
+                        Start Application &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="mt-12 py-6 border-t border-[var(--color-light)]" style="background-color: var(--bg);">
-    	<div class="container mx-auto px-4 text-sm flex flex-col md:flex-row justify-between items-center md:items-start space-y-4 md:space-y-0">
-    			
-    		<div class="flex space-x-4 font-semibold order-2 md:order-1 text-center md:text-left">
-    			<a href="about.html" class="hover-underline">About</a>
-    			<a href="contact.html" class="hover-underline">Contact</a>
-    			<a href="submit.html" class="hover-underline">Submit</a>
-    		</div>
+    <footer class="mt-auto py-6 border-t border-[var(--color-light)]" style="background-color: var(--bg);">
+        <div class="container mx-auto px-4 text-sm flex flex-col md:flex-row justify-between items-center md:items-start space-y-4 md:space-y-0">
+            
+            <div class="flex space-x-4 font-semibold order-2 md:order-1 text-center md:text-left">
+                <a href="about.html" class="hover-underline">About</a>
+                <a href="contact.html" class="hover-underline">Contact</a>
+                <a href="submit.html" class="hover-underline">Submit</a>
+            </div>
 
-    		<div class="flex space-x-6 order-1 md:order-2">
-    			<a href="#" target="_blank" aria-label="Follow us on Instagram" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
-    				Instagram
-    			</a>
-    		</div>
-    			
-    		<div class="flex space-x-4 text-xs font-medium text-[var(--fg)]/70 order-3 md:order-3 text-center md:text-right">
-    			<a href="privacy.html" class="hover:text-[var(--color-primary)]">Privacy Policy</a>
-    			<a href="legal.html" class="hover:text-[var(--color-primary)]">Legal</a>
-    			<a href="accessibility.html" class="hover:text-[var(--color-primary)]">Accessibility</a>
-    		</div>
+            <div class="flex space-x-6 order-1 md:order-2">
+                <a href="#" target="_blank" aria-label="Follow us on Instagram" class="font-semibold hover-underline text-[var(--fg)] hover:text-[var(--color-primary)]">
+                    Instagram
+                </a>
+            </div>
+            
+            <div class="flex space-x-4 text-xs font-medium text-[var(--fg)]/70 order-3 md:order-3 text-center md:text-right">
+                <a href="privacy.html" class="hover:text-[var(--color-primary)]">Privacy Policy</a>
+                <a href="legal.html" class="hover:text-[var(--color-primary)]">Legal</a>
+                <a href="accessibility.html" class="hover:text-[var(--color-primary)]">Accessibility</a>
+            </div>
 
-    	</div>
+        </div>
     </footer>
 
 
     <script>
-    	// --- Data Model ---
-    	const articles = [
-    		// Hero article 
-    		{ isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
-    			image: "https://placehold.co/1600x900/A4492F/F8F7F4?text=FULL+WIDTH+FEATURED+EDITORIAL+IMAGE" },
-    		
-    		// --- GRID ARTICLES (Total 15) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const menuDrawer = document.getElementById('mobile-menu-drawer');
+            const searchOverlay = document.getElementById('search-overlay');
+            const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
+            const menuButton = document.getElementById('menu-button');
 
-    		{ title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
-    			image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-112' },	
-    		{ title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
-    			image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-96' },	
-    			
-    		{ isFullSpan: true, title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
-    			image: "https://placehold.co/1200x500/3B5323/f7f6f2?text=FULL+SPAN+SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-112' },
+            // Opens mobile menu or desktop utility drawer
+            if(menuButton){
+                menuButton.addEventListener('click', () => {
+                    if (window.innerWidth <= 1024) {
+                        menuDrawer.classList.remove('translate-x-full');
+                        body.style.overflow = 'hidden';
+                    } else {
+                        if(desktopUtilityDrawer) desktopUtilityDrawer.classList.toggle('hidden');
+                    }
+                });
+            }
 
-    		{ title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
-    			image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-96' },	
-    		{ title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
-    			image: "https://placehold.co/600x400/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-64' },	
-    		{ title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
-    			image: "https://placehold.co/600x850/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-112' },	
-    			
-    		{ isFullSpan: true, title: "The geometry of silence: A photographer's retreat to the desert", slug: "article-blueprint.html?slug=desert-silence", status: "published", category: "Fashion & Art", author: "Hana Al-Otaibi", readingMinutes: 6, dek: "Capturing the vast, empty landscapes where sound dies.",	
-    			image: "https://placehold.co/1200x550/4C4C47/E5DCC5?text=FULL+SPAN+DESERT+PHOTO", imageHeightClass: 'h-112' },	
+            // Closes mobile menu
+            if(document.getElementById('close-menu-button')){
+                document.getElementById('close-menu-button').addEventListener('click', () => {
+                    menuDrawer.classList.add('translate-x-full');
+                    body.style.overflow = '';
+                });
+            }
 
-    		{ title: "Why micro-narratives dominate TikTok: The attention economy", slug: "article-blueprint.html?slug=tiktok-economy", status: "published", category: "Society & Culture", author: "Kenji Tanaka", readingMinutes: 4, dek: "How 15-second clips rewrite the rules of storytelling.",	
-    			image: "https://placehold.co/600x600/848FA5/2D2D2A?text=SOCIAL+MEDIA+ANALYSIS", imageHeightClass: 'h-80' },	
-    		{ title: "Revival of the handmade: Slow fashion in a fast world", slug: "article-blueprint.html?slug=slow-fashion", status: "published", category: "Fashion & Art", author: "Maria Lopez", readingMinutes: 7, dek: "The artisans pushing back against mass production.",	
-    			image: "https://placehold.co/600x850/C14953/E5DCC5?text=ARTISAN+FASHION", imageHeightClass: 'h-112' },	
+            // Opens search overlay
+            document.getElementById('search-button').addEventListener('click', () => {
+                searchOverlay.classList.remove('hidden');
+                body.style.overflow = 'hidden';
+                searchOverlay.querySelector('input').focus();
+            });
+            
+            // Closes search overlay
+            document.getElementById('close-search-button').addEventListener('click', () => {
+                searchOverlay.classList.add('hidden');
+                body.style.overflow = '';
+            });
 
-    		{ isFullSpan: true, title: "Beyond the algorithm: Finding the true underground music scene", slug: "article-blueprint.html?slug=underground-music", status: "coming_soon", category: "Music & Film", author: "Zack Jones", readingMinutes: 5, dek: "A guide to the venues and labels the internet ignores.",	
-    			image: "https://placehold.co/1200x500/2D2D2A/848FA5?text=FULL+SPAN+UNDERGROUND+SOUND", imageHeightClass: 'h-112' },	
-    			
-    		{ title: "The paradox of heritage in contemporary architecture", slug: "article-blueprint.html?slug=heritage-architecture", status: "published", category: "Society & Culture", author: "Sarah Kim", readingMinutes: 8, dek: "Building the future while honoring the past.",	
-    			image: "https://placehold.co/600x500/4C4C47/E5DCC5?text=ARCHITECTURE+DEBATE", imageHeightClass: 'h-80' },	
-    		{ title: "Color theory and emotional marketing: A deep dive", slug: "article-blueprint.html?slug=color-theory", status: "published", category: "Fashion & Art", author: "David Chen", readingMinutes: 6, dek: "How brands use psychology to influence purchasing.",	
-    			image: "https://placehold.co/600x700/C14953/2D2D2A?text=MARKETING+PSYCH", imageHeightClass: 'h-96' },
+            // Close all on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (!searchOverlay.classList.contains('hidden')) {
+                        searchOverlay.classList.add('hidden');
+                        body.style.overflow = '';
+                    }
+                    if (!menuDrawer.classList.contains('translate-x-full')) {
+                        menuDrawer.classList.add('translate-x-full');
+                        body.style.overflow = '';
+                    }
+                    if (desktopUtilityDrawer && !desktopUtilityDrawer.classList.contains('hidden')) {
+                        desktopUtilityDrawer.classList.add('hidden');
+                    }
+                }
+            });
 
-    		{ title: "The forgotten sound of analogue synthesisers", slug: "article-blueprint.html?slug=analogue-synths", status: "coming_soon", category: "Music & Film", author: "Anna Brandt", readingMinutes: 4, dek: "Warmth, drift, and the human element in machine music.",	
-    			image: "https://placehold.co/600x700/848FA5/E5DCC5?text=VINTAGE+GEAR", imageHeightClass: 'h-96' },	
-    		{ title: "The rise of the decentralized art collective", slug: "article-blueprint.html?slug=decentralized-art", status: "published", category: "Fashion & Art", author: "Jules Verne", readingMinutes: 5, dek: "How technology enables new forms of artistic collaboration.",	
-    			image: "https://placehold.co/600x400/2D2D2A/C14953?text=ART+COLLECTIVE+FUTURE", imageHeightClass: 'h-64' },	
-    			
-    		{ isFullSpan: true, title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
-    			image: "https://placehold.co/1200x500/1C2A44/F8F7F4?text=FULL+SPAN+MAGAZINE+LAYOUT", imageHeightClass: 'h-112' },	
-    	];
+            // Close desktop utility on outside click
+            document.addEventListener('click', (e) => {
+                const headerRight = document.querySelector('header .flex.items-center.space-x-6');
+                const isClickInsideHeader = headerRight ? headerRight.contains(e.target) : false;
 
-    	// --- Utility Functions ---
-
-    	/**
-    	 * Renders the status badge for 'coming_soon' articles.
-    	 */
-    	const renderStatusBadge = (status) => {
-    		if (status === 'coming_soon') {
-    			return `
-    				<span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)]"
-    							style="background-color: var(--color-secondary);">	
-    						COMING SOON
-    						<span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCTOBER 10th 2025</span>	
-    				</span>
-    			`;
-    		}
-    		return '';
-    	};
-
-    	/**
-    	 * Generates the HTML for a single article card.
-    	 */
-    	const renderArticleCard = (article, isHero = false) => {
-    			const shouldSpanFull = article.isFullSpan || false;	
-    			
-    			const heroImageHeight = 'h-96 md:h-[40rem]';
-    			const cardImageHeightClass = article.imageHeightClass || 'h-64';	
-    			const imageSizeClass = isHero ? heroImageHeight : cardImageHeightClass;	
-    			
-    			const titleClass = isHero ? 'masthead-text mt-4 leading-none' : (shouldSpanFull ? 'text-5xl mt-3 leading-snug' : 'text-4xl mt-3 leading-snug');
-    			const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-3xl' : 'text-base font-ui mt-2 hidden lg:block';
-    			
-    			const authorCredit = isHero	
-    				? `<p class="text-xl md:text-2xl font-extrabold mt-3 text-[var(--color-primary)]" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`
-    				: `<p class="text-xl font-extrabold mt-3 text-[var(--color-primary)]" style="font-family: var(--font-masthead);">${article.author.toUpperCase()}</p>`;
-
-    			const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60">${article.readingMinutes} min read</p>`;
-
-    			const fullSpanClass = shouldSpanFull ? 'article-full-span' : '';
-
-    		return `
-    			<a href="${article.slug}" class="card-link ${isHero ? 'hero-article-card' : 'article-card'} ${fullSpanClass} group block" aria-label="Read article by ${article.author}: ${article.title}">
-    					
-    					<div class="overflow-hidden rounded-lg shadow-lg aspect-w-4 aspect-h-3">
-    						<img loading="lazy"	
-    							src="${article.image}"	
-    							alt="${article.title}"	
-    							onerror="this.onerror=null;this.src='https://placehold.co/1200x800/808080/FFF?text=Image+Missing';"
-    							class="card-image w-full object-cover transition-transform duration-500 ease-in-out ${imageSizeClass} ${isHero ? 'rounded-none' : 'rounded-lg'}"
-    						>
-    					</div>
-
-    					<div class="${isHero ? 'container mx-auto px-4' : 'py-4'}">
-    						<div class="flex items-center justify-between flex-wrap gap-2 mb-2">
-    							<span class="px-2 py-1 text-xs font-bold uppercase rounded-full border border-current text-[var(--fg)]">
-    								${article.category}
-    							</span>
-    							${renderStatusBadge(article.status)}
-    						</div>
-
-    						<h3 class="font-extrabold ${titleClass} tracking-wide" style="font-family: var(--font-masthead);">
-    							${article.title.toUpperCase()}
-    						</h3>
-
-    							${authorCredit}
-
-    						<p class="${dekClass} text-[var(--fg)]/80">
-    							${article.dek}
-    						</p>
-
-    						${readingMeta}
-    					</div>
-    			</a>
-    		`;
-    	};
-
-    	/**
-    	 * Renders all articles into their respective containers (Hero and Grid).
-    	 * This revised version correctly handles the insertion of columns and full-span articles.
-    	 */
-    	const renderContent = () => {
-    		const heroContainer = document.getElementById('hero-article');
-    		const gridContainer = document.getElementById('article-grid');
-    		
-    			gridContainer.innerHTML = ''; // Clear existing content
-
-    		let heroArticle = articles.find(a => a.isHero);
-    			if (heroArticle) {
-    			heroContainer.innerHTML = renderArticleCard(heroArticle, true);
-    		}
-    			
-    			const gridArticles = articles.filter(a => !a.isHero);
-    			
-    			const numColumns = 3;
-    			let currentColumnHtmls = Array(numColumns).fill(''); // Stores HTML strings for each column
-    			let columnHeights = Array(numColumns).fill(0); // Tracks virtual height
-
-    			// Helper to reset and build a new group of columns
-    			const buildAndAppendColumnGroup = () => {
-    				const groupDiv = document.createElement('div');
-    				groupDiv.className = 'grid-group';
-    				
-    				for (let i = 0; i < numColumns; i++) {
-    					const colDiv = document.createElement('div');
-    					colDiv.className = 'grid-column';
-    					colDiv.innerHTML = currentColumnHtmls[i];
-    					groupDiv.appendChild(colDiv);
-    				}
-    				gridContainer.appendChild(groupDiv);
-    				
-    				// Reset for the next group
-    				currentColumnHtmls = Array(numColumns).fill('');
-    				columnHeights.fill(0);
-    			};
-
-    			gridArticles.forEach((article) => {
-    				const articleHtml = renderArticleCard(article, false);
-    				
-    				if (article.isFullSpan) {
-    					// 1. If a full-span article is hit, first close the current column group (if it has content)
-    					if (columnHeights.some(h => h > 0)) {
-    						buildAndAppendColumnGroup();
-    					}
-
-    					// 2. Append the full-span article directly to the main grid container
-    					const fullSpanDiv = document.createElement('div');
-    					fullSpanDiv.innerHTML = articleHtml;
-    					gridContainer.appendChild(fullSpanDiv.firstChild);
-    					
-    					// 3. The next articles must start a new column group, so heights are already zeroed by buildAndAppendColumnGroup.
-    				} else {
-    					// Normal Card: Find the shortest column (index of the lowest height)
-    					let shortestColumnIndex = 0;
-    					let minHeight = columnHeights[0];
-    					for (let i = 1; i < numColumns; i++) {
-    						if (columnHeights[i] < minHeight) {
-    							minHeight = columnHeights[i];
-    							shortestColumnIndex = i;
-    						}
-    					}
-    					
-    					// Append article HTML to the chosen column's string
-    					currentColumnHtmls[shortestColumnIndex] += articleHtml;
-
-    					// Update the height estimate (Rough estimate: h-xx * 0.25 + text/padding)
-    					const heightEstimate = (article.imageHeightClass ? parseInt(article.imageHeightClass.replace('h-', '')) : 64) * 0.25;	
-    					columnHeights[shortestColumnIndex] += heightEstimate + 15;
-    				}
-    			});
-
-    			// After the loop, append any remaining articles in the last column group
-    			if (columnHeights.some(h => h > 0)) {
-    				buildAndAppendColumnGroup();
-    			}
-    	};
-
-
-    	// --- Event Listeners and Initializers ---
-
-    	document.addEventListener('DOMContentLoaded', () => {
-    		
-    		// 1. Render Content (Now using the stable Flexbox method)
-    		renderContent();
-
-    		// 2. Attach Interaction Listeners (Standard logic)
-    			
-    			const body = document.body;
-    			const menuDrawer = document.getElementById('mobile-menu-drawer');
-    			const searchOverlay = document.getElementById('search-overlay');
-    			const desktopUtilityDrawer = document.getElementById('desktop-utility-drawer');
-
-    			const menuButton = document.getElementById('menu-button');
-    			
-    			menuButton.addEventListener('click', () => {
-    				if (window.innerWidth <= 1024) {	
-    					menuDrawer.classList.remove('translate-x-full');
-    					body.style.overflow = 'hidden';	
-    				} else {	
-    					desktopUtilityDrawer.classList.toggle('hidden');
-    				}
-    			});
-
-    			document.getElementById('close-menu-button').addEventListener('click', () => {
-    				menuDrawer.classList.add('translate-x-full');
-    				body.style.overflow = '';
-    			});
-
-    			document.getElementById('search-button').addEventListener('click', () => {
-    				searchOverlay.classList.remove('hidden');
-    				body.style.overflow = 'hidden';
-    				searchOverlay.querySelector('input').focus();	
-    			});
-    			document.getElementById('close-search-button').addEventListener('click', () => {
-    				searchOverlay.classList.add('hidden');
-    				body.style.overflow = '';
-    			});
-
-    			document.addEventListener('keydown', (e) => {
-    				if (e.key === 'Escape') {
-    					if (!searchOverlay.classList.contains('hidden')) {
-    						searchOverlay.classList.add('hidden');
-    						body.style.overflow = '';
-    					}
-    					if (!menuDrawer.classList.contains('translate-x-full')) {
-    						menuDrawer.classList.add('translate-x-full');
-    						body.style.overflow = '';
-    					}
-    					if (!desktopUtilityDrawer.classList.contains('hidden')) {
-    						desktopUtilityDrawer.classList.add('hidden');
-    					}
-    				}
-    			});
-
-    			document.addEventListener('click', (e) => {
-    				const headerRight = document.querySelector('header .flex.items-center.space-x-6');
-    				const isClickInsideHeader = headerRight.contains(e.target);
-
-    				if (window.innerWidth > 1024 && !desktopUtilityDrawer.classList.contains('hidden')) {
-    					if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
-    						desktopUtilityDrawer.classList.add('hidden');
-    					}
-    				}
-    			});
+                if (window.innerWidth > 1024 && desktopUtilityDrawer && !desktopUtilityDrawer.classList.contains('hidden')) {
+                    if (!isClickInsideHeader && !desktopUtilityDrawer.contains(e.target)) {
+                        desktopUtilityDrawer.classList.add('hidden');
+                    }
+                }
+            });
     	});
     </script>
+    
+    <div hidden>
+        <form netlify 
+            name="contact" 
+            action="/thanks" 
+            method="POST" 
+            netlify-honeypot="bot-field">
+            
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="text" name="bot-field" />
+            <input type="text" name="name" />
+            <input type="email" name="email" />
+            <input type="text" name="subject" />
+            <textarea name="message"></textarea>
+            <button type="submit">Register Contact Form</button>
+        </form>
+
+        <form netlify 
+            name="writer-submission" 
+            action="/thanks" 
+            method="POST" 
+            netlify-honeypot="bot-field">
+            
+            <input type="hidden" name="form-name" value="writer-submission" />
+            <input type="text" name="bot-field" />
+            <input type="text" name="name" />
+            <button type="submit">Register Writer Form</button>
+        </form>
+
+        <form netlify 
+            name="collaborator-application" 
+            action="/thanks" 
+            method="POST" 
+            netlify-honeypot="bot-field">
+
+            <input type="hidden" name="form-name" value="collaborator-application" />
+            <input type="text" name="bot-field" />
+            <input type="text" name="name" />
+            <button type="submit">Register Collaborator Form</button>
+        </form>
+    </div>
+    
 </body>
 </html>

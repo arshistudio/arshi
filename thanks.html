@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | ARSHI Studio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for Consistent Styling */
+        :root {
+            --bg: #E5DCC5; /* Beige - Main Background */
+            --fg: #2D2D2A; /* Charcoal Black - Main Text */
+            --color-primary: #C14953; /* Red - Accent/Underline/Focus */
+            --color-secondary: #4C4C47; /* Dark Gray - Secondary Accent/Button BG */
+            --font-body: 'Inter', sans-serif;
+            --font-masthead: 'Bebas Neue', cursive;
+        }
+        
+        /* Basic Styling for the Thank You Page */
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-body);
+            /* Center content vertically and horizontally on the screen */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        /* Apply the masthead font to the THANK YOU text */
+        .masthead-title {
+            font-family: var(--font-masthead);
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="max-w-xl mx-auto p-8">
+        
+        <h1 class="text-7xl md:text-8xl font-extrabold mb-4 masthead-title" style="color: var(--color-primary);">
+            APPLICATION SENT
+        </h1>
+        
+        <p class="text-xl md:text-2xl font-semibold mb-6">
+            Thank you for your interest in becoming an ARSHI Collaborator.
+        </p>
+        
+        <div class="bg-white p-6 md:p-8 shadow-lg border border-[var(--color-primary)]/50 space-y-4">
+            <p class="text-lg font-medium">
+                Your application has been successfully submitted and stored via Netlify Forms.
+            </p>
+            <p class="text-base font-medium">
+                The Director reviews all applications. We aim to review your submission and reply to your contact email within **10 days**.
+            </p>
+        </div>
+        
+        <a href="index.html" class="inline-block px-8 py-3 text-lg font-bold text-[var(--bg)] rounded-full transition-colors duration-300 hover:opacity-90 mt-10" style="background-color: var(--color-secondary); font-family: var(--font-masthead); letter-spacing: 0.1em;">
+            RETURN TO ARSHI HOMEPAGE
+        </a>
+    </div>
+</body>
+</html>

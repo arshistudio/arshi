@@ -168,18 +168,18 @@
     	<section id="category-info" class="text-right mb-12">
             <h1 id="category-title" class="text-5xl md:text-6xl font-extrabold tracking-wide text-[var(--fg)]/90" style="font-family: var(--font-masthead);">
     			</h1>
-    		</section>
+    	</section>
     	
     	<section id="article-grid-container">
             <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     			</div>
     	</section>
         
-        <section id="category-links-footer" class="pt-12 md:pt-16 mt-8 md:mt-12 border-t border-[var(--color-light)]">
-            <h2 class="text-3xl md:text-4xl font-extrabold tracking-wide mb-6 text-center" style="font-family: var(--font-masthead);">
-                EXPLORE OTHER CATEGORIES
+        <section id="suggested-articles-footer" class="pt-12 md:pt-16 mt-8 md:mt-12 border-t border-[var(--color-light)]">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-wide mb-8 text-center" style="font-family: var(--font-masthead);">
+                READ NEXT
             </h2>
-            <div id="category-links-list" class="flex flex-wrap justify-center gap-4 text-lg font-semibold uppercase">
+            <div id="suggested-articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 </div>
         </section>
         
@@ -266,6 +266,13 @@
         };
 
     	// --- Utility Functions (Updated) ---
+        
+        /**
+         * Helper function to convert a category name into its URL-friendly slug.
+         */
+        const normalizeCategorySlug = (categoryName) => 
+            categoryName.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+
 
     	/**
     	 * Renders the status badge for 'coming_soon' articles.
@@ -332,29 +339,63 @@
     	};
         
         /**
-         * Renders the list of category links at the bottom of the page.
+         * Renders a grid of suggested articles from *other* categories.
          */
-        const renderCategoryLinksFooter = () => {
-            const container = document.getElementById('category-links-list');
+        const renderSuggestedArticles = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentCategorySlug = urlParams.get('category') || 'all';
+
+            const container = document.getElementById('suggested-articles-grid');
             if (!container) return;
 
-            let linksHtml = '';
+            // 1. Determine which categories to pull suggestions from (the 'other' categories)
+            const allCategorySlugs = Object.keys(categories).filter(slug => slug !== 'all');
+            const otherCategorySlugs = allCategorySlugs.filter(slug => slug !== currentCategorySlug);
 
-            // Iterate through the categories object
-            for (const [slug, info] of Object.entries(categories)) {
-                // Skip the 'all' category for the footer display
-                if (slug === 'all') continue; 
-                
-                const categoryUrl = `category-list.html?category=${slug}`;
+            // 2. Select up to 3 unique articles from other categories.
+            const suggestedArticles = [];
+            const usedArticleSlugs = new Set();
+            let articlesToRenderCount = 3;
 
-                linksHtml += `
-                    <a href="${categoryUrl}" class="p-3 hover-underline text-[var(--color-primary)] font-extrabold" style="font-family: var(--font-masthead);">
-                        ${info.name.toUpperCase()}
-                    </a>
-                `;
+            // Loop through the *other* categories to pick one from each
+            for (const slug of otherCategorySlugs) {
+                if (suggestedArticles.length >= articlesToRenderCount) break;
+
+                const articleFromOtherCategory = allArticles.find(article => 
+                    normalizeCategorySlug(article.category) === slug && 
+                    article.status === 'published' &&
+                    !usedArticleSlugs.has(article.slug)
+                );
+
+                if (articleFromOtherCategory) {
+                    suggestedArticles.push(articleFromOtherCategory);
+                    usedArticleSlugs.add(articleFromOtherCategory.slug);
+                }
             }
 
-            container.innerHTML = linksHtml;
+            // If we still need more suggestions, pull any other published article not yet used.
+            if (suggestedArticles.length < articlesToRenderCount) {
+                 const remainingNeeded = articlesToRenderCount - suggestedArticles.length;
+                 const fillerArticles = allArticles.filter(article => 
+                     article.status === 'published' &&
+                     !usedArticleSlugs.has(article.slug)
+                 ).slice(0, remainingNeeded);
+
+                 suggestedArticles.push(...fillerArticles);
+            }
+
+            // 3. Render the selected articles
+            let gridHtml = '';
+            if (suggestedArticles.length > 0) {
+                suggestedArticles.forEach(article => {
+                    gridHtml += renderArticleCard(article);
+                });
+            } else {
+                 // Fallback text if there are no other articles to suggest
+                 gridHtml = `<p class="col-span-3 text-lg text-[var(--fg)]/70 text-center">We couldn't find any other articles to suggest right now. Check back soon!</p>`;
+            }
+
+            container.innerHTML = gridHtml;
         };
 
 
@@ -364,21 +405,18 @@
 
             const categoryInfo = categories[requestedCategory] || categories['all']; 
             const titleElement = document.getElementById('category-title');
-            // const descElement = document.getElementById('category-desc'); // Category description element removed
             const gridContainer = document.getElementById('article-grid');
             
             // 1. Inject Category Info
             titleElement.textContent = categoryInfo.name.toUpperCase();
-            // descElement.textContent = categoryInfo.description; // Category description text removed
             
-            // 2. Filter Articles (CODE KEPT AS IS)
+            // 2. Filter Articles
             const filteredArticles = allArticles.filter(article => {
                 if (requestedCategory === 'all') {
                     return true;
                 }
-                // Normalize category strings for comparison
-                const categorySlug = article.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
-                return categorySlug === requestedCategory;
+                // Use the helper function to normalize category strings for comparison
+                return normalizeCategorySlug(article.category) === requestedCategory;
             });
 
             // 3. Render Articles
@@ -395,15 +433,15 @@
         };
 
 
-        // --- Event Listeners and Initializers (COPIED FROM INDEX.HTML) ---
+        // --- Event Listeners and Initializers ---
 
     	document.addEventListener('DOMContentLoaded', () => {
     		
-    		// 1. Render Content 
+    		// 1. Render Main Category Content 
     		renderCategoryContent();
             
-            // 2. Render Category Footer Links
-            renderCategoryLinksFooter();
+            // 2. Render Suggested Articles Footer
+            renderSuggestedArticles();
 
     		// 3. Attach Interaction Listeners (Standard logic)
     			

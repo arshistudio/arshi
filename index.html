@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARSHI.studio | Independent Collective Magazine</title>
     
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
     
-    </head>
+</head>
 
 <body>
 
@@ -149,7 +150,7 @@
 
 
 <script>
-    // --- Data Model (KEEP AS-IS) ---
+    // --- Data Model ---
     const articles = [
         // Hero article 
         { isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
@@ -195,7 +196,7 @@
             image: "https://placehold.co/1200x500/1C2A44/F8F7F4?text=FULL+SPAN+MAGAZINE+LAYOUT", imageHeightClass: 'h-112' },	
     ];
 
-    // --- Utility Functions (UPDATED FOR NEW LAYOUT) ---
+    // --- Utility Functions ---
 
     const renderStatusBadge = (status) => {
         if (status === 'coming_soon') {
@@ -217,14 +218,11 @@
             const shouldSpanFull = article.isFullSpan || false;	
             
             const heroImageHeight = 'h-96 md:h-[40rem]';
-            // The image height classes are now mostly ignored by the new CSS for grid items (which use aspect-ratio)
             const imageSizeClass = isHero ? heroImageHeight : '';
             
-            // Note: Updated h3 size for better fit in the Polaroid card
             const titleClass = isHero ? 'masthead-text mt-4 leading-none' : (shouldSpanFull ? 'text-5xl mt-3 leading-snug' : 'text-3xl mt-3 leading-snug');
             const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-3xl' : 'text-base font-ui mt-2 hidden lg:block';
             
-            // The 'logo' class ensures the X Typewriter font is used for the author
             const authorCredit = isHero	
                 ? `<p class="text-xl md:text-2xl font-extrabold mt-3 text-[var(--color-primary)] logo">${article.author.toUpperCase()}</p>`
                 : `<p class="text-xl font-extrabold mt-3 text-[var(--color-primary)] logo">${article.author.toUpperCase()}</p>`;
@@ -271,7 +269,6 @@
 
     /**
      * Renders all articles using simple append (CSS Grid handles the layout).
-     * This replaces the old complex masonry logic.
      */
     const renderContent = () => {
         const heroContainer = document.getElementById('hero-article');
@@ -288,7 +285,6 @@
             
         gridArticles.forEach((article) => {
             const articleHtml = renderArticleCard(article, false);
-            // Append the HTML directly to the container. CSS Grid handles the layout.
             const articleDiv = document.createElement('div');
             articleDiv.innerHTML = articleHtml;
             gridContainer.appendChild(articleDiv.firstChild);
@@ -296,14 +292,14 @@
     };
 
 
-    // --- Event Listeners and Initializers (KEEP AS-IS) ---
+    // --- Event Listeners and Initializers ---
 
     document.addEventListener('DOMContentLoaded', () => {
         
         // 1. Render Content (Now using the simple CSS Grid method)
         renderContent();
 
-        // 2. Attach Interaction Listeners (Standard logic for drawers/search)
+        // 2. Attach Interaction Listeners 
             
         const body = document.body;
         const menuDrawer = document.getElementById('mobile-menu-drawer');

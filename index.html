@@ -6,6 +6,7 @@
     <title>ARSHI.studio | Independent Collective Magazine</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -152,48 +153,48 @@
 <script>
     // --- Data Model ---
     const articles = [
-        // Hero article 
+        // Hero article (Uses global black/beige colors)
         { isHero: true, title: "Tracing gold myths across maps", slug: "article-blueprint.html?slug=tracing-gold-myths", status: "coming_soon", category: "Fashion & Art", author: "Shiraz Hasnaoui", readingMinutes: 4, dek: "On art, rumor, and archives. Exploring how narratives of wealth influence contemporary design.",	
-            image: "https://placehold.co/1600x900/A4492F/F8F7F4?text=FULL+WIDTH+FEATURED+EDITORIAL+IMAGE" },
+            image: "https://placehold.co/1600x900/75070c/f0e6da?text=FULL+WIDTH+FEATURED+EDITORIAL+IMAGE" },
         // --- GRID ARTICLES (Total 15) ---
         { title: "The silent rebellion of utilitarian design in the metropolis", slug: "article-blueprint.html?slug=silent-rebellion", status: "published", category: "Society & Culture", author: "Liam O'Connell", readingMinutes: 7, dek: "How minimal fashion critiques excessive consumption.",	
-            image: "https://placehold.co/600x900/1C2A44/F8F7F4?text=CRITIQUE+PHOTO", imageHeightClass: 'h-112' },	
+            image: "https://placehold.co/600x900/1A1A1A/f0e6da?text=CRITIQUE+PHOTO", imageHeightClass: 'h-112' },	
         { title: "Screaming colour: A review of the new Arab experimental film scene", slug: "article-blueprint.html?slug=screaming-colour", status: "published", category: "Music & Film", author: "Aya Zaki", readingMinutes: 5, dek: "Moving beyond cliché: new voices in Middle Eastern cinema.",	
-            image: "https://placehold.co/600x600/C8A951/0f1218?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-96' },	
+            image: "https://placehold.co/600x600/4f6815/1A1A1A?text=EXPERIMENTAL+CINEMA", imageHeightClass: 'h-96' },	
             
         { isFullSpan: true, title: "Sonic Architecture: The influence of brutalism on modern trap beats", slug: "article-blueprint.html?slug=sonic-architecture", status: "coming_soon", category: "Music & Film", author: "Omar Hassan", readingMinutes: 9, dek: "Deconstructing the soundscapes of heavy bass and sharp edges.",	
-            image: "https://placehold.co/1200x500/3B5323/f7f6f2?text=FULL+SPAN+SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-112' },
+            image: "https://placehold.co/1200x500/4f6815/f0e6da?text=FULL+SPAN+SOUND+SCAPE+ANALYSIS", imageHeightClass: 'h-112' },
 
         { title: "The post-internet sculptor: Reimagining form in a digital age", slug: "article-blueprint.html?slug=post-internet-sculptor", status: "published", category: "Fashion & Art", author: "Elena Rossi", readingMinutes: 6, dek: "From voxel to vertex: the new digital artists shaping reality.",	
-            image: "https://placehold.co/600x800/808080/F8F7F4?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-96' },	
+            image: "https://placehold.co/600x800/75070c/ffedab?text=DIGITAL+SCULPTURE", imageHeightClass: 'h-96' },	
         { title: "Myth and memory: The enduring power of folk embroidery", slug: "article-blueprint.html?slug=folk-embroidery", status: "published", category: "Fashion & Art", author: "Zara Khan", readingMinutes: 4, dek: "A closer look at tradition as resistance.",	
-            image: "https://placehold.co/600x400/A4492F/F8F7F4?text=TEXTILE+ART", imageHeightClass: 'h-64' },	
+            image: "https://placehold.co/600x400/75070c/ffedab?text=TEXTILE+ART", imageHeightClass: 'h-64' },	
         { title: "A quiet moment with the last street cart vendors of Beirut", slug: "article-blueprint.html?slug=beirut-vendors", status: "coming_soon", category: "Society & Culture", author: "Jad Tamer", readingMinutes: 10, dek: "Documenting tradition before it fades into history.",	
-            image: "https://placehold.co/600x850/111/f7f6f2?text=REPORTAGE+PHOTO", imageHeightClass: 'h-112' },	
+            image: "https://placehold.co/600x850/ffedab/4f6815?text=REPORTAGE+PHOTO", imageHeightClass: 'h-112' },	
             
         { isFullSpan: true, title: "The geometry of silence: A photographer's retreat to the desert", slug: "article-blueprint.html?slug=desert-silence", status: "published", category: "Fashion & Art", author: "Hana Al-Otaibi", readingMinutes: 6, dek: "Capturing the vast, empty landscapes where sound dies.",	
-            image: "https://placehold.co/1200x550/4C4C47/E5DCC5?text=FULL+SPAN+DESERT+PHOTO", imageHeightClass: 'h-112' },	
+            image: "https://placehold.co/1200x550/75070c/f0e6da?text=FULL+SPAN+DESERT+PHOTO", imageHeightClass: 'h-112' },	
 
         { title: "Why micro-narratives dominate TikTok: The attention economy", slug: "article-blueprint.html?slug=tiktok-economy", status: "published", category: "Society & Culture", author: "Kenji Tanaka", readingMinutes: 4, dek: "How 15-second clips rewrite the rules of storytelling.",	
-            image: "https://placehold.co/600x600/848FA5/2D2D2A?text=SOCIAL+MEDIA+ANALYSIS", imageHeightClass: 'h-80' },	
+            image: "https://placehold.co/600x600/ffedab/4f6815?text=SOCIAL+MEDIA+ANALYSIS", imageHeightClass: 'h-80' },	
         { title: "Revival of the handmade: Slow fashion in a fast world", slug: "article-blueprint.html?slug=slow-fashion", status: "published", category: "Fashion & Art", author: "Maria Lopez", readingMinutes: 7, dek: "The artisans pushing back against mass production.",	
-            image: "https://placehold.co/600x850/C14953/E5DCC5?text=ARTISAN+FASHION", imageHeightClass: 'h-112' },	
+            image: "https://placehold.co/600x850/75070c/ffedab?text=ARTISAN+FASHION", imageHeightClass: 'h-112' },	
 
         { isFullSpan: true, title: "Beyond the algorithm: Finding the true underground music scene", slug: "article-blueprint.html?slug=underground-music", status: "coming_soon", category: "Music & Film", author: "Zack Jones", readingMinutes: 5, dek: "A guide to the venues and labels the internet ignores.",	
-            image: "https://placehold.co/1200x500/2D2D2A/848FA5?text=FULL+SPAN+UNDERGROUND+SOUND", imageHeightClass: 'h-112' },	
+            image: "https://placehold.co/1200x500/4f6815/75070c?text=FULL+SPAN+UNDERGROUND+SOUND", imageHeightClass: 'h-112' },	
             
         { title: "The paradox of heritage in contemporary architecture", slug: "article-blueprint.html?slug=heritage-architecture", status: "published", category: "Society & Culture", author: "Sarah Kim", readingMinutes: 8, dek: "Building the future while honoring the past.",	
-            image: "https://placehold.co/600x500/4C4C47/E5DCC5?text=ARCHITECTURE+DEBATE", imageHeightClass: 'h-80' },	
+            image: "https://placehold.co/600x500/ffedab/4f6815?text=ARCHITECTURE+DEBATE", imageHeightClass: 'h-80' },	
         { title: "Color theory and emotional marketing: A deep dive", slug: "article-blueprint.html?slug=color-theory", status: "published", category: "Fashion & Art", author: "David Chen", readingMinutes: 6, dek: "How brands use psychology to influence purchasing.",	
-            image: "https://placehold.co/600x700/C14953/2D2D2A?text=MARKETING+PSYCH", imageHeightClass: 'h-96' },
+            image: "https://placehold.co/600x700/75070c/ffedab?text=MARKETING+PSYCH", imageHeightClass: 'h-96' },
 
         { title: "The forgotten sound of analogue synthesisers", slug: "article-blueprint.html?slug=analogue-synths", status: "coming_soon", category: "Music & Film", author: "Anna Brandt", readingMinutes: 4, dek: "Warmth, drift, and the human element in machine music.",	
-            image: "https://placehold.co/600x700/848FA5/E5DCC5?text=VINTAGE+GEAR", imageHeightClass: 'h-96' },	
+            image: "https://placehold.co/600x700/4f6815/75070c?text=VINTAGE+GEAR", imageHeightClass: 'h-96' },	
         { title: "The rise of the decentralized art collective", slug: "article-blueprint.html?slug=decentralized-art", status: "published", category: "Fashion & Art", author: "Jules Verne", readingMinutes: 5, dek: "How technology enables new forms of artistic collaboration.",	
-            image: "https://placehold.co/600x400/2D2D2A/C14953?text=ART+COLLECTIVE+FUTURE", imageHeightClass: 'h-64' },	
+            image: "https://placehold.co/600x400/75070c/ffedab?text=ART+COLLECTIVE+FUTURE", imageHeightClass: 'h-64' },	
             
         { isFullSpan: true, title: "Why physical magazines still matter in the age of infinite scroll", slug: "article-blueprint.html?slug=physical-magazines", status: "published", category: "Society & Culture", author: "Dana Alali", readingMinutes: 5, dek: "The tactile experience and permanence of print media.",	
-            image: "https://placehold.co/1200x500/1C2A44/F8F7F4?text=FULL+SPAN+MAGAZINE+LAYOUT", imageHeightClass: 'h-112' },	
+            image: "https://placehold.co/1200x500/ffedab/4f6815?text=FULL+SPAN+MAGAZINE+LAYOUT", imageHeightClass: 'h-112' },	
     ];
 
     // --- Utility Functions ---
@@ -202,7 +203,7 @@
         if (status === 'coming_soon') {
             return `
                 <span class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wider rounded-full text-[var(--bg)]"
-                            style="background-color: var(--color-secondary);">	
+                            style="background-color: var(--color-primary);">	
                         COMING SOON
                         <span class="ml-2 text-xs opacity-70 whitespace-nowrap">OCTOBER 10th 2025</span>	
                 </span>
@@ -212,27 +213,44 @@
     };
 
     /**
+     * Determines the appropriate CSS class for the card based on the category.
+     */
+    const getCategoryClass = (category) => {
+        switch (category.toLowerCase()) {
+            case 'fashion & art':
+                return 'card-fa';
+            case 'society & culture':
+                return 'card-cs';
+            case 'music & film':
+                return 'card-fm';
+            default:
+                return ''; // Default or fallback class
+        }
+    };
+
+    /**
      * Generates the HTML for a single article card.
      */
     const renderArticleCard = (article, isHero = false) => {
-            const shouldSpanFull = article.isFullSpan || false;	
-            
-            const heroImageHeight = 'h-96 md:h-[40rem]';
-            const imageSizeClass = isHero ? heroImageHeight : '';
-            
-            const titleClass = isHero ? 'masthead-text mt-4 leading-none' : (shouldSpanFull ? 'text-5xl mt-3 leading-snug' : 'text-3xl mt-3 leading-snug');
-            const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-3xl' : 'text-base font-ui mt-2 hidden lg:block';
-            
-            const authorCredit = isHero	
-                ? `<p class="text-xl md:text-2xl font-extrabold mt-3 text-[var(--color-primary)] logo">${article.author.toUpperCase()}</p>`
-                : `<p class="text-xl font-extrabold mt-3 text-[var(--color-primary)] logo">${article.author.toUpperCase()}</p>`;
+        const shouldSpanFull = article.isFullSpan || false;	
+        const categoryClass = isHero || shouldSpanFull ? '' : getCategoryClass(article.category);
+        
+        const heroImageHeight = 'h-96 md:h-[40rem]';
+        const imageSizeClass = isHero ? heroImageHeight : '';
+        
+        const titleClass = isHero ? 'masthead-text mt-4 leading-none' : (shouldSpanFull ? 'text-5xl mt-3 leading-snug' : 'text-3xl mt-3 leading-snug');
+        const dekClass = isHero ? 'text-lg md:text-xl font-serif mt-4 max-w-3xl' : 'text-base font-ui mt-2 hidden lg:block';
+        
+        const authorCredit = isHero || shouldSpanFull
+            ? `<p class="text-xl md:text-2xl font-extrabold mt-3 logo">${article.author.toUpperCase()}</p>`
+            : `<p class="text-xl font-extrabold mt-3 logo">${article.author.toUpperCase()}</p>`;
 
-            const readingMeta = `<p class="text-sm font-semibold mt-1 text-[var(--fg)]/60">${article.readingMinutes} min read</p>`;
+        const readingMeta = `<p class="text-sm font-semibold mt-1">${article.readingMinutes} min read</p>`;
 
-            const fullSpanClass = shouldSpanFull ? 'article-full-span' : '';
+        const fullSpanClass = shouldSpanFull ? 'article-full-span' : '';
 
         return `
-            <a href="${article.slug}" class="card-link ${isHero ? 'hero-article-card' : 'article-card'} ${fullSpanClass} group block" aria-label="Read article by ${article.author}: ${article.title}">
+            <a href="${article.slug}" class="card-link ${isHero ? 'hero-article-card' : 'article-card'} ${fullSpanClass} ${categoryClass} group block" aria-label="Read article by ${article.author}: ${article.title}">
                     
                     <div class="overflow-hidden shadow-inner">
                         <img loading="lazy"	
@@ -299,7 +317,7 @@
         // 1. Render Content (Now using the simple CSS Grid method)
         renderContent();
 
-        // 2. Attach Interaction Listeners 
+        // 2. Attach Interaction Listeners (KEPT AS IS)
             
         const body = document.body;
         const menuDrawer = document.getElementById('mobile-menu-drawer');

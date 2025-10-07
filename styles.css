@@ -1,390 +1,125 @@
-/* ARSHI Magazine Core Styles */
+/* ARSHI Studio Global Styles - Best Practice: All core styling is here */
 
-/* --- 1. FONT IMPORTS (Fallbacks for Druk, Inter, Merriweather) --- */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+/* ==================================== */
+/* 1. CUSTOM FONT DECLARATION */
+/* This tells the browser how to load your uploaded .ttf files. */
+/* ==================================== */
 
-/* --- 2. BASE COLOR PALETTE & TYPOGRAPHY VARIABLES --- */
+@font-face {
+    font-family: 'X Typewriter';
+    src: url('XTypewriter-nAgg0.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    /* IMPORTANT: Ensure 'XTypewriter-nAgg0.ttf' is in the same directory as this CSS file. */
+}
+
+@font-face {
+    font-family: 'X Typewriter';
+    src: url('XTypewriterBold-1jaaB.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    /* IMPORTANT: Ensure 'XTypewriterBold-1jaaB.ttf' is in the same directory as this CSS file. */
+}
+
+
+/* ==================================== */
+/* 2. CSS VARIABLES (Design System) */
+/* This defines your brand's core colors and fonts based on the pitch. */
+/* ==================================== */
 :root {
-    /* NEW COLOR PALETTE (Trial 3: Bold & High-Contrast) */
-    --bg-base: #E5DCC5; /* Soft Cream for Background */
-    --fg-base: #2D2D2A; /* Deep Charcoal for Foreground Text */
+    /* Color Palette */
+    --bg: #FFFCF7; /* Main Background: Very light off-white */
+    --fg: #1A1A1A; /* Main Text Color: Near-Black Charcoal (readability) */
+    --color-primary: #9E1B32; /* Primary Accent: Deep Maroon/Dark Red (ARSHI's core color) */
+    --color-secondary: #556B2F; /* Secondary Accent: Dark Olive Green (from pitch palette) */
+    --color-light: #C0C0C0; /* Light Divider/Border: Clean gray */
+
+    /* Font Settings */
+    --font-masthead: 'X Typewriter', Georgia, serif; /* Custom font for titles/masthead */
+    --font-body: 'Inter', sans-serif; /* Recommended for body text readability */
     
-    /* Assigning new colors to your existing accent variables */
-    --accent-1: #C14953; /* Striking Red (Primary Accent) */
-    --accent-2: #4C4C47; /* Dark Grey (Secondary Dark/Hover) */
-    --accent-3: #848FA5; /* Muted Periwinkle (Neutral/Borders) */
-    --accent-4: #4C4C47; /* Dark Grey (Secondary Dark/Hover) */
-
-    /* Typography Variables */
-    --font-masthead: 'Anton', "Bebas Neue", "Impact", sans-serif; /* Condensed, Bold vibe */
-    --font-ui: 'Inter', "IBM Plex Sans", sans-serif;             /* Clean, Sans-serif */
-    --font-body: 'Merriweather', "Source Serif 4", Georgia, serif; /* Editorial Serif */
-    --line-height-body: 1.65;
-    --base-font-size: 18px;
-
-    /* Default Theme: Red-led (Mapping global to specific theme vars) */
-    --bg: var(--bg-base);
-    --fg: var(--fg-base);
-    --color-primary: var(--accent-1); 
-    --color-secondary: var(--accent-4);
-    --color-text: var(--fg);
-    --color-light: var(--accent-3); /* Used for borders/separators */
+    /* Fallback Font Import for Inter (if you don't already have it linked in HTML) */
+    /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); */
 }
 
-/* --- 3. THEME OVERRIDES (Controlled by theme-switcher.js) --- */
-[data-theme="midnight-led"] {
-    /* Use dark grey and red for primary/secondary when in midnight theme mode */
-    --color-primary: var(--accent-2); 
-    --color-secondary: var(--accent-1);
-}
-
-[data-theme="olive-led"] {
-    --color-primary: var(--accent-3); 
-    --color-secondary: var(--accent-2);
-}
-
-/* --- 4. GLOBAL STYLES & RESET --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* ==================================== */
+/* 3. BASE STYLES */
+/* Applies fundamental styling to the entire document. */
+/* ==================================== */
 html {
-    scroll-behavior: smooth;
+    /* Ensures 1rem = 10px for easier calculation (optional, but helpful) */
+    font-size: 62.5%; 
 }
 
 body {
-    font-family: var(--font-body);
-    font-size: var(--base-font-size);
-    line-height: var(--line-height-body);
-    color: var(--color-text);
     background-color: var(--bg);
-    transition: background-color 0.3s, color 0.3s;
-}
-
-/* --- 5. TYPOGRAPHY SCALE --- */
-h1, h2 {
-    font-family: var(--font-masthead);
-    text-transform: uppercase;
-    line-height: 1.1;
-    margin-bottom: 0.5em;
-}
-
-h1 { /* H1 for article titles (most condensed/bold) */
-    font-size: clamp(2.5rem, 6vw, 4rem); 
-    font-weight: 700;
-}
-
-/* Specific H1 adjustment for general pages (About, Contact, Submit) */
-.text-focused h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem); 
-    font-weight: 600; 
     color: var(--fg);
-    margin-bottom: 1rem;
+    font-family: var(--font-body);
+    font-size: 1.6rem; /* 16px */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h2 { /* H2: 36–44 */
-    font-size: clamp(2rem, 4vw, 2.75rem); 
-    color: var(--color-primary);
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
-h3, h4, h5 {
-    font-family: var(--font-ui);
-    line-height: 1.3;
-    margin-bottom: 0.5em;
-    color: var(--fg);
-}
+/* ==================================== */
+/* 4. TYPOGRAPHY & LINKS */
+/* ==================================== */
 
-h3 { /* H3: 24–28 */
-    font-size: clamp(1.5rem, 2.5vw, 1.75rem);
-}
-
-p {
-    margin-bottom: 1em;
-}
-
-.lead-paragraph {
-    font-size: 1.15em;
-    font-weight: 400;
-}
-
-/* --- 6. LINKS & UI --- */
 a {
     color: var(--color-primary);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.2s ease;
 }
 
 a:hover {
     color: var(--color-secondary);
+    text-decoration: underline;
 }
 
-nav a, .cta-button, .section-tag, .cat-card {
-    font-family: var(--font-ui);
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.cta-button {
-    display: inline-block;
-    background: var(--color-primary);
-    color: var(--bg);
-    padding: 10px 20px;
-    border-radius: 2px;
-    margin-top: 10px;
-    border: none;
-    cursor: pointer;
-}
-.cta-button:hover {
-    background: var(--color-secondary);
-    color: var(--bg);
-}
-
-/* --- 7. HEADER & NAVIGATION --- */
-header {
-    background-color: var(--bg);
-    padding: 20px 5%;
-    border-bottom: 1px solid var(--color-light);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Logo Styling: ARSHI */
-nav .logo {
+h1, h2, h3, h4 {
     font-family: var(--font-masthead);
-    font-size: 2.2rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: var(--fg);
-}
-nav .logo a {
-    color: var(--fg);
-}
-
-/* Primary Categories */
-nav .categories {
-    display: flex;
-    gap: 25px;
-    list-style: none;
-    margin-left: auto; 
-    padding-right: 25px; 
-}
-
-nav .categories a {
-    color: var(--fg);
-    font-size: 0.8rem; 
-    letter-spacing: 0.5px;
-}
-
-/* Secondary Links Container (Desktop Hamburger Replacement) */
-nav .secondary-links-desktop {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    padding-right: 20px;
-}
-
-nav .secondary-links-desktop a {
-    color: var(--fg);
-    font-size: 0.8rem;
-}
-
-/* Search Container */
-.search-container {
-    position: relative;
-    display: none; /* Hide by default on desktop, show only when needed */
-    margin-right: 15px;
-}
-
-.search-input {
-    padding: 6px 10px;
-    border: 1px solid var(--color-light);
-    border-radius: 4px;
-    font-size: 0.9rem;
-    width: 200px;
-    transition: width 0.3s ease-in-out;
-    background-color: var(--bg);
-    color: var(--fg);
-}
-
-.search-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: var(--fg);
-    font-size: 1.1rem;
-    padding: 0;
-    margin-left: -25px; /* Overlay on the input */
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-/* Hamburger Menu Icon */
-.hamburger {
-    display: none;
-    cursor: pointer;
-    z-index: 101;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--fg);
-    margin-left: 15px;
-}
-
-/* Mobile Drawer Menu (Initially hidden) */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--fg);
-    color: var(--bg);
-    z-index: 99;
-    display: none;
-    flex-direction: column;
-    padding-top: 100px;
-    align-items: center;
-    transition: transform 0.3s ease-out;
-    transform: translateX(100%);
-}
-
-.mobile-menu.open {
-    display: flex;
-    transform: translateX(0);
-}
-
-.mobile-menu a {
-    color: var(--bg);
-    font-family: var(--font-ui);
-    font-size: 1.5rem;
-    padding: 15px 0;
     text-transform: uppercase;
-    width: 80%;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.mobile-menu a:hover {
-    color: var(--color-primary);
+    letter-spacing: 0.1em;
+    color: var(--color-primary); 
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
-/* Search in Mobile Menu */
-.mobile-search-container {
-    padding: 20px;
-    width: 80%;
-}
-.mobile-search-container .search-input {
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    background-color: var(--fg);
-    color: var(--bg);
-}
-
-/* --- Mobile Layout: Hide Desktop Nav, Show Mobile Nav --- */
-@media (max-width: 768px) {
-    nav .categories, nav .secondary-links-desktop, .search-container {
-        display: none;
-    }
-    .hamburger {
-        display: block;
-    }
-}
-
-/* --- Desktop Layout: Show Search, Hide Mobile Nav --- */
-@media (min-width: 769px) {
-    nav .categories, nav .secondary-links-desktop {
-        display: flex;
-    }
-    .search-container {
-        display: block; /* Show Search on Desktop */
-    }
-    .hamburger {
-        display: none;
-    }
-    .mobile-menu {
-        display: none !important; 
-    }
-}
+h1 { font-size: 3.6rem; } /* 36px */
+h2 { font-size: 2.8rem; } /* 28px */
+h3 { font-size: 2.0rem; } /* 20px */
 
 
-/* --- 9. MAIN LAYOUT & FOOTER --- */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 5%;
-}
-
-section {
-    padding: 40px 0;
-    border-bottom: 1px solid var(--color-light);
-}
-
-/* Contact Form Styling */
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-#contact-form label {
-    font-family: var(--font-ui);
-    font-weight: 600;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    margin-top: 10px;
-}
-
-#contact-form input[type="text"],
-#contact-form input[type="email"],
-#contact-form textarea {
-    padding: 12px;
-    border: 1px solid var(--color-light);
-    background-color: var(--bg);
-    font-family: var(--font-body);
-    font-size: 1em;
-    width: 100%;
-    transition: border-color 0.2s;
-}
-
-#contact-form textarea {
-    resize: vertical;
-}
-
-#contact-form input:focus,
-#contact-form textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-}
-
-.text-focused {
-    max-width: 800px;
+/* ==================================== */
+/* 5. UTILITY/LAYOUT (Add more as you build) */
+/* ==================================== */
+.container {
+    max-width: 120rem; /* 1200px */
     margin-left: auto;
     margin-right: auto;
+    padding: 0 2rem;
 }
 
-footer {
-    text-align: center;
-    padding: 30px 5%;
-    background-color: var(--fg);
-    color: var(--bg);
-    font-size: 0.9rem;
+.button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: 0.2rem solid var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--bg); /* Light text on dark button */
+    font-family: var(--font-masthead);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-footer p {
-    margin-bottom: 0;
+.button:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+    text-decoration: none;
 }
-
-/* Deploy fix: Force a new deploy to clear stuck "Post-processing" */
-/* */

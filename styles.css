@@ -1,26 +1,19 @@
 /*
  * ARSHI.STUDIO - CORE STYLESHEET
  *
- * This file contains all custom styling, including:
- * 1. Font declarations (Custom X Typewriter for titles)
- * 2. Color Variables (ARSHI Aesthetic)
- * 3. General Typography & Layout rules
- * 4. Polaroid Card Layout (CSS Grid)
+ * This file implements the new Category-Specific Color System.
  */
 
 /* ============================================== */
-/* 1. FONT DECLARATIONS */
+/* 1. FONT DECLARATIONS (KEPT AS IS) */
 /* ============================================== */
 
-/* X Typewriter - Regular (Used for main titles/masthead) */
 @font-face {
     font-family: 'X Typewriter';
     src: url('XTypewriter-nAgg0.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
-
-/* X Typewriter - Bold (Used for bold titles/logo) */
 @font-face {
     font-family: 'X Typewriter';
     src: url('XTypewriterBold-1jaaB.ttf') format('truetype');
@@ -28,24 +21,30 @@
     font-style: normal;
 }
 
-/* Inter (Google Font) is linked in the index.html head for body text */
-
-
 /* ============================================== */
-/* 2. COLOR PALETTE & VARIABLES */
+/* 2. COLOR PALETTE & VARIABLES (FINAL REFINEMENT) */
 /* ============================================== */
 
 :root {
-    /* NEW COLOR PALETTE: High Contrast Editorial */
-    --bg: #E5DCC5;           /* Beige - Main Background */
-    --fg: #2D2D2A;           /* Charcoal Black - Main Text */
-    --color-primary: #C14953; /* Red - Accent/Underline/Focus */
-    --color-secondary: #4C4C47; /* Dark Gray - Status Badge Background/Shadow */
-    --color-light: #848FA5;   /* Blue-Gray - Light divider/border */
+    /* GLOBAL COLORS (From User Request) */
+    --bg: #f0e6da;           /* NEW: Light Beige/Off-White */
+    --fg: #1A1A1A;           /* NEW: Near Black - Global Text (Titles, Dek, Header, Footer) */
+    --color-primary: #75070c; /* NEW: Deep Red/Maroon - Global Accent (Underline, Focus) */
+    --color-light: #848FA5;   /* Blue-Gray - Light divider/border (Functional) */
+
+    /* CATEGORY COLOR MAPPING */
+    --cat-fa-bg: #75070c;    /* FASHION & ART Background (Deep Red) */
+    --cat-fa-fg: #ffedab;    /* FASHION & ART Foreground (Pale Yellow) */
+
+    --cat-cs-bg: #ffedab;    /* CULTURE & SOCIETY Background (Pale Yellow) */
+    --cat-cs-fg: #4f6815;    /* CULTURE & SOCIETY Foreground (Mid Olive) */
+
+    --cat-fm-bg: #4f6815;    /* MUSIC & FILM Background (Mid Olive) */
+    --cat-fm-fg: #75070c;    /* MUSIC & FILM Foreground (Deep Red) */
 
     /* FONT VARIABLES */
     --font-body: 'Inter', sans-serif;
-    --font-masthead: 'X Typewriter', monospace; /* Using the custom font */
+    --font-masthead: 'X Typewriter', monospace;
 }
 
 
@@ -54,41 +53,25 @@
 /* ============================================== */
 
 body {
-    background-color: var(--bg);
-    color: var(--fg);
+    background-color: var(--bg) !important;
+    color: var(--fg) !important;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Titles and Masthead elements use the custom font */
+/* Titles and Masthead elements use the custom font and global black color */
 h1, h2, h3, .logo, .masthead-text {
-    font-family: var(--font-masthead);
-    font-weight: 700; /* Use bold variant of X Typewriter */
+    font-family: var(--font-masthead) !important; 
+    font-weight: 700; 
     letter-spacing: 0.05em;
+    /* Ensure all titles use the global foreground color by default */
+    color: var(--fg) !important; 
 }
-
-/* Specific Logo Style */
-.logo {
-    font-size: 4rem; 
-    letter-spacing: -0.07em;
-    font-weight: 700 !important;
-    color: var(--fg);
-    line-height: 1;
-}
-
-/* Specific Masthead Style */
-.masthead-text {
-    font-size: clamp(3rem, 8vw + 1rem, 6.5rem); 
-    letter-spacing: 0.05em; 
-    line-height: 1;
-}
-
-/* Link Hover Effect */
-.hover-underline {
-    position: relative;
-    padding-bottom: 2px;
-}
+/* ... rest of the base typography styles (KEPT AS IS) ... */
+.logo { font-size: 4rem; letter-spacing: -0.07em; font-weight: 700 !important; color: var(--fg); line-height: 1; }
+.masthead-text { font-size: clamp(3rem, 8vw + 1rem, 6.5rem); letter-spacing: 0.05em; line-height: 1; }
+.hover-underline { position: relative; padding-bottom: 2px; }
 .hover-underline:after {
     content: '';
     position: absolute;
@@ -100,87 +83,98 @@ h1, h2, h3, .logo, .masthead-text {
     background: var(--color-primary);
     transition: width 0.3s ease;
 }
-.hover-underline:hover:after {
-    width: 100%;
-}
-
+.hover-underline:hover:after { width: 100%; }
 
 /* ============================================== */
-/* 4. UTILITY & LAYOUT */
+/* 5. POLAROID CARD LAYOUT & CATEGORY STYLES (CRITICAL CHANGES) */
 /* ============================================== */
 
-.header-thin {
-    height: 64px;
-}
-
-#main-header {
-    border-bottom: 1px solid var(--color-light); 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-}
-
-/* Accessibility: Visible Focus States */
-*:focus-visible {
-    outline: 3px solid var(--color-primary) !important;
-    outline-offset: 2px;
-    border-radius: 4px;
-}
-
-/* ============================================== */
-/* 5. POLAROID CARD LAYOUT (Replaces Masonry) */
-/* ============================================== */
-
-/* The main grid container is now a standard CSS Grid */
-#article-grid {
-    display: grid;
-    /* Responsive columns: at least 280px wide, up to 1fr */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 32px; /* Large gap for separation */
-    padding-top: 32px;
-}
-
-/* Style for the card wrapper itself (the "Polaroid Frame") */
+/* Base Card Style (Minimal styling to be overridden by category classes) */
 .article-card {
-    background-color: var(--bg); 
-    border: 1px solid var(--color-light); 
-    padding: 12px 12px 24px 12px; /* Creates the visual white space border/frame */
-    box-shadow: 4px 4px 0 0 var(--color-secondary); /* Simple, distinct shadow */
+    background-color: var(--bg); /* Default inner frame color */
+    padding: 12px 12px 24px 12px; 
     transition: all 0.3s ease-in-out;
     display: block;
     text-decoration: none;
     height: fit-content; 
+    /* Remove generic border/shadow from base style to be defined dynamically */
+    border: none;
+    box-shadow: none;
 }
-
-/* Tilt and Lift effect on hover (for a tactile feel) */
 .article-card:hover {
-    box-shadow: 8px 8px 0 0 var(--color-primary);
     transform: translate(-4px, -4px) rotate(1deg); /* Slight lift and tilt */
 }
-
-/* Ensure images fit the polaroid frame */
+/* Ensure images fit the polaroid frame (KEPT AS IS) */
 .article-card .card-image {
     width: 100%;
-    aspect-ratio: 4/3; /* Consistent aspect ratio for the photo box */
+    aspect-ratio: 4/3; 
     height: auto !important; 
     object-fit: cover;
     margin-bottom: 1rem;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
-/* Full-span articles break the grid */
-.article-full-span {
-    grid-column: 1 / -1; /* Make it span the entire width */
-    width: 100%;
-    margin-bottom: 48px;
-    /* Remove card styling for the full-span hero-like element */
-    box-shadow: none;
-    padding: 0;
-    border: none;
-    transform: none;
+/* --- THEME-SPECIFIC CARD STYLES --- */
+
+/* FASHION & ART */
+.card-fa {
+    background-color: var(--cat-fa-bg) !important;
+    border: 1px solid var(--cat-fa-fg) !important;
+    box-shadow: 4px 4px 0 0 var(--cat-fa-fg) !important;
 }
-.article-full-span:hover {
-    box-shadow: none;
-    transform: none;
+.card-fa:hover {
+    box-shadow: 8px 8px 0 0 var(--cat-fa-fg) !important;
 }
-.article-full-span .card-image {
-    aspect-ratio: 16/7; /* Wider aspect ratio for full-span image */
+/* Title and Author must use the Pale Yellow FG */
+.card-fa h3, .card-fa .logo {
+    color: var(--cat-fa-fg) !important;
+}
+
+/* CULTURE & SOCIETY */
+.card-cs {
+    background-color: var(--cat-cs-bg) !important;
+    border: 1px solid var(--cat-cs-fg) !important;
+    box-shadow: 4px 4px 0 0 var(--cat-cs-fg) !important;
+}
+.card-cs:hover {
+    box-shadow: 8px 8px 0 0 var(--cat-cs-fg) !important;
+}
+/* Title and Author must use the Mid Olive FG */
+.card-cs h3, .card-cs .logo {
+    color: var(--cat-cs-fg) !important;
+}
+
+
+/* MUSIC & FILM */
+.card-fm {
+    background-color: var(--cat-fm-bg) !important;
+    border: 1px solid var(--cat-fm-fg) !important;
+    box-shadow: 4px 4px 0 0 var(--cat-fm-fg) !important;
+}
+.card-fm:hover {
+    box-shadow: 8px 8px 0 0 var(--cat-fm-fg) !important;
+}
+/* Title and Author must use the Deep Red FG */
+.card-fm h3, .card-fm .logo {
+    color: var(--cat-fm-fg) !important;
+}
+
+
+/* GLOBAL BLACK TEXT OVERRIDE: Ensure all *other* text inside the colored card remains black (--fg) */
+.article-card .text-\[var\(--fg\)\]\/80, /* Dek (Tailwind opacity class) */
+.article-card .text-sm, /* Reading Time */
+.article-card span { /* Category Badge */
+    color: var(--fg) !important; 
+    border-color: var(--fg) !important; 
+}
+.article-card p:not(.logo) { /* Force all p tags that aren't the logo to be the black foreground */
+    color: var(--fg) !important;
+}
+
+/* Ensure the hero and full-span articles remain black/white */
+.hero-article-card h3, .hero-article-card .logo, .hero-article-card p {
+    color: var(--fg) !important;
+}
+.article-full-span h3, .article-full-span .logo {
+    color: var(--fg) !important;
 }

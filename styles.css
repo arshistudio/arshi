@@ -1,125 +1,186 @@
-/* ARSHI Studio Global Styles - Best Practice: All core styling is here */
+/*
+ * ARSHI.STUDIO - CORE STYLESHEET
+ *
+ * This file contains all custom styling, including:
+ * 1. Font declarations (Custom X Typewriter for titles)
+ * 2. Color Variables (ARSHI Aesthetic)
+ * 3. General Typography & Layout rules
+ * 4. Polaroid Card Layout (CSS Grid)
+ */
 
-/* ==================================== */
-/* 1. CUSTOM FONT DECLARATION */
-/* This tells the browser how to load your uploaded .ttf files. */
-/* ==================================== */
+/* ============================================== */
+/* 1. FONT DECLARATIONS */
+/* ============================================== */
 
+/* X Typewriter - Regular (Used for main titles/masthead) */
 @font-face {
     font-family: 'X Typewriter';
     src: url('XTypewriter-nAgg0.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
-    /* IMPORTANT: Ensure 'XTypewriter-nAgg0.ttf' is in the same directory as this CSS file. */
 }
 
+/* X Typewriter - Bold (Used for bold titles/logo) */
 @font-face {
     font-family: 'X Typewriter';
     src: url('XTypewriterBold-1jaaB.ttf') format('truetype');
-    font-weight: bold;
+    font-weight: 700;
     font-style: normal;
-    /* IMPORTANT: Ensure 'XTypewriterBold-1jaaB.ttf' is in the same directory as this CSS file. */
 }
 
+/* Inter (Google Font) is linked in the index.html head for body text */
 
-/* ==================================== */
-/* 2. CSS VARIABLES (Design System) */
-/* This defines your brand's core colors and fonts based on the pitch. */
-/* ==================================== */
+
+/* ============================================== */
+/* 2. COLOR PALETTE & VARIABLES */
+/* ============================================== */
+
 :root {
-    /* Color Palette */
-    --bg: #FFFCF7; /* Main Background: Very light off-white */
-    --fg: #1A1A1A; /* Main Text Color: Near-Black Charcoal (readability) */
-    --color-primary: #9E1B32; /* Primary Accent: Deep Maroon/Dark Red (ARSHI's core color) */
-    --color-secondary: #556B2F; /* Secondary Accent: Dark Olive Green (from pitch palette) */
-    --color-light: #C0C0C0; /* Light Divider/Border: Clean gray */
+    /* NEW COLOR PALETTE: High Contrast Editorial */
+    --bg: #E5DCC5;           /* Beige - Main Background */
+    --fg: #2D2D2A;           /* Charcoal Black - Main Text */
+    --color-primary: #C14953; /* Red - Accent/Underline/Focus */
+    --color-secondary: #4C4C47; /* Dark Gray - Status Badge Background/Shadow */
+    --color-light: #848FA5;   /* Blue-Gray - Light divider/border */
 
-    /* Font Settings */
-    --font-masthead: 'X Typewriter', Georgia, serif; /* Custom font for titles/masthead */
-    --font-body: 'Inter', sans-serif; /* Recommended for body text readability */
-    
-    /* Fallback Font Import for Inter (if you don't already have it linked in HTML) */
-    /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); */
+    /* FONT VARIABLES */
+    --font-body: 'Inter', sans-serif;
+    --font-masthead: 'X Typewriter', monospace; /* Using the custom font */
 }
 
-/* ==================================== */
-/* 3. BASE STYLES */
-/* Applies fundamental styling to the entire document. */
-/* ==================================== */
-html {
-    /* Ensures 1rem = 10px for easier calculation (optional, but helpful) */
-    font-size: 62.5%; 
-}
+
+/* ============================================== */
+/* 3. BASE STYLES & TYPOGRAPHY */
+/* ============================================== */
 
 body {
     background-color: var(--bg);
     color: var(--fg);
     font-family: var(--font-body);
-    font-size: 1.6rem; /* 16px */
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit;
-}
-
-/* ==================================== */
-/* 4. TYPOGRAPHY & LINKS */
-/* ==================================== */
-
-a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-a:hover {
-    color: var(--color-secondary);
-    text-decoration: underline;
-}
-
-h1, h2, h3, h4 {
+/* Titles and Masthead elements use the custom font */
+h1, h2, h3, .logo, .masthead-text {
     font-family: var(--font-masthead);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-primary); 
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-
-h1 { font-size: 3.6rem; } /* 36px */
-h2 { font-size: 2.8rem; } /* 28px */
-h3 { font-size: 2.0rem; } /* 20px */
-
-
-/* ==================================== */
-/* 5. UTILITY/LAYOUT (Add more as you build) */
-/* ==================================== */
-.container {
-    max-width: 120rem; /* 1200px */
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 2rem;
-}
-
-.button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    border: 0.2rem solid var(--color-primary);
-    background-color: var(--color-primary);
-    color: var(--bg); /* Light text on dark button */
-    font-family: var(--font-masthead);
-    text-transform: uppercase;
+    font-weight: 700; /* Use bold variant of X Typewriter */
     letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
 }
 
-.button:hover {
-    background-color: transparent;
-    color: var(--color-primary);
+/* Specific Logo Style */
+.logo {
+    font-size: 4rem; 
+    letter-spacing: -0.07em;
+    font-weight: 700 !important;
+    color: var(--fg);
+    line-height: 1;
+}
+
+/* Specific Masthead Style */
+.masthead-text {
+    font-size: clamp(3rem, 8vw + 1rem, 6.5rem); 
+    letter-spacing: 0.05em; 
+    line-height: 1;
+}
+
+/* Link Hover Effect */
+.hover-underline {
+    position: relative;
+    padding-bottom: 2px;
+}
+.hover-underline:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 2px;
+    left: 0;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+.hover-underline:hover:after {
+    width: 100%;
+}
+
+
+/* ============================================== */
+/* 4. UTILITY & LAYOUT */
+/* ============================================== */
+
+.header-thin {
+    height: 64px;
+}
+
+#main-header {
+    border-bottom: 1px solid var(--color-light); 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Accessibility: Visible Focus States */
+*:focus-visible {
+    outline: 3px solid var(--color-primary) !important;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ============================================== */
+/* 5. POLAROID CARD LAYOUT (Replaces Masonry) */
+/* ============================================== */
+
+/* The main grid container is now a standard CSS Grid */
+#article-grid {
+    display: grid;
+    /* Responsive columns: at least 280px wide, up to 1fr */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px; /* Large gap for separation */
+    padding-top: 32px;
+}
+
+/* Style for the card wrapper itself (the "Polaroid Frame") */
+.article-card {
+    background-color: var(--bg); 
+    border: 1px solid var(--color-light); 
+    padding: 12px 12px 24px 12px; /* Creates the visual white space border/frame */
+    box-shadow: 4px 4px 0 0 var(--color-secondary); /* Simple, distinct shadow */
+    transition: all 0.3s ease-in-out;
+    display: block;
     text-decoration: none;
+    height: fit-content; 
+}
+
+/* Tilt and Lift effect on hover (for a tactile feel) */
+.article-card:hover {
+    box-shadow: 8px 8px 0 0 var(--color-primary);
+    transform: translate(-4px, -4px) rotate(1deg); /* Slight lift and tilt */
+}
+
+/* Ensure images fit the polaroid frame */
+.article-card .card-image {
+    width: 100%;
+    aspect-ratio: 4/3; /* Consistent aspect ratio for the photo box */
+    height: auto !important; 
+    object-fit: cover;
+    margin-bottom: 1rem;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+/* Full-span articles break the grid */
+.article-full-span {
+    grid-column: 1 / -1; /* Make it span the entire width */
+    width: 100%;
+    margin-bottom: 48px;
+    /* Remove card styling for the full-span hero-like element */
+    box-shadow: none;
+    padding: 0;
+    border: none;
+    transform: none;
+}
+.article-full-span:hover {
+    box-shadow: none;
+    transform: none;
+}
+.article-full-span .card-image {
+    aspect-ratio: 16/7; /* Wider aspect ratio for full-span image */
 }
